@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.util</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.util</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/util.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\util.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-build_path"><strong>build_path</strong></a>(graph, node1, node2, path<font color="#909090">=None</font>)</dt><dd><tt>Build&nbsp;the&nbsp;path&nbsp;from&nbsp;node1&nbsp;to&nbsp;node2.<br>
+The&nbsp;path&nbsp;is&nbsp;composed&nbsp;of&nbsp;all&nbsp;the&nbsp;nodes&nbsp;between&nbsp;node1&nbsp;and&nbsp;node2,<br>
+node1&nbsp;excluded.&nbsp;Although&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;loop&nbsp;starting&nbsp;from&nbsp;node1,&nbsp;it&nbsp;will&nbsp;be<br>
+included&nbsp;in&nbsp;the&nbsp;path.</tt></dd></dl>
+ <dl><dt><a name="-common_dom"><strong>common_dom</strong></a>(idom, cur, pred)</dt></dl>
+ <dl><dt><a name="-create_png"><strong>create_png</strong></a>(cls_name, meth_name, graph, dir_name<font color="#909090">='graphs2'</font>)</dt></dl>
+ <dl><dt><a name="-get_params_type"><strong>get_params_type</strong></a>(descriptor)</dt><dd><tt>Return&nbsp;the&nbsp;parameters&nbsp;type&nbsp;of&nbsp;a&nbsp;descriptor&nbsp;(e.g&nbsp;(IC)V)</tt></dd></dl>
+ <dl><dt><a name="-get_type"><strong>get_type</strong></a>(atype, size<font color="#909090">=None</font>)</dt><dd><tt>Retrieve&nbsp;the&nbsp;java&nbsp;type&nbsp;of&nbsp;a&nbsp;descriptor&nbsp;(e.g&nbsp;:&nbsp;I)</tt></dd></dl>
+ <dl><dt><a name="-get_type_size"><strong>get_type_size</strong></a>(param)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;register&nbsp;needed&nbsp;by&nbsp;the&nbsp;type&nbsp;@param</tt></dd></dl>
+ <dl><dt><a name="-merge_inner"><strong>merge_inner</strong></a>(clsdict)</dt><dd><tt>Merge&nbsp;the&nbsp;inner&nbsp;class(es)&nbsp;of&nbsp;a&nbsp;class&nbsp;:<br>
+e.g&nbsp;class&nbsp;A&nbsp;{&nbsp;...&nbsp;}&nbsp;class&nbsp;A$foo{&nbsp;...&nbsp;}&nbsp;class&nbsp;A$bar{&nbsp;...&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;==&gt;&nbsp;class&nbsp;A&nbsp;{&nbsp;class&nbsp;foo{...}&nbsp;class&nbsp;bar{...}&nbsp;...&nbsp;}</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ACCESS_FLAGS_CLASSES</strong> = {1: 'public', 2: 'private', 4: 'protected', 8: 'static', 16: 'final', 512: 'interface', 1024: 'abstract', 4096: 'synthetic', 8192: 'annotation', 16384: 'enum'}<br>
+<strong>ACCESS_FLAGS_FIELDS</strong> = {1: 'public', 2: 'private', 4: 'protected', 8: 'static', 16: 'final', 64: 'volatile', 128: 'transient', 4096: 'synthetic', 16384: 'enum'}<br>
+<strong>ACCESS_FLAGS_METHODS</strong> = {1: 'public', 2: 'private', 4: 'protected', 8: 'static', 16: 'final', 32: 'synchronized', 64: 'bridge', 128: 'varargs', 256: 'native', 1024: 'abstract', ...}<br>
+<strong>TYPE_DESCRIPTOR</strong> = {'B': 'byte', 'C': 'char', 'D': 'double', 'F': 'float', 'I': 'int', 'J': 'long', 'S': 'short', 'STR': 'String', 'StringBuilder': 'String', 'V': 'void', ...}<br>
+<strong>TYPE_LEN</strong> = {'D': 2, 'J': 2}<br>
+<strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>

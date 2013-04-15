@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.node</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.node</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/node.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\node.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.node.html#LoopType">LoopType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.node.html#Node">Node</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.node.html#Interval">Interval</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Interval">class <strong>Interval</strong></a>(<a href="androguard.decompiler.dad.node.html#Node">Node</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.node.html#Interval">Interval</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Interval-__contains__"><strong>__contains__</strong></a>(self, item)</dt></dl>
+
+<dl><dt><a name="Interval-__init__"><strong>__init__</strong></a>(self, head)</dt></dl>
+
+<dl><dt><a name="Interval-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-add_node"><strong>add_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-compute_end"><strong>compute_end</strong></a>(self, graph)</dt></dl>
+
+<dl><dt><a name="Interval-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-get_next"><strong>get_next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_type"><strong>set_loop_type</strong></a>(self, _type)</dt></dl>
+
+<dl><dt><a name="Interval-set_next"><strong>set_next</strong></a>(self, nxt)</dt></dl>
+
+<dl><dt><a name="Interval-set_startloop"><strong>set_startloop</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">Node</a>:<br>
+<dl><dt><a name="Interval-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="Interval-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="Interval-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Interval-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LoopType">class <strong>LoopType</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="LoopType-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-endless"><strong>endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-posttest"><strong>posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-pretest"><strong>pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-set_endless"><strong>set_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-set_posttest"><strong>set_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopType-set_pretest"><strong>set_pretest</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Node">class <strong>Node</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Node-__init__"><strong>__init__</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Node-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Node-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="Node-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Node-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Node-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Node-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="Node-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="Node-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Node-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Node-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

@@ -1,0 +1,3110 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.analysis.ganalysis</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.<a href="androguard.core.analysis.html"><font color="#ffffff">analysis</font></a>.ganalysis</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/analysis/ganalysis.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\analysis\ganalysis.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="androguard.core.bytecode.html">androguard.core.bytecode</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.ganalysis.html#Graph">Graph</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.ganalysis.html#DiGraph">DiGraph</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.ganalysis.html#GVMAnalysis">GVMAnalysis</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.ganalysis.html#NodeF">NodeF</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DiGraph">class <strong>DiGraph</strong></a>(<a href="androguard.core.analysis.ganalysis.html#Graph">Graph</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;directed&nbsp;graphs.<br>
+&nbsp;<br>
+A&nbsp;<a href="#DiGraph">DiGraph</a>&nbsp;stores&nbsp;nodes&nbsp;and&nbsp;edges&nbsp;with&nbsp;optional&nbsp;data,&nbsp;or&nbsp;attributes.<br>
+&nbsp;<br>
+DiGraphs&nbsp;hold&nbsp;directed&nbsp;edges.&nbsp;&nbsp;Self&nbsp;loops&nbsp;are&nbsp;allowed&nbsp;but&nbsp;multiple<br>
+(parallel)&nbsp;edges&nbsp;are&nbsp;not.<br>
+&nbsp;<br>
+Nodes&nbsp;can&nbsp;be&nbsp;arbitrary&nbsp;(hashable)&nbsp;Python&nbsp;objects&nbsp;with&nbsp;optional<br>
+key/value&nbsp;attributes.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;represented&nbsp;as&nbsp;links&nbsp;between&nbsp;nodes&nbsp;with&nbsp;optional<br>
+key/value&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;input&nbsp;graph<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;to&nbsp;initialize&nbsp;graph.&nbsp;&nbsp;If&nbsp;data=None&nbsp;(default)&nbsp;an&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph&nbsp;is&nbsp;created.&nbsp;&nbsp;The&nbsp;data&nbsp;can&nbsp;be&nbsp;an&nbsp;edge&nbsp;list,&nbsp;or&nbsp;any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NetworkX&nbsp;graph&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;&nbsp;If&nbsp;the&nbsp;corresponding&nbsp;optional&nbsp;Python<br>
+&nbsp;&nbsp;&nbsp;&nbsp;packages&nbsp;are&nbsp;installed&nbsp;the&nbsp;data&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;NumPy&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;2d&nbsp;ndarray,&nbsp;a&nbsp;SciPy&nbsp;sparse&nbsp;matrix,&nbsp;or&nbsp;a&nbsp;PyGraphviz&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;graph&nbsp;as&nbsp;key=value&nbsp;pairs.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#Graph">Graph</a><br>
+MultiGraph<br>
+MultiDiGraph<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+Create&nbsp;an&nbsp;empty&nbsp;graph&nbsp;structure&nbsp;(a&nbsp;"null&nbsp;graph")&nbsp;with&nbsp;no&nbsp;nodes&nbsp;and<br>
+no&nbsp;edges.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()<br>
+&nbsp;<br>
+G&nbsp;can&nbsp;be&nbsp;grown&nbsp;in&nbsp;several&nbsp;ways.<br>
+&nbsp;<br>
+**Nodes:**<br>
+&nbsp;<br>
+Add&nbsp;one&nbsp;node&nbsp;at&nbsp;a&nbsp;time:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(1)<br>
+&nbsp;<br>
+Add&nbsp;the&nbsp;nodes&nbsp;from&nbsp;any&nbsp;container&nbsp;(a&nbsp;list,&nbsp;dict,&nbsp;set&nbsp;or<br>
+even&nbsp;the&nbsp;lines&nbsp;from&nbsp;a&nbsp;file&nbsp;or&nbsp;the&nbsp;nodes&nbsp;from&nbsp;another&nbsp;graph).<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>([2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>(range(100,110))<br>
+&gt;&gt;&gt;&nbsp;H=nx.<a href="#Graph">Graph</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3,4,5,6,7,8,9])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>(H)<br>
+&nbsp;<br>
+In&nbsp;addition&nbsp;to&nbsp;strings&nbsp;and&nbsp;integers&nbsp;any&nbsp;hashable&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a><br>
+(except&nbsp;None)&nbsp;can&nbsp;represent&nbsp;a&nbsp;node,&nbsp;e.g.&nbsp;a&nbsp;customized&nbsp;node&nbsp;<a href="__builtin__.html#object">object</a>,<br>
+or&nbsp;even&nbsp;another&nbsp;<a href="#Graph">Graph</a>.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(H)<br>
+&nbsp;<br>
+**Edges:**<br>
+&nbsp;<br>
+G&nbsp;can&nbsp;also&nbsp;be&nbsp;grown&nbsp;by&nbsp;adding&nbsp;edges.<br>
+&nbsp;<br>
+Add&nbsp;one&nbsp;edge,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,&nbsp;2)<br>
+&nbsp;<br>
+a&nbsp;list&nbsp;of&nbsp;edges,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(1,2),(1,3)])<br>
+&nbsp;<br>
+or&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>(H.<a href="#DiGraph-edges">edges</a>())<br>
+&nbsp;<br>
+If&nbsp;some&nbsp;edges&nbsp;connect&nbsp;nodes&nbsp;not&nbsp;yet&nbsp;in&nbsp;the&nbsp;graph,&nbsp;the&nbsp;nodes<br>
+are&nbsp;added&nbsp;automatically.&nbsp;&nbsp;There&nbsp;are&nbsp;no&nbsp;errors&nbsp;when&nbsp;adding<br>
+nodes&nbsp;or&nbsp;edges&nbsp;that&nbsp;already&nbsp;exist.<br>
+&nbsp;<br>
+**Attributes:**<br>
+&nbsp;<br>
+Each&nbsp;graph,&nbsp;node,&nbsp;and&nbsp;edge&nbsp;can&nbsp;hold&nbsp;key/value&nbsp;attribute&nbsp;pairs<br>
+in&nbsp;an&nbsp;associated&nbsp;attribute&nbsp;dictionary&nbsp;(the&nbsp;keys&nbsp;must&nbsp;be&nbsp;hashable).<br>
+By&nbsp;default&nbsp;these&nbsp;are&nbsp;empty,&nbsp;but&nbsp;can&nbsp;be&nbsp;added&nbsp;or&nbsp;changed&nbsp;using<br>
+add_edge,&nbsp;add_node&nbsp;or&nbsp;direct&nbsp;manipulation&nbsp;of&nbsp;the&nbsp;attribute<br>
+dictionaries&nbsp;named&nbsp;graph,&nbsp;node&nbsp;and&nbsp;edge&nbsp;respectively.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>(day="Friday")<br>
+&gt;&gt;&gt;&nbsp;G.graph<br>
+{'day':&nbsp;'Friday'}<br>
+&nbsp;<br>
+Add&nbsp;node&nbsp;attributes&nbsp;using&nbsp;<a href="#DiGraph-add_node">add_node</a>(),&nbsp;<a href="#DiGraph-add_nodes_from">add_nodes_from</a>()&nbsp;or&nbsp;G.node<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(1,&nbsp;time='5pm')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>([3],&nbsp;time='2pm')<br>
+&gt;&gt;&gt;&nbsp;G.node[1]<br>
+{'time':&nbsp;'5pm'}<br>
+&gt;&gt;&gt;&nbsp;G.node[1]['room']&nbsp;=&nbsp;714<br>
+&gt;&gt;&gt;&nbsp;del&nbsp;G.node[1]['room']&nbsp;#&nbsp;remove&nbsp;attribute<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes">nodes</a>(data=True)<br>
+[(1,&nbsp;{'time':&nbsp;'5pm'}),&nbsp;(3,&nbsp;{'time':&nbsp;'2pm'})]<br>
+&nbsp;<br>
+Warning:&nbsp;adding&nbsp;a&nbsp;node&nbsp;to&nbsp;G.node&nbsp;does&nbsp;not&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Add&nbsp;edge&nbsp;attributes&nbsp;using&nbsp;<a href="#DiGraph-add_edge">add_edge</a>(),&nbsp;<a href="#DiGraph-add_edges_from">add_edges_from</a>(),&nbsp;subscript<br>
+notation,&nbsp;or&nbsp;G.edge.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,&nbsp;2,&nbsp;weight=4.7&nbsp;)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(3,4),(4,5)],&nbsp;color='red')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(1,2,{'color':'blue'}),&nbsp;(2,3,{'weight':8})])<br>
+&gt;&gt;&gt;&nbsp;G[1][2]['weight']&nbsp;=&nbsp;4.7<br>
+&gt;&gt;&gt;&nbsp;G.edge[1][2]['weight']&nbsp;=&nbsp;4<br>
+&nbsp;<br>
+**Shortcuts:**<br>
+&nbsp;<br>
+Many&nbsp;common&nbsp;graph&nbsp;features&nbsp;allow&nbsp;python&nbsp;syntax&nbsp;to&nbsp;speed&nbsp;reporting.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;check&nbsp;if&nbsp;node&nbsp;in&nbsp;graph<br>
+True<br>
+&gt;&gt;&gt;&nbsp;[n&nbsp;for&nbsp;n&nbsp;in&nbsp;G&nbsp;if&nbsp;n&lt;3]&nbsp;&nbsp;&nbsp;#&nbsp;iterate&nbsp;through&nbsp;nodes<br>
+[1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;len(G)&nbsp;&nbsp;#&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;graph<br>
+5<br>
+&gt;&gt;&gt;&nbsp;G[1]&nbsp;#&nbsp;adjacency&nbsp;dict&nbsp;keyed&nbsp;by&nbsp;neighbor&nbsp;to&nbsp;edge&nbsp;attributes<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Note:&nbsp;you&nbsp;should&nbsp;not&nbsp;change&nbsp;this&nbsp;dict&nbsp;manually!<br>
+{2:&nbsp;{'color':&nbsp;'blue',&nbsp;'weight':&nbsp;4}}<br>
+&nbsp;<br>
+The&nbsp;fastest&nbsp;way&nbsp;to&nbsp;traverse&nbsp;all&nbsp;edges&nbsp;of&nbsp;a&nbsp;graph&nbsp;is&nbsp;via<br>
+<a href="#DiGraph-adjacency_iter">adjacency_iter</a>(),&nbsp;but&nbsp;the&nbsp;<a href="#DiGraph-edges">edges</a>()&nbsp;method&nbsp;is&nbsp;often&nbsp;more&nbsp;convenient.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;for&nbsp;n,nbrsdict&nbsp;in&nbsp;G.<a href="#DiGraph-adjacency_iter">adjacency_iter</a>():<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;nbr,eattr&nbsp;in&nbsp;nbrsdict.items():<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;'weight'&nbsp;in&nbsp;eattr:<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(n,nbr,eattr['weight'])<br>
+(1,&nbsp;2,&nbsp;4)<br>
+(2,&nbsp;3,&nbsp;8)<br>
+&gt;&gt;&gt;&nbsp;[&nbsp;(u,v,edata['weight'])&nbsp;for&nbsp;u,v,edata&nbsp;in&nbsp;G.<a href="#DiGraph-edges">edges</a>(data=True)&nbsp;if&nbsp;'weight'&nbsp;in&nbsp;edata&nbsp;]<br>
+[(1,&nbsp;2,&nbsp;4),&nbsp;(2,&nbsp;3,&nbsp;8)]<br>
+&nbsp;<br>
+**Reporting:**<br>
+&nbsp;<br>
+Simple&nbsp;graph&nbsp;information&nbsp;is&nbsp;obtained&nbsp;using&nbsp;methods.<br>
+Iterator&nbsp;versions&nbsp;of&nbsp;many&nbsp;reporting&nbsp;methods&nbsp;exist&nbsp;for&nbsp;efficiency.<br>
+Methods&nbsp;exist&nbsp;for&nbsp;reporting&nbsp;<a href="#DiGraph-nodes">nodes</a>(),&nbsp;<a href="#DiGraph-edges">edges</a>(),&nbsp;<a href="#DiGraph-neighbors">neighbors</a>()&nbsp;and&nbsp;<a href="#DiGraph-degree">degree</a>()<br>
+as&nbsp;well&nbsp;as&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;and&nbsp;edges.<br>
+&nbsp;<br>
+For&nbsp;details&nbsp;on&nbsp;these&nbsp;and&nbsp;other&nbsp;miscellaneous&nbsp;methods,&nbsp;see&nbsp;below.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.analysis.ganalysis.html#DiGraph">DiGraph</a></dd>
+<dd><a href="androguard.core.analysis.ganalysis.html#Graph">Graph</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DiGraph-__init__"><strong>__init__</strong></a>(self, data<font color="#909090">=None</font>, **attr)</dt><dd><tt>Initialize&nbsp;a&nbsp;graph&nbsp;with&nbsp;edges,&nbsp;name,&nbsp;graph&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;input&nbsp;graph<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;to&nbsp;initialize&nbsp;graph.&nbsp;&nbsp;If&nbsp;data=None&nbsp;(default)&nbsp;an&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph&nbsp;is&nbsp;created.&nbsp;&nbsp;The&nbsp;data&nbsp;can&nbsp;be&nbsp;an&nbsp;edge&nbsp;list,&nbsp;or&nbsp;any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NetworkX&nbsp;graph&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;&nbsp;If&nbsp;the&nbsp;corresponding&nbsp;optional&nbsp;Python<br>
+&nbsp;&nbsp;&nbsp;&nbsp;packages&nbsp;are&nbsp;installed&nbsp;the&nbsp;data&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;NumPy&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;2d&nbsp;ndarray,&nbsp;a&nbsp;SciPy&nbsp;sparse&nbsp;matrix,&nbsp;or&nbsp;a&nbsp;PyGraphviz&nbsp;graph.<br>
+name&nbsp;:&nbsp;string,&nbsp;optional&nbsp;(default='')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;optional&nbsp;name&nbsp;for&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;graph&nbsp;as&nbsp;key=value&nbsp;pairs.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+convert<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(name='my&nbsp;graph')<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;[(1,2),(2,3),(3,4)]&nbsp;#&nbsp;list&nbsp;of&nbsp;edges<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(e)<br>
+&nbsp;<br>
+Arbitrary&nbsp;graph&nbsp;attribute&nbsp;pairs&nbsp;(key=value)&nbsp;may&nbsp;be&nbsp;assigned<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>(e,&nbsp;day="Friday")<br>
+&gt;&gt;&gt;&nbsp;G.graph<br>
+{'day':&nbsp;'Friday'}</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_edge"><strong>add_edge</strong></a>(self, u, v, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;an&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+The&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v&nbsp;will&nbsp;be&nbsp;automatically&nbsp;added&nbsp;if&nbsp;they&nbsp;are<br>
+not&nbsp;already&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Edge&nbsp;attributes&nbsp;can&nbsp;be&nbsp;specified&nbsp;with&nbsp;keywords&nbsp;or&nbsp;by&nbsp;providing<br>
+a&nbsp;dictionary&nbsp;with&nbsp;key/value&nbsp;pairs.&nbsp;&nbsp;See&nbsp;examples&nbsp;below.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;can&nbsp;be,&nbsp;for&nbsp;example,&nbsp;strings&nbsp;or&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;must&nbsp;be&nbsp;hashable&nbsp;(and&nbsp;not&nbsp;None)&nbsp;Python&nbsp;objects.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;edge&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;the&nbsp;edge.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;data&nbsp;(or&nbsp;labels&nbsp;or&nbsp;objects)&nbsp;can&nbsp;be&nbsp;assigned&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keyword&nbsp;arguments.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edges_from&nbsp;:&nbsp;add&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;an&nbsp;edge&nbsp;that&nbsp;already&nbsp;exists&nbsp;updates&nbsp;the&nbsp;edge&nbsp;data.<br>
+&nbsp;<br>
+Many&nbsp;NetworkX&nbsp;algorithms&nbsp;designed&nbsp;for&nbsp;weighted&nbsp;graphs&nbsp;use&nbsp;as<br>
+the&nbsp;edge&nbsp;weight&nbsp;a&nbsp;numerical&nbsp;value&nbsp;assigned&nbsp;to&nbsp;a&nbsp;keyword<br>
+which&nbsp;by&nbsp;default&nbsp;is&nbsp;'weight'.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+The&nbsp;following&nbsp;all&nbsp;add&nbsp;the&nbsp;edge&nbsp;e=(1,2)&nbsp;to&nbsp;graph&nbsp;G:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,&nbsp;2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;explicit&nbsp;two-node&nbsp;form<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(*e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;single&nbsp;edge&nbsp;as&nbsp;tuple&nbsp;of&nbsp;two&nbsp;nodes<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>(&nbsp;[(1,2)]&nbsp;)&nbsp;#&nbsp;add&nbsp;edges&nbsp;from&nbsp;iterable&nbsp;container<br>
+&nbsp;<br>
+Associate&nbsp;data&nbsp;to&nbsp;edges&nbsp;using&nbsp;keywords:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,&nbsp;2,&nbsp;weight=3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,&nbsp;3,&nbsp;weight=7,&nbsp;capacity=15,&nbsp;length=342.7)</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_edges_from"><strong>add_edges_from</strong></a>(self, ebunch, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;all&nbsp;the&nbsp;edges&nbsp;in&nbsp;ebunch.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch&nbsp;:&nbsp;container&nbsp;of&nbsp;edges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;container&nbsp;will&nbsp;be&nbsp;added&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;must&nbsp;be&nbsp;given&nbsp;as&nbsp;as&nbsp;2-tuples&nbsp;(u,v)&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3-tuples&nbsp;(u,v,d)&nbsp;where&nbsp;d&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;edge&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;each&nbsp;edge.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;data&nbsp;(or&nbsp;labels&nbsp;or&nbsp;objects)&nbsp;can&nbsp;be&nbsp;assigned&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keyword&nbsp;arguments.<br>
+&nbsp;<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edge&nbsp;:&nbsp;add&nbsp;a&nbsp;single&nbsp;edge<br>
+add_weighted_edges_from&nbsp;:&nbsp;convenient&nbsp;way&nbsp;to&nbsp;add&nbsp;weighted&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;the&nbsp;same&nbsp;edge&nbsp;twice&nbsp;has&nbsp;no&nbsp;effect&nbsp;but&nbsp;any&nbsp;edge&nbsp;data<br>
+will&nbsp;be&nbsp;updated&nbsp;when&nbsp;each&nbsp;duplicate&nbsp;edge&nbsp;is&nbsp;added.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(0,1),(1,2)])&nbsp;#&nbsp;using&nbsp;a&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;zip(range(0,3),range(1,4))<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>(e)&nbsp;#&nbsp;Add&nbsp;the&nbsp;path&nbsp;graph&nbsp;0-1-2-3<br>
+&nbsp;<br>
+Associate&nbsp;data&nbsp;to&nbsp;edges<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(1,2),(2,3)],&nbsp;weight=3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edges_from">add_edges_from</a>([(3,4),(1,4)],&nbsp;label='WN2898')</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_node"><strong>add_node</strong></a>(self, n, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;single&nbsp;node&nbsp;n&nbsp;and&nbsp;update&nbsp;node&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;can&nbsp;be&nbsp;any&nbsp;hashable&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;except&nbsp;None.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;node&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;the&nbsp;node.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;or&nbsp;change&nbsp;attributes&nbsp;using&nbsp;key=value.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_nodes_from<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>('Hello')<br>
+&gt;&gt;&gt;&nbsp;K3&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>([(0,1),(1,2),(2,0)])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(K3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-number_of_nodes">number_of_nodes</a>()<br>
+3<br>
+&nbsp;<br>
+Use&nbsp;keywords&nbsp;set/change&nbsp;node&nbsp;attributes:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(1,size=10)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(3,weight=0.4,UTM=('13S',382871,3972649))<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+A&nbsp;hashable&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;is&nbsp;one&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;as&nbsp;a&nbsp;key&nbsp;in&nbsp;a&nbsp;Python<br>
+dictionary.&nbsp;This&nbsp;includes&nbsp;strings,&nbsp;numbers,&nbsp;tuples&nbsp;of&nbsp;strings<br>
+and&nbsp;numbers,&nbsp;etc.<br>
+&nbsp;<br>
+On&nbsp;many&nbsp;platforms&nbsp;hashable&nbsp;items&nbsp;also&nbsp;include&nbsp;mutables&nbsp;such&nbsp;as<br>
+NetworkX&nbsp;Graphs,&nbsp;though&nbsp;one&nbsp;should&nbsp;be&nbsp;careful&nbsp;that&nbsp;the&nbsp;hash<br>
+doesn't&nbsp;change&nbsp;on&nbsp;mutables.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_nodes_from"><strong>add_nodes_from</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;multiple&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;(list,&nbsp;dict,&nbsp;set,&nbsp;etc.).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;(node,&nbsp;attribute&nbsp;dict)&nbsp;tuples.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;attributes&nbsp;are&nbsp;updated&nbsp;using&nbsp;the&nbsp;attribute&nbsp;dict.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Update&nbsp;attributes&nbsp;for&nbsp;all&nbsp;nodes&nbsp;in&nbsp;nodes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;attributes&nbsp;specified&nbsp;in&nbsp;nodes&nbsp;as&nbsp;a&nbsp;tuple<br>
+&nbsp;&nbsp;&nbsp;&nbsp;take&nbsp;precedence&nbsp;over&nbsp;attributes&nbsp;specified&nbsp;generally.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>('Hello')<br>
+&gt;&gt;&gt;&nbsp;K3&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>([(0,1),(1,2),(2,0)])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>(K3)<br>
+&gt;&gt;&gt;&nbsp;sorted(G.<a href="#DiGraph-nodes">nodes</a>(),key=str)<br>
+[0,&nbsp;1,&nbsp;2,&nbsp;'H',&nbsp;'e',&nbsp;'l',&nbsp;'o']<br>
+&nbsp;<br>
+Use&nbsp;keywords&nbsp;to&nbsp;update&nbsp;specific&nbsp;node&nbsp;attributes&nbsp;for&nbsp;every&nbsp;node.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>([1,2],&nbsp;size=10)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>([3,4],&nbsp;weight=0.4)<br>
+&nbsp;<br>
+Use&nbsp;(node,&nbsp;attrdict)&nbsp;tuples&nbsp;to&nbsp;update&nbsp;attributes&nbsp;for&nbsp;specific<br>
+nodes.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>([(1,dict(size=11)),&nbsp;(2,{'color':'blue'})])<br>
+&gt;&gt;&gt;&nbsp;G.node[1]['size']<br>
+11<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#DiGraph-add_nodes_from">add_nodes_from</a>(G.<a href="#DiGraph-nodes">nodes</a>(data=True))<br>
+&gt;&gt;&gt;&nbsp;H.node[1]['size']<br>
+11</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-clear"><strong>clear</strong></a>(self)</dt><dd><tt>Remove&nbsp;all&nbsp;nodes&nbsp;and&nbsp;edges&nbsp;from&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+This&nbsp;also&nbsp;removes&nbsp;the&nbsp;name,&nbsp;and&nbsp;all&nbsp;graph,&nbsp;node,&nbsp;and&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-clear">clear</a>()<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes">nodes</a>()<br>
+[]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-degree_iter"><strong>degree_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;for&nbsp;(node,&nbsp;degree).<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd_iter&nbsp;:&nbsp;an&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;iterator&nbsp;returns&nbsp;two-tuples&nbsp;of&nbsp;(node,&nbsp;degree).<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+degree,&nbsp;in_degree,&nbsp;out_degree,&nbsp;in_degree_iter,&nbsp;out_degree_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-degree_iter">degree_iter</a>(0))&nbsp;#&nbsp;node&nbsp;0&nbsp;with&nbsp;degree&nbsp;1<br>
+[(0,&nbsp;1)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-degree_iter">degree_iter</a>([0,1]))<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-edges_iter"><strong>edges_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;edges.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;returned&nbsp;as&nbsp;tuples&nbsp;with&nbsp;optional&nbsp;data<br>
+in&nbsp;the&nbsp;order&nbsp;(node,&nbsp;neighbor,&nbsp;data).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;True,&nbsp;return&nbsp;edge&nbsp;attribute&nbsp;dict&nbsp;in&nbsp;3-tuple&nbsp;(u,v,data).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_iter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;(u,v)&nbsp;or&nbsp;(u,v,d)&nbsp;tuples&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges&nbsp;:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;will&nbsp;be&nbsp;(quietly)&nbsp;ignored.<br>
+For&nbsp;directed&nbsp;graphs&nbsp;this&nbsp;returns&nbsp;the&nbsp;out-edges.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;[e&nbsp;for&nbsp;e&nbsp;in&nbsp;G.<a href="#DiGraph-edges_iter">edges_iter</a>()]<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-edges_iter">edges_iter</a>(data=True))&nbsp;#&nbsp;default&nbsp;data&nbsp;is&nbsp;{}&nbsp;(empty&nbsp;dict)<br>
+[(0,&nbsp;1,&nbsp;{}),&nbsp;(1,&nbsp;2,&nbsp;{}),&nbsp;(2,&nbsp;3,&nbsp;{})]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-edges_iter">edges_iter</a>([0,2]))<br>
+[(0,&nbsp;1),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-edges_iter">edges_iter</a>(0))<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-has_predecessor"><strong>has_predecessor</strong></a>(self, u, v)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;node&nbsp;u&nbsp;has&nbsp;predecessor&nbsp;v.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;true&nbsp;if&nbsp;graph&nbsp;has&nbsp;the&nbsp;edge&nbsp;u&lt;-v.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-has_successor"><strong>has_successor</strong></a>(self, u, v)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;node&nbsp;u&nbsp;has&nbsp;successor&nbsp;v.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;true&nbsp;if&nbsp;graph&nbsp;has&nbsp;the&nbsp;edge&nbsp;u-&gt;v.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-in_degree"><strong>in_degree</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;in-degree&nbsp;of&nbsp;a&nbsp;node&nbsp;or&nbsp;nodes.<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;in-degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;pointing&nbsp;in&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd&nbsp;:&nbsp;dictionary,&nbsp;or&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;dictionary&nbsp;with&nbsp;nodes&nbsp;as&nbsp;keys&nbsp;and&nbsp;in-degree&nbsp;as&nbsp;values&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;number&nbsp;if&nbsp;a&nbsp;single&nbsp;node&nbsp;is&nbsp;specified.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+degree,&nbsp;out_degree,&nbsp;in_degree_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-in_degree">in_degree</a>(0)<br>
+0<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-in_degree">in_degree</a>([0,1])<br>
+{0:&nbsp;0,&nbsp;1:&nbsp;1}<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-in_degree">in_degree</a>([0,1]).values())<br>
+[0,&nbsp;1]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-in_degree_iter"><strong>in_degree_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;for&nbsp;(node,&nbsp;in-degree).<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;in-degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;pointing&nbsp;in&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd_iter&nbsp;:&nbsp;an&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;iterator&nbsp;returns&nbsp;two-tuples&nbsp;of&nbsp;(node,&nbsp;in-degree).<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+degree,&nbsp;in_degree,&nbsp;out_degree,&nbsp;out_degree_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-in_degree_iter">in_degree_iter</a>(0))&nbsp;#&nbsp;node&nbsp;0&nbsp;with&nbsp;degree&nbsp;0<br>
+[(0,&nbsp;0)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-in_degree_iter">in_degree_iter</a>([0,1]))<br>
+[(0,&nbsp;0),&nbsp;(1,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-in_edges"><strong>in_edges</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;incoming&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges&nbsp;:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-in_edges_iter"><strong>in_edges_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;incoming&nbsp;edges.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;True,&nbsp;return&nbsp;edge&nbsp;attribute&nbsp;dict&nbsp;in&nbsp;3-tuple&nbsp;(u,v,data).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+in_edge_iter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;(u,v)&nbsp;or&nbsp;(u,v,d)&nbsp;tuples&nbsp;of&nbsp;incoming&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges_iter&nbsp;:&nbsp;return&nbsp;an&nbsp;iterator&nbsp;of&nbsp;edges</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-is_directed"><strong>is_directed</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;graph&nbsp;is&nbsp;directed,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-is_multigraph"><strong>is_multigraph</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;graph&nbsp;is&nbsp;a&nbsp;multigraph,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-neighbors"><strong>neighbors</strong></a> = <a href="#DiGraph-successors">successors</a>(self, n)</dt></dl>
+
+<dl><dt><a name="DiGraph-neighbors_iter"><strong>neighbors_iter</strong></a> = <a href="#DiGraph-successors_iter">successors_iter</a>(self, n)</dt></dl>
+
+<dl><dt><a name="DiGraph-out_degree"><strong>out_degree</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;out-degree&nbsp;of&nbsp;a&nbsp;node&nbsp;or&nbsp;nodes.<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;out-degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;pointing&nbsp;out&nbsp;of&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd&nbsp;:&nbsp;dictionary,&nbsp;or&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;dictionary&nbsp;with&nbsp;nodes&nbsp;as&nbsp;keys&nbsp;and&nbsp;out-degree&nbsp;as&nbsp;values&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;number&nbsp;if&nbsp;a&nbsp;single&nbsp;node&nbsp;is&nbsp;specified.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-out_degree">out_degree</a>(0)<br>
+1<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-out_degree">out_degree</a>([0,1])<br>
+{0:&nbsp;1,&nbsp;1:&nbsp;1}<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-out_degree">out_degree</a>([0,1]).values())<br>
+[1,&nbsp;1]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-out_degree_iter"><strong>out_degree_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;for&nbsp;(node,&nbsp;out-degree).<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;out-degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;pointing&nbsp;out&nbsp;of&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd_iter&nbsp;:&nbsp;an&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;iterator&nbsp;returns&nbsp;two-tuples&nbsp;of&nbsp;(node,&nbsp;out-degree).<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+degree,&nbsp;in_degree,&nbsp;out_degree,&nbsp;in_degree_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-out_degree_iter">out_degree_iter</a>(0))&nbsp;#&nbsp;node&nbsp;0&nbsp;with&nbsp;degree&nbsp;1<br>
+[(0,&nbsp;1)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-out_degree_iter">out_degree_iter</a>([0,1]))<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-out_edges"><strong>out_edges</strong></a> = edges(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;returned&nbsp;as&nbsp;tuples&nbsp;with&nbsp;optional&nbsp;data<br>
+in&nbsp;the&nbsp;order&nbsp;(node,&nbsp;neighbor,&nbsp;data).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;two&nbsp;tuples&nbsp;(u,v)&nbsp;(False)&nbsp;or&nbsp;three-tuples&nbsp;(u,v,data)&nbsp;(True).<br>
+&nbsp;<br>
+Returns<br>
+--------<br>
+edge_list:&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edges&nbsp;that&nbsp;are&nbsp;adjacent&nbsp;to&nbsp;any&nbsp;node&nbsp;in&nbsp;nbunch,&nbsp;or&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;all&nbsp;edges&nbsp;if&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;specified.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges_iter&nbsp;:&nbsp;return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;will&nbsp;be&nbsp;(quietly)&nbsp;ignored.<br>
+For&nbsp;directed&nbsp;graphs&nbsp;this&nbsp;returns&nbsp;the&nbsp;out-edges.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>(data=True)&nbsp;#&nbsp;default&nbsp;edge&nbsp;data&nbsp;is&nbsp;{}&nbsp;(empty&nbsp;dictionary)<br>
+[(0,&nbsp;1,&nbsp;{}),&nbsp;(1,&nbsp;2,&nbsp;{}),&nbsp;(2,&nbsp;3,&nbsp;{})]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>([0,3])<br>
+[(0,&nbsp;1),&nbsp;(3,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>(0)<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-out_edges_iter"><strong>out_edges_iter</strong></a> = <a href="#DiGraph-edges_iter">edges_iter</a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt></dl>
+
+<dl><dt><a name="DiGraph-predecessors"><strong>predecessors</strong></a>(self, n)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;predecessor&nbsp;nodes&nbsp;of&nbsp;n.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-predecessors_iter"><strong>predecessors_iter</strong></a>(self, n)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;predecessor&nbsp;nodes&nbsp;of&nbsp;n.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-remove_edge"><strong>remove_edge</strong></a>(self, u, v)</dt><dd><tt>Remove&nbsp;the&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Remove&nbsp;the&nbsp;edge&nbsp;between&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;there&nbsp;is&nbsp;not&nbsp;an&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_edges_from&nbsp;:&nbsp;remove&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_edge">remove_edge</a>(0,1)<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_edge">remove_edge</a>(*e)&nbsp;#&nbsp;unpacks&nbsp;e&nbsp;from&nbsp;an&nbsp;edge&nbsp;tuple<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(2,3,{'weight':7})&nbsp;#&nbsp;an&nbsp;edge&nbsp;with&nbsp;attribute&nbsp;data<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_edge">remove_edge</a>(*e[:2])&nbsp;#&nbsp;select&nbsp;first&nbsp;part&nbsp;of&nbsp;edge&nbsp;tuple</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-remove_edges_from"><strong>remove_edges_from</strong></a>(self, ebunch)</dt><dd><tt>Remove&nbsp;all&nbsp;edges&nbsp;specified&nbsp;in&nbsp;ebunch.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch:&nbsp;list&nbsp;or&nbsp;container&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;list&nbsp;or&nbsp;container&nbsp;will&nbsp;be&nbsp;removed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;the&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;can&nbsp;be:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;2-tuples&nbsp;(u,v)&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;3-tuples&nbsp;(u,v,k)&nbsp;where&nbsp;k&nbsp;is&nbsp;ignored.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_edge&nbsp;:&nbsp;remove&nbsp;a&nbsp;single&nbsp;edge<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Will&nbsp;fail&nbsp;silently&nbsp;if&nbsp;an&nbsp;edge&nbsp;in&nbsp;ebunch&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;ebunch=[(1,2),(2,3)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_edges_from">remove_edges_from</a>(ebunch)</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-remove_node"><strong>remove_node</strong></a>(self, n)</dt><dd><tt>Remove&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Removes&nbsp;the&nbsp;node&nbsp;n&nbsp;and&nbsp;all&nbsp;adjacent&nbsp;edges.<br>
+Attempting&nbsp;to&nbsp;remove&nbsp;a&nbsp;non-existent&nbsp;node&nbsp;will&nbsp;raise&nbsp;an&nbsp;exception.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;in&nbsp;the&nbsp;graph<br>
+&nbsp;<br>
+Raises<br>
+-------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;If&nbsp;n&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_nodes_from<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_node">remove_node</a>(1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-remove_nodes_from"><strong>remove_nodes_from</strong></a>(self, nbunch)</dt><dd><tt>Remove&nbsp;multiple&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;(list,&nbsp;dict,&nbsp;set,&nbsp;etc.).&nbsp;&nbsp;If&nbsp;a&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;container&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;it&nbsp;is&nbsp;silently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ignored.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;G.<a href="#DiGraph-nodes">nodes</a>()<br>
+&gt;&gt;&gt;&nbsp;e<br>
+[0,&nbsp;1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-remove_nodes_from">remove_nodes_from</a>(e)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes">nodes</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-reverse"><strong>reverse</strong></a>(self, copy<font color="#909090">=True</font>)</dt><dd><tt>Return&nbsp;the&nbsp;reverse&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;reverse&nbsp;is&nbsp;a&nbsp;graph&nbsp;with&nbsp;the&nbsp;same&nbsp;nodes&nbsp;and&nbsp;edges<br>
+but&nbsp;with&nbsp;the&nbsp;directions&nbsp;of&nbsp;the&nbsp;edges&nbsp;reversed.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+copy&nbsp;:&nbsp;bool&nbsp;optional&nbsp;(default=True)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;True,&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="#DiGraph">DiGraph</a>&nbsp;holding&nbsp;the&nbsp;reversed&nbsp;edges.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;reverse&nbsp;the&nbsp;reverse&nbsp;graph&nbsp;is&nbsp;created&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;original&nbsp;graph&nbsp;(this&nbsp;changes&nbsp;the&nbsp;original&nbsp;graph).</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-subgraph"><strong>subgraph</strong></a>(self, nbunch)</dt><dd><tt>Return&nbsp;the&nbsp;subgraph&nbsp;induced&nbsp;on&nbsp;nodes&nbsp;in&nbsp;nbunch.<br>
+&nbsp;<br>
+The&nbsp;induced&nbsp;subgraph&nbsp;of&nbsp;the&nbsp;graph&nbsp;contains&nbsp;the&nbsp;nodes&nbsp;in&nbsp;nbunch<br>
+and&nbsp;the&nbsp;edges&nbsp;between&nbsp;those&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;list,&nbsp;iterable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;which&nbsp;will&nbsp;be&nbsp;iterated&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;subgraph&nbsp;of&nbsp;the&nbsp;graph&nbsp;with&nbsp;the&nbsp;same&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+The&nbsp;graph,&nbsp;edge&nbsp;or&nbsp;node&nbsp;attributes&nbsp;just&nbsp;point&nbsp;to&nbsp;the&nbsp;original&nbsp;graph.<br>
+So&nbsp;changes&nbsp;to&nbsp;the&nbsp;node&nbsp;or&nbsp;edge&nbsp;structure&nbsp;will&nbsp;not&nbsp;be&nbsp;reflected&nbsp;in<br>
+the&nbsp;original&nbsp;graph&nbsp;while&nbsp;changes&nbsp;to&nbsp;the&nbsp;attributes&nbsp;will.<br>
+&nbsp;<br>
+To&nbsp;create&nbsp;a&nbsp;subgraph&nbsp;with&nbsp;its&nbsp;own&nbsp;copy&nbsp;of&nbsp;the&nbsp;edge/node&nbsp;attributes&nbsp;use:<br>
+nx.<a href="#Graph">Graph</a>(G.<a href="#DiGraph-subgraph">subgraph</a>(nbunch))<br>
+&nbsp;<br>
+If&nbsp;edge&nbsp;attributes&nbsp;are&nbsp;containers,&nbsp;a&nbsp;deep&nbsp;copy&nbsp;can&nbsp;be&nbsp;obtained&nbsp;using:<br>
+G.<a href="#DiGraph-subgraph">subgraph</a>(nbunch).<a href="#DiGraph-copy">copy</a>()<br>
+&nbsp;<br>
+For&nbsp;an&nbsp;inplace&nbsp;reduction&nbsp;of&nbsp;a&nbsp;graph&nbsp;to&nbsp;a&nbsp;subgraph&nbsp;you&nbsp;can&nbsp;remove&nbsp;nodes:<br>
+G.<a href="#DiGraph-remove_nodes_from">remove_nodes_from</a>([&nbsp;n&nbsp;in&nbsp;G&nbsp;if&nbsp;n&nbsp;not&nbsp;in&nbsp;set(nbunch)])<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#DiGraph-subgraph">subgraph</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-successors"><strong>successors</strong></a>(self, n)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;successor&nbsp;nodes&nbsp;of&nbsp;n.<br>
+&nbsp;<br>
+<a href="#DiGraph-neighbors">neighbors</a>()&nbsp;and&nbsp;<a href="#DiGraph-successors">successors</a>()&nbsp;are&nbsp;the&nbsp;same&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-successors_iter"><strong>successors_iter</strong></a>(self, n)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;successor&nbsp;nodes&nbsp;of&nbsp;n.<br>
+&nbsp;<br>
+<a href="#DiGraph-neighbors_iter">neighbors_iter</a>()&nbsp;and&nbsp;<a href="#DiGraph-successors_iter">successors_iter</a>()&nbsp;are&nbsp;the&nbsp;same.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-to_directed"><strong>to_directed</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;directed&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#DiGraph">DiGraph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;deepcopy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+This&nbsp;returns&nbsp;a&nbsp;"deepcopy"&nbsp;of&nbsp;the&nbsp;edge,&nbsp;node,&nbsp;and<br>
+graph&nbsp;attributes&nbsp;which&nbsp;attempts&nbsp;to&nbsp;completely&nbsp;copy<br>
+all&nbsp;of&nbsp;the&nbsp;data&nbsp;and&nbsp;references.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;in&nbsp;contrast&nbsp;to&nbsp;the&nbsp;similar&nbsp;D=<a href="#DiGraph">DiGraph</a>(G)&nbsp;which&nbsp;returns&nbsp;a<br>
+shallow&nbsp;copy&nbsp;of&nbsp;the&nbsp;data.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;Python&nbsp;copy&nbsp;module&nbsp;for&nbsp;more&nbsp;information&nbsp;on&nbsp;shallow<br>
+and&nbsp;deep&nbsp;copies,&nbsp;<a href="http://docs.python.org/library/copy.html">http://docs.python.org/library/copy.html</a>.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#DiGraph-to_directed">to_directed</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;0)]<br>
+&nbsp;<br>
+If&nbsp;already&nbsp;directed,&nbsp;return&nbsp;a&nbsp;(deep)&nbsp;copy<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#DiGraph-to_directed">to_directed</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-to_undirected"><strong>to_undirected</strong></a>(self, reciprocal<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;undirected&nbsp;representation&nbsp;of&nbsp;the&nbsp;digraph.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+reciprocal&nbsp;:&nbsp;bool&nbsp;(optional)<br>
+&nbsp;&nbsp;If&nbsp;True&nbsp;only&nbsp;keep&nbsp;edges&nbsp;that&nbsp;appear&nbsp;in&nbsp;both&nbsp;directions&nbsp;<br>
+&nbsp;&nbsp;in&nbsp;the&nbsp;original&nbsp;digraph.&nbsp;<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;undirected&nbsp;graph&nbsp;with&nbsp;the&nbsp;same&nbsp;name&nbsp;and&nbsp;nodes&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;edge&nbsp;(u,v,data)&nbsp;if&nbsp;either&nbsp;(u,v,data)&nbsp;or&nbsp;(v,u,data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;in&nbsp;the&nbsp;digraph.&nbsp;&nbsp;If&nbsp;both&nbsp;edges&nbsp;exist&nbsp;in&nbsp;digraph&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;their&nbsp;edge&nbsp;data&nbsp;is&nbsp;different,&nbsp;only&nbsp;one&nbsp;edge&nbsp;is&nbsp;created<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;an&nbsp;arbitrary&nbsp;choice&nbsp;of&nbsp;which&nbsp;edge&nbsp;data&nbsp;to&nbsp;use.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;must&nbsp;check&nbsp;and&nbsp;correct&nbsp;for&nbsp;this&nbsp;manually&nbsp;if&nbsp;desired.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+If&nbsp;edges&nbsp;in&nbsp;both&nbsp;directions&nbsp;(u,v)&nbsp;and&nbsp;(v,u)&nbsp;exist&nbsp;in&nbsp;the<br>
+graph,&nbsp;attributes&nbsp;for&nbsp;the&nbsp;new&nbsp;undirected&nbsp;edge&nbsp;will&nbsp;be&nbsp;a&nbsp;combination&nbsp;of<br>
+the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;directed&nbsp;edges.&nbsp;&nbsp;The&nbsp;edge&nbsp;data&nbsp;is&nbsp;updated<br>
+in&nbsp;the&nbsp;(arbitrary)&nbsp;order&nbsp;that&nbsp;the&nbsp;edges&nbsp;are&nbsp;encountered.&nbsp;&nbsp;For<br>
+more&nbsp;customized&nbsp;control&nbsp;of&nbsp;the&nbsp;edge&nbsp;attributes&nbsp;use&nbsp;<a href="#DiGraph-add_edge">add_edge</a>().<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;a&nbsp;"deepcopy"&nbsp;of&nbsp;the&nbsp;edge,&nbsp;node,&nbsp;and<br>
+graph&nbsp;attributes&nbsp;which&nbsp;attempts&nbsp;to&nbsp;completely&nbsp;copy<br>
+all&nbsp;of&nbsp;the&nbsp;data&nbsp;and&nbsp;references.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;in&nbsp;contrast&nbsp;to&nbsp;the&nbsp;similar&nbsp;G=<a href="#DiGraph">DiGraph</a>(D)&nbsp;which&nbsp;returns&nbsp;a<br>
+shallow&nbsp;copy&nbsp;of&nbsp;the&nbsp;data.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;Python&nbsp;copy&nbsp;module&nbsp;for&nbsp;more&nbsp;information&nbsp;on&nbsp;shallow<br>
+and&nbsp;deep&nbsp;copies,&nbsp;<a href="http://docs.python.org/library/copy.html">http://docs.python.org/library/copy.html</a>.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.analysis.ganalysis.html#Graph">Graph</a>:<br>
+<dl><dt><a name="DiGraph-__contains__"><strong>__contains__</strong></a>(self, n)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;n&nbsp;is&nbsp;a&nbsp;node,&nbsp;False&nbsp;otherwise.&nbsp;Use&nbsp;the&nbsp;expression<br>
+'n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-__getitem__"><strong>__getitem__</strong></a>(self, n)</dt><dd><tt>Return&nbsp;a&nbsp;dict&nbsp;of&nbsp;neighbors&nbsp;of&nbsp;node&nbsp;n.&nbsp;&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'G[n]'.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_dict&nbsp;:&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;adjacency&nbsp;dictionary&nbsp;for&nbsp;nodes&nbsp;connected&nbsp;to&nbsp;n.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+G[n]&nbsp;is&nbsp;similar&nbsp;to&nbsp;G.<a href="#DiGraph-neighbors">neighbors</a>(n)&nbsp;but&nbsp;the&nbsp;internal&nbsp;data&nbsp;dictionary<br>
+is&nbsp;returned&nbsp;instead&nbsp;of&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Assigning&nbsp;G[n]&nbsp;will&nbsp;corrupt&nbsp;the&nbsp;internal&nbsp;graph&nbsp;data&nbsp;structure.<br>
+Use&nbsp;G[n]&nbsp;for&nbsp;reading&nbsp;data&nbsp;only.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G[0]<br>
+{1:&nbsp;{}}</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-__iter__"><strong>__iter__</strong></a>(self)</dt><dd><tt>Iterate&nbsp;over&nbsp;the&nbsp;nodes.&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'for&nbsp;n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;all&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes.&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'len(G)'.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;len(G)<br>
+4</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;graph&nbsp;name.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+name&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(name='foo')<br>
+&gt;&gt;&gt;&nbsp;str(G)<br>
+'foo'</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_cycle"><strong>add_cycle</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;cycle.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;A&nbsp;cycle&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;nodes&nbsp;(in&nbsp;order)&nbsp;and&nbsp;added&nbsp;to&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;cycle.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_path,&nbsp;add_star<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_cycle">add_cycle</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_cycle">add_cycle</a>([10,11,12],weight=7)</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_path"><strong>add_path</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;path.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;A&nbsp;path&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;nodes&nbsp;(in&nbsp;order)&nbsp;and&nbsp;added&nbsp;to&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;path.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_star,&nbsp;add_cycle<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([10,11,12],weight=7)</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_star"><strong>add_star</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;star.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;node&nbsp;in&nbsp;nodes&nbsp;is&nbsp;the&nbsp;middle&nbsp;of&nbsp;the&nbsp;star.&nbsp;&nbsp;It&nbsp;is&nbsp;connected<br>
+to&nbsp;all&nbsp;other&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;star.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_path,&nbsp;add_cycle<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_star">add_star</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_star">add_star</a>([10,11,12],weight=2)</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-add_weighted_edges_from"><strong>add_weighted_edges_from</strong></a>(self, ebunch, weight<font color="#909090">='weight'</font>, **attr)</dt><dd><tt>Add&nbsp;all&nbsp;the&nbsp;edges&nbsp;in&nbsp;ebunch&nbsp;as&nbsp;weighted&nbsp;edges&nbsp;with&nbsp;specified<br>
+weights.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch&nbsp;:&nbsp;container&nbsp;of&nbsp;edges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;list&nbsp;or&nbsp;container&nbsp;will&nbsp;be&nbsp;added<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;the&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;must&nbsp;be&nbsp;given&nbsp;as&nbsp;3-tuples&nbsp;(u,v,w)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;w&nbsp;is&nbsp;a&nbsp;number.<br>
+weight&nbsp;:&nbsp;string,&nbsp;optional&nbsp;(default=&nbsp;'weight')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;attribute&nbsp;name&nbsp;for&nbsp;the&nbsp;edge&nbsp;weights&nbsp;to&nbsp;be&nbsp;added.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;attributes&nbsp;to&nbsp;add/update&nbsp;for&nbsp;all&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edge&nbsp;:&nbsp;add&nbsp;a&nbsp;single&nbsp;edge<br>
+add_edges_from&nbsp;:&nbsp;add&nbsp;multiple&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;the&nbsp;same&nbsp;edge&nbsp;twice&nbsp;for&nbsp;<a href="#Graph">Graph</a>/<a href="#DiGraph">DiGraph</a>&nbsp;simply&nbsp;updates&nbsp;<br>
+the&nbsp;edge&nbsp;data.&nbsp;&nbsp;For&nbsp;MultiGraph/MultiDiGraph,&nbsp;duplicate&nbsp;edges&nbsp;<br>
+are&nbsp;stored.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_weighted_edges_from">add_weighted_edges_from</a>([(0,1,3.0),(1,2,7.5)])</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-adjacency_iter"><strong>adjacency_iter</strong></a>(self)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;of&nbsp;(node,&nbsp;adjacency&nbsp;dict)&nbsp;tuples&nbsp;for&nbsp;all&nbsp;nodes.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;fastest&nbsp;way&nbsp;to&nbsp;look&nbsp;at&nbsp;every&nbsp;edge.<br>
+For&nbsp;directed&nbsp;graphs,&nbsp;only&nbsp;outgoing&nbsp;adjacencies&nbsp;are&nbsp;included.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_iter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;(node,&nbsp;adjacency&nbsp;dictionary)&nbsp;for&nbsp;all&nbsp;nodes&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+adjacency_list<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;[(n,nbrdict)&nbsp;for&nbsp;n,nbrdict&nbsp;in&nbsp;G.<a href="#DiGraph-adjacency_iter">adjacency_iter</a>()]<br>
+[(0,&nbsp;{1:&nbsp;{}}),&nbsp;(1,&nbsp;{0:&nbsp;{},&nbsp;2:&nbsp;{}}),&nbsp;(2,&nbsp;{1:&nbsp;{},&nbsp;3:&nbsp;{}}),&nbsp;(3,&nbsp;{2:&nbsp;{}})]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-adjacency_list"><strong>adjacency_list</strong></a>(self)</dt><dd><tt>Return&nbsp;an&nbsp;adjacency&nbsp;list&nbsp;representation&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;output&nbsp;adjacency&nbsp;list&nbsp;is&nbsp;in&nbsp;the&nbsp;order&nbsp;of&nbsp;G.<a href="#DiGraph-nodes">nodes</a>().<br>
+For&nbsp;directed&nbsp;graphs,&nbsp;only&nbsp;outgoing&nbsp;adjacencies&nbsp;are&nbsp;included.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_list&nbsp;:&nbsp;lists&nbsp;of&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;adjacency&nbsp;structure&nbsp;of&nbsp;the&nbsp;graph&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;lists.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+adjacency_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-adjacency_list">adjacency_list</a>()&nbsp;#&nbsp;in&nbsp;order&nbsp;given&nbsp;by&nbsp;G.<a href="#DiGraph-nodes">nodes</a>()<br>
+[[1],&nbsp;[0,&nbsp;2],&nbsp;[1,&nbsp;3],&nbsp;[2]]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+to_directed:&nbsp;return&nbsp;a&nbsp;directed&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+This&nbsp;makes&nbsp;a&nbsp;complete&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph&nbsp;including&nbsp;all&nbsp;of&nbsp;the<br>
+node&nbsp;or&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#DiGraph-copy">copy</a>()</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-degree"><strong>degree</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;degree&nbsp;of&nbsp;a&nbsp;node&nbsp;or&nbsp;nodes.<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;adjacent&nbsp;to&nbsp;that&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd&nbsp;:&nbsp;dictionary,&nbsp;or&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;dictionary&nbsp;with&nbsp;nodes&nbsp;as&nbsp;keys&nbsp;and&nbsp;degree&nbsp;as&nbsp;values&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;number&nbsp;if&nbsp;a&nbsp;single&nbsp;node&nbsp;is&nbsp;specified.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-degree">degree</a>(0)<br>
+1<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-degree">degree</a>([0,1])<br>
+{0:&nbsp;1,&nbsp;1:&nbsp;2}<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#DiGraph-degree">degree</a>([0,1]).values())<br>
+[1,&nbsp;2]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-edges"><strong>edges</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;returned&nbsp;as&nbsp;tuples&nbsp;with&nbsp;optional&nbsp;data<br>
+in&nbsp;the&nbsp;order&nbsp;(node,&nbsp;neighbor,&nbsp;data).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;two&nbsp;tuples&nbsp;(u,v)&nbsp;(False)&nbsp;or&nbsp;three-tuples&nbsp;(u,v,data)&nbsp;(True).<br>
+&nbsp;<br>
+Returns<br>
+--------<br>
+edge_list:&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edges&nbsp;that&nbsp;are&nbsp;adjacent&nbsp;to&nbsp;any&nbsp;node&nbsp;in&nbsp;nbunch,&nbsp;or&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;all&nbsp;edges&nbsp;if&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;specified.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges_iter&nbsp;:&nbsp;return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;will&nbsp;be&nbsp;(quietly)&nbsp;ignored.<br>
+For&nbsp;directed&nbsp;graphs&nbsp;this&nbsp;returns&nbsp;the&nbsp;out-edges.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>(data=True)&nbsp;#&nbsp;default&nbsp;edge&nbsp;data&nbsp;is&nbsp;{}&nbsp;(empty&nbsp;dictionary)<br>
+[(0,&nbsp;1,&nbsp;{}),&nbsp;(1,&nbsp;2,&nbsp;{}),&nbsp;(2,&nbsp;3,&nbsp;{})]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>([0,3])<br>
+[(0,&nbsp;1),&nbsp;(3,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-edges">edges</a>(0)<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-get_edge_data"><strong>get_edge_data</strong></a>(self, u, v, default<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;attribute&nbsp;dictionary&nbsp;associated&nbsp;with&nbsp;edge&nbsp;(u,v).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+default:&nbsp;&nbsp;any&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;to&nbsp;return&nbsp;if&nbsp;the&nbsp;edge&nbsp;(u,v)&nbsp;is&nbsp;not&nbsp;found.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_dict&nbsp;:&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;dictionary.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+It&nbsp;is&nbsp;faster&nbsp;to&nbsp;use&nbsp;G[u][v].<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G[0][1]<br>
+{}<br>
+&nbsp;<br>
+Warning:&nbsp;Assigning&nbsp;G[u][v]&nbsp;corrupts&nbsp;the&nbsp;graph&nbsp;data&nbsp;structure.<br>
+But&nbsp;it&nbsp;is&nbsp;safe&nbsp;to&nbsp;assign&nbsp;attributes&nbsp;to&nbsp;that&nbsp;dictionary,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G[0][1]['weight']&nbsp;=&nbsp;7<br>
+&gt;&gt;&gt;&nbsp;G[0][1]['weight']<br>
+7<br>
+&gt;&gt;&gt;&nbsp;G[1][0]['weight']<br>
+7<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-get_edge_data">get_edge_data</a>(0,1)&nbsp;#&nbsp;default&nbsp;edge&nbsp;data&nbsp;is&nbsp;{}<br>
+{}<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-get_edge_data">get_edge_data</a>(*e)&nbsp;#&nbsp;tuple&nbsp;form<br>
+{}<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-get_edge_data">get_edge_data</a>('a','b',default=0)&nbsp;#&nbsp;edge&nbsp;not&nbsp;in&nbsp;graph,&nbsp;return&nbsp;0<br>
+0</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-has_edge"><strong>has_edge</strong></a>(self, u, v)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;edge&nbsp;(u,v)&nbsp;is&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;can&nbsp;be,&nbsp;for&nbsp;example,&nbsp;strings&nbsp;or&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;must&nbsp;be&nbsp;hashable&nbsp;(and&nbsp;not&nbsp;None)&nbsp;Python&nbsp;objects.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_ind&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;edge&nbsp;is&nbsp;in&nbsp;the&nbsp;graph,&nbsp;False&nbsp;otherwise.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+Can&nbsp;be&nbsp;called&nbsp;either&nbsp;using&nbsp;two&nbsp;nodes&nbsp;u,v&nbsp;or&nbsp;edge&nbsp;tuple&nbsp;(u,v)<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-has_edge">has_edge</a>(0,1)&nbsp;&nbsp;#&nbsp;using&nbsp;two&nbsp;nodes<br>
+True<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-has_edge">has_edge</a>(*e)&nbsp;&nbsp;#&nbsp;&nbsp;e&nbsp;is&nbsp;a&nbsp;2-tuple&nbsp;(u,v)<br>
+True<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1,{'weight':7})<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-has_edge">has_edge</a>(*e[:2])&nbsp;&nbsp;#&nbsp;e&nbsp;is&nbsp;a&nbsp;3-tuple&nbsp;(u,v,data_dictionary)<br>
+True<br>
+&nbsp;<br>
+The&nbsp;following&nbsp;syntax&nbsp;are&nbsp;all&nbsp;equivalent:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-has_edge">has_edge</a>(0,1)<br>
+True<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G[0]&nbsp;&nbsp;#&nbsp;though&nbsp;this&nbsp;gives&nbsp;KeyError&nbsp;if&nbsp;0&nbsp;not&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-has_node"><strong>has_node</strong></a>(self, n)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;graph&nbsp;contains&nbsp;the&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-has_node">has_node</a>(0)<br>
+True<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;more&nbsp;readable&nbsp;and&nbsp;simpler&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;0&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-nbunch_iter"><strong>nbunch_iter</strong></a>(self, nbunch<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;of&nbsp;nodes&nbsp;contained&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are<br>
+also&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;nodes&nbsp;in&nbsp;nbunch&nbsp;are&nbsp;checked&nbsp;for&nbsp;membership&nbsp;in&nbsp;the&nbsp;graph<br>
+and&nbsp;if&nbsp;not&nbsp;are&nbsp;silently&nbsp;ignored.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;also&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;nbunch&nbsp;is&nbsp;None,&nbsp;iterate&nbsp;over&nbsp;all&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;a&nbsp;node&nbsp;or&nbsp;or&nbsp;sequence&nbsp;of&nbsp;nodes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;a&nbsp;node&nbsp;in&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;hashable.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#Graph">Graph</a>.__iter__<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+When&nbsp;nbunch&nbsp;is&nbsp;an&nbsp;iterator,&nbsp;the&nbsp;returned&nbsp;iterator&nbsp;yields&nbsp;values<br>
+directly&nbsp;from&nbsp;nbunch,&nbsp;becoming&nbsp;exhausted&nbsp;when&nbsp;nbunch&nbsp;is&nbsp;exhausted.<br>
+&nbsp;<br>
+To&nbsp;test&nbsp;whether&nbsp;nbunch&nbsp;is&nbsp;a&nbsp;single&nbsp;node,&nbsp;one&nbsp;can&nbsp;use<br>
+"if&nbsp;nbunch&nbsp;in&nbsp;self:",&nbsp;even&nbsp;after&nbsp;processing&nbsp;with&nbsp;this&nbsp;routine.<br>
+&nbsp;<br>
+If&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;a&nbsp;node&nbsp;or&nbsp;a&nbsp;(possibly&nbsp;empty)&nbsp;sequence/iterator<br>
+or&nbsp;None,&nbsp;a&nbsp;NetworkXError&nbsp;is&nbsp;raised.&nbsp;&nbsp;Also,&nbsp;if&nbsp;any&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;in<br>
+nbunch&nbsp;is&nbsp;not&nbsp;hashable,&nbsp;a&nbsp;NetworkXError&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-nodes"><strong>nodes</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;boolean,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes.&nbsp;&nbsp;If&nbsp;True&nbsp;return&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;two-tuple&nbsp;of&nbsp;node&nbsp;and&nbsp;node&nbsp;data&nbsp;dictionary<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nlist&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;nodes.&nbsp;&nbsp;If&nbsp;data=True&nbsp;a&nbsp;list&nbsp;of&nbsp;two-tuples&nbsp;containing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(node,&nbsp;node&nbsp;data&nbsp;dictionary).<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes">nodes</a>()<br>
+[0,&nbsp;1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_node">add_node</a>(1,&nbsp;time='5pm')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes">nodes</a>(data=True)<br>
+[(0,&nbsp;{}),&nbsp;(1,&nbsp;{'time':&nbsp;'5pm'}),&nbsp;(2,&nbsp;{})]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-nodes_iter"><strong>nodes_iter</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;boolean,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False&nbsp;the&nbsp;iterator&nbsp;returns&nbsp;nodes.&nbsp;&nbsp;If&nbsp;True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a&nbsp;two-tuple&nbsp;of&nbsp;node&nbsp;and&nbsp;node&nbsp;data&nbsp;dictionary<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;nodes.&nbsp;&nbsp;If&nbsp;data=True&nbsp;the&nbsp;iterator&nbsp;gives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;two-tuples&nbsp;containing&nbsp;(node,&nbsp;node&nbsp;data,&nbsp;dictionary)<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+If&nbsp;the&nbsp;node&nbsp;data&nbsp;is&nbsp;not&nbsp;required&nbsp;it&nbsp;is&nbsp;simpler&nbsp;and&nbsp;equivalent<br>
+to&nbsp;use&nbsp;the&nbsp;expression&nbsp;'for&nbsp;n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;[d&nbsp;for&nbsp;n,d&nbsp;in&nbsp;G.<a href="#DiGraph-nodes_iter">nodes_iter</a>(data=True)]<br>
+[{},&nbsp;{},&nbsp;{}]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-nodes_with_selfloops"><strong>nodes_with_selfloops</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;with&nbsp;self&nbsp;loops.<br>
+&nbsp;<br>
+A&nbsp;node&nbsp;with&nbsp;a&nbsp;self&nbsp;loop&nbsp;has&nbsp;an&nbsp;edge&nbsp;with&nbsp;both&nbsp;ends&nbsp;adjacent<br>
+to&nbsp;that&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nodelist&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;nodes&nbsp;with&nbsp;self&nbsp;loops.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+selfloop_edges,&nbsp;number_of_selfloops<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-nodes_with_selfloops">nodes_with_selfloops</a>()<br>
+[1]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-number_of_edges"><strong>number_of_edges</strong></a>(self, u<font color="#909090">=None</font>, v<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between&nbsp;two&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes,&nbsp;optional&nbsp;(default=all&nbsp;edges)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;u&nbsp;and&nbsp;v&nbsp;are&nbsp;specified,&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between<br>
+&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;and&nbsp;v.&nbsp;Otherwise&nbsp;return&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;all&nbsp;edges.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nedges&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;edges&nbsp;in&nbsp;the&nbsp;graph.&nbsp;&nbsp;If&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v&nbsp;are&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between&nbsp;those&nbsp;nodes.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+size<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-number_of_edges">number_of_edges</a>()<br>
+3<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-number_of_edges">number_of_edges</a>(0,1)<br>
+1<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-number_of_edges">number_of_edges</a>(*e)<br>
+1</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-number_of_nodes"><strong>number_of_nodes</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+order,&nbsp;__len__&nbsp;&nbsp;which&nbsp;are&nbsp;identical<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;len(G)<br>
+3</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-number_of_selfloops"><strong>number_of_selfloops</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+A&nbsp;selfloop&nbsp;edge&nbsp;has&nbsp;the&nbsp;same&nbsp;node&nbsp;at&nbsp;both&nbsp;ends.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nloops&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;selfloops.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+nodes_with_selfloops,&nbsp;selfloop_edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-number_of_selfloops">number_of_selfloops</a>()<br>
+1</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-order"><strong>order</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+number_of_nodes,&nbsp;__len__&nbsp;&nbsp;which&nbsp;are&nbsp;identical</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-selfloop_edges"><strong>selfloop_edges</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+A&nbsp;selfloop&nbsp;edge&nbsp;has&nbsp;the&nbsp;same&nbsp;node&nbsp;at&nbsp;both&nbsp;ends.<br>
+&nbsp;<br>
+Parameters<br>
+-----------<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;selfloop&nbsp;edges&nbsp;as&nbsp;two&nbsp;tuples&nbsp;(u,v)&nbsp;(data=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;three-tuples&nbsp;(u,v,data)&nbsp;(data=True)<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edgelist&nbsp;:&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;all&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+nodes_with_selfloops,&nbsp;number_of_selfloops<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-selfloop_edges">selfloop_edges</a>()<br>
+[(1,&nbsp;1)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-selfloop_edges">selfloop_edges</a>(data=True)<br>
+[(1,&nbsp;1,&nbsp;{})]</tt></dd></dl>
+
+<dl><dt><a name="DiGraph-size"><strong>size</strong></a>(self, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nedges&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;edges&nbsp;of&nbsp;sum&nbsp;of&nbsp;edge&nbsp;weights&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+number_of_edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-size">size</a>()<br>
+3<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>('a','b',weight=2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-add_edge">add_edge</a>('b','c',weight=4)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-size">size</a>()<br>
+2<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#DiGraph-size">size</a>(weight='weight')<br>
+6.0</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.analysis.ganalysis.html#Graph">Graph</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GVMAnalysis">class <strong>GVMAnalysis</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="GVMAnalysis-__init__"><strong>__init__</strong></a>(self, vmx, apk)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-export_to_gexf"><strong>export_to_gexf</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-export_to_gml"><strong>export_to_gml</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-get_paths"><strong>get_paths</strong></a>(self, class_name, method_name, descriptor)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-get_paths_method"><strong>get_paths_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-print_paths"><strong>print_paths</strong></a>(self, class_name, method_name, descriptor)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-print_paths_method"><strong>print_paths_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="GVMAnalysis-set_new_attributes"><strong>set_new_attributes</strong></a>(self, cm)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Graph">class <strong>Graph</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;undirected&nbsp;graphs.<br>
+&nbsp;<br>
+A&nbsp;<a href="#Graph">Graph</a>&nbsp;stores&nbsp;nodes&nbsp;and&nbsp;edges&nbsp;with&nbsp;optional&nbsp;data,&nbsp;or&nbsp;attributes.<br>
+&nbsp;<br>
+Graphs&nbsp;hold&nbsp;undirected&nbsp;edges.&nbsp;&nbsp;Self&nbsp;loops&nbsp;are&nbsp;allowed&nbsp;but&nbsp;multiple<br>
+(parallel)&nbsp;edges&nbsp;are&nbsp;not.<br>
+&nbsp;<br>
+Nodes&nbsp;can&nbsp;be&nbsp;arbitrary&nbsp;(hashable)&nbsp;Python&nbsp;objects&nbsp;with&nbsp;optional<br>
+key/value&nbsp;attributes.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;represented&nbsp;as&nbsp;links&nbsp;between&nbsp;nodes&nbsp;with&nbsp;optional<br>
+key/value&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;input&nbsp;graph<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;to&nbsp;initialize&nbsp;graph.&nbsp;&nbsp;If&nbsp;data=None&nbsp;(default)&nbsp;an&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph&nbsp;is&nbsp;created.&nbsp;&nbsp;The&nbsp;data&nbsp;can&nbsp;be&nbsp;an&nbsp;edge&nbsp;list,&nbsp;or&nbsp;any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NetworkX&nbsp;graph&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;&nbsp;If&nbsp;the&nbsp;corresponding&nbsp;optional&nbsp;Python<br>
+&nbsp;&nbsp;&nbsp;&nbsp;packages&nbsp;are&nbsp;installed&nbsp;the&nbsp;data&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;NumPy&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;2d&nbsp;ndarray,&nbsp;a&nbsp;SciPy&nbsp;sparse&nbsp;matrix,&nbsp;or&nbsp;a&nbsp;PyGraphviz&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;graph&nbsp;as&nbsp;key=value&nbsp;pairs.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#DiGraph">DiGraph</a><br>
+MultiGraph<br>
+MultiDiGraph<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+Create&nbsp;an&nbsp;empty&nbsp;graph&nbsp;structure&nbsp;(a&nbsp;"null&nbsp;graph")&nbsp;with&nbsp;no&nbsp;nodes&nbsp;and<br>
+no&nbsp;edges.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()<br>
+&nbsp;<br>
+G&nbsp;can&nbsp;be&nbsp;grown&nbsp;in&nbsp;several&nbsp;ways.<br>
+&nbsp;<br>
+**Nodes:**<br>
+&nbsp;<br>
+Add&nbsp;one&nbsp;node&nbsp;at&nbsp;a&nbsp;time:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(1)<br>
+&nbsp;<br>
+Add&nbsp;the&nbsp;nodes&nbsp;from&nbsp;any&nbsp;container&nbsp;(a&nbsp;list,&nbsp;dict,&nbsp;set&nbsp;or<br>
+even&nbsp;the&nbsp;lines&nbsp;from&nbsp;a&nbsp;file&nbsp;or&nbsp;the&nbsp;nodes&nbsp;from&nbsp;another&nbsp;graph).<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>([2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>(range(100,110))<br>
+&gt;&gt;&gt;&nbsp;H=nx.<a href="#Graph">Graph</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-add_path">add_path</a>([0,1,2,3,4,5,6,7,8,9])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>(H)<br>
+&nbsp;<br>
+In&nbsp;addition&nbsp;to&nbsp;strings&nbsp;and&nbsp;integers&nbsp;any&nbsp;hashable&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a><br>
+(except&nbsp;None)&nbsp;can&nbsp;represent&nbsp;a&nbsp;node,&nbsp;e.g.&nbsp;a&nbsp;customized&nbsp;node&nbsp;<a href="__builtin__.html#object">object</a>,<br>
+or&nbsp;even&nbsp;another&nbsp;<a href="#Graph">Graph</a>.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(H)<br>
+&nbsp;<br>
+**Edges:**<br>
+&nbsp;<br>
+G&nbsp;can&nbsp;also&nbsp;be&nbsp;grown&nbsp;by&nbsp;adding&nbsp;edges.<br>
+&nbsp;<br>
+Add&nbsp;one&nbsp;edge,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,&nbsp;2)<br>
+&nbsp;<br>
+a&nbsp;list&nbsp;of&nbsp;edges,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(1,2),(1,3)])<br>
+&nbsp;<br>
+or&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>(H.<a href="#Graph-edges">edges</a>())<br>
+&nbsp;<br>
+If&nbsp;some&nbsp;edges&nbsp;connect&nbsp;nodes&nbsp;not&nbsp;yet&nbsp;in&nbsp;the&nbsp;graph,&nbsp;the&nbsp;nodes<br>
+are&nbsp;added&nbsp;automatically.&nbsp;&nbsp;There&nbsp;are&nbsp;no&nbsp;errors&nbsp;when&nbsp;adding<br>
+nodes&nbsp;or&nbsp;edges&nbsp;that&nbsp;already&nbsp;exist.<br>
+&nbsp;<br>
+**Attributes:**<br>
+&nbsp;<br>
+Each&nbsp;graph,&nbsp;node,&nbsp;and&nbsp;edge&nbsp;can&nbsp;hold&nbsp;key/value&nbsp;attribute&nbsp;pairs<br>
+in&nbsp;an&nbsp;associated&nbsp;attribute&nbsp;dictionary&nbsp;(the&nbsp;keys&nbsp;must&nbsp;be&nbsp;hashable).<br>
+By&nbsp;default&nbsp;these&nbsp;are&nbsp;empty,&nbsp;but&nbsp;can&nbsp;be&nbsp;added&nbsp;or&nbsp;changed&nbsp;using<br>
+add_edge,&nbsp;add_node&nbsp;or&nbsp;direct&nbsp;manipulation&nbsp;of&nbsp;the&nbsp;attribute<br>
+dictionaries&nbsp;named&nbsp;graph,&nbsp;node&nbsp;and&nbsp;edge&nbsp;respectively.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(day="Friday")<br>
+&gt;&gt;&gt;&nbsp;G.graph<br>
+{'day':&nbsp;'Friday'}<br>
+&nbsp;<br>
+Add&nbsp;node&nbsp;attributes&nbsp;using&nbsp;<a href="#Graph-add_node">add_node</a>(),&nbsp;<a href="#Graph-add_nodes_from">add_nodes_from</a>()&nbsp;or&nbsp;G.node<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(1,&nbsp;time='5pm')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>([3],&nbsp;time='2pm')<br>
+&gt;&gt;&gt;&nbsp;G.node[1]<br>
+{'time':&nbsp;'5pm'}<br>
+&gt;&gt;&gt;&nbsp;G.node[1]['room']&nbsp;=&nbsp;714<br>
+&gt;&gt;&gt;&nbsp;del&nbsp;G.node[1]['room']&nbsp;#&nbsp;remove&nbsp;attribute<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes">nodes</a>(data=True)<br>
+[(1,&nbsp;{'time':&nbsp;'5pm'}),&nbsp;(3,&nbsp;{'time':&nbsp;'2pm'})]<br>
+&nbsp;<br>
+Warning:&nbsp;adding&nbsp;a&nbsp;node&nbsp;to&nbsp;G.node&nbsp;does&nbsp;not&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Add&nbsp;edge&nbsp;attributes&nbsp;using&nbsp;<a href="#Graph-add_edge">add_edge</a>(),&nbsp;<a href="#Graph-add_edges_from">add_edges_from</a>(),&nbsp;subscript<br>
+notation,&nbsp;or&nbsp;G.edge.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,&nbsp;2,&nbsp;weight=4.7&nbsp;)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(3,4),(4,5)],&nbsp;color='red')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(1,2,{'color':'blue'}),&nbsp;(2,3,{'weight':8})])<br>
+&gt;&gt;&gt;&nbsp;G[1][2]['weight']&nbsp;=&nbsp;4.7<br>
+&gt;&gt;&gt;&nbsp;G.edge[1][2]['weight']&nbsp;=&nbsp;4<br>
+&nbsp;<br>
+**Shortcuts:**<br>
+&nbsp;<br>
+Many&nbsp;common&nbsp;graph&nbsp;features&nbsp;allow&nbsp;python&nbsp;syntax&nbsp;to&nbsp;speed&nbsp;reporting.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;check&nbsp;if&nbsp;node&nbsp;in&nbsp;graph<br>
+True<br>
+&gt;&gt;&gt;&nbsp;[n&nbsp;for&nbsp;n&nbsp;in&nbsp;G&nbsp;if&nbsp;n&lt;3]&nbsp;&nbsp;&nbsp;#&nbsp;iterate&nbsp;through&nbsp;nodes<br>
+[1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;len(G)&nbsp;&nbsp;#&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;graph<br>
+5<br>
+&gt;&gt;&gt;&nbsp;G[1]&nbsp;#&nbsp;adjacency&nbsp;dict&nbsp;keyed&nbsp;by&nbsp;neighbor&nbsp;to&nbsp;edge&nbsp;attributes<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Note:&nbsp;you&nbsp;should&nbsp;not&nbsp;change&nbsp;this&nbsp;dict&nbsp;manually!<br>
+{2:&nbsp;{'color':&nbsp;'blue',&nbsp;'weight':&nbsp;4}}<br>
+&nbsp;<br>
+The&nbsp;fastest&nbsp;way&nbsp;to&nbsp;traverse&nbsp;all&nbsp;edges&nbsp;of&nbsp;a&nbsp;graph&nbsp;is&nbsp;via<br>
+<a href="#Graph-adjacency_iter">adjacency_iter</a>(),&nbsp;but&nbsp;the&nbsp;<a href="#Graph-edges">edges</a>()&nbsp;method&nbsp;is&nbsp;often&nbsp;more&nbsp;convenient.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;for&nbsp;n,nbrsdict&nbsp;in&nbsp;G.<a href="#Graph-adjacency_iter">adjacency_iter</a>():<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;nbr,eattr&nbsp;in&nbsp;nbrsdict.items():<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;'weight'&nbsp;in&nbsp;eattr:<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(n,nbr,eattr['weight'])<br>
+(1,&nbsp;2,&nbsp;4)<br>
+(2,&nbsp;1,&nbsp;4)<br>
+(2,&nbsp;3,&nbsp;8)<br>
+(3,&nbsp;2,&nbsp;8)<br>
+&gt;&gt;&gt;&nbsp;[&nbsp;(u,v,edata['weight'])&nbsp;for&nbsp;u,v,edata&nbsp;in&nbsp;G.<a href="#Graph-edges">edges</a>(data=True)&nbsp;if&nbsp;'weight'&nbsp;in&nbsp;edata&nbsp;]<br>
+[(1,&nbsp;2,&nbsp;4),&nbsp;(2,&nbsp;3,&nbsp;8)]<br>
+&nbsp;<br>
+**Reporting:**<br>
+&nbsp;<br>
+Simple&nbsp;graph&nbsp;information&nbsp;is&nbsp;obtained&nbsp;using&nbsp;methods.<br>
+Iterator&nbsp;versions&nbsp;of&nbsp;many&nbsp;reporting&nbsp;methods&nbsp;exist&nbsp;for&nbsp;efficiency.<br>
+Methods&nbsp;exist&nbsp;for&nbsp;reporting&nbsp;<a href="#Graph-nodes">nodes</a>(),&nbsp;<a href="#Graph-edges">edges</a>(),&nbsp;<a href="#Graph-neighbors">neighbors</a>()&nbsp;and&nbsp;<a href="#Graph-degree">degree</a>()<br>
+as&nbsp;well&nbsp;as&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;and&nbsp;edges.<br>
+&nbsp;<br>
+For&nbsp;details&nbsp;on&nbsp;these&nbsp;and&nbsp;other&nbsp;miscellaneous&nbsp;methods,&nbsp;see&nbsp;below.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Graph-__contains__"><strong>__contains__</strong></a>(self, n)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;n&nbsp;is&nbsp;a&nbsp;node,&nbsp;False&nbsp;otherwise.&nbsp;Use&nbsp;the&nbsp;expression<br>
+'n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Graph-__getitem__"><strong>__getitem__</strong></a>(self, n)</dt><dd><tt>Return&nbsp;a&nbsp;dict&nbsp;of&nbsp;neighbors&nbsp;of&nbsp;node&nbsp;n.&nbsp;&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'G[n]'.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_dict&nbsp;:&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;adjacency&nbsp;dictionary&nbsp;for&nbsp;nodes&nbsp;connected&nbsp;to&nbsp;n.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+G[n]&nbsp;is&nbsp;similar&nbsp;to&nbsp;G.<a href="#Graph-neighbors">neighbors</a>(n)&nbsp;but&nbsp;the&nbsp;internal&nbsp;data&nbsp;dictionary<br>
+is&nbsp;returned&nbsp;instead&nbsp;of&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Assigning&nbsp;G[n]&nbsp;will&nbsp;corrupt&nbsp;the&nbsp;internal&nbsp;graph&nbsp;data&nbsp;structure.<br>
+Use&nbsp;G[n]&nbsp;for&nbsp;reading&nbsp;data&nbsp;only.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G[0]<br>
+{1:&nbsp;{}}</tt></dd></dl>
+
+<dl><dt><a name="Graph-__init__"><strong>__init__</strong></a>(self, data<font color="#909090">=None</font>, **attr)</dt><dd><tt>Initialize&nbsp;a&nbsp;graph&nbsp;with&nbsp;edges,&nbsp;name,&nbsp;graph&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;input&nbsp;graph<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;to&nbsp;initialize&nbsp;graph.&nbsp;&nbsp;If&nbsp;data=None&nbsp;(default)&nbsp;an&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph&nbsp;is&nbsp;created.&nbsp;&nbsp;The&nbsp;data&nbsp;can&nbsp;be&nbsp;an&nbsp;edge&nbsp;list,&nbsp;or&nbsp;any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NetworkX&nbsp;graph&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;&nbsp;If&nbsp;the&nbsp;corresponding&nbsp;optional&nbsp;Python<br>
+&nbsp;&nbsp;&nbsp;&nbsp;packages&nbsp;are&nbsp;installed&nbsp;the&nbsp;data&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;NumPy&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;2d&nbsp;ndarray,&nbsp;a&nbsp;SciPy&nbsp;sparse&nbsp;matrix,&nbsp;or&nbsp;a&nbsp;PyGraphviz&nbsp;graph.<br>
+name&nbsp;:&nbsp;string,&nbsp;optional&nbsp;(default='')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;optional&nbsp;name&nbsp;for&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;graph&nbsp;as&nbsp;key=value&nbsp;pairs.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+convert<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(name='my&nbsp;graph')<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;[(1,2),(2,3),(3,4)]&nbsp;#&nbsp;list&nbsp;of&nbsp;edges<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(e)<br>
+&nbsp;<br>
+Arbitrary&nbsp;graph&nbsp;attribute&nbsp;pairs&nbsp;(key=value)&nbsp;may&nbsp;be&nbsp;assigned<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>(e,&nbsp;day="Friday")<br>
+&gt;&gt;&gt;&nbsp;G.graph<br>
+{'day':&nbsp;'Friday'}</tt></dd></dl>
+
+<dl><dt><a name="Graph-__iter__"><strong>__iter__</strong></a>(self)</dt><dd><tt>Iterate&nbsp;over&nbsp;the&nbsp;nodes.&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'for&nbsp;n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;all&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])</tt></dd></dl>
+
+<dl><dt><a name="Graph-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes.&nbsp;Use&nbsp;the&nbsp;expression&nbsp;'len(G)'.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;len(G)<br>
+4</tt></dd></dl>
+
+<dl><dt><a name="Graph-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;graph&nbsp;name.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+name&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>(name='foo')<br>
+&gt;&gt;&gt;&nbsp;str(G)<br>
+'foo'</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_cycle"><strong>add_cycle</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;cycle.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;A&nbsp;cycle&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;nodes&nbsp;(in&nbsp;order)&nbsp;and&nbsp;added&nbsp;to&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;cycle.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_path,&nbsp;add_star<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_cycle">add_cycle</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_cycle">add_cycle</a>([10,11,12],weight=7)</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_edge"><strong>add_edge</strong></a>(self, u, v, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;an&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+The&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v&nbsp;will&nbsp;be&nbsp;automatically&nbsp;added&nbsp;if&nbsp;they&nbsp;are<br>
+not&nbsp;already&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Edge&nbsp;attributes&nbsp;can&nbsp;be&nbsp;specified&nbsp;with&nbsp;keywords&nbsp;or&nbsp;by&nbsp;providing<br>
+a&nbsp;dictionary&nbsp;with&nbsp;key/value&nbsp;pairs.&nbsp;&nbsp;See&nbsp;examples&nbsp;below.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;can&nbsp;be,&nbsp;for&nbsp;example,&nbsp;strings&nbsp;or&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;must&nbsp;be&nbsp;hashable&nbsp;(and&nbsp;not&nbsp;None)&nbsp;Python&nbsp;objects.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;edge&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;the&nbsp;edge.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;data&nbsp;(or&nbsp;labels&nbsp;or&nbsp;objects)&nbsp;can&nbsp;be&nbsp;assigned&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keyword&nbsp;arguments.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edges_from&nbsp;:&nbsp;add&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;an&nbsp;edge&nbsp;that&nbsp;already&nbsp;exists&nbsp;updates&nbsp;the&nbsp;edge&nbsp;data.<br>
+&nbsp;<br>
+Many&nbsp;NetworkX&nbsp;algorithms&nbsp;designed&nbsp;for&nbsp;weighted&nbsp;graphs&nbsp;use&nbsp;as<br>
+the&nbsp;edge&nbsp;weight&nbsp;a&nbsp;numerical&nbsp;value&nbsp;assigned&nbsp;to&nbsp;a&nbsp;keyword<br>
+which&nbsp;by&nbsp;default&nbsp;is&nbsp;'weight'.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+The&nbsp;following&nbsp;all&nbsp;add&nbsp;the&nbsp;edge&nbsp;e=(1,2)&nbsp;to&nbsp;graph&nbsp;G:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,&nbsp;2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;explicit&nbsp;two-node&nbsp;form<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(*e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;single&nbsp;edge&nbsp;as&nbsp;tuple&nbsp;of&nbsp;two&nbsp;nodes<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>(&nbsp;[(1,2)]&nbsp;)&nbsp;#&nbsp;add&nbsp;edges&nbsp;from&nbsp;iterable&nbsp;container<br>
+&nbsp;<br>
+Associate&nbsp;data&nbsp;to&nbsp;edges&nbsp;using&nbsp;keywords:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,&nbsp;2,&nbsp;weight=3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,&nbsp;3,&nbsp;weight=7,&nbsp;capacity=15,&nbsp;length=342.7)</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_edges_from"><strong>add_edges_from</strong></a>(self, ebunch, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;all&nbsp;the&nbsp;edges&nbsp;in&nbsp;ebunch.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch&nbsp;:&nbsp;container&nbsp;of&nbsp;edges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;container&nbsp;will&nbsp;be&nbsp;added&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;must&nbsp;be&nbsp;given&nbsp;as&nbsp;as&nbsp;2-tuples&nbsp;(u,v)&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3-tuples&nbsp;(u,v,d)&nbsp;where&nbsp;d&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;edge&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;each&nbsp;edge.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;data&nbsp;(or&nbsp;labels&nbsp;or&nbsp;objects)&nbsp;can&nbsp;be&nbsp;assigned&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keyword&nbsp;arguments.<br>
+&nbsp;<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edge&nbsp;:&nbsp;add&nbsp;a&nbsp;single&nbsp;edge<br>
+add_weighted_edges_from&nbsp;:&nbsp;convenient&nbsp;way&nbsp;to&nbsp;add&nbsp;weighted&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;the&nbsp;same&nbsp;edge&nbsp;twice&nbsp;has&nbsp;no&nbsp;effect&nbsp;but&nbsp;any&nbsp;edge&nbsp;data<br>
+will&nbsp;be&nbsp;updated&nbsp;when&nbsp;each&nbsp;duplicate&nbsp;edge&nbsp;is&nbsp;added.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(0,1),(1,2)])&nbsp;#&nbsp;using&nbsp;a&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;zip(range(0,3),range(1,4))<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>(e)&nbsp;#&nbsp;Add&nbsp;the&nbsp;path&nbsp;graph&nbsp;0-1-2-3<br>
+&nbsp;<br>
+Associate&nbsp;data&nbsp;to&nbsp;edges<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(1,2),(2,3)],&nbsp;weight=3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edges_from">add_edges_from</a>([(3,4),(1,4)],&nbsp;label='WN2898')</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_node"><strong>add_node</strong></a>(self, n, attr_dict<font color="#909090">=None</font>, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;single&nbsp;node&nbsp;n&nbsp;and&nbsp;update&nbsp;node&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;can&nbsp;be&nbsp;any&nbsp;hashable&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;except&nbsp;None.<br>
+attr_dict&nbsp;:&nbsp;dictionary,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;node&nbsp;attributes.&nbsp;&nbsp;Key/value&nbsp;pairs&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;existing&nbsp;data&nbsp;associated&nbsp;with&nbsp;the&nbsp;node.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;or&nbsp;change&nbsp;attributes&nbsp;using&nbsp;key=value.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_nodes_from<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>('Hello')<br>
+&gt;&gt;&gt;&nbsp;K3&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>([(0,1),(1,2),(2,0)])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(K3)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-number_of_nodes">number_of_nodes</a>()<br>
+3<br>
+&nbsp;<br>
+Use&nbsp;keywords&nbsp;set/change&nbsp;node&nbsp;attributes:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(1,size=10)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(3,weight=0.4,UTM=('13S',382871,3972649))<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+A&nbsp;hashable&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;is&nbsp;one&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;as&nbsp;a&nbsp;key&nbsp;in&nbsp;a&nbsp;Python<br>
+dictionary.&nbsp;This&nbsp;includes&nbsp;strings,&nbsp;numbers,&nbsp;tuples&nbsp;of&nbsp;strings<br>
+and&nbsp;numbers,&nbsp;etc.<br>
+&nbsp;<br>
+On&nbsp;many&nbsp;platforms&nbsp;hashable&nbsp;items&nbsp;also&nbsp;include&nbsp;mutables&nbsp;such&nbsp;as<br>
+NetworkX&nbsp;Graphs,&nbsp;though&nbsp;one&nbsp;should&nbsp;be&nbsp;careful&nbsp;that&nbsp;the&nbsp;hash<br>
+doesn't&nbsp;change&nbsp;on&nbsp;mutables.</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_nodes_from"><strong>add_nodes_from</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;multiple&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;(list,&nbsp;dict,&nbsp;set,&nbsp;etc.).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;(node,&nbsp;attribute&nbsp;dict)&nbsp;tuples.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;attributes&nbsp;are&nbsp;updated&nbsp;using&nbsp;the&nbsp;attribute&nbsp;dict.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Update&nbsp;attributes&nbsp;for&nbsp;all&nbsp;nodes&nbsp;in&nbsp;nodes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;attributes&nbsp;specified&nbsp;in&nbsp;nodes&nbsp;as&nbsp;a&nbsp;tuple<br>
+&nbsp;&nbsp;&nbsp;&nbsp;take&nbsp;precedence&nbsp;over&nbsp;attributes&nbsp;specified&nbsp;generally.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>('Hello')<br>
+&gt;&gt;&gt;&nbsp;K3&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>([(0,1),(1,2),(2,0)])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>(K3)<br>
+&gt;&gt;&gt;&nbsp;sorted(G.<a href="#Graph-nodes">nodes</a>(),key=str)<br>
+[0,&nbsp;1,&nbsp;2,&nbsp;'H',&nbsp;'e',&nbsp;'l',&nbsp;'o']<br>
+&nbsp;<br>
+Use&nbsp;keywords&nbsp;to&nbsp;update&nbsp;specific&nbsp;node&nbsp;attributes&nbsp;for&nbsp;every&nbsp;node.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>([1,2],&nbsp;size=10)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>([3,4],&nbsp;weight=0.4)<br>
+&nbsp;<br>
+Use&nbsp;(node,&nbsp;attrdict)&nbsp;tuples&nbsp;to&nbsp;update&nbsp;attributes&nbsp;for&nbsp;specific<br>
+nodes.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_nodes_from">add_nodes_from</a>([(1,dict(size=11)),&nbsp;(2,{'color':'blue'})])<br>
+&gt;&gt;&gt;&nbsp;G.node[1]['size']<br>
+11<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-add_nodes_from">add_nodes_from</a>(G.<a href="#Graph-nodes">nodes</a>(data=True))<br>
+&gt;&gt;&gt;&nbsp;H.node[1]['size']<br>
+11</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_path"><strong>add_path</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;path.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;A&nbsp;path&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;nodes&nbsp;(in&nbsp;order)&nbsp;and&nbsp;added&nbsp;to&nbsp;the&nbsp;graph.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;path.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_star,&nbsp;add_cycle<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([10,11,12],weight=7)</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_star"><strong>add_star</strong></a>(self, nodes, **attr)</dt><dd><tt>Add&nbsp;a&nbsp;star.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;node&nbsp;in&nbsp;nodes&nbsp;is&nbsp;the&nbsp;middle&nbsp;of&nbsp;the&nbsp;star.&nbsp;&nbsp;It&nbsp;is&nbsp;connected<br>
+to&nbsp;all&nbsp;other&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attributes&nbsp;to&nbsp;add&nbsp;to&nbsp;every&nbsp;edge&nbsp;in&nbsp;star.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_path,&nbsp;add_cycle<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_star">add_star</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_star">add_star</a>([10,11,12],weight=2)</tt></dd></dl>
+
+<dl><dt><a name="Graph-add_weighted_edges_from"><strong>add_weighted_edges_from</strong></a>(self, ebunch, weight<font color="#909090">='weight'</font>, **attr)</dt><dd><tt>Add&nbsp;all&nbsp;the&nbsp;edges&nbsp;in&nbsp;ebunch&nbsp;as&nbsp;weighted&nbsp;edges&nbsp;with&nbsp;specified<br>
+weights.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch&nbsp;:&nbsp;container&nbsp;of&nbsp;edges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;list&nbsp;or&nbsp;container&nbsp;will&nbsp;be&nbsp;added<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;the&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;must&nbsp;be&nbsp;given&nbsp;as&nbsp;3-tuples&nbsp;(u,v,w)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;w&nbsp;is&nbsp;a&nbsp;number.<br>
+weight&nbsp;:&nbsp;string,&nbsp;optional&nbsp;(default=&nbsp;'weight')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;attribute&nbsp;name&nbsp;for&nbsp;the&nbsp;edge&nbsp;weights&nbsp;to&nbsp;be&nbsp;added.<br>
+attr&nbsp;:&nbsp;keyword&nbsp;arguments,&nbsp;optional&nbsp;(default=&nbsp;no&nbsp;attributes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edge&nbsp;attributes&nbsp;to&nbsp;add/update&nbsp;for&nbsp;all&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+add_edge&nbsp;:&nbsp;add&nbsp;a&nbsp;single&nbsp;edge<br>
+add_edges_from&nbsp;:&nbsp;add&nbsp;multiple&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Adding&nbsp;the&nbsp;same&nbsp;edge&nbsp;twice&nbsp;for&nbsp;<a href="#Graph">Graph</a>/<a href="#DiGraph">DiGraph</a>&nbsp;simply&nbsp;updates&nbsp;<br>
+the&nbsp;edge&nbsp;data.&nbsp;&nbsp;For&nbsp;MultiGraph/MultiDiGraph,&nbsp;duplicate&nbsp;edges&nbsp;<br>
+are&nbsp;stored.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_weighted_edges_from">add_weighted_edges_from</a>([(0,1,3.0),(1,2,7.5)])</tt></dd></dl>
+
+<dl><dt><a name="Graph-adjacency_iter"><strong>adjacency_iter</strong></a>(self)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;of&nbsp;(node,&nbsp;adjacency&nbsp;dict)&nbsp;tuples&nbsp;for&nbsp;all&nbsp;nodes.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;fastest&nbsp;way&nbsp;to&nbsp;look&nbsp;at&nbsp;every&nbsp;edge.<br>
+For&nbsp;directed&nbsp;graphs,&nbsp;only&nbsp;outgoing&nbsp;adjacencies&nbsp;are&nbsp;included.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_iter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;(node,&nbsp;adjacency&nbsp;dictionary)&nbsp;for&nbsp;all&nbsp;nodes&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+adjacency_list<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;[(n,nbrdict)&nbsp;for&nbsp;n,nbrdict&nbsp;in&nbsp;G.<a href="#Graph-adjacency_iter">adjacency_iter</a>()]<br>
+[(0,&nbsp;{1:&nbsp;{}}),&nbsp;(1,&nbsp;{0:&nbsp;{},&nbsp;2:&nbsp;{}}),&nbsp;(2,&nbsp;{1:&nbsp;{},&nbsp;3:&nbsp;{}}),&nbsp;(3,&nbsp;{2:&nbsp;{}})]</tt></dd></dl>
+
+<dl><dt><a name="Graph-adjacency_list"><strong>adjacency_list</strong></a>(self)</dt><dd><tt>Return&nbsp;an&nbsp;adjacency&nbsp;list&nbsp;representation&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;output&nbsp;adjacency&nbsp;list&nbsp;is&nbsp;in&nbsp;the&nbsp;order&nbsp;of&nbsp;G.<a href="#Graph-nodes">nodes</a>().<br>
+For&nbsp;directed&nbsp;graphs,&nbsp;only&nbsp;outgoing&nbsp;adjacencies&nbsp;are&nbsp;included.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+adj_list&nbsp;:&nbsp;lists&nbsp;of&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;adjacency&nbsp;structure&nbsp;of&nbsp;the&nbsp;graph&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;lists.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+adjacency_iter<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-adjacency_list">adjacency_list</a>()&nbsp;#&nbsp;in&nbsp;order&nbsp;given&nbsp;by&nbsp;G.<a href="#Graph-nodes">nodes</a>()<br>
+[[1],&nbsp;[0,&nbsp;2],&nbsp;[1,&nbsp;3],&nbsp;[2]]</tt></dd></dl>
+
+<dl><dt><a name="Graph-clear"><strong>clear</strong></a>(self)</dt><dd><tt>Remove&nbsp;all&nbsp;nodes&nbsp;and&nbsp;edges&nbsp;from&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+This&nbsp;also&nbsp;removes&nbsp;the&nbsp;name,&nbsp;and&nbsp;all&nbsp;graph,&nbsp;node,&nbsp;and&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-clear">clear</a>()<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes">nodes</a>()<br>
+[]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="Graph-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+to_directed:&nbsp;return&nbsp;a&nbsp;directed&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+This&nbsp;makes&nbsp;a&nbsp;complete&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph&nbsp;including&nbsp;all&nbsp;of&nbsp;the<br>
+node&nbsp;or&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#Graph-copy">copy</a>()</tt></dd></dl>
+
+<dl><dt><a name="Graph-degree"><strong>degree</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;degree&nbsp;of&nbsp;a&nbsp;node&nbsp;or&nbsp;nodes.<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;adjacent&nbsp;to&nbsp;that&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd&nbsp;:&nbsp;dictionary,&nbsp;or&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;dictionary&nbsp;with&nbsp;nodes&nbsp;as&nbsp;keys&nbsp;and&nbsp;degree&nbsp;as&nbsp;values&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;number&nbsp;if&nbsp;a&nbsp;single&nbsp;node&nbsp;is&nbsp;specified.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-degree">degree</a>(0)<br>
+1<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-degree">degree</a>([0,1])<br>
+{0:&nbsp;1,&nbsp;1:&nbsp;2}<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-degree">degree</a>([0,1]).values())<br>
+[1,&nbsp;2]</tt></dd></dl>
+
+<dl><dt><a name="Graph-degree_iter"><strong>degree_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;for&nbsp;(node,&nbsp;degree).<br>
+&nbsp;<br>
+The&nbsp;node&nbsp;degree&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;degree&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;edge&nbsp;weights&nbsp;adjacent&nbsp;to&nbsp;the&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nd_iter&nbsp;:&nbsp;an&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;iterator&nbsp;returns&nbsp;two-tuples&nbsp;of&nbsp;(node,&nbsp;degree).<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+degree<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-degree_iter">degree_iter</a>(0))&nbsp;#&nbsp;node&nbsp;0&nbsp;with&nbsp;degree&nbsp;1<br>
+[(0,&nbsp;1)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-degree_iter">degree_iter</a>([0,1]))<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]</tt></dd></dl>
+
+<dl><dt><a name="Graph-edges"><strong>edges</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;returned&nbsp;as&nbsp;tuples&nbsp;with&nbsp;optional&nbsp;data<br>
+in&nbsp;the&nbsp;order&nbsp;(node,&nbsp;neighbor,&nbsp;data).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;two&nbsp;tuples&nbsp;(u,v)&nbsp;(False)&nbsp;or&nbsp;three-tuples&nbsp;(u,v,data)&nbsp;(True).<br>
+&nbsp;<br>
+Returns<br>
+--------<br>
+edge_list:&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Edges&nbsp;that&nbsp;are&nbsp;adjacent&nbsp;to&nbsp;any&nbsp;node&nbsp;in&nbsp;nbunch,&nbsp;or&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;all&nbsp;edges&nbsp;if&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;specified.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges_iter&nbsp;:&nbsp;return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;will&nbsp;be&nbsp;(quietly)&nbsp;ignored.<br>
+For&nbsp;directed&nbsp;graphs&nbsp;this&nbsp;returns&nbsp;the&nbsp;out-edges.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>(data=True)&nbsp;#&nbsp;default&nbsp;edge&nbsp;data&nbsp;is&nbsp;{}&nbsp;(empty&nbsp;dictionary)<br>
+[(0,&nbsp;1,&nbsp;{}),&nbsp;(1,&nbsp;2,&nbsp;{}),&nbsp;(2,&nbsp;3,&nbsp;{})]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>([0,3])<br>
+[(0,&nbsp;1),&nbsp;(3,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>(0)<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="Graph-edges_iter"><strong>edges_iter</strong></a>(self, nbunch<font color="#909090">=None</font>, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;edges.<br>
+&nbsp;<br>
+Edges&nbsp;are&nbsp;returned&nbsp;as&nbsp;tuples&nbsp;with&nbsp;optional&nbsp;data<br>
+in&nbsp;the&nbsp;order&nbsp;(node,&nbsp;neighbor,&nbsp;data).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=&nbsp;all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;True,&nbsp;return&nbsp;edge&nbsp;attribute&nbsp;dict&nbsp;in&nbsp;3-tuple&nbsp;(u,v,data).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_iter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;(u,v)&nbsp;or&nbsp;(u,v,d)&nbsp;tuples&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+edges&nbsp;:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;will&nbsp;be&nbsp;(quietly)&nbsp;ignored.<br>
+For&nbsp;directed&nbsp;graphs&nbsp;this&nbsp;returns&nbsp;the&nbsp;out-edges.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;[e&nbsp;for&nbsp;e&nbsp;in&nbsp;G.<a href="#Graph-edges_iter">edges_iter</a>()]<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2),&nbsp;(2,&nbsp;3)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-edges_iter">edges_iter</a>(data=True))&nbsp;#&nbsp;default&nbsp;data&nbsp;is&nbsp;{}&nbsp;(empty&nbsp;dict)<br>
+[(0,&nbsp;1,&nbsp;{}),&nbsp;(1,&nbsp;2,&nbsp;{}),&nbsp;(2,&nbsp;3,&nbsp;{})]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-edges_iter">edges_iter</a>([0,3]))<br>
+[(0,&nbsp;1),&nbsp;(3,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;list(G.<a href="#Graph-edges_iter">edges_iter</a>(0))<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="Graph-get_edge_data"><strong>get_edge_data</strong></a>(self, u, v, default<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;attribute&nbsp;dictionary&nbsp;associated&nbsp;with&nbsp;edge&nbsp;(u,v).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+default:&nbsp;&nbsp;any&nbsp;Python&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;to&nbsp;return&nbsp;if&nbsp;the&nbsp;edge&nbsp;(u,v)&nbsp;is&nbsp;not&nbsp;found.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_dict&nbsp;:&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;dictionary.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+It&nbsp;is&nbsp;faster&nbsp;to&nbsp;use&nbsp;G[u][v].<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G[0][1]<br>
+{}<br>
+&nbsp;<br>
+Warning:&nbsp;Assigning&nbsp;G[u][v]&nbsp;corrupts&nbsp;the&nbsp;graph&nbsp;data&nbsp;structure.<br>
+But&nbsp;it&nbsp;is&nbsp;safe&nbsp;to&nbsp;assign&nbsp;attributes&nbsp;to&nbsp;that&nbsp;dictionary,<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G[0][1]['weight']&nbsp;=&nbsp;7<br>
+&gt;&gt;&gt;&nbsp;G[0][1]['weight']<br>
+7<br>
+&gt;&gt;&gt;&nbsp;G[1][0]['weight']<br>
+7<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-get_edge_data">get_edge_data</a>(0,1)&nbsp;#&nbsp;default&nbsp;edge&nbsp;data&nbsp;is&nbsp;{}<br>
+{}<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-get_edge_data">get_edge_data</a>(*e)&nbsp;#&nbsp;tuple&nbsp;form<br>
+{}<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-get_edge_data">get_edge_data</a>('a','b',default=0)&nbsp;#&nbsp;edge&nbsp;not&nbsp;in&nbsp;graph,&nbsp;return&nbsp;0<br>
+0</tt></dd></dl>
+
+<dl><dt><a name="Graph-has_edge"><strong>has_edge</strong></a>(self, u, v)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;edge&nbsp;(u,v)&nbsp;is&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;can&nbsp;be,&nbsp;for&nbsp;example,&nbsp;strings&nbsp;or&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nodes&nbsp;must&nbsp;be&nbsp;hashable&nbsp;(and&nbsp;not&nbsp;None)&nbsp;Python&nbsp;objects.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edge_ind&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;edge&nbsp;is&nbsp;in&nbsp;the&nbsp;graph,&nbsp;False&nbsp;otherwise.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+Can&nbsp;be&nbsp;called&nbsp;either&nbsp;using&nbsp;two&nbsp;nodes&nbsp;u,v&nbsp;or&nbsp;edge&nbsp;tuple&nbsp;(u,v)<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-has_edge">has_edge</a>(0,1)&nbsp;&nbsp;#&nbsp;using&nbsp;two&nbsp;nodes<br>
+True<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-has_edge">has_edge</a>(*e)&nbsp;&nbsp;#&nbsp;&nbsp;e&nbsp;is&nbsp;a&nbsp;2-tuple&nbsp;(u,v)<br>
+True<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1,{'weight':7})<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-has_edge">has_edge</a>(*e[:2])&nbsp;&nbsp;#&nbsp;e&nbsp;is&nbsp;a&nbsp;3-tuple&nbsp;(u,v,data_dictionary)<br>
+True<br>
+&nbsp;<br>
+The&nbsp;following&nbsp;syntax&nbsp;are&nbsp;all&nbsp;equivalent:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-has_edge">has_edge</a>(0,1)<br>
+True<br>
+&gt;&gt;&gt;&nbsp;1&nbsp;in&nbsp;G[0]&nbsp;&nbsp;#&nbsp;though&nbsp;this&nbsp;gives&nbsp;KeyError&nbsp;if&nbsp;0&nbsp;not&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Graph-has_node"><strong>has_node</strong></a>(self, n)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;graph&nbsp;contains&nbsp;the&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-has_node">has_node</a>(0)<br>
+True<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;more&nbsp;readable&nbsp;and&nbsp;simpler&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;0&nbsp;in&nbsp;G<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Graph-is_directed"><strong>is_directed</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;graph&nbsp;is&nbsp;directed,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Graph-is_multigraph"><strong>is_multigraph</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;graph&nbsp;is&nbsp;a&nbsp;multigraph,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Graph-nbunch_iter"><strong>nbunch_iter</strong></a>(self, nbunch<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;of&nbsp;nodes&nbsp;contained&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are<br>
+also&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;nodes&nbsp;in&nbsp;nbunch&nbsp;are&nbsp;checked&nbsp;for&nbsp;membership&nbsp;in&nbsp;the&nbsp;graph<br>
+and&nbsp;if&nbsp;not&nbsp;are&nbsp;silently&nbsp;ignored.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;iterable&nbsp;container,&nbsp;optional&nbsp;(default=all&nbsp;nodes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes.&nbsp;&nbsp;The&nbsp;container&nbsp;will&nbsp;be&nbsp;iterated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;nodes&nbsp;in&nbsp;nbunch&nbsp;that&nbsp;are&nbsp;also&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;nbunch&nbsp;is&nbsp;None,&nbsp;iterate&nbsp;over&nbsp;all&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;a&nbsp;node&nbsp;or&nbsp;or&nbsp;sequence&nbsp;of&nbsp;nodes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;a&nbsp;node&nbsp;in&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;hashable.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#Graph">Graph</a>.__iter__<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+When&nbsp;nbunch&nbsp;is&nbsp;an&nbsp;iterator,&nbsp;the&nbsp;returned&nbsp;iterator&nbsp;yields&nbsp;values<br>
+directly&nbsp;from&nbsp;nbunch,&nbsp;becoming&nbsp;exhausted&nbsp;when&nbsp;nbunch&nbsp;is&nbsp;exhausted.<br>
+&nbsp;<br>
+To&nbsp;test&nbsp;whether&nbsp;nbunch&nbsp;is&nbsp;a&nbsp;single&nbsp;node,&nbsp;one&nbsp;can&nbsp;use<br>
+"if&nbsp;nbunch&nbsp;in&nbsp;self:",&nbsp;even&nbsp;after&nbsp;processing&nbsp;with&nbsp;this&nbsp;routine.<br>
+&nbsp;<br>
+If&nbsp;nbunch&nbsp;is&nbsp;not&nbsp;a&nbsp;node&nbsp;or&nbsp;a&nbsp;(possibly&nbsp;empty)&nbsp;sequence/iterator<br>
+or&nbsp;None,&nbsp;a&nbsp;NetworkXError&nbsp;is&nbsp;raised.&nbsp;&nbsp;Also,&nbsp;if&nbsp;any&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;in<br>
+nbunch&nbsp;is&nbsp;not&nbsp;hashable,&nbsp;a&nbsp;NetworkXError&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Graph-neighbors"><strong>neighbors</strong></a>(self, n)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;nodes&nbsp;connected&nbsp;to&nbsp;the&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;in&nbsp;the&nbsp;graph<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nlist&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;nodes&nbsp;that&nbsp;are&nbsp;adjacent&nbsp;to&nbsp;n.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;node&nbsp;n&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+It&nbsp;is&nbsp;usually&nbsp;more&nbsp;convenient&nbsp;(and&nbsp;faster)&nbsp;to&nbsp;access&nbsp;the<br>
+adjacency&nbsp;dictionary&nbsp;as&nbsp;G[n]:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>('a','b',weight=7)<br>
+&gt;&gt;&gt;&nbsp;G['a']<br>
+{'b':&nbsp;{'weight':&nbsp;7}}<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-neighbors">neighbors</a>(0)<br>
+[1]</tt></dd></dl>
+
+<dl><dt><a name="Graph-neighbors_iter"><strong>neighbors_iter</strong></a>(self, n)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;all&nbsp;neighbors&nbsp;of&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;[n&nbsp;for&nbsp;n&nbsp;in&nbsp;G.<a href="#Graph-neighbors_iter">neighbors_iter</a>(0)]<br>
+[1]<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+It&nbsp;is&nbsp;faster&nbsp;to&nbsp;use&nbsp;the&nbsp;idiom&nbsp;"in&nbsp;G[0]",&nbsp;e.g.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.path_graph(4)<br>
+&gt;&gt;&gt;&nbsp;[n&nbsp;for&nbsp;n&nbsp;in&nbsp;G[0]]<br>
+[1]</tt></dd></dl>
+
+<dl><dt><a name="Graph-nodes"><strong>nodes</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;boolean,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes.&nbsp;&nbsp;If&nbsp;True&nbsp;return&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;two-tuple&nbsp;of&nbsp;node&nbsp;and&nbsp;node&nbsp;data&nbsp;dictionary<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nlist&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;nodes.&nbsp;&nbsp;If&nbsp;data=True&nbsp;a&nbsp;list&nbsp;of&nbsp;two-tuples&nbsp;containing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(node,&nbsp;node&nbsp;data&nbsp;dictionary).<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes">nodes</a>()<br>
+[0,&nbsp;1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_node">add_node</a>(1,&nbsp;time='5pm')<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes">nodes</a>(data=True)<br>
+[(0,&nbsp;{}),&nbsp;(1,&nbsp;{'time':&nbsp;'5pm'}),&nbsp;(2,&nbsp;{})]</tt></dd></dl>
+
+<dl><dt><a name="Graph-nodes_iter"><strong>nodes_iter</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+data&nbsp;:&nbsp;boolean,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False&nbsp;the&nbsp;iterator&nbsp;returns&nbsp;nodes.&nbsp;&nbsp;If&nbsp;True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a&nbsp;two-tuple&nbsp;of&nbsp;node&nbsp;and&nbsp;node&nbsp;data&nbsp;dictionary<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+niter&nbsp;:&nbsp;iterator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;over&nbsp;nodes.&nbsp;&nbsp;If&nbsp;data=True&nbsp;the&nbsp;iterator&nbsp;gives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;two-tuples&nbsp;containing&nbsp;(node,&nbsp;node&nbsp;data,&nbsp;dictionary)<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+If&nbsp;the&nbsp;node&nbsp;data&nbsp;is&nbsp;not&nbsp;required&nbsp;it&nbsp;is&nbsp;simpler&nbsp;and&nbsp;equivalent<br>
+to&nbsp;use&nbsp;the&nbsp;expression&nbsp;'for&nbsp;n&nbsp;in&nbsp;G'.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;[d&nbsp;for&nbsp;n,d&nbsp;in&nbsp;G.<a href="#Graph-nodes_iter">nodes_iter</a>(data=True)]<br>
+[{},&nbsp;{},&nbsp;{}]</tt></dd></dl>
+
+<dl><dt><a name="Graph-nodes_with_selfloops"><strong>nodes_with_selfloops</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;with&nbsp;self&nbsp;loops.<br>
+&nbsp;<br>
+A&nbsp;node&nbsp;with&nbsp;a&nbsp;self&nbsp;loop&nbsp;has&nbsp;an&nbsp;edge&nbsp;with&nbsp;both&nbsp;ends&nbsp;adjacent<br>
+to&nbsp;that&nbsp;node.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nodelist&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;nodes&nbsp;with&nbsp;self&nbsp;loops.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+selfloop_edges,&nbsp;number_of_selfloops<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes_with_selfloops">nodes_with_selfloops</a>()<br>
+[1]</tt></dd></dl>
+
+<dl><dt><a name="Graph-number_of_edges"><strong>number_of_edges</strong></a>(self, u<font color="#909090">=None</font>, v<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between&nbsp;two&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v&nbsp;:&nbsp;nodes,&nbsp;optional&nbsp;(default=all&nbsp;edges)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;u&nbsp;and&nbsp;v&nbsp;are&nbsp;specified,&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between<br>
+&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;and&nbsp;v.&nbsp;Otherwise&nbsp;return&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;all&nbsp;edges.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nedges&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;edges&nbsp;in&nbsp;the&nbsp;graph.&nbsp;&nbsp;If&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v&nbsp;are&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges&nbsp;between&nbsp;those&nbsp;nodes.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+size<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-number_of_edges">number_of_edges</a>()<br>
+3<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-number_of_edges">number_of_edges</a>(0,1)<br>
+1<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(0,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-number_of_edges">number_of_edges</a>(*e)<br>
+1</tt></dd></dl>
+
+<dl><dt><a name="Graph-number_of_nodes"><strong>number_of_nodes</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+order,&nbsp;__len__&nbsp;&nbsp;which&nbsp;are&nbsp;identical<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;len(G)<br>
+3</tt></dd></dl>
+
+<dl><dt><a name="Graph-number_of_selfloops"><strong>number_of_selfloops</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+A&nbsp;selfloop&nbsp;edge&nbsp;has&nbsp;the&nbsp;same&nbsp;node&nbsp;at&nbsp;both&nbsp;ends.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nloops&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;selfloops.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+nodes_with_selfloops,&nbsp;selfloop_edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G=nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-number_of_selfloops">number_of_selfloops</a>()<br>
+1</tt></dd></dl>
+
+<dl><dt><a name="Graph-order"><strong>order</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nnodes&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;nodes&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+number_of_nodes,&nbsp;__len__&nbsp;&nbsp;which&nbsp;are&nbsp;identical</tt></dd></dl>
+
+<dl><dt><a name="Graph-remove_edge"><strong>remove_edge</strong></a>(self, u, v)</dt><dd><tt>Remove&nbsp;the&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+u,v:&nbsp;nodes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Remove&nbsp;the&nbsp;edge&nbsp;between&nbsp;nodes&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;there&nbsp;is&nbsp;not&nbsp;an&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_edges_from&nbsp;:&nbsp;remove&nbsp;a&nbsp;collection&nbsp;of&nbsp;edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_edge">remove_edge</a>(0,1)<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_edge">remove_edge</a>(*e)&nbsp;#&nbsp;unpacks&nbsp;e&nbsp;from&nbsp;an&nbsp;edge&nbsp;tuple<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;(2,3,{'weight':7})&nbsp;#&nbsp;an&nbsp;edge&nbsp;with&nbsp;attribute&nbsp;data<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_edge">remove_edge</a>(*e[:2])&nbsp;#&nbsp;select&nbsp;first&nbsp;part&nbsp;of&nbsp;edge&nbsp;tuple</tt></dd></dl>
+
+<dl><dt><a name="Graph-remove_edges_from"><strong>remove_edges_from</strong></a>(self, ebunch)</dt><dd><tt>Remove&nbsp;all&nbsp;edges&nbsp;specified&nbsp;in&nbsp;ebunch.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ebunch:&nbsp;list&nbsp;or&nbsp;container&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;edge&nbsp;given&nbsp;in&nbsp;the&nbsp;list&nbsp;or&nbsp;container&nbsp;will&nbsp;be&nbsp;removed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;the&nbsp;graph.&nbsp;The&nbsp;edges&nbsp;can&nbsp;be:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;2-tuples&nbsp;(u,v)&nbsp;edge&nbsp;between&nbsp;u&nbsp;and&nbsp;v.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;3-tuples&nbsp;(u,v,k)&nbsp;where&nbsp;k&nbsp;is&nbsp;ignored.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_edge&nbsp;:&nbsp;remove&nbsp;a&nbsp;single&nbsp;edge<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+Will&nbsp;fail&nbsp;silently&nbsp;if&nbsp;an&nbsp;edge&nbsp;in&nbsp;ebunch&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;ebunch=[(1,2),(2,3)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_edges_from">remove_edges_from</a>(ebunch)</tt></dd></dl>
+
+<dl><dt><a name="Graph-remove_node"><strong>remove_node</strong></a>(self, n)</dt><dd><tt>Remove&nbsp;node&nbsp;n.<br>
+&nbsp;<br>
+Removes&nbsp;the&nbsp;node&nbsp;n&nbsp;and&nbsp;all&nbsp;adjacent&nbsp;edges.<br>
+Attempting&nbsp;to&nbsp;remove&nbsp;a&nbsp;non-existent&nbsp;node&nbsp;will&nbsp;raise&nbsp;an&nbsp;exception.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+n&nbsp;:&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;node&nbsp;in&nbsp;the&nbsp;graph<br>
+&nbsp;<br>
+Raises<br>
+-------<br>
+NetworkXError<br>
+&nbsp;&nbsp;&nbsp;If&nbsp;n&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_nodes_from<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_node">remove_node</a>(1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-edges">edges</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="Graph-remove_nodes_from"><strong>remove_nodes_from</strong></a>(self, nodes)</dt><dd><tt>Remove&nbsp;multiple&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nodes&nbsp;:&nbsp;iterable&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;(list,&nbsp;dict,&nbsp;set,&nbsp;etc.).&nbsp;&nbsp;If&nbsp;a&nbsp;node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;container&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;graph&nbsp;it&nbsp;is&nbsp;silently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ignored.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+remove_node<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;e&nbsp;=&nbsp;G.<a href="#Graph-nodes">nodes</a>()<br>
+&gt;&gt;&gt;&nbsp;e<br>
+[0,&nbsp;1,&nbsp;2]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-remove_nodes_from">remove_nodes_from</a>(e)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-nodes">nodes</a>()<br>
+[]</tt></dd></dl>
+
+<dl><dt><a name="Graph-selfloop_edges"><strong>selfloop_edges</strong></a>(self, data<font color="#909090">=False</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+A&nbsp;selfloop&nbsp;edge&nbsp;has&nbsp;the&nbsp;same&nbsp;node&nbsp;at&nbsp;both&nbsp;ends.<br>
+&nbsp;<br>
+Parameters<br>
+-----------<br>
+data&nbsp;:&nbsp;bool,&nbsp;optional&nbsp;(default=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;selfloop&nbsp;edges&nbsp;as&nbsp;two&nbsp;tuples&nbsp;(u,v)&nbsp;(data=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;three-tuples&nbsp;(u,v,data)&nbsp;(data=True)<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+edgelist&nbsp;:&nbsp;list&nbsp;of&nbsp;edge&nbsp;tuples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;all&nbsp;selfloop&nbsp;edges.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+nodes_with_selfloops,&nbsp;number_of_selfloops<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,1)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>(1,2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-selfloop_edges">selfloop_edges</a>()<br>
+[(1,&nbsp;1)]<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-selfloop_edges">selfloop_edges</a>(data=True)<br>
+[(1,&nbsp;1,&nbsp;{})]</tt></dd></dl>
+
+<dl><dt><a name="Graph-size"><strong>size</strong></a>(self, weight<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;edges.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+weight&nbsp;:&nbsp;string&nbsp;or&nbsp;None,&nbsp;optional&nbsp;(default=None)<br>
+&nbsp;&nbsp;&nbsp;The&nbsp;edge&nbsp;attribute&nbsp;that&nbsp;holds&nbsp;the&nbsp;numerical&nbsp;value&nbsp;used&nbsp;<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;weight.&nbsp;&nbsp;If&nbsp;None,&nbsp;then&nbsp;each&nbsp;edge&nbsp;has&nbsp;weight&nbsp;1.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+nedges&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;edges&nbsp;of&nbsp;sum&nbsp;of&nbsp;edge&nbsp;weights&nbsp;in&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+number_of_edges<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-size">size</a>()<br>
+3<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>('a','b',weight=2)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_edge">add_edge</a>('b','c',weight=4)<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-size">size</a>()<br>
+2<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-size">size</a>(weight='weight')<br>
+6.0</tt></dd></dl>
+
+<dl><dt><a name="Graph-subgraph"><strong>subgraph</strong></a>(self, nbunch)</dt><dd><tt>Return&nbsp;the&nbsp;subgraph&nbsp;induced&nbsp;on&nbsp;nodes&nbsp;in&nbsp;nbunch.<br>
+&nbsp;<br>
+The&nbsp;induced&nbsp;subgraph&nbsp;of&nbsp;the&nbsp;graph&nbsp;contains&nbsp;the&nbsp;nodes&nbsp;in&nbsp;nbunch<br>
+and&nbsp;the&nbsp;edges&nbsp;between&nbsp;those&nbsp;nodes.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+nbunch&nbsp;:&nbsp;list,&nbsp;iterable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;container&nbsp;of&nbsp;nodes&nbsp;which&nbsp;will&nbsp;be&nbsp;iterated&nbsp;through&nbsp;once.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;subgraph&nbsp;of&nbsp;the&nbsp;graph&nbsp;with&nbsp;the&nbsp;same&nbsp;edge&nbsp;attributes.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+The&nbsp;graph,&nbsp;edge&nbsp;or&nbsp;node&nbsp;attributes&nbsp;just&nbsp;point&nbsp;to&nbsp;the&nbsp;original&nbsp;graph.<br>
+So&nbsp;changes&nbsp;to&nbsp;the&nbsp;node&nbsp;or&nbsp;edge&nbsp;structure&nbsp;will&nbsp;not&nbsp;be&nbsp;reflected&nbsp;in<br>
+the&nbsp;original&nbsp;graph&nbsp;while&nbsp;changes&nbsp;to&nbsp;the&nbsp;attributes&nbsp;will.<br>
+&nbsp;<br>
+To&nbsp;create&nbsp;a&nbsp;subgraph&nbsp;with&nbsp;its&nbsp;own&nbsp;copy&nbsp;of&nbsp;the&nbsp;edge/node&nbsp;attributes&nbsp;use:<br>
+nx.<a href="#Graph">Graph</a>(G.<a href="#Graph-subgraph">subgraph</a>(nbunch))<br>
+&nbsp;<br>
+If&nbsp;edge&nbsp;attributes&nbsp;are&nbsp;containers,&nbsp;a&nbsp;deep&nbsp;copy&nbsp;can&nbsp;be&nbsp;obtained&nbsp;using:<br>
+G.<a href="#Graph-subgraph">subgraph</a>(nbunch).<a href="#Graph-copy">copy</a>()<br>
+&nbsp;<br>
+For&nbsp;an&nbsp;inplace&nbsp;reduction&nbsp;of&nbsp;a&nbsp;graph&nbsp;to&nbsp;a&nbsp;subgraph&nbsp;you&nbsp;can&nbsp;remove&nbsp;nodes:<br>
+G.<a href="#Graph-remove_nodes_from">remove_nodes_from</a>([&nbsp;n&nbsp;in&nbsp;G&nbsp;if&nbsp;n&nbsp;not&nbsp;in&nbsp;set(nbunch)])<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;<a href="#DiGraph">DiGraph</a>,&nbsp;MultiGraph,&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1,2,3])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#Graph-subgraph">subgraph</a>([0,1,2])<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;2)]</tt></dd></dl>
+
+<dl><dt><a name="Graph-to_directed"><strong>to_directed</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;directed&nbsp;representation&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#DiGraph">DiGraph</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;directed&nbsp;graph&nbsp;with&nbsp;the&nbsp;same&nbsp;name,&nbsp;same&nbsp;nodes,&nbsp;and&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;each&nbsp;edge&nbsp;(u,v,data)&nbsp;replaced&nbsp;by&nbsp;two&nbsp;directed&nbsp;edges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(u,v,data)&nbsp;and&nbsp;(v,u,data).<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+This&nbsp;returns&nbsp;a&nbsp;"deepcopy"&nbsp;of&nbsp;the&nbsp;edge,&nbsp;node,&nbsp;and<br>
+graph&nbsp;attributes&nbsp;which&nbsp;attempts&nbsp;to&nbsp;completely&nbsp;copy<br>
+all&nbsp;of&nbsp;the&nbsp;data&nbsp;and&nbsp;references.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;in&nbsp;contrast&nbsp;to&nbsp;the&nbsp;similar&nbsp;D=<a href="#DiGraph">DiGraph</a>(G)&nbsp;which&nbsp;returns&nbsp;a<br>
+shallow&nbsp;copy&nbsp;of&nbsp;the&nbsp;data.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;Python&nbsp;copy&nbsp;module&nbsp;for&nbsp;more&nbsp;information&nbsp;on&nbsp;shallow<br>
+and&nbsp;deep&nbsp;copies,&nbsp;<a href="http://docs.python.org/library/copy.html">http://docs.python.org/library/copy.html</a>.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#Graph-to_directed">to_directed</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;0)]<br>
+&nbsp;<br>
+If&nbsp;already&nbsp;directed,&nbsp;return&nbsp;a&nbsp;(deep)&nbsp;copy<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#DiGraph">DiGraph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiDiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#Graph-to_directed">to_directed</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<dl><dt><a name="Graph-to_undirected"><strong>to_undirected</strong></a>(self)</dt><dd><tt>Return&nbsp;an&nbsp;undirected&nbsp;copy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+G&nbsp;:&nbsp;<a href="#Graph">Graph</a>/MultiGraph<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;deepcopy&nbsp;of&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+copy,&nbsp;add_edge,&nbsp;add_edges_from<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+This&nbsp;returns&nbsp;a&nbsp;"deepcopy"&nbsp;of&nbsp;the&nbsp;edge,&nbsp;node,&nbsp;and<br>
+graph&nbsp;attributes&nbsp;which&nbsp;attempts&nbsp;to&nbsp;completely&nbsp;copy<br>
+all&nbsp;of&nbsp;the&nbsp;data&nbsp;and&nbsp;references.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;in&nbsp;contrast&nbsp;to&nbsp;the&nbsp;similar&nbsp;G=<a href="#DiGraph">DiGraph</a>(D)&nbsp;which&nbsp;returns&nbsp;a<br>
+shallow&nbsp;copy&nbsp;of&nbsp;the&nbsp;data.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;Python&nbsp;copy&nbsp;module&nbsp;for&nbsp;more&nbsp;information&nbsp;on&nbsp;shallow<br>
+and&nbsp;deep&nbsp;copies,&nbsp;<a href="http://docs.python.org/library/copy.html">http://docs.python.org/library/copy.html</a>.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;G&nbsp;=&nbsp;nx.<a href="#Graph">Graph</a>()&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;MultiGraph,&nbsp;etc<br>
+&gt;&gt;&gt;&nbsp;G.<a href="#Graph-add_path">add_path</a>([0,1])<br>
+&gt;&gt;&gt;&nbsp;H&nbsp;=&nbsp;G.<a href="#Graph-to_directed">to_directed</a>()<br>
+&gt;&gt;&gt;&nbsp;H.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1),&nbsp;(1,&nbsp;0)]<br>
+&gt;&gt;&gt;&nbsp;G2&nbsp;=&nbsp;H.<a href="#Graph-to_undirected">to_undirected</a>()<br>
+&gt;&gt;&gt;&nbsp;G2.<a href="#Graph-edges">edges</a>()<br>
+[(0,&nbsp;1)]</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NodeF">class <strong>NodeF</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NodeF-__init__"><strong>__init__</strong></a>(self, id, class_name, method_name, descriptor, label<font color="#909090">=None</font>, real<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="NodeF-add_api"><strong>add_api</strong></a>(self, perm, api)</dt></dl>
+
+<dl><dt><a name="NodeF-add_edge"><strong>add_edge</strong></a>(self, n, idx)</dt></dl>
+
+<dl><dt><a name="NodeF-add_risk"><strong>add_risk</strong></a>(self, risk)</dt></dl>
+
+<dl><dt><a name="NodeF-get_attribute"><strong>get_attribute</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="NodeF-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NodeF-get_attributes_gexf"><strong>get_attributes_gexf</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NodeF-get_attributes_gml"><strong>get_attributes_gml</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NodeF-set_attributes"><strong>set_attributes</strong></a>(self, values)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ACTIVITY_COLOR</strong> = (51, 255, 51)<br>
+<strong>COLOR_PERMISSIONS_LEVEL</strong> = {'dangerous': (255, 0, 0), 'normal': (255, 181, 181), 'signature': (255, 132, 132), 'signatureOrSystem': (255, 63, 63)}<br>
+<strong>DEFAULT_NODE_PERM</strong> = 0<br>
+<strong>DEFAULT_NODE_PERM_LEVEL</strong> = -1<br>
+<strong>DEFAULT_NODE_TYPE</strong> = 'normal'<br>
+<strong>DEFAULT_RISKS</strong> = {5: ('MONEY_RISK', (255, 0, 0)), 6: ('SMS_RISK', (255, 93, 0)), 7: ('PHONE_RISK', (255, 216, 0)), 8: ('INTERNET_RISK', (195, 255, 0)), 9: ('PRIVACY_RISK', (255, 255, 51))}<br>
+<strong>DEXCLASSLOADER_COLOR</strong> = (0, 0, 0)<br>
+<strong>DVM_PERMISSIONS</strong> = {'MANIFEST_PERMISSION': {'ACCESS_CACHE_FILESYSTEM': ['signatureOrSystem', 'access the cache file system', 'Allows an application to read and write the cache file system.'], 'ACCESS_CHECKIN_PROPERTIES': ['signatureOrSystem', 'access check-in properties', 'Allows read/write access to properties uploaded ...k-in service. Not for use by normal applications.'], 'ACCESS_COARSE_LOCATION': ['dangerous', 'coarse (network-based) location', 'Access coarse location sources, such as the mobi...se this to determine approximately where you are.'], 'ACCESS_FINE_LOCATION': ['dangerous', 'fine (GPS) location', 'Access fine location sources, such as the Global...you are and may consume additional battery power.'], 'ACCESS_LOCATION_EXTRA_COMMANDS': ['normal', 'access extra location provider commands', 'Access extra location provider commands. Malicio...e operation of the GPS or other location sources.'], 'ACCESS_MOCK_LOCATION': ['dangerous', 'mock location sources for testing', 'Create mock location sources for testing. Malici...ocation sources such as GPS or Network providers.'], 'ACCESS_NETWORK_STATE': ['normal', 'view network status', 'Allows an application to view the status of all networks.'], 'ACCESS_SURFACE_FLINGER': ['signature', 'access SurfaceFlinger', 'Allows application to use SurfaceFlinger low-level features.'], 'ACCESS_USB': ['signatureOrSystem', 'access USB devices', 'Allows the application to access USB devices.'], 'ACCESS_WIFI_STATE': ['normal', 'view Wi-Fi status', 'Allows an application to view the information about the status of Wi-Fi.'], ...}, 'MANIFEST_PERMISSION_GROUP': {'ACCOUNTS': 'Permissions for direct access to the accounts managed by the Account Manager.', 'COST_MONEY': 'Used for permissions that can be used to make the user spend money without their direct involvement.', 'DEVELOPMENT_TOOLS': 'Group of permissions that are related to development features.', 'HARDWARE_CONTROLS': 'Used for permissions that provide direct access to the hardware on the device.', 'LOCATION': "Used for permissions that allow access to the user's current location.", 'MESSAGES': 'Used for permissions that allow an application t...or intercept messages being received by the user.', 'NETWORK': 'Used for permissions that provide access to networking services.', 'PERSONAL_INFO': 'Used for permissions that provide access to the ... contacts, calendar events, e-mail messages, etc.', 'PHONE_CALLS': 'Used for permissions that are associated with ac...ing calls, reading and modifying the phone state.', 'STORAGE': 'Group of permissions that are related to SD card access.', ...}}<br>
+<strong>ID_ATTRIBUTES</strong> = {'class_name': 1, 'descriptor': 3, 'dynamic_code': 6, 'method_name': 2, 'permissions': 4, 'permissions_level': 5, 'type': 0}<br>
+<strong>INTERNET_RISK</strong> = 8<br>
+<strong>MONEY_RISK</strong> = 5<br>
+<strong>PERMISSIONS_LEVEL</strong> = {'dangerous': 3, 'normal': 0, 'signature': 1, 'signatureOrSystem': 2}<br>
+<strong>PERMISSIONS_RISK</strong> = {'ACCESS_COARSE_LOCATION': [9], 'ACCESS_FINE_LOCATION': [9], 'CALL_PRIVILEGED': [5], 'INTERNET': [5, 8], 'PHONE_CALL': [5], 'PROCESS_OUTGOING_CALLS': [5], 'READ_CONTACTS': [9], 'READ_HISTORY_BOOKMARKS': [9], 'READ_PHONE_STATE': [9], 'READ_SMS': [6], ...}<br>
+<strong>PHONE_RISK</strong> = 7<br>
+<strong>PRIVACY_RISK</strong> = 9<br>
+<strong>RECEIVER_COLOR</strong> = (204, 51, 204)<br>
+<strong>SERVICE_COLOR</strong> = (0, 204, 204)<br>
+<strong>SMS_RISK</strong> = 6<br>
+<strong>TAINTED_PACKAGE_CREATE</strong> = 0<br>
+<strong>__author__</strong> = 'Aric Hagberg (hagberg@lanl.gov)<font color="#c040c0">\n</font>Pieter Swart (swart@lanl.gov)<font color="#c040c0">\n</font>Dan Schult(dschult@colgate.edu)'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Aric&nbsp;Hagberg&nbsp;(hagberg@lanl.gov)<br>
+Pieter&nbsp;Swart&nbsp;(swart@lanl.gov)<br>
+Dan&nbsp;Schult(dschult@colgate.edu)</td></tr></table>
+</body></html>

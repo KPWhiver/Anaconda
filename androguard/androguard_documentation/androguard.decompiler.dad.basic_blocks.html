@@ -1,0 +1,1200 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.basic_blocks</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.basic_blocks</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/basic_blocks.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\basic_blocks.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#Condition">Condition</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#GenInvokeRetName">GenInvokeRetName</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#CatchBlock">CatchBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#LoopBlock">LoopBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#ShortCircuitBlock">ShortCircuitBlock</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#ReturnBlock">ReturnBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#StatementBlock">StatementBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#SwitchBlock">SwitchBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#ThrowBlock">ThrowBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.basic_blocks.html#TryBlock">TryBlock</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BasicBlock">class <strong>BasicBlock</strong></a>(<a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BasicBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="BasicBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="BasicBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="BasicBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="BasicBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CatchBlock">class <strong>CatchBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#CatchBlock">CatchBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CatchBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins, typeh)</dt></dl>
+
+<dl><dt><a name="CatchBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="CatchBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="CatchBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="CatchBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CatchBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CatchBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CondBlock">class <strong>CondBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CondBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="CondBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_false"><strong>set_false</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_true"><strong>set_true</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<dl><dt><a name="CondBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<dl><dt><a name="CondBlock-visit_cond"><strong>visit_cond</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="CondBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="CondBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="CondBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="CondBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Condition">class <strong>Condition</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Condition-__init__"><strong>__init__</strong></a>(self, cond1, cond2, isand, isnot)</dt></dl>
+
+<dl><dt><a name="Condition-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Condition-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Condition-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Condition-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Condition-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GenInvokeRetName">class <strong>GenInvokeRetName</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="GenInvokeRetName-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GenInvokeRetName-last"><strong>last</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GenInvokeRetName-new"><strong>new</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GenInvokeRetName-set_to"><strong>set_to</strong></a>(self, ret)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LoopBlock">class <strong>LoopBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#LoopBlock">LoopBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LoopBlock-__init__"><strong>__init__</strong></a>(self, name, cond)</dt></dl>
+
+<dl><dt><a name="LoopBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<dl><dt><a name="LoopBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<dl><dt><a name="LoopBlock-visit_cond"><strong>visit_cond</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a>:<br>
+<dl><dt><a name="LoopBlock-set_false"><strong>set_false</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_true"><strong>set_true</strong></a>(self, node)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="LoopBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="LoopBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="LoopBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="LoopBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="LoopBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ReturnBlock">class <strong>ReturnBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#ReturnBlock">ReturnBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ReturnBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="ReturnBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="ReturnBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ShortCircuitBlock">class <strong>ShortCircuitBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#ShortCircuitBlock">ShortCircuitBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ShortCircuitBlock-__init__"><strong>__init__</strong></a>(self, name, cond)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-visit_cond"><strong>visit_cond</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#CondBlock">CondBlock</a>:<br>
+<dl><dt><a name="ShortCircuitBlock-set_false"><strong>set_false</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_true"><strong>set_true</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="ShortCircuitBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="ShortCircuitBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ShortCircuitBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StatementBlock">class <strong>StatementBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#StatementBlock">StatementBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="StatementBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="StatementBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="StatementBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="StatementBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="StatementBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="StatementBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StatementBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitchBlock">class <strong>SwitchBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#SwitchBlock">SwitchBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitchBlock-__init__"><strong>__init__</strong></a>(self, name, switch, block_ins)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-add_case"><strong>add_case</strong></a>(self, case)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-order_cases"><strong>order_cases</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="SwitchBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="SwitchBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="SwitchBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ThrowBlock">class <strong>ThrowBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#ThrowBlock">ThrowBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ThrowBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="ThrowBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="ThrowBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TryBlock">class <strong>TryBlock</strong></a>(<a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#TryBlock">TryBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a></dd>
+<dd><a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="TryBlock-__init__"><strong>__init__</strong></a>(self, name, block_ins)</dt></dl>
+
+<dl><dt><a name="TryBlock-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-add_catch"><strong>add_catch</strong></a>(self, node)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.basic_blocks.html#BasicBlock">BasicBlock</a>:<br>
+<dl><dt><a name="TryBlock-add_ins"><strong>add_ins</strong></a>(self, new_ins_list)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-number_ins"><strong>number_ins</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="TryBlock-remove_ins"><strong>remove_ins</strong></a>(self, loc, ins)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><a name="TryBlock-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-copy_from"><strong>copy_from</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_head"><strong>get_head</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_if_follow"><strong>get_if_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_loop_follow"><strong>get_loop_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-get_switch_follow"><strong>get_switch_follow</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_end_loop"><strong>is_end_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_return"><strong>is_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_start_loop"><strong>is_start_loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_stmt"><strong>is_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_switch"><strong>is_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-is_throw"><strong>is_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_cond"><strong>set_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_end_loop"><strong>set_end_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_if_follow"><strong>set_if_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_latch_node"><strong>set_latch_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_loop_endless"><strong>set_loop_endless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_loop_follow"><strong>set_loop_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_loop_nodes"><strong>set_loop_nodes</strong></a>(self, nodes)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_loop_posttest"><strong>set_loop_posttest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_loop_pretest"><strong>set_loop_pretest</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_return"><strong>set_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_start_loop"><strong>set_start_loop</strong></a>(self, b<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_stmt"><strong>set_stmt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_switch"><strong>set_switch</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_switch_follow"><strong>set_switch_follow</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="TryBlock-set_throw"><strong>set_throw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TryBlock-update_attribute_with"><strong>update_attribute_with</strong></a>(self, n_map)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.node.html#Node">androguard.decompiler.dad.node.Node</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-build_node_from_block"><strong>build_node_from_block</strong></a>(block, vmap, gen_ret)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>INSTRUCTION_SET</strong> = {'add-double': &lt;function adddouble&gt;, 'add-double/2addr': &lt;function adddouble2addr&gt;, 'add-float': &lt;function addfloat&gt;, 'add-float/2addr': &lt;function addfloat2addr&gt;, 'add-int': &lt;function addint&gt;, 'add-int/2addr': &lt;function addint2addr&gt;, 'add-int/lit16': &lt;function addintlit16&gt;, 'add-int/lit8': &lt;function addintlit8&gt;, 'add-long': &lt;function addlong&gt;, 'add-long/2addr': &lt;function addlong2addr&gt;, ...}<br>
+<strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>

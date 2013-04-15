@@ -1,0 +1,2292 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.instruction</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.instruction</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/instruction.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\instruction.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ArrayLengthExpression">ArrayLengthExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ArrayLoadExpression">ArrayLoadExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#FillArrayExpression">FillArrayExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#FilledArrayExpression">FilledArrayExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#NewArrayExpression">NewArrayExpression</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ArrayStoreInstruction">ArrayStoreInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#AssignExpression">AssignExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#BaseClass">BaseClass</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#BinaryCompExpression">BinaryCompExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#BinaryExpression2Addr">BinaryExpression2Addr</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#BinaryExpressionLit">BinaryExpressionLit</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#CheckCastExpression">CheckCastExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ConditionalExpression">ConditionalExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ConditionalZExpression">ConditionalZExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#Constant">Constant</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InstanceExpression">InstanceExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InstanceInstruction">InstanceInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InvokeDirectInstruction">InvokeDirectInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InvokeRangeInstruction">InvokeRangeInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#InvokeStaticInstruction">InvokeStaticInstruction</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#MoveExpression">MoveExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#MoveResultExpression">MoveResultExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#NewInstance">NewInstance</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#NopExpression">NopExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#Param">Param</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ThisParam">ThisParam</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#MonitorEnterExpression">MonitorEnterExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#MonitorExitExpression">MonitorExitExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ThrowExpression">ThrowExpression</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#ReturnInstruction">ReturnInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#StaticExpression">StaticExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#StaticInstruction">StaticInstruction</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#SwitchExpression">SwitchExpression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#UnaryExpression">UnaryExpression</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#CastExpression">CastExpression</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.instruction.html#Variable">Variable</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArrayExpression">class <strong>ArrayExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ArrayExpression-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ArrayExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArrayLengthExpression">class <strong>ArrayLengthExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayLengthExpression">ArrayLengthExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ArrayLengthExpression-__init__"><strong>__init__</strong></a>(self, array)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ArrayLengthExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLengthExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArrayLoadExpression">class <strong>ArrayLoadExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayLoadExpression">ArrayLoadExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ArrayLoadExpression-__init__"><strong>__init__</strong></a>(self, arg, index, type)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ArrayLoadExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayLoadExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArrayStoreInstruction">class <strong>ArrayStoreInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayStoreInstruction">ArrayStoreInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ArrayStoreInstruction-__init__"><strong>__init__</strong></a>(self, rhs, array, index, type)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ArrayStoreInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayStoreInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AssignExpression">class <strong>AssignExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#AssignExpression">AssignExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="AssignExpression-__init__"><strong>__init__</strong></a>(self, lhs, rhs)</dt></dl>
+
+<dl><dt><a name="AssignExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="AssignExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="AssignExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AssignExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseClass">class <strong>BaseClass</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#BaseClass">BaseClass</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseClass-__init__"><strong>__init__</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="BaseClass-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="BaseClass-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseClass-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="BaseClass-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BinaryCompExpression">class <strong>BinaryCompExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryCompExpression">BinaryCompExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BinaryCompExpression-__init__"><strong>__init__</strong></a>(self, op, arg1, arg2, type)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>:<br>
+<dl><dt><a name="BinaryCompExpression-get_type"><strong>get_type</strong></a>(self)</dt><dd><tt>#&nbsp;TODO:&nbsp;return&nbsp;the&nbsp;max&nbsp;type&nbsp;of&nbsp;arg1&nbsp;&amp;&nbsp;arg2</tt></dd></dl>
+
+<dl><dt><a name="BinaryCompExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="BinaryCompExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryCompExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BinaryExpression">class <strong>BinaryExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BinaryExpression-__init__"><strong>__init__</strong></a>(self, op, arg1, arg2, type)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-get_type"><strong>get_type</strong></a>(self)</dt><dd><tt>#&nbsp;TODO:&nbsp;return&nbsp;the&nbsp;max&nbsp;type&nbsp;of&nbsp;arg1&nbsp;&amp;&nbsp;arg2</tt></dd></dl>
+
+<dl><dt><a name="BinaryExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="BinaryExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BinaryExpression2Addr">class <strong>BinaryExpression2Addr</strong></a>(<a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpression2Addr">BinaryExpression2Addr</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BinaryExpression2Addr-__init__"><strong>__init__</strong></a>(self, op, dest, arg, type)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>:<br>
+<dl><dt><a name="BinaryExpression2Addr-get_type"><strong>get_type</strong></a>(self)</dt><dd><tt>#&nbsp;TODO:&nbsp;return&nbsp;the&nbsp;max&nbsp;type&nbsp;of&nbsp;arg1&nbsp;&amp;&nbsp;arg2</tt></dd></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="BinaryExpression2Addr-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpression2Addr-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BinaryExpressionLit">class <strong>BinaryExpressionLit</strong></a>(<a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpressionLit">BinaryExpressionLit</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BinaryExpressionLit-__init__"><strong>__init__</strong></a>(self, op, arg1, arg2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#BinaryExpression">BinaryExpression</a>:<br>
+<dl><dt><a name="BinaryExpressionLit-get_type"><strong>get_type</strong></a>(self)</dt><dd><tt>#&nbsp;TODO:&nbsp;return&nbsp;the&nbsp;max&nbsp;type&nbsp;of&nbsp;arg1&nbsp;&amp;&nbsp;arg2</tt></dd></dl>
+
+<dl><dt><a name="BinaryExpressionLit-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="BinaryExpressionLit-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BinaryExpressionLit-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CastExpression">class <strong>CastExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#UnaryExpression">UnaryExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#CastExpression">CastExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#UnaryExpression">UnaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CastExpression-__init__"><strong>__init__</strong></a>(self, op, atype, arg)</dt></dl>
+
+<dl><dt><a name="CastExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#UnaryExpression">UnaryExpression</a>:<br>
+<dl><dt><a name="CastExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="CastExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CastExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CheckCastExpression">class <strong>CheckCastExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#CheckCastExpression">CheckCastExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CheckCastExpression-__init__"><strong>__init__</strong></a>(self, arg, _type)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="CheckCastExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CheckCastExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ConditionalExpression">class <strong>ConditionalExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ConditionalExpression">ConditionalExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ConditionalExpression-__init__"><strong>__init__</strong></a>(self, op, arg1, arg2)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ConditionalExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ConditionalZExpression">class <strong>ConditionalZExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ConditionalZExpression">ConditionalZExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ConditionalZExpression-__init__"><strong>__init__</strong></a>(self, op, arg)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-neg"><strong>neg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ConditionalZExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConditionalZExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Constant">class <strong>Constant</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#Constant">Constant</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Constant-__init__"><strong>__init__</strong></a>(self, value, atype, int_value<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Constant-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-visit"><strong>visit</strong></a>(self, visitor, to_int<font color="#909090">=False</font>)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="Constant-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Constant-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="Constant-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FillArrayExpression">class <strong>FillArrayExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#FillArrayExpression">FillArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FillArrayExpression-__init__"><strong>__init__</strong></a>(self, reg, value)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="FillArrayExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="FillArrayExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FilledArrayExpression">class <strong>FilledArrayExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#FilledArrayExpression">FilledArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FilledArrayExpression-__init__"><strong>__init__</strong></a>(self, asize, atype, args)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="FilledArrayExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="FilledArrayExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IRForm">class <strong>IRForm</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="IRForm-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="IRForm-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IRForm-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InstanceExpression">class <strong>InstanceExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InstanceExpression">InstanceExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InstanceExpression-__init__"><strong>__init__</strong></a>(self, arg, klass, ftype, name)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InstanceExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InstanceInstruction">class <strong>InstanceInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InstanceInstruction">InstanceInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InstanceInstruction-__init__"><strong>__init__</strong></a>(self, rhs, lhs, klass, atype, name)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InstanceInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InstanceInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvokeDirectInstruction">class <strong>InvokeDirectInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeDirectInstruction">InvokeDirectInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InvokeDirectInstruction-__init__"><strong>__init__</strong></a>(self, clsname, name, base, rtype, ptype, args)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>:<br>
+<dl><dt><a name="InvokeDirectInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InvokeDirectInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeDirectInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvokeInstruction">class <strong>InvokeInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InvokeInstruction-__init__"><strong>__init__</strong></a>(self, clsname, name, base, rtype, ptype, args)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InvokeInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvokeRangeInstruction">class <strong>InvokeRangeInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeRangeInstruction">InvokeRangeInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InvokeRangeInstruction-__init__"><strong>__init__</strong></a>(self, clsname, name, rtype, ptype, args)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>:<br>
+<dl><dt><a name="InvokeRangeInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InvokeRangeInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeRangeInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvokeStaticInstruction">class <strong>InvokeStaticInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeStaticInstruction">InvokeStaticInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InvokeStaticInstruction-__init__"><strong>__init__</strong></a>(self, clsname, name, base, rtype, ptype, args)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#InvokeInstruction">InvokeInstruction</a>:<br>
+<dl><dt><a name="InvokeStaticInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="InvokeStaticInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InvokeStaticInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MonitorEnterExpression">class <strong>MonitorEnterExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#MonitorEnterExpression">MonitorEnterExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MonitorEnterExpression-__init__"><strong>__init__</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>:<br>
+<dl><dt><a name="MonitorEnterExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="MonitorEnterExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorEnterExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MonitorExitExpression">class <strong>MonitorExitExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#MonitorExitExpression">MonitorExitExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MonitorExitExpression-__init__"><strong>__init__</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>:<br>
+<dl><dt><a name="MonitorExitExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="MonitorExitExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MonitorExitExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MoveExpression">class <strong>MoveExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#MoveExpression">MoveExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MoveExpression-__init__"><strong>__init__</strong></a>(self, lhs, rhs)</dt></dl>
+
+<dl><dt><a name="MoveExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="MoveExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="MoveExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MoveResultExpression">class <strong>MoveResultExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#MoveResultExpression">MoveResultExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MoveResultExpression-__init__"><strong>__init__</strong></a>(self, lhs, rhs, type)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="MoveResultExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MoveResultExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NewArrayExpression">class <strong>NewArrayExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#NewArrayExpression">NewArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#ArrayExpression">ArrayExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NewArrayExpression-__init__"><strong>__init__</strong></a>(self, asize, atype)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="NewArrayExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewArrayExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NewInstance">class <strong>NewInstance</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#NewInstance">NewInstance</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NewInstance-__init__"><strong>__init__</strong></a>(self, ins_type)</dt></dl>
+
+<dl><dt><a name="NewInstance-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="NewInstance-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="NewInstance-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NewInstance-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NopExpression">class <strong>NopExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#NopExpression">NopExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NopExpression-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="NopExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NopExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="NopExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Param">class <strong>Param</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#Param">Param</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Param-__init__"><strong>__init__</strong></a>(self, value, atype)</dt></dl>
+
+<dl><dt><a name="Param-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<dl><dt><a name="Param-visit_decl"><strong>visit_decl</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="Param-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Param-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="Param-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RefExpression">class <strong>RefExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RefExpression-__init__"><strong>__init__</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="RefExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="RefExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RefExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ReturnInstruction">class <strong>ReturnInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ReturnInstruction">ReturnInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ReturnInstruction-__init__"><strong>__init__</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ReturnInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StaticExpression">class <strong>StaticExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#StaticExpression">StaticExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="StaticExpression-__init__"><strong>__init__</strong></a>(self, cls_name, field_type, field_name)</dt></dl>
+
+<dl><dt><a name="StaticExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="StaticExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="StaticExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StaticInstruction">class <strong>StaticInstruction</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#StaticInstruction">StaticInstruction</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="StaticInstruction-__init__"><strong>__init__</strong></a>(self, rhs, klass, ftype, name)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="StaticInstruction-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StaticInstruction-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitchExpression">class <strong>SwitchExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#SwitchExpression">SwitchExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitchExpression-__init__"><strong>__init__</strong></a>(self, src, branch)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="SwitchExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SwitchExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ThisParam">class <strong>ThisParam</strong></a>(<a href="androguard.decompiler.dad.instruction.html#Param">Param</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ThisParam">ThisParam</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#Param">Param</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ThisParam-__init__"><strong>__init__</strong></a>(self, value, atype)</dt></dl>
+
+<dl><dt><a name="ThisParam-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<dl><dt><a name="ThisParam-visit_decl"><strong>visit_decl</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#Param">Param</a>:<br>
+<dl><dt><a name="ThisParam-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ThisParam-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThisParam-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="ThisParam-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ThrowExpression">class <strong>ThrowExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#ThrowExpression">ThrowExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ThrowExpression-__init__"><strong>__init__</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#RefExpression">RefExpression</a>:<br>
+<dl><dt><a name="ThrowExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="ThrowExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ThrowExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnaryExpression">class <strong>UnaryExpression</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#UnaryExpression">UnaryExpression</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UnaryExpression-__init__"><strong>__init__</strong></a>(self, op, arg)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="UnaryExpression-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UnaryExpression-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Variable">class <strong>Variable</strong></a>(<a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.dad.instruction.html#Variable">Variable</a></dd>
+<dd><a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Variable-__init__"><strong>__init__</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="Variable-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-get_used_vars"><strong>get_used_vars</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-has_side_effect"><strong>has_side_effect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-is_call"><strong>is_call</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-is_ident"><strong>is_ident</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-visit"><strong>visit</strong></a>(self, visitor)</dt></dl>
+
+<dl><dt><a name="Variable-visit_decl"><strong>visit_decl</strong></a>(self, visitor)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><a name="Variable-get_lhs"><strong>get_lhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-get_rhs"><strong>get_rhs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-is_cond"><strong>is_cond</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-is_const"><strong>is_const</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-is_propagable"><strong>is_propagable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Variable-modify_rhs"><strong>modify_rhs</strong></a>(self, old, new)</dt></dl>
+
+<dl><dt><a name="Variable-remove_defined_var"><strong>remove_defined_var</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.decompiler.dad.instruction.html#IRForm">IRForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CONDS</strong> = {'!=': '==', '&lt;': '&gt;=', '&lt;=': '&gt;', '==': '!=', '&gt;': '&lt;=', '&gt;=': '&lt;'}</td></tr></table>
+</body></html>

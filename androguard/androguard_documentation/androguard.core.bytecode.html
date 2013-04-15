@@ -1,0 +1,210 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.bytecode</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.bytecode</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/bytecode.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\bytecode.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#MethodBC">MethodBC</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#Buff">Buff</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#BuffHandle">BuffHandle</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#Node">Node</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#SV">SV</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#SVs">SVs</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Buff">class <strong>Buff</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Buff-__init__"><strong>__init__</strong></a>(self, offset, buff)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BuffHandle">class <strong>BuffHandle</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BuffHandle-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="BuffHandle-end"><strong>end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BuffHandle-get_idx"><strong>get_idx</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BuffHandle-read"><strong>read</strong></a>(self, size)</dt></dl>
+
+<dl><dt><a name="BuffHandle-readNullString"><strong>readNullString</strong></a>(self, size)</dt></dl>
+
+<dl><dt><a name="BuffHandle-read_at"><strong>read_at</strong></a>(self, offset, size)</dt></dl>
+
+<dl><dt><a name="BuffHandle-read_b"><strong>read_b</strong></a>(self, size)</dt></dl>
+
+<dl><dt><a name="BuffHandle-set_idx"><strong>set_idx</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="BuffHandle-size"><strong>size</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodBC">class <strong>MethodBC</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MethodBC-show"><strong>show</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Node">class <strong>Node</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Node-__init__"><strong>__init__</strong></a>(self, n, s)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SV">class <strong>SV</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SV-__init__"><strong>__init__</strong></a>(self, size, buff)</dt></dl>
+
+<dl><dt><a name="SV-__int__"><strong>__int__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SV-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SV-get_value"><strong>get_value</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SV-get_value_buff"><strong>get_value_buff</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SV-set_value"><strong>set_value</strong></a>(self, attr)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SVs">class <strong>SVs</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SVs-__init__"><strong>__init__</strong></a>(self, size, ntuple, buff)</dt></dl>
+
+<dl><dt><a name="SVs-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SVs-get_value"><strong>get_value</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SVs-get_value_buff"><strong>get_value_buff</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SVs-set_value"><strong>set_value</strong></a>(self, attr)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Exit"><strong>Exit</strong></a>(msg)</dt><dd><tt>#&nbsp;Handle&nbsp;exit&nbsp;message</tt></dd></dl>
+ <dl><dt><a name="-FormatClassToJava"><strong>FormatClassToJava</strong></a>(input)</dt><dd><tt>Transoform&nbsp;a&nbsp;typical&nbsp;xml&nbsp;format&nbsp;class&nbsp;into&nbsp;java&nbsp;format<br>
+&nbsp;<br>
+:param&nbsp;input:&nbsp;the&nbsp;input&nbsp;class&nbsp;name<br>
+:rtype:&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-FormatClassToPython"><strong>FormatClassToPython</strong></a>(input)</dt></dl>
+ <dl><dt><a name="-FormatDescriptorToPython"><strong>FormatDescriptorToPython</strong></a>(input)</dt></dl>
+ <dl><dt><a name="-FormatNameToPython"><strong>FormatNameToPython</strong></a>(input)</dt></dl>
+ <dl><dt><a name="-PrettyShow"><strong>PrettyShow</strong></a>(basic_blocks, notes<font color="#909090">={}</font>)</dt></dl>
+ <dl><dt><a name="-PrettyShowEx"><strong>PrettyShowEx</strong></a>(exceptions)</dt></dl>
+ <dl><dt><a name="-Warning"><strong>Warning</strong></a>(msg)</dt></dl>
+ <dl><dt><a name="-disable_print_colors"><strong>disable_print_colors</strong></a>()</dt></dl>
+ <dl><dt><a name="-enable_print_colors"><strong>enable_print_colors</strong></a>(colors)</dt></dl>
+ <dl><dt><a name="-method2dot"><strong>method2dot</strong></a>(mx)</dt><dd><tt>Export&nbsp;analysis&nbsp;method&nbsp;to&nbsp;dot&nbsp;format&nbsp;<br>
+&nbsp;<br>
+@param&nbsp;mx&nbsp;:&nbsp;MethodAnalysis&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;dot&nbsp;format&nbsp;buffer</tt></dd></dl>
+ <dl><dt><a name="-method2format"><strong>method2format</strong></a>(output, _format<font color="#909090">='png'</font>, mx<font color="#909090">=None</font>, raw<font color="#909090">=False</font>)</dt><dd><tt>Export&nbsp;method&nbsp;to&nbsp;a&nbsp;specific&nbsp;file&nbsp;format<br>
+&nbsp;<br>
+@param&nbsp;output&nbsp;:&nbsp;output&nbsp;filename<br>
+@param&nbsp;_format&nbsp;:&nbsp;format&nbsp;type&nbsp;(png,&nbsp;jpg&nbsp;...)&nbsp;(default&nbsp;:&nbsp;png)<br>
+@param&nbsp;mx&nbsp;:&nbsp;specify&nbsp;the&nbsp;MethodAnalysis&nbsp;<a href="__builtin__.html#object">object</a><br>
+@param&nbsp;raw&nbsp;:&nbsp;use&nbsp;directly&nbsp;a&nbsp;dot&nbsp;raw&nbsp;buffer</tt></dd></dl>
+ <dl><dt><a name="-method2jpg"><strong>method2jpg</strong></a>(output, mx, raw<font color="#909090">=False</font>)</dt><dd><tt>Export&nbsp;method&nbsp;to&nbsp;a&nbsp;jpg&nbsp;file&nbsp;format<br>
+&nbsp;<br>
+:param&nbsp;output:&nbsp;output&nbsp;filename<br>
+:type&nbsp;output:&nbsp;string<br>
+:param&nbsp;mx:&nbsp;specify&nbsp;the&nbsp;MethodAnalysis&nbsp;<a href="__builtin__.html#object">object</a><br>
+:type&nbsp;mx:&nbsp;:class:`MethodAnalysis`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:param&nbsp;raw:&nbsp;use&nbsp;directly&nbsp;a&nbsp;dot&nbsp;raw&nbsp;buffer&nbsp;(optional)<br>
+:type&nbsp;raw:&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-method2png"><strong>method2png</strong></a>(output, mx, raw<font color="#909090">=False</font>)</dt><dd><tt>Export&nbsp;method&nbsp;to&nbsp;a&nbsp;png&nbsp;file&nbsp;format<br>
+&nbsp;<br>
+:param&nbsp;output:&nbsp;output&nbsp;filename<br>
+:type&nbsp;output:&nbsp;string<br>
+:param&nbsp;mx:&nbsp;specify&nbsp;the&nbsp;MethodAnalysis&nbsp;<a href="__builtin__.html#object">object</a><br>
+:type&nbsp;mx:&nbsp;:class:`MethodAnalysis`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:param&nbsp;raw:&nbsp;use&nbsp;directly&nbsp;a&nbsp;dot&nbsp;raw&nbsp;buffer<br>
+:type&nbsp;raw:&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-object_to_str"><strong>object_to_str</strong></a>(obj)</dt></dl>
+ <dl><dt><a name="-pack"><strong>pack</strong></a>(...)</dt><dd><tt>Return&nbsp;string&nbsp;containing&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;packed&nbsp;according&nbsp;to&nbsp;fmt.</tt></dd></dl>
+ <dl><dt><a name="-unpack"><strong>unpack</strong></a>(...)</dt><dd><tt>Unpack&nbsp;the&nbsp;string&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according&nbsp;to&nbsp;fmt.<br>
+Requires&nbsp;len(string)&nbsp;==&nbsp;calcsize(fmt).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CONF</strong> = {'BIN_DED': 'ded.sh', 'BIN_DEX2JAR': 'dex2jar.sh', 'BIN_JAD': 'jad', 'COLORS': {'BB': '<font color="#c040c0">\x1b</font>[35m', 'BRANCH': '<font color="#c040c0">\x1b</font>[34m', 'BRANCH_FALSE': '<font color="#c040c0">\x1b</font>[31m', 'BRANCH_TRUE': '<font color="#c040c0">\x1b</font>[32m', 'EXCEPTION': '<font color="#c040c0">\x1b</font>[36m', 'INSTRUCTION_NAME': '<font color="#c040c0">\x1b</font>[33m', 'NORMAL': '<font color="#c040c0">\x1b</font>[0m', 'NOTE': '<font color="#c040c0">\x1b</font>[31m', 'OFFSET': '<font color="#c040c0">\x1b</font>[33m', 'OFFSET_ADDR': '<font color="#c040c0">\x1b</font>[32m'}, 'DEOBFUSCATED_STRING': True, 'ENGINE': 'python', 'LAZY_ANALYSIS': False, 'MAGIC_PATH_FILE': None, 'PATH_DED': './decompiler/ded/', 'PATH_DEX2JAR': './decompiler/dex2jar/', ...}</td></tr></table>
+</body></html>

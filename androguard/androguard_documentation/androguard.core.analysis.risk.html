@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.analysis.risk</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.<a href="androguard.core.analysis.html"><font color="#ffffff">analysis</font></a>.risk</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/analysis/risk.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\analysis\risk.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="androguard.core.analysis.analysis.html">androguard.core.analysis.analysis</a><br>
+</td><td width="25%" valign=top><a href="copy.html">copy</a><br>
+</td><td width="25%" valign=top><a href="androguard.core.bytecodes.dvm.html">androguard.core.bytecodes.dvm</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.risk.html#FuzzyRisk">FuzzyRisk</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.risk.html#MethodScore">MethodScore</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.risk.html#RedFlags">RedFlags</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.risk.html#RiskIndicator">RiskIndicator</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FuzzyRisk">class <strong>FuzzyRisk</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Calculate&nbsp;the&nbsp;risk&nbsp;to&nbsp;install&nbsp;a&nbsp;specific&nbsp;android&nbsp;application&nbsp;by&nbsp;using&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Permissions&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;dangerous<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;signatureOrSystem<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;signature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;normal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;money<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;internet<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;sms<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;call<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;privacy<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;API&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;DexClassLoader<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;binary&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;shared&nbsp;library<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note&nbsp;:&nbsp;pyfuzzy&nbsp;without&nbsp;fcl&nbsp;support&nbsp;(don't&nbsp;install&nbsp;antlr)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FuzzyRisk-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FuzzyRisk-get_method_score"><strong>get_method_score</strong></a>(self, length, android_entropy, java_entropy, permissions)</dt></dl>
+
+<dl><dt><a name="FuzzyRisk-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FuzzyRisk-simulate"><strong>simulate</strong></a>(self, risks)</dt></dl>
+
+<dl><dt><a name="FuzzyRisk-test"><strong>test</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FuzzyRisk-with_apk"><strong>with_apk</strong></a>(self, apk_file, d, dx)</dt><dd><tt>@param&nbsp;apk_file&nbsp;:&nbsp;an&nbsp;L{APK}&nbsp;object<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;return&nbsp;the&nbsp;risk&nbsp;of&nbsp;the&nbsp;apk&nbsp;file&nbsp;(from&nbsp;0.0&nbsp;to&nbsp;100.0)</tt></dd></dl>
+
+<dl><dt><a name="FuzzyRisk-with_dex"><strong>with_dex</strong></a>(self, vm, vmx)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodScore">class <strong>MethodScore</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MethodScore-__init__"><strong>__init__</strong></a>(self, length, matches, android_entropy, java_entropy, permissions, similarity_matches)</dt></dl>
+
+<dl><dt><a name="MethodScore-get_score"><strong>get_score</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RedFlags">class <strong>RedFlags</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="RedFlags-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RedFlags-analyze_apk"><strong>analyze_apk</strong></a>(self, a, flags)</dt></dl>
+
+<dl><dt><a name="RedFlags-analyze_axml"><strong>analyze_axml</strong></a>(self, a, flags)</dt></dl>
+
+<dl><dt><a name="RedFlags-analyze_dex"><strong>analyze_dex</strong></a>(self, d, dx, flags)</dt></dl>
+
+<dl><dt><a name="RedFlags-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RedFlags-with_apk"><strong>with_apk</strong></a>(self, apk_file, d, dx)</dt></dl>
+
+<dl><dt><a name="RedFlags-with_dex"><strong>with_dex</strong></a>(self, d, dx)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RiskIndicator">class <strong>RiskIndicator</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="RiskIndicator-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RiskIndicator-add_risk_analysis"><strong>add_risk_analysis</strong></a>(self, obj)</dt></dl>
+
+<dl><dt><a name="RiskIndicator-with_apk"><strong>with_apk</strong></a>(self, apk_file)</dt></dl>
+
+<dl><dt><a name="RiskIndicator-with_apk_direct"><strong>with_apk_direct</strong></a>(self, apk_file, d, dx)</dt></dl>
+
+<dl><dt><a name="RiskIndicator-with_dex"><strong>with_dex</strong></a>(self, dex_file)</dt><dd><tt>@param&nbsp;dex_file&nbsp;:&nbsp;a&nbsp;buffer<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;return&nbsp;the&nbsp;risk&nbsp;of&nbsp;the&nbsp;dex&nbsp;file&nbsp;(from&nbsp;0.0&nbsp;to&nbsp;100.0)</tt></dd></dl>
+
+<dl><dt><a name="RiskIndicator-with_dex_direct"><strong>with_dex_direct</strong></a>(self, d, dx)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add_system_rule"><strong>add_system_rule</strong></a>(system, rule_name, rule)</dt></dl>
+ <dl><dt><a name="-create_system_method_one_score"><strong>create_system_method_one_score</strong></a>()</dt></dl>
+ <dl><dt><a name="-create_system_method_score"><strong>create_system_method_score</strong></a>()</dt></dl>
+ <dl><dt><a name="-create_system_risk"><strong>create_system_risk</strong></a>()</dt></dl>
+ <dl><dt><a name="-export_system"><strong>export_system</strong></a>(system, directory)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AVERAGE_MALWARE_RISK</strong> = 'average'<br>
+<strong>AVERAGE_METHOD_SCORE</strong> = 'average'<br>
+<strong>AVERAGE_RISK</strong> = 'average'<br>
+<strong>AVERAGE_SCORE</strong> = 'average'<br>
+<strong>BINARY_RISK</strong> = 11<br>
+<strong>DANGEROUS_RISK</strong> = 1<br>
+<strong>DVM_PERMISSIONS</strong> = {'MANIFEST_PERMISSION': {'ACCESS_CACHE_FILESYSTEM': ['signatureOrSystem', 'access the cache file system', 'Allows an application to read and write the cache file system.'], 'ACCESS_CHECKIN_PROPERTIES': ['signatureOrSystem', 'access check-in properties', 'Allows read/write access to properties uploaded ...k-in service. Not for use by normal applications.'], 'ACCESS_COARSE_LOCATION': ['dangerous', 'coarse (network-based) location', 'Access coarse location sources, such as the mobi...se this to determine approximately where you are.'], 'ACCESS_FINE_LOCATION': ['dangerous', 'fine (GPS) location', 'Access fine location sources, such as the Global...you are and may consume additional battery power.'], 'ACCESS_LOCATION_EXTRA_COMMANDS': ['normal', 'access extra location provider commands', 'Access extra location provider commands. Malicio...e operation of the GPS or other location sources.'], 'ACCESS_MOCK_LOCATION': ['dangerous', 'mock location sources for testing', 'Create mock location sources for testing. Malici...ocation sources such as GPS or Network providers.'], 'ACCESS_NETWORK_STATE': ['normal', 'view network status', 'Allows an application to view the status of all networks.'], 'ACCESS_SURFACE_FLINGER': ['signature', 'access SurfaceFlinger', 'Allows application to use SurfaceFlinger low-level features.'], 'ACCESS_USB': ['signatureOrSystem', 'access USB devices', 'Allows the application to access USB devices.'], 'ACCESS_WIFI_STATE': ['normal', 'view Wi-Fi status', 'Allows an application to view the information about the status of Wi-Fi.'], ...}, 'MANIFEST_PERMISSION_GROUP': {'ACCOUNTS': 'Permissions for direct access to the accounts managed by the Account Manager.', 'COST_MONEY': 'Used for permissions that can be used to make the user spend money without their direct involvement.', 'DEVELOPMENT_TOOLS': 'Group of permissions that are related to development features.', 'HARDWARE_CONTROLS': 'Used for permissions that provide direct access to the hardware on the device.', 'LOCATION': "Used for permissions that allow access to the user's current location.", 'MESSAGES': 'Used for permissions that allow an application t...or intercept messages being received by the user.', 'NETWORK': 'Used for permissions that provide access to networking services.', 'PERSONAL_INFO': 'Used for permissions that provide access to the ... contacts, calendar events, e-mail messages, etc.', 'PHONE_CALLS': 'Used for permissions that are associated with ac...ing calls, reading and modifying the phone state.', 'STORAGE': 'Group of permissions that are related to SD card access.', ...}}<br>
+<strong>DYNAMIC_RISK</strong> = 10<br>
+<strong>EXPLOIT_RISK</strong> = 12<br>
+<strong>GENERAL_PERMISSIONS_RISK</strong> = {'dangerous': 1, 'normal': 4, 'signature': 3, 'signatureOrSystem': 2}<br>
+<strong>GENERAL_RISK</strong> = 0<br>
+<strong>HIGH_MALWARE_RISK</strong> = 'high'<br>
+<strong>HIGH_METHOD_SCORE</strong> = 'high'<br>
+<strong>HIGH_RISK</strong> = 'high'<br>
+<strong>HIGH_SCORE</strong> = 'high'<br>
+<strong>INTERNET_RISK</strong> = 8<br>
+<strong>LOW_RISK</strong> = 'low'<br>
+<strong>LOW_SCORE</strong> = 'low'<br>
+<strong>MONEY_RISK</strong> = 5<br>
+<strong>NORMAL_RISK</strong> = 4<br>
+<strong>NULL_MALWARE_RISK</strong> = 'null'<br>
+<strong>NULL_METHOD_SCORE</strong> = 'null'<br>
+<strong>PERFECT_METHOD_SCORE</strong> = 'perfect'<br>
+<strong>PERFECT_SCORE</strong> = 'perfect'<br>
+<strong>PERMISSIONS_RISK</strong> = {'ACCESS_COARSE_LOCATION': [9], 'ACCESS_FINE_LOCATION': [9], 'CALL_PRIVILEGED': [5], 'INTERNET': [5, 8], 'PHONE_CALL': [5], 'PROCESS_OUTGOING_CALLS': [5], 'READ_CONTACTS': [9], 'READ_HISTORY_BOOKMARKS': [9], 'READ_PHONE_STATE': [9], 'READ_SMS': [6], ...}<br>
+<strong>PHONE_RISK</strong> = 7<br>
+<strong>PRIVACY_RISK</strong> = 9<br>
+<strong>RISK_VALUES</strong> = {1: 5, 2: 10, 3: 10, 4: 0, 5: 5, 6: 5, 7: 5, 8: 2, 9: 5, 10: 5, ...}<br>
+<strong>SIGNATURE_RISK</strong> = 3<br>
+<strong>SIGNATURE_SYSTEM_RISK</strong> = 2<br>
+<strong>SMS_RISK</strong> = 6<br>
+<strong>UNACCEPTABLE_MALWARE_RISK</strong> = 'unacceptable'<br>
+<strong>UNACCEPTABLE_RISK</strong> = 'unacceptable'</td></tr></table>
+</body></html>

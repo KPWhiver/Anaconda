@@ -1,0 +1,600 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.bytecodes.apk</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.<a href="androguard.core.bytecodes.html"><font color="#ffffff">bytecodes</font></a>.apk</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/bytecodes/apk.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\bytecodes\apk.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="StringIO.html">StringIO</a><br>
+<a href="androguard.core.androconf.html">androguard.core.androconf</a><br>
+</td><td width="25%" valign=top><a href="androguard.core.bytecode.html">androguard.core.bytecode</a><br>
+<a href="xml.dom.minidom.html">xml.dom.minidom</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#APK">APK</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCComplex">ARSCComplex</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCHeader">ARSCHeader</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCParser">ARSCParser</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResStringPoolRef">ARSCResStringPoolRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResTableConfig">ARSCResTableConfig</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResTableEntry">ARSCResTableEntry</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResTablePackage">ARSCResTablePackage</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResType">ARSCResType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ARSCResTypeSpec">ARSCResTypeSpec</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#AXMLParser">AXMLParser</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#AXMLPrinter">AXMLPrinter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#ChilkatZip">ChilkatZip</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#PackageContext">PackageContext</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.apk.html#StringBlock">StringBlock</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="APK">class <strong>APK</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;can&nbsp;access&nbsp;to&nbsp;all&nbsp;elements&nbsp;in&nbsp;an&nbsp;<a href="#APK">APK</a>&nbsp;file<br>
+&nbsp;<br>
+:param&nbsp;filename:&nbsp;specify&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;file,&nbsp;or&nbsp;raw&nbsp;data<br>
+:param&nbsp;raw:&nbsp;specify&nbsp;if&nbsp;the&nbsp;filename&nbsp;is&nbsp;a&nbsp;path&nbsp;or&nbsp;raw&nbsp;data&nbsp;(optional)<br>
+:param&nbsp;mode:&nbsp;specify&nbsp;the&nbsp;mode&nbsp;to&nbsp;open&nbsp;the&nbsp;file&nbsp;(optional)<br>
+:param&nbsp;magic_file:&nbsp;specify&nbsp;the&nbsp;magic&nbsp;file&nbsp;(optional)<br>
+:param&nbsp;zipmodule:&nbsp;specify&nbsp;the&nbsp;type&nbsp;of&nbsp;zip&nbsp;module&nbsp;to&nbsp;use&nbsp;(0:chilkat,&nbsp;1:zipfile,&nbsp;2:patch&nbsp;zipfile)<br>
+&nbsp;<br>
+:type&nbsp;filename:&nbsp;string<br>
+:type&nbsp;raw:&nbsp;boolean<br>
+:type&nbsp;mode:&nbsp;string<br>
+:type&nbsp;magic_file:&nbsp;string<br>
+:type&nbsp;zipmodule:&nbsp;int<br>
+&nbsp;<br>
+:Example:<br>
+&nbsp;&nbsp;<a href="#APK">APK</a>("myfile.apk")<br>
+&nbsp;&nbsp;<a href="#APK">APK</a>(open("myfile.apk",&nbsp;"rb").read(),&nbsp;raw=True)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="APK-__init__"><strong>__init__</strong></a>(self, filename, raw<font color="#909090">=False</font>, mode<font color="#909090">='r'</font>, magic_file<font color="#909090">=None</font>, zipmodule<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="APK-format_value"><strong>format_value</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="APK-get_AndroidManifest"><strong>get_AndroidManifest</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;Android&nbsp;Manifest&nbsp;XML&nbsp;file<br>
+&nbsp;<br>
+:rtype:&nbsp;xml&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="APK-get_activities"><strong>get_activities</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:name&nbsp;attribute&nbsp;of&nbsp;all&nbsp;activities<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_android_manifest_axml"><strong>get_android_manifest_axml</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;:class:`<a href="#AXMLPrinter">AXMLPrinter</a>`&nbsp;object&nbsp;which&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;AndroidManifest.xml&nbsp;file<br>
+&nbsp;<br>
+:rtype:&nbsp;:class:`<a href="#AXMLPrinter">AXMLPrinter</a>`</tt></dd></dl>
+
+<dl><dt><a name="APK-get_android_manifest_xml"><strong>get_android_manifest_xml</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;xml&nbsp;object&nbsp;which&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;AndroidManifest.xml&nbsp;file<br>
+&nbsp;<br>
+:rtype:&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="APK-get_android_resources"><strong>get_android_resources</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;:class:`<a href="#ARSCParser">ARSCParser</a>`&nbsp;object&nbsp;which&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;resources.arsc&nbsp;file<br>
+&nbsp;<br>
+:rtype:&nbsp;:class:`<a href="#ARSCParser">ARSCParser</a>`</tt></dd></dl>
+
+<dl><dt><a name="APK-get_androidversion_code"><strong>get_androidversion_code</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android&nbsp;version&nbsp;code<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_androidversion_name"><strong>get_androidversion_name</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android&nbsp;version&nbsp;name<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_certificate"><strong>get_certificate</strong></a>(self, filename)</dt><dd><tt>Return&nbsp;a&nbsp;certificate&nbsp;object&nbsp;by&nbsp;giving&nbsp;the&nbsp;name&nbsp;in&nbsp;the&nbsp;apk&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="APK-get_details_permissions"><strong>get_details_permissions</strong></a>(self)</dt><dd><tt>Return&nbsp;permissions&nbsp;with&nbsp;details<br>
+&nbsp;<br>
+:rtype:&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_dex"><strong>get_dex</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;raw&nbsp;data&nbsp;of&nbsp;the&nbsp;classes&nbsp;dex&nbsp;file<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_element"><strong>get_element</strong></a>(self, tag_name, attribute)</dt><dd><tt>Return&nbsp;element&nbsp;in&nbsp;xml&nbsp;files&nbsp;which&nbsp;match&nbsp;with&nbsp;the&nbsp;tag&nbsp;name&nbsp;and&nbsp;the&nbsp;specific&nbsp;attribute<br>
+&nbsp;<br>
+:param&nbsp;tag_name:&nbsp;specify&nbsp;the&nbsp;tag&nbsp;name<br>
+:type&nbsp;tag_name:&nbsp;string<br>
+:param&nbsp;attribute:&nbsp;specify&nbsp;the&nbsp;attribute<br>
+:type&nbsp;attribute:&nbsp;string<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_elements"><strong>get_elements</strong></a>(self, tag_name, attribute)</dt><dd><tt>Return&nbsp;elements&nbsp;in&nbsp;xml&nbsp;files&nbsp;which&nbsp;match&nbsp;with&nbsp;the&nbsp;tag&nbsp;name&nbsp;and&nbsp;the&nbsp;specific&nbsp;attribute<br>
+&nbsp;<br>
+:param&nbsp;tag_name:&nbsp;a&nbsp;string&nbsp;which&nbsp;specify&nbsp;the&nbsp;tag&nbsp;name<br>
+:param&nbsp;attribute:&nbsp;a&nbsp;string&nbsp;which&nbsp;specify&nbsp;the&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="APK-get_file"><strong>get_file</strong></a>(self, filename)</dt><dd><tt>Return&nbsp;the&nbsp;raw&nbsp;data&nbsp;of&nbsp;the&nbsp;specified&nbsp;filename<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_filename"><strong>get_filename</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;filename&nbsp;of&nbsp;the&nbsp;<a href="#APK">APK</a><br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_files"><strong>get_files</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;files&nbsp;inside&nbsp;the&nbsp;<a href="#APK">APK</a><br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;strings</tt></dd></dl>
+
+<dl><dt><a name="APK-get_files_crc32"><strong>get_files_crc32</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="APK-get_files_information"><strong>get_files_information</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;files&nbsp;inside&nbsp;the&nbsp;<a href="#APK">APK</a>&nbsp;with&nbsp;their&nbsp;associated&nbsp;types&nbsp;and&nbsp;crc32<br>
+&nbsp;<br>
+:rtype:&nbsp;string,&nbsp;string,&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="APK-get_files_types"><strong>get_files_types</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;files&nbsp;inside&nbsp;the&nbsp;<a href="#APK">APK</a>&nbsp;with&nbsp;their&nbsp;associated&nbsp;types&nbsp;(by&nbsp;using&nbsp;python-magic)<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;dictionnary</tt></dd></dl>
+
+<dl><dt><a name="APK-get_libraries"><strong>get_libraries</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:name&nbsp;attributes&nbsp;for&nbsp;libraries<br>
+&nbsp;<br>
+:rtype:&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="APK-get_main_activity"><strong>get_main_activity</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;main&nbsp;activity<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_max_sdk_version"><strong>get_max_sdk_version</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:maxSdkVersion&nbsp;attribute<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_min_sdk_version"><strong>get_min_sdk_version</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:minSdkVersion&nbsp;attribute<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_package"><strong>get_package</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;package<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_permissions"><strong>get_permissions</strong></a>(self)</dt><dd><tt>Return&nbsp;permissions<br>
+&nbsp;<br>
+:rtype:&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_providers"><strong>get_providers</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:name&nbsp;attribute&nbsp;of&nbsp;all&nbsp;providers<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_raw"><strong>get_raw</strong></a>(self)</dt><dd><tt>Return&nbsp;raw&nbsp;bytes&nbsp;of&nbsp;the&nbsp;<a href="#APK">APK</a><br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_receivers"><strong>get_receivers</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:name&nbsp;attribute&nbsp;of&nbsp;all&nbsp;receivers<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_services"><strong>get_services</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:name&nbsp;attribute&nbsp;of&nbsp;all&nbsp;services<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-get_target_sdk_version"><strong>get_target_sdk_version</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;android:targetSdkVersion&nbsp;attribute<br>
+&nbsp;<br>
+:rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="APK-is_valid_APK"><strong>is_valid_APK</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;<a href="#APK">APK</a>&nbsp;is&nbsp;valid,&nbsp;false&nbsp;otherwise<br>
+&nbsp;<br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+
+<dl><dt><a name="APK-new_zip"><strong>new_zip</strong></a>(self, filename, deleted_files<font color="#909090">=None</font>, new_files<font color="#909090">={}</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;zip&nbsp;file<br>
+&nbsp;<br>
+:param&nbsp;filename:&nbsp;the&nbsp;output&nbsp;filename&nbsp;of&nbsp;the&nbsp;zip<br>
+:param&nbsp;deleted_files:&nbsp;a&nbsp;regex&nbsp;pattern&nbsp;to&nbsp;remove&nbsp;specific&nbsp;file<br>
+:param&nbsp;new_files:&nbsp;a&nbsp;dictionnary&nbsp;of&nbsp;new&nbsp;files<br>
+&nbsp;<br>
+:type&nbsp;filename:&nbsp;string<br>
+:type&nbsp;deleted_files:&nbsp;None&nbsp;or&nbsp;a&nbsp;string<br>
+:type&nbsp;new_files:&nbsp;a&nbsp;dictionnary&nbsp;(key:filename,&nbsp;value:content&nbsp;of&nbsp;the&nbsp;file)</tt></dd></dl>
+
+<dl><dt><a name="APK-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCComplex">class <strong>ARSCComplex</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCComplex-__init__"><strong>__init__</strong></a>(self, buff, parent<font color="#909090">=None</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCHeader">class <strong>ARSCHeader</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCHeader-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCParser">class <strong>ARSCParser</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCParser-__init__"><strong>__init__</strong></a>(self, raw_buff)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_bool_resources"><strong>get_bool_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_color_resources"><strong>get_color_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_dimen_resources"><strong>get_dimen_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_id"><strong>get_id</strong></a>(self, package_name, rid, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_id_resources"><strong>get_id_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_integer_resources"><strong>get_integer_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_items"><strong>get_items</strong></a>(self, package_name)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_locales"><strong>get_locales</strong></a>(self, package_name)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_packages_names"><strong>get_packages_names</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_public_resources"><strong>get_public_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_bool"><strong>get_resource_bool</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_color"><strong>get_resource_color</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_dimen"><strong>get_resource_dimen</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_id"><strong>get_resource_id</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_integer"><strong>get_resource_integer</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_string"><strong>get_resource_string</strong></a>(self, ate)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_resource_style"><strong>get_resource_style</strong></a>(self, ate)</dt><dd><tt>#&nbsp;FIXME</tt></dd></dl>
+
+<dl><dt><a name="ARSCParser-get_string"><strong>get_string</strong></a>(self, package_name, name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_string_resources"><strong>get_string_resources</strong></a>(self, package_name, locale<font color="#909090">='<font color="#c040c0">\x00\x00</font>'</font>)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_strings_resources"><strong>get_strings_resources</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCParser-get_types"><strong>get_types</strong></a>(self, package_name, locale)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResStringPoolRef">class <strong>ARSCResStringPoolRef</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResStringPoolRef-__init__"><strong>__init__</strong></a>(self, buff, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ARSCResStringPoolRef-get_data"><strong>get_data</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResStringPoolRef-get_data_type"><strong>get_data_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResStringPoolRef-get_data_value"><strong>get_data_value</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResTableConfig">class <strong>ARSCResTableConfig</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResTableConfig-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="ARSCResTableConfig-get_country"><strong>get_country</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResTableConfig-get_language"><strong>get_language</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResTableEntry">class <strong>ARSCResTableEntry</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResTableEntry-__init__"><strong>__init__</strong></a>(self, buff, mResId, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ARSCResTableEntry-get_index"><strong>get_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResTableEntry-get_key_data"><strong>get_key_data</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResTableEntry-get_value"><strong>get_value</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResTableEntry-is_complex"><strong>is_complex</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ARSCResTableEntry-is_public"><strong>is_public</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResTablePackage">class <strong>ARSCResTablePackage</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResTablePackage-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="ARSCResTablePackage-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResType">class <strong>ARSCResType</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResType-__init__"><strong>__init__</strong></a>(self, buff, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ARSCResType-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ARSCResTypeSpec">class <strong>ARSCResTypeSpec</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ARSCResTypeSpec-__init__"><strong>__init__</strong></a>(self, buff, parent<font color="#909090">=None</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AXMLParser">class <strong>AXMLParser</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AXMLParser-__init__"><strong>__init__</strong></a>(self, raw_buff)</dt></dl>
+
+<dl><dt><a name="AXMLParser-doNext"><strong>doNext</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeCount"><strong>getAttributeCount</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeName"><strong>getAttributeName</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeOffset"><strong>getAttributeOffset</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributePrefix"><strong>getAttributePrefix</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeValue"><strong>getAttributeValue</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeValueData"><strong>getAttributeValueData</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getAttributeValueType"><strong>getAttributeValueType</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getNamespaceCount"><strong>getNamespaceCount</strong></a>(self, pos)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getNamespacePrefix"><strong>getNamespacePrefix</strong></a>(self, pos)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getNamespaceUri"><strong>getNamespaceUri</strong></a>(self, pos)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getPrefix"><strong>getPrefix</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getPrefixByUri"><strong>getPrefixByUri</strong></a>(self, uri)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getText"><strong>getText</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-getXMLNS"><strong>getXMLNS</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLParser-reset"><strong>reset</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AXMLPrinter">class <strong>AXMLPrinter</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AXMLPrinter-__init__"><strong>__init__</strong></a>(self, raw_buff)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-getAttributeValue"><strong>getAttributeValue</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-getPackage"><strong>getPackage</strong></a>(self, id)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-getPrefix"><strong>getPrefix</strong></a>(self, prefix)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-get_buff"><strong>get_buff</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-get_xml"><strong>get_xml</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AXMLPrinter-get_xml_obj"><strong>get_xml_obj</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ChilkatZip">class <strong>ChilkatZip</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>###################################################&nbsp;CHILKAT&nbsp;ZIP&nbsp;FORMAT&nbsp;#####################################################<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ChilkatZip-__init__"><strong>__init__</strong></a>(self, raw)</dt></dl>
+
+<dl><dt><a name="ChilkatZip-delete"><strong>delete</strong></a>(self, patterns)</dt></dl>
+
+<dl><dt><a name="ChilkatZip-namelist"><strong>namelist</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ChilkatZip-read"><strong>read</strong></a>(self, elem)</dt></dl>
+
+<dl><dt><a name="ChilkatZip-remplace_file"><strong>remplace_file</strong></a>(self, filename, buff)</dt></dl>
+
+<dl><dt><a name="ChilkatZip-write"><strong>write</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PackageContext">class <strong>PackageContext</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PackageContext-__init__"><strong>__init__</strong></a>(self, current_package, stringpool_main, mTableStrings, mKeyStrings)</dt></dl>
+
+<dl><dt><a name="PackageContext-get_mResId"><strong>get_mResId</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PackageContext-set_mResId"><strong>set_mResId</strong></a>(self, mResId)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StringBlock">class <strong>StringBlock</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="StringBlock-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="StringBlock-decode"><strong>decode</strong></a>(self, array, offset, length)</dt></dl>
+
+<dl><dt><a name="StringBlock-decode2"><strong>decode2</strong></a>(self, array, offset, length)</dt></dl>
+
+<dl><dt><a name="StringBlock-getShort"><strong>getShort</strong></a>(self, array, offset)</dt></dl>
+
+<dl><dt><a name="StringBlock-getShort2"><strong>getShort2</strong></a>(self, array, offset)</dt></dl>
+
+<dl><dt><a name="StringBlock-getString"><strong>getString</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="StringBlock-getStyle"><strong>getStyle</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="StringBlock-getVarint"><strong>getVarint</strong></a>(self, array, offset)</dt></dl>
+
+<dl><dt><a name="StringBlock-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-complexToFloat"><strong>complexToFloat</strong></a>(xcomplex)</dt></dl>
+ <dl><dt><a name="-crc32"><strong>crc32</strong></a>(...)</dt><dd><tt><a href="#-crc32">crc32</a>(string[,&nbsp;start])&nbsp;--&nbsp;Compute&nbsp;a&nbsp;CRC-32&nbsp;checksum&nbsp;of&nbsp;string.<br>
+&nbsp;<br>
+An&nbsp;optional&nbsp;starting&nbsp;value&nbsp;can&nbsp;be&nbsp;specified.&nbsp;&nbsp;The&nbsp;returned&nbsp;checksum&nbsp;is<br>
+a&nbsp;signed&nbsp;integer.</tt></dd></dl>
+ <dl><dt><a name="-pack"><strong>pack</strong></a>(...)</dt><dd><tt>Return&nbsp;string&nbsp;containing&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;packed&nbsp;according&nbsp;to&nbsp;fmt.</tt></dd></dl>
+ <dl><dt><a name="-show_Certificate"><strong>show_Certificate</strong></a>(cert)</dt></dl>
+ <dl><dt><a name="-sign_apk"><strong>sign_apk</strong></a>(filename, keystore, storepass)</dt></dl>
+ <dl><dt><a name="-unpack"><strong>unpack</strong></a>(...)</dt><dd><tt>Unpack&nbsp;the&nbsp;string&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according&nbsp;to&nbsp;fmt.<br>
+Requires&nbsp;len(string)&nbsp;==&nbsp;calcsize(fmt).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ATTRIBUTE_IX_NAME</strong> = 1<br>
+<strong>ATTRIBUTE_IX_NAMESPACE_URI</strong> = 0<br>
+<strong>ATTRIBUTE_IX_VALUE_DATA</strong> = 4<br>
+<strong>ATTRIBUTE_IX_VALUE_STRING</strong> = 2<br>
+<strong>ATTRIBUTE_IX_VALUE_TYPE</strong> = 3<br>
+<strong>ATTRIBUTE_LENGHT</strong> = 5<br>
+<strong>CHUNK_AXML_FILE</strong> = 524291<br>
+<strong>CHUNK_RESOURCEIDS</strong> = 524672<br>
+<strong>CHUNK_XML_END_NAMESPACE</strong> = 1048833<br>
+<strong>CHUNK_XML_END_TAG</strong> = 1048835<br>
+<strong>CHUNK_XML_FIRST</strong> = 1048832<br>
+<strong>CHUNK_XML_LAST</strong> = 1048836<br>
+<strong>CHUNK_XML_START_NAMESPACE</strong> = 1048832<br>
+<strong>CHUNK_XML_START_TAG</strong> = 1048834<br>
+<strong>CHUNK_XML_TEXT</strong> = 1048836<br>
+<strong>COMPLEX_UNIT_MASK</strong> = 15<br>
+<strong>DIMENSION_UNITS</strong> = ['px', 'dip', 'sp', 'pt', 'in', 'mm']<br>
+<strong>DVM_PERMISSIONS</strong> = {'MANIFEST_PERMISSION': {'ACCESS_CACHE_FILESYSTEM': ['signatureOrSystem', 'access the cache file system', 'Allows an application to read and write the cache file system.'], 'ACCESS_CHECKIN_PROPERTIES': ['signatureOrSystem', 'access check-in properties', 'Allows read/write access to properties uploaded ...k-in service. Not for use by normal applications.'], 'ACCESS_COARSE_LOCATION': ['dangerous', 'coarse (network-based) location', 'Access coarse location sources, such as the mobi...se this to determine approximately where you are.'], 'ACCESS_FINE_LOCATION': ['dangerous', 'fine (GPS) location', 'Access fine location sources, such as the Global...you are and may consume additional battery power.'], 'ACCESS_LOCATION_EXTRA_COMMANDS': ['normal', 'access extra location provider commands', 'Access extra location provider commands. Malicio...e operation of the GPS or other location sources.'], 'ACCESS_MOCK_LOCATION': ['dangerous', 'mock location sources for testing', 'Create mock location sources for testing. Malici...ocation sources such as GPS or Network providers.'], 'ACCESS_NETWORK_STATE': ['normal', 'view network status', 'Allows an application to view the status of all networks.'], 'ACCESS_SURFACE_FLINGER': ['signature', 'access SurfaceFlinger', 'Allows application to use SurfaceFlinger low-level features.'], 'ACCESS_USB': ['signatureOrSystem', 'access USB devices', 'Allows the application to access USB devices.'], 'ACCESS_WIFI_STATE': ['normal', 'view Wi-Fi status', 'Allows an application to view the information about the status of Wi-Fi.'], ...}, 'MANIFEST_PERMISSION_GROUP': {'ACCOUNTS': 'Permissions for direct access to the accounts managed by the Account Manager.', 'COST_MONEY': 'Used for permissions that can be used to make the user spend money without their direct involvement.', 'DEVELOPMENT_TOOLS': 'Group of permissions that are related to development features.', 'HARDWARE_CONTROLS': 'Used for permissions that provide direct access to the hardware on the device.', 'LOCATION': "Used for permissions that allow access to the user's current location.", 'MESSAGES': 'Used for permissions that allow an application t...or intercept messages being received by the user.', 'NETWORK': 'Used for permissions that provide access to networking services.', 'PERSONAL_INFO': 'Used for permissions that provide access to the ... contacts, calendar events, e-mail messages, etc.', 'PHONE_CALLS': 'Used for permissions that are associated with ac...ing calls, reading and modifying the phone state.', 'STORAGE': 'Group of permissions that are related to SD card access.', ...}}<br>
+<strong>END_DOCUMENT</strong> = 1<br>
+<strong>END_TAG</strong> = 3<br>
+<strong>FRACTION_UNITS</strong> = ['%', '%p']<br>
+<strong>RADIX_MULTS</strong> = [0.00390625, 3.051758e-05, 1.192093e-07, 4.656613e-10]<br>
+<strong>RES_NULL_TYPE</strong> = 0<br>
+<strong>RES_STRING_POOL_TYPE</strong> = 1<br>
+<strong>RES_TABLE_PACKAGE_TYPE</strong> = 512<br>
+<strong>RES_TABLE_TYPE</strong> = 2<br>
+<strong>RES_TABLE_TYPE_SPEC_TYPE</strong> = 514<br>
+<strong>RES_TABLE_TYPE_TYPE</strong> = 513<br>
+<strong>RES_XML_CDATA_TYPE</strong> = 260<br>
+<strong>RES_XML_END_ELEMENT_TYPE</strong> = 259<br>
+<strong>RES_XML_END_NAMESPACE_TYPE</strong> = 257<br>
+<strong>RES_XML_FIRST_CHUNK_TYPE</strong> = 256<br>
+<strong>RES_XML_LAST_CHUNK_TYPE</strong> = 383<br>
+<strong>RES_XML_RESOURCE_MAP_TYPE</strong> = 384<br>
+<strong>RES_XML_START_ELEMENT_TYPE</strong> = 258<br>
+<strong>RES_XML_START_NAMESPACE_TYPE</strong> = 256<br>
+<strong>RES_XML_TYPE</strong> = 3<br>
+<strong>START_DOCUMENT</strong> = 0<br>
+<strong>START_TAG</strong> = 2<br>
+<strong>TEXT</strong> = 4<br>
+<strong>TYPE_ATTRIBUTE</strong> = 2<br>
+<strong>TYPE_DIMENSION</strong> = 5<br>
+<strong>TYPE_FIRST_COLOR_INT</strong> = 28<br>
+<strong>TYPE_FIRST_INT</strong> = 16<br>
+<strong>TYPE_FLOAT</strong> = 4<br>
+<strong>TYPE_FRACTION</strong> = 6<br>
+<strong>TYPE_INT_BOOLEAN</strong> = 18<br>
+<strong>TYPE_INT_COLOR_ARGB4</strong> = 30<br>
+<strong>TYPE_INT_COLOR_ARGB8</strong> = 28<br>
+<strong>TYPE_INT_COLOR_RGB4</strong> = 31<br>
+<strong>TYPE_INT_COLOR_RGB8</strong> = 29<br>
+<strong>TYPE_INT_DEC</strong> = 16<br>
+<strong>TYPE_INT_HEX</strong> = 17<br>
+<strong>TYPE_LAST_COLOR_INT</strong> = 31<br>
+<strong>TYPE_LAST_INT</strong> = 31<br>
+<strong>TYPE_NULL</strong> = 0<br>
+<strong>TYPE_REFERENCE</strong> = 1<br>
+<strong>TYPE_STRING</strong> = 3<br>
+<strong>UTF8_FLAG</strong> = 256<br>
+<strong>ZIPMODULE</strong> = 1</td></tr></table>
+</body></html>

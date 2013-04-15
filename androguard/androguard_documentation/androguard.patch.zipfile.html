@@ -1,0 +1,450 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.patch.zipfile</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.patch.html"><font color="#ffffff">patch</font></a>.zipfile</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/patch/zipfile.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\patch\zipfile.py</a></font></td></tr></table>
+    <p><tt>Read&nbsp;and&nbsp;write&nbsp;ZIP&nbsp;files.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="binascii.html">binascii</a><br>
+<a href="cStringIO.html">cStringIO</a><br>
+<a href="io.html">io</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+<a href="shutil.html">shutil</a><br>
+</td><td width="25%" valign=top><a href="stat.html">stat</a><br>
+<a href="struct.html">struct</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+<a href="zlib.html">zlib</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#ZipInfo">ZipInfo</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#ZipFile">ZipFile</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#PyZipFile">PyZipFile</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#BadZipfile">BadZipfile</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#BadZipfile">BadZipfile</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.patch.zipfile.html#LargeZipFile">LargeZipFile</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BadZipfile">class <strong>BadZipfile</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.patch.zipfile.html#BadZipfile">BadZipfile</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="BadZipfile-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#BadZipfile-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="BadZipfile-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BadZipfile-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BadZipfile-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#BadZipfile-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LargeZipFile">class <strong>LargeZipFile</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;when&nbsp;writing&nbsp;a&nbsp;zipfile,&nbsp;the&nbsp;zipfile&nbsp;requires&nbsp;ZIP64&nbsp;extensions<br>
+and&nbsp;those&nbsp;extensions&nbsp;are&nbsp;disabled.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.patch.zipfile.html#LargeZipFile">LargeZipFile</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="LargeZipFile-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#LargeZipFile-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="LargeZipFile-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LargeZipFile-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LargeZipFile-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#LargeZipFile-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="LargeZipFile-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyZipFile">class <strong>PyZipFile</strong></a>(<a href="androguard.patch.zipfile.html#ZipFile">ZipFile</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;to&nbsp;create&nbsp;ZIP&nbsp;archives&nbsp;with&nbsp;Python&nbsp;library&nbsp;files&nbsp;and&nbsp;packages.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyZipFile-writepy"><strong>writepy</strong></a>(self, pathname, basename<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;all&nbsp;files&nbsp;from&nbsp;"pathname"&nbsp;to&nbsp;the&nbsp;ZIP&nbsp;archive.<br>
+&nbsp;<br>
+If&nbsp;pathname&nbsp;is&nbsp;a&nbsp;package&nbsp;directory,&nbsp;search&nbsp;the&nbsp;directory&nbsp;and<br>
+all&nbsp;package&nbsp;subdirectories&nbsp;recursively&nbsp;for&nbsp;all&nbsp;*.py&nbsp;and&nbsp;enter<br>
+the&nbsp;modules&nbsp;into&nbsp;the&nbsp;archive.&nbsp;&nbsp;If&nbsp;pathname&nbsp;is&nbsp;a&nbsp;plain<br>
+directory,&nbsp;listdir&nbsp;*.py&nbsp;and&nbsp;enter&nbsp;all&nbsp;modules.&nbsp;&nbsp;Else,&nbsp;pathname<br>
+must&nbsp;be&nbsp;a&nbsp;Python&nbsp;*.py&nbsp;file&nbsp;and&nbsp;the&nbsp;module&nbsp;will&nbsp;be&nbsp;put&nbsp;into&nbsp;the<br>
+archive.&nbsp;&nbsp;Added&nbsp;modules&nbsp;are&nbsp;always&nbsp;module.pyo&nbsp;or&nbsp;module.pyc.<br>
+This&nbsp;method&nbsp;will&nbsp;compile&nbsp;the&nbsp;module.py&nbsp;into&nbsp;module.pyc&nbsp;if<br>
+necessary.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="androguard.patch.zipfile.html#ZipFile">ZipFile</a>:<br>
+<dl><dt><a name="PyZipFile-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Call&nbsp;the&nbsp;"<a href="#PyZipFile-close">close</a>()"&nbsp;method&nbsp;in&nbsp;case&nbsp;the&nbsp;user&nbsp;forgot.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-__enter__"><strong>__enter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PyZipFile-__exit__"><strong>__exit__</strong></a>(self, type, value, traceback)</dt></dl>
+
+<dl><dt><a name="PyZipFile-__init__"><strong>__init__</strong></a>(self, file, mode<font color="#909090">='r'</font>, compression<font color="#909090">=0</font>, allowZip64<font color="#909090">=False</font>)</dt><dd><tt>Open&nbsp;the&nbsp;ZIP&nbsp;file&nbsp;with&nbsp;mode&nbsp;read&nbsp;"r",&nbsp;write&nbsp;"w"&nbsp;or&nbsp;append&nbsp;"a".</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;file,&nbsp;and&nbsp;for&nbsp;mode&nbsp;"w"&nbsp;and&nbsp;"a"&nbsp;write&nbsp;the&nbsp;ending<br>
+records.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-extract"><strong>extract</strong></a>(self, member, path<font color="#909090">=None</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;a&nbsp;member&nbsp;from&nbsp;the&nbsp;archive&nbsp;to&nbsp;the&nbsp;current&nbsp;working&nbsp;directory,<br>
+using&nbsp;its&nbsp;full&nbsp;name.&nbsp;Its&nbsp;file&nbsp;information&nbsp;is&nbsp;extracted&nbsp;as&nbsp;accurately<br>
+as&nbsp;possible.&nbsp;`member'&nbsp;may&nbsp;be&nbsp;a&nbsp;filename&nbsp;or&nbsp;a&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;You&nbsp;can<br>
+specify&nbsp;a&nbsp;different&nbsp;directory&nbsp;using&nbsp;`path'.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-extractall"><strong>extractall</strong></a>(self, path<font color="#909090">=None</font>, members<font color="#909090">=None</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;all&nbsp;members&nbsp;from&nbsp;the&nbsp;archive&nbsp;to&nbsp;the&nbsp;current&nbsp;working<br>
+directory.&nbsp;`path'&nbsp;specifies&nbsp;a&nbsp;different&nbsp;directory&nbsp;to&nbsp;extract&nbsp;to.<br>
+`members'&nbsp;is&nbsp;optional&nbsp;and&nbsp;must&nbsp;be&nbsp;a&nbsp;subset&nbsp;of&nbsp;the&nbsp;list&nbsp;returned<br>
+by&nbsp;<a href="#PyZipFile-namelist">namelist</a>().</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-getinfo"><strong>getinfo</strong></a>(self, name)</dt><dd><tt>Return&nbsp;the&nbsp;instance&nbsp;of&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;given&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-infolist"><strong>infolist</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;class&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;instances&nbsp;for&nbsp;files&nbsp;in&nbsp;the<br>
+archive.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-namelist"><strong>namelist</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;file&nbsp;names&nbsp;in&nbsp;the&nbsp;archive.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-open"><strong>open</strong></a>(self, name, mode<font color="#909090">='r'</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;file-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;for&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-printdir"><strong>printdir</strong></a>(self)</dt><dd><tt>Print&nbsp;a&nbsp;table&nbsp;of&nbsp;contents&nbsp;for&nbsp;the&nbsp;zip&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-read"><strong>read</strong></a>(self, name, pwd<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;file&nbsp;bytes&nbsp;(as&nbsp;a&nbsp;string)&nbsp;for&nbsp;name.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-setpassword"><strong>setpassword</strong></a>(self, pwd)</dt><dd><tt>Set&nbsp;default&nbsp;password&nbsp;for&nbsp;encrypted&nbsp;files.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-testzip"><strong>testzip</strong></a>(self)</dt><dd><tt>Read&nbsp;all&nbsp;the&nbsp;files&nbsp;and&nbsp;check&nbsp;the&nbsp;CRC.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-write"><strong>write</strong></a>(self, filename, arcname<font color="#909090">=None</font>, compress_type<font color="#909090">=None</font>)</dt><dd><tt>Put&nbsp;the&nbsp;bytes&nbsp;from&nbsp;filename&nbsp;into&nbsp;the&nbsp;archive&nbsp;under&nbsp;the&nbsp;name<br>
+arcname.</tt></dd></dl>
+
+<dl><dt><a name="PyZipFile-writestr"><strong>writestr</strong></a>(self, zinfo_or_arcname, bytes, compress_type<font color="#909090">=None</font>)</dt><dd><tt>Write&nbsp;a&nbsp;file&nbsp;into&nbsp;the&nbsp;archive.&nbsp;&nbsp;The&nbsp;contents&nbsp;is&nbsp;the&nbsp;string<br>
+'bytes'.&nbsp;&nbsp;'zinfo_or_arcname'&nbsp;is&nbsp;either&nbsp;a&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;instance&nbsp;or<br>
+the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;the&nbsp;archive.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="androguard.patch.zipfile.html#ZipFile">ZipFile</a>:<br>
+<dl><dt><strong>fp</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ZipFile">class <strong>ZipFile</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;with&nbsp;methods&nbsp;to&nbsp;open,&nbsp;read,&nbsp;write,&nbsp;close,&nbsp;list&nbsp;zip&nbsp;files.<br>
+&nbsp;<br>
+z&nbsp;=&nbsp;<a href="#ZipFile">ZipFile</a>(file,&nbsp;mode="r",&nbsp;compression=ZIP_STORED,&nbsp;allowZip64=False)<br>
+&nbsp;<br>
+file:&nbsp;Either&nbsp;the&nbsp;path&nbsp;to&nbsp;the&nbsp;file,&nbsp;or&nbsp;a&nbsp;file-like&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;it&nbsp;is&nbsp;a&nbsp;path,&nbsp;the&nbsp;file&nbsp;will&nbsp;be&nbsp;opened&nbsp;and&nbsp;closed&nbsp;by&nbsp;<a href="#ZipFile">ZipFile</a>.<br>
+mode:&nbsp;The&nbsp;mode&nbsp;can&nbsp;be&nbsp;either&nbsp;read&nbsp;"r",&nbsp;write&nbsp;"w"&nbsp;or&nbsp;append&nbsp;"a".<br>
+compression:&nbsp;ZIP_STORED&nbsp;(no&nbsp;compression)&nbsp;or&nbsp;ZIP_DEFLATED&nbsp;(requires&nbsp;zlib).<br>
+allowZip64:&nbsp;if&nbsp;True&nbsp;<a href="#ZipFile">ZipFile</a>&nbsp;will&nbsp;create&nbsp;files&nbsp;with&nbsp;ZIP64&nbsp;extensions&nbsp;when<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;needed,&nbsp;otherwise&nbsp;it&nbsp;will&nbsp;raise&nbsp;an&nbsp;exception&nbsp;when&nbsp;this&nbsp;would<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;necessary.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ZipFile-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Call&nbsp;the&nbsp;"<a href="#ZipFile-close">close</a>()"&nbsp;method&nbsp;in&nbsp;case&nbsp;the&nbsp;user&nbsp;forgot.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-__enter__"><strong>__enter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ZipFile-__exit__"><strong>__exit__</strong></a>(self, type, value, traceback)</dt></dl>
+
+<dl><dt><a name="ZipFile-__init__"><strong>__init__</strong></a>(self, file, mode<font color="#909090">='r'</font>, compression<font color="#909090">=0</font>, allowZip64<font color="#909090">=False</font>)</dt><dd><tt>Open&nbsp;the&nbsp;ZIP&nbsp;file&nbsp;with&nbsp;mode&nbsp;read&nbsp;"r",&nbsp;write&nbsp;"w"&nbsp;or&nbsp;append&nbsp;"a".</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;file,&nbsp;and&nbsp;for&nbsp;mode&nbsp;"w"&nbsp;and&nbsp;"a"&nbsp;write&nbsp;the&nbsp;ending<br>
+records.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-extract"><strong>extract</strong></a>(self, member, path<font color="#909090">=None</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;a&nbsp;member&nbsp;from&nbsp;the&nbsp;archive&nbsp;to&nbsp;the&nbsp;current&nbsp;working&nbsp;directory,<br>
+using&nbsp;its&nbsp;full&nbsp;name.&nbsp;Its&nbsp;file&nbsp;information&nbsp;is&nbsp;extracted&nbsp;as&nbsp;accurately<br>
+as&nbsp;possible.&nbsp;`member'&nbsp;may&nbsp;be&nbsp;a&nbsp;filename&nbsp;or&nbsp;a&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;You&nbsp;can<br>
+specify&nbsp;a&nbsp;different&nbsp;directory&nbsp;using&nbsp;`path'.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-extractall"><strong>extractall</strong></a>(self, path<font color="#909090">=None</font>, members<font color="#909090">=None</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;all&nbsp;members&nbsp;from&nbsp;the&nbsp;archive&nbsp;to&nbsp;the&nbsp;current&nbsp;working<br>
+directory.&nbsp;`path'&nbsp;specifies&nbsp;a&nbsp;different&nbsp;directory&nbsp;to&nbsp;extract&nbsp;to.<br>
+`members'&nbsp;is&nbsp;optional&nbsp;and&nbsp;must&nbsp;be&nbsp;a&nbsp;subset&nbsp;of&nbsp;the&nbsp;list&nbsp;returned<br>
+by&nbsp;<a href="#ZipFile-namelist">namelist</a>().</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-getinfo"><strong>getinfo</strong></a>(self, name)</dt><dd><tt>Return&nbsp;the&nbsp;instance&nbsp;of&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;given&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-infolist"><strong>infolist</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;class&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;instances&nbsp;for&nbsp;files&nbsp;in&nbsp;the<br>
+archive.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-namelist"><strong>namelist</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;file&nbsp;names&nbsp;in&nbsp;the&nbsp;archive.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-open"><strong>open</strong></a>(self, name, mode<font color="#909090">='r'</font>, pwd<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;file-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;for&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-printdir"><strong>printdir</strong></a>(self)</dt><dd><tt>Print&nbsp;a&nbsp;table&nbsp;of&nbsp;contents&nbsp;for&nbsp;the&nbsp;zip&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-read"><strong>read</strong></a>(self, name, pwd<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;file&nbsp;bytes&nbsp;(as&nbsp;a&nbsp;string)&nbsp;for&nbsp;name.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-setpassword"><strong>setpassword</strong></a>(self, pwd)</dt><dd><tt>Set&nbsp;default&nbsp;password&nbsp;for&nbsp;encrypted&nbsp;files.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-testzip"><strong>testzip</strong></a>(self)</dt><dd><tt>Read&nbsp;all&nbsp;the&nbsp;files&nbsp;and&nbsp;check&nbsp;the&nbsp;CRC.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-write"><strong>write</strong></a>(self, filename, arcname<font color="#909090">=None</font>, compress_type<font color="#909090">=None</font>)</dt><dd><tt>Put&nbsp;the&nbsp;bytes&nbsp;from&nbsp;filename&nbsp;into&nbsp;the&nbsp;archive&nbsp;under&nbsp;the&nbsp;name<br>
+arcname.</tt></dd></dl>
+
+<dl><dt><a name="ZipFile-writestr"><strong>writestr</strong></a>(self, zinfo_or_arcname, bytes, compress_type<font color="#909090">=None</font>)</dt><dd><tt>Write&nbsp;a&nbsp;file&nbsp;into&nbsp;the&nbsp;archive.&nbsp;&nbsp;The&nbsp;contents&nbsp;is&nbsp;the&nbsp;string<br>
+'bytes'.&nbsp;&nbsp;'zinfo_or_arcname'&nbsp;is&nbsp;either&nbsp;a&nbsp;<a href="#ZipInfo">ZipInfo</a>&nbsp;instance&nbsp;or<br>
+the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;the&nbsp;archive.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>fp</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ZipInfo">class <strong>ZipInfo</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;with&nbsp;attributes&nbsp;describing&nbsp;each&nbsp;file&nbsp;in&nbsp;the&nbsp;ZIP&nbsp;archive.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ZipInfo-FileHeader"><strong>FileHeader</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;per-file&nbsp;header&nbsp;as&nbsp;a&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="ZipInfo-__init__"><strong>__init__</strong></a>(self, filename<font color="#909090">='NoName'</font>, date_time<font color="#909090">=(1980, 1, 1, 0, 0, 0)</font>)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>CRC</strong></dt>
+</dl>
+<dl><dt><strong>comment</strong></dt>
+</dl>
+<dl><dt><strong>compress_size</strong></dt>
+</dl>
+<dl><dt><strong>compress_type</strong></dt>
+</dl>
+<dl><dt><strong>create_system</strong></dt>
+</dl>
+<dl><dt><strong>create_version</strong></dt>
+</dl>
+<dl><dt><strong>date_time</strong></dt>
+</dl>
+<dl><dt><strong>external_attr</strong></dt>
+</dl>
+<dl><dt><strong>extra</strong></dt>
+</dl>
+<dl><dt><strong>extract_version</strong></dt>
+</dl>
+<dl><dt><strong>file_size</strong></dt>
+</dl>
+<dl><dt><strong>filename</strong></dt>
+</dl>
+<dl><dt><strong>flag_bits</strong></dt>
+</dl>
+<dl><dt><strong>header_offset</strong></dt>
+</dl>
+<dl><dt><strong>internal_attr</strong></dt>
+</dl>
+<dl><dt><strong>orig_filename</strong></dt>
+</dl>
+<dl><dt><strong>reserved</strong></dt>
+</dl>
+<dl><dt><strong>volume</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error</strong> = <a name="error">class BadZipfile</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.patch.zipfile.html#BadZipfile">BadZipfile</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="BadZipfile-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="BadZipfile-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BadZipfile-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BadZipfile-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="BadZipfile-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-is_zipfile"><strong>is_zipfile</strong></a>(filename)</dt><dd><tt>Quickly&nbsp;see&nbsp;if&nbsp;a&nbsp;file&nbsp;is&nbsp;a&nbsp;ZIP&nbsp;file&nbsp;by&nbsp;checking&nbsp;the&nbsp;magic&nbsp;number.<br>
+&nbsp;<br>
+The&nbsp;filename&nbsp;argument&nbsp;may&nbsp;be&nbsp;a&nbsp;file&nbsp;or&nbsp;file-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;too.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ZIP_DEFLATED</strong> = 8<br>
+<strong>ZIP_STORED</strong> = 0<br>
+<strong>__all__</strong> = ['BadZipfile', 'error', 'ZIP_STORED', 'ZIP_DEFLATED', 'is_zipfile', 'ZipInfo', 'ZipFile', 'PyZipFile', 'LargeZipFile']</td></tr></table>
+</body></html>

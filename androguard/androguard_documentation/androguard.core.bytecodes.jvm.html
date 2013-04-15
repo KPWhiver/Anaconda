@@ -1,0 +1,2250 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.bytecodes.jvm</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.<a href="androguard.core.bytecodes.html"><font color="#ffffff">bytecodes</font></a>.jvm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/bytecodes/jvm.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\bytecodes\jvm.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="StringIO.html">StringIO</a><br>
+<a href="androguard.core.bytecode.html">androguard.core.bytecode</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="zipfile.html">zipfile</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#AnnotationDefaultAttribute">AnnotationDefaultAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CodeAttribute">CodeAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ConstantValueAttribute">ConstantValueAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#DeprecatedAttribute">DeprecatedAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#EnclosingMethodAttribute">EnclosingMethodAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ExceptionsAttribute">ExceptionsAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#InnerClassesAttribute">InnerClassesAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#LineNumberTableAttribute">LineNumberTableAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#LocalVariableTableAttribute">LocalVariableTableAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#LocalVariableTypeTableAttribute">LocalVariableTypeTableAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleAnnotationsAttribute">RuntimeVisibleAnnotationsAttribute</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#RuntimeInvisibleAnnotationsAttribute">RuntimeInvisibleAnnotationsAttribute</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleParameterAnnotationsAttribute">RuntimeVisibleParameterAnnotationsAttribute</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#RuntimeInvisibleParameterAnnotationsAttribute">RuntimeInvisibleParameterAnnotationsAttribute</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SignatureAttribute">SignatureAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SourceDebugExtensionAttribute">SourceDebugExtensionAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SourceFileAttribute">SourceFileAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#StackMapTableAttribute">StackMapTableAttribute</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SyntheticAttribute">SyntheticAttribute</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Class">Class</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Double">Double</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#FieldRef">FieldRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Float">Float</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Integer">Integer</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#InterfaceMethodRef">InterfaceMethodRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Long">Long</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#MethodRef">MethodRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#NameAndType">NameAndType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#String">String</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Utf8">Utf8</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecode.html#_Bytecode">androguard.core.bytecode._Bytecode</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#JVMFormat">JVMFormat</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#Annotation">Annotation</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#AppendFrame">AppendFrame</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ArrayValue">ArrayValue</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#AttributeInfo">AttributeInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ChopFrame">ChopFrame</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ClassManager">ClassManager</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateClass">CreateClass</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateCodeAttributeInfo">CreateCodeAttributeInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateFieldInfo">CreateFieldInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateFieldRef">CreateFieldRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateInteger">CreateInteger</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateMethodInfo">CreateMethodInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateMethodRef">CreateMethodRef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateNameAndType">CreateNameAndType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#CreateString">CreateString</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ElementValue">ElementValue</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ElementValuePair">ElementValuePair</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#EmptyConstant">EmptyConstant</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#FieldInfo">FieldInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#FullFrame">FullFrame</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#InnerClassesDesc">InnerClassesDesc</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#JAR">JAR</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#JBC">JBC</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#JavaCode">JavaCode</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#MethodInfo">MethodInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#ParameterAnnotation">ParameterAnnotation</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SameFrame">SameFrame</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SameFrameExtended">SameFrameExtended</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SameLocals1StackItemFrame">SameLocals1StackItemFrame</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#SameLocals1StackItemFrameExtended">SameLocals1StackItemFrameExtended</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.bytecodes.jvm.html#VerificationTypeInfo">VerificationTypeInfo</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Annotation">class <strong>Annotation</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Annotation-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="Annotation-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Annotation-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AnnotationDefaultAttribute">class <strong>AnnotationDefaultAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#AnnotationDefaultAttribute">AnnotationDefaultAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="AnnotationDefaultAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="AnnotationDefaultAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AnnotationDefaultAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="AnnotationDefaultAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AnnotationDefaultAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AppendFrame">class <strong>AppendFrame</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AppendFrame-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="AppendFrame-get_locals"><strong>get_locals</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AppendFrame-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AppendFrame-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="AppendFrame-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArrayValue">class <strong>ArrayValue</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ArrayValue-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="ArrayValue-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ArrayValue-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AttributeInfo">class <strong>AttributeInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AttributeInfo">AttributeInfo</a>&nbsp;manages&nbsp;each&nbsp;attribute&nbsp;info&nbsp;(Code,&nbsp;SourceFile&nbsp;....)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AttributeInfo-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-get_attribute_name_index"><strong>get_attribute_name_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-get_item"><strong>get_item</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;specific&nbsp;attribute&nbsp;info</tt></dd></dl>
+
+<dl><dt><a name="AttributeInfo-get_name"><strong>get_name</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="AttributeInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-pretty_show"><strong>pretty_show</strong></a>(self, m_a)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-set_attribute_length"><strong>set_attribute_length</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-set_attribute_name_index"><strong>set_attribute_name_index</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="AttributeInfo-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BasicAttribute">class <strong>BasicAttribute</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BasicAttribute-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ChopFrame">class <strong>ChopFrame</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ChopFrame-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="ChopFrame-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ChopFrame-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="ChopFrame-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Class">class <strong>Class</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Class">Class</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Class-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="Class-get_name_index"><strong>get_name_index</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Class-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Class-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ClassManager">class <strong>ClassManager</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ClassManager">ClassManager</a>&nbsp;can&nbsp;be&nbsp;used&nbsp;by&nbsp;all&nbsp;classes&nbsp;to&nbsp;get&nbsp;more&nbsp;information<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ClassManager-__init__"><strong>__init__</strong></a>(self, constant_pool, constant_pool_count)</dt></dl>
+
+<dl><dt><a name="ClassManager-add_constant_pool"><strong>add_constant_pool</strong></a>(self, elem)</dt></dl>
+
+<dl><dt><a name="ClassManager-add_string"><strong>add_string</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_class"><strong>create_class</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_field_ref"><strong>create_field_ref</strong></a>(self, new_class_index, new_name_and_type_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_integer"><strong>create_integer</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_method_ref"><strong>create_method_ref</strong></a>(self, new_class_index, new_name_and_type_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_name_and_type"><strong>create_name_and_type</strong></a>(self, name, desc)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_name_and_type_by_index"><strong>create_name_and_type_by_index</strong></a>(self, name_method_index, descriptor_method_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-create_string"><strong>create_string</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_array_type"><strong>get_array_type</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_class"><strong>get_class</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_class_by_index"><strong>get_class_by_index</strong></a>(self, name_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_class_index"><strong>get_class_index</strong></a>(self, method_name)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_class_index2"><strong>get_class_index2</strong></a>(self, class_name)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_constant_pool_count"><strong>get_constant_pool_count</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_cstring_index"><strong>get_cstring_index</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_field"><strong>get_field</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_field_index"><strong>get_field_index</strong></a>(self, name, descriptor)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_field_ref_index"><strong>get_field_ref_index</strong></a>(self, new_class_index, new_name_and_type_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_integer_index"><strong>get_integer_index</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_interface"><strong>get_interface</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_interface_index"><strong>get_interface_index</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_item"><strong>get_item</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_method"><strong>get_method</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_method_index"><strong>get_method_index</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_method_ref_index"><strong>get_method_ref_index</strong></a>(self, new_class_index, new_name_and_type_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_name_and_type_index"><strong>get_name_and_type_index</strong></a>(self, name_method_index, descriptor_method_index)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_string"><strong>get_string</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_string_index"><strong>get_string_index</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_this_class"><strong>get_this_class</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_this_class_name"><strong>get_this_class_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_used_fields"><strong>get_used_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_used_methods"><strong>get_used_methods</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ClassManager-get_value"><strong>get_value</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="ClassManager-set_string"><strong>set_string</strong></a>(self, idx, name)</dt></dl>
+
+<dl><dt><a name="ClassManager-set_this_class"><strong>set_this_class</strong></a>(self, this_class)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CodeAttribute">class <strong>CodeAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#CodeAttribute">CodeAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CodeAttribute-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_at"><strong>get_at</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_bc"><strong>get_bc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_exceptions"><strong>get_exceptions</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_local_variables"><strong>get_local_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_max_locals"><strong>get_max_locals</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_max_stack"><strong>get_max_stack</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-get_relative_idx"><strong>get_relative_idx</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-gets_at"><strong>gets_at</strong></a>(self, l_idx)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-insert_at"><strong>insert_at</strong></a>(self, idx, bytecode)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-inserts_at"><strong>inserts_at</strong></a>(self, idx, l_bc)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-pretty_show"><strong>pretty_show</strong></a>(self, m_a)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-remove_at"><strong>remove_at</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-removes_at"><strong>removes_at</strong></a>(self, l_idx)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-remplace_at"><strong>remplace_at</strong></a>(self, idx, bytecode)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CodeAttribute-show_info"><strong>show_info</strong></a>(self)</dt><dd><tt>#&nbsp;FIXME&nbsp;:&nbsp;show*&nbsp;--&gt;&nbsp;add&nbsp;exceptions</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ConstantValueAttribute">class <strong>ConstantValueAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#ConstantValueAttribute">ConstantValueAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ConstantValueAttribute-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="ConstantValueAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ConstantValueAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="ConstantValueAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="ConstantValueAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CpInfo">class <strong>CpInfo</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Generic&nbsp;class&nbsp;to&nbsp;manage&nbsp;constant&nbsp;info&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CpInfo-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="CpInfo-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CpInfo-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CpInfo-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CpInfo-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CpInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CpInfo-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="CpInfo-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateClass">class <strong>CreateClass</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#Class">Class</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;name&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateClass-__init__"><strong>__init__</strong></a>(self, class_manager, name_index)</dt></dl>
+
+<dl><dt><a name="CreateClass-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateCodeAttributeInfo">class <strong>CreateCodeAttributeInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;CodeAttributeInfo&nbsp;by&nbsp;given&nbsp;bytecodes&nbsp;(into&nbsp;an&nbsp;human&nbsp;readable&nbsp;format)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateCodeAttributeInfo-__init__"><strong>__init__</strong></a>(self, class_manager, codes)</dt></dl>
+
+<dl><dt><a name="CreateCodeAttributeInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateFieldInfo">class <strong>CreateFieldInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#FieldInfo">FieldInfo</a>&nbsp;by&nbsp;given&nbsp;the&nbsp;name,&nbsp;the&nbsp;prototype&nbsp;of&nbsp;the&nbsp;"new"&nbsp;field<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateFieldInfo-__init__"><strong>__init__</strong></a>(self, class_manager, name, proto)</dt></dl>
+
+<dl><dt><a name="CreateFieldInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateFieldRef">class <strong>CreateFieldRef</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#FieldRef">FieldRef</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;class&nbsp;and&nbsp;the&nbsp;<a href="#NameAndType">NameAndType</a>&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateFieldRef-__init__"><strong>__init__</strong></a>(self, class_manager, class_index, name_and_type_index)</dt></dl>
+
+<dl><dt><a name="CreateFieldRef-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateInteger">class <strong>CreateInteger</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#Integer">Integer</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;name&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateInteger-__init__"><strong>__init__</strong></a>(self, byte)</dt></dl>
+
+<dl><dt><a name="CreateInteger-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateMethodInfo">class <strong>CreateMethodInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#MethodInfo">MethodInfo</a>&nbsp;by&nbsp;given&nbsp;the&nbsp;name,&nbsp;the&nbsp;prototype&nbsp;and&nbsp;the&nbsp;code&nbsp;(into&nbsp;an&nbsp;human&nbsp;readable&nbsp;format)&nbsp;of&nbsp;the&nbsp;"new"&nbsp;method<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateMethodInfo-__init__"><strong>__init__</strong></a>(self, class_manager, name, proto, codes)</dt></dl>
+
+<dl><dt><a name="CreateMethodInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateMethodRef">class <strong>CreateMethodRef</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#MethodRef">MethodRef</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;class&nbsp;and&nbsp;the&nbsp;<a href="#NameAndType">NameAndType</a>&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateMethodRef-__init__"><strong>__init__</strong></a>(self, class_manager, class_index, name_and_type_index)</dt></dl>
+
+<dl><dt><a name="CreateMethodRef-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateNameAndType">class <strong>CreateNameAndType</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#NameAndType">NameAndType</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;name&nbsp;and&nbsp;the&nbsp;descriptor&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateNameAndType-__init__"><strong>__init__</strong></a>(self, class_manager, name_index, descriptor_index)</dt></dl>
+
+<dl><dt><a name="CreateNameAndType-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateString">class <strong>CreateString</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;a&nbsp;specific&nbsp;<a href="#String">String</a>&nbsp;constant&nbsp;by&nbsp;given&nbsp;the&nbsp;name&nbsp;index<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CreateString-__init__"><strong>__init__</strong></a>(self, class_manager, bytes)</dt></dl>
+
+<dl><dt><a name="CreateString-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DeprecatedAttribute">class <strong>DeprecatedAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#DeprecatedAttribute">DeprecatedAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DeprecatedAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="DeprecatedAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeprecatedAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="DeprecatedAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeprecatedAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Double">class <strong>Double</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Double">Double</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Double-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Double-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Double-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Double-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Double-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Double-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Double-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Double-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ElementValue">class <strong>ElementValue</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ElementValue-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="ElementValue-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ElementValue-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ElementValuePair">class <strong>ElementValuePair</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ElementValuePair-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="ElementValuePair-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ElementValuePair-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EmptyConstant">class <strong>EmptyConstant</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="EmptyConstant-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="EmptyConstant-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="EmptyConstant-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="EmptyConstant-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="EmptyConstant-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EnclosingMethodAttribute">class <strong>EnclosingMethodAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#EnclosingMethodAttribute">EnclosingMethodAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="EnclosingMethodAttribute-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="EnclosingMethodAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="EnclosingMethodAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="EnclosingMethodAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="EnclosingMethodAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExceptionsAttribute">class <strong>ExceptionsAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#ExceptionsAttribute">ExceptionsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ExceptionsAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="ExceptionsAttribute-get_exception_index_table"><strong>get_exception_index_table</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExceptionsAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExceptionsAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="ExceptionsAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExceptionsAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FieldInfo">class <strong>FieldInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;represents&nbsp;a&nbsp;Field<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FieldInfo-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_access"><strong>get_access</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_class_name"><strong>get_class_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_descriptor"><strong>get_descriptor</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_descriptor_index"><strong>get_descriptor_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_name_index"><strong>get_name_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldInfo-set_access"><strong>set_access</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="FieldInfo-set_descriptor"><strong>set_descriptor</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="FieldInfo-set_name"><strong>set_name</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="FieldInfo-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FieldRef">class <strong>FieldRef</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#FieldRef">FieldRef</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FieldRef-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_class_index"><strong>get_class_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_name_and_type_index"><strong>get_name_and_type_index</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="FieldRef-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FieldRef-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="FieldRef-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Float">class <strong>Float</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Float">Float</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Float-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Float-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Float-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Float-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Float-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Float-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Float-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Float-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FullFrame">class <strong>FullFrame</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FullFrame-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="FullFrame-get_locals"><strong>get_locals</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FullFrame-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FullFrame-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="FullFrame-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InnerClassesAttribute">class <strong>InnerClassesAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#InnerClassesAttribute">InnerClassesAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InnerClassesAttribute-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="InnerClassesAttribute-get_classes"><strong>get_classes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InnerClassesAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InnerClassesAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="InnerClassesAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="InnerClassesAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InnerClassesDesc">class <strong>InnerClassesDesc</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="InnerClassesDesc-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="InnerClassesDesc-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InnerClassesDesc-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="InnerClassesDesc-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Integer">class <strong>Integer</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Integer">Integer</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Integer-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Integer-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Integer-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Integer-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Integer-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Integer-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Integer-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Integer-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InterfaceMethodRef">class <strong>InterfaceMethodRef</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#InterfaceMethodRef">InterfaceMethodRef</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InterfaceMethodRef-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_class_index"><strong>get_class_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_name_and_type_index"><strong>get_name_and_type_index</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="InterfaceMethodRef-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="InterfaceMethodRef-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JAR">class <strong>JAR</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>########################################################&nbsp;<a href="#JAR">JAR</a>&nbsp;FORMAT&nbsp;########################################################<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="JAR-__init__"><strong>__init__</strong></a>(self, filename, raw<font color="#909090">=False</font>)</dt></dl>
+
+<dl><dt><a name="JAR-get_classes"><strong>get_classes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JAR-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JBC">class <strong>JBC</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#JBC">JBC</a>&nbsp;manages&nbsp;each&nbsp;bytecode&nbsp;with&nbsp;the&nbsp;value,&nbsp;name,&nbsp;raw&nbsp;buffer&nbsp;and&nbsp;special&nbsp;functions<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="JBC-__init__"><strong>__init__</strong></a>(self, class_manager, op_name, raw_buff, special<font color="#909090">=None</font>)</dt><dd><tt>#&nbsp;special&nbsp;--&gt;&nbsp;(&nbsp;r_function,&nbsp;v_function,&nbsp;r_buff,&nbsp;r_format,&nbsp;f_function&nbsp;)</tt></dd></dl>
+
+<dl><dt><a name="JBC-adjust_i"><strong>adjust_i</strong></a>(self, pos, pos_modif, len_modif)</dt><dd><tt>Adjust&nbsp;the&nbsp;bytecode&nbsp;(if&nbsp;necessary&nbsp;(in&nbsp;this&nbsp;cas&nbsp;the&nbsp;bytecode&nbsp;is&nbsp;a&nbsp;branch&nbsp;bytecode))&nbsp;when&nbsp;a&nbsp;bytecode&nbsp;has&nbsp;been&nbsp;inserted</tt></dd></dl>
+
+<dl><dt><a name="JBC-adjust_r"><strong>adjust_r</strong></a>(self, pos, pos_modif, len_modif)</dt><dd><tt>Adjust&nbsp;the&nbsp;bytecode&nbsp;(if&nbsp;necessary&nbsp;(in&nbsp;this&nbsp;cas&nbsp;the&nbsp;bytecode&nbsp;is&nbsp;a&nbsp;branch&nbsp;bytecode))&nbsp;when&nbsp;a&nbsp;bytecode&nbsp;has&nbsp;been&nbsp;removed</tt></dd></dl>
+
+<dl><dt><a name="JBC-get_formatted_operands"><strong>get_formatted_operands</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JBC-get_length"><strong>get_length</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JBC-get_name"><strong>get_name</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JBC-get_operands"><strong>get_operands</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;operands&nbsp;of&nbsp;the&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JBC-get_raw"><strong>get_raw</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;current&nbsp;raw&nbsp;buffer&nbsp;of&nbsp;the&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JBC-reload"><strong>reload</strong></a>(self, raw_buff)</dt><dd><tt>Reload&nbsp;the&nbsp;bytecode&nbsp;with&nbsp;a&nbsp;new&nbsp;raw&nbsp;buffer</tt></dd></dl>
+
+<dl><dt><a name="JBC-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="JBC-show"><strong>show</strong></a>(self, pos)</dt><dd><tt>Show&nbsp;the&nbsp;bytecode&nbsp;at&nbsp;a&nbsp;specific&nbsp;position<br>
+&nbsp;<br>
+pos&nbsp;-&nbsp;the&nbsp;position&nbsp;into&nbsp;the&nbsp;bytecodes&nbsp;(integer)</tt></dd></dl>
+
+<dl><dt><a name="JBC-show_buff"><strong>show_buff</strong></a>(self, pos)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JVMFormat">class <strong>JVMFormat</strong></a>(<a href="androguard.core.bytecode.html#_Bytecode">androguard.core.bytecode._Bytecode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;is&nbsp;the&nbsp;main&nbsp;class&nbsp;to&nbsp;handle&nbsp;properly&nbsp;a&nbsp;class&nbsp;file.<br>
+Exported&nbsp;fields&nbsp;:&nbsp;magic,&nbsp;minor_version,&nbsp;major_version,&nbsp;constant_pool_count,&nbsp;access_flags,&nbsp;this_class,&nbsp;super_class,&nbsp;interfaces_count,&nbsp;fields_count,&nbsp;methods_count,&nbsp;attributes_count<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#JVMFormat">JVMFormat</a></dd>
+<dd><a href="androguard.core.bytecode.html#_Bytecode">androguard.core.bytecode._Bytecode</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="JVMFormat-__init__"><strong>__init__</strong></a>(self, buff)</dt><dd><tt>@param&nbsp;buff&nbsp;:&nbsp;the&nbsp;buffer&nbsp;which&nbsp;represents&nbsp;the&nbsp;open&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_INTEGER_INSTRUCTIONS"><strong>get_INTEGER_INSTRUCTIONS</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_all_fields"><strong>get_all_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_class"><strong>get_class</strong></a>(self, class_name)</dt><dd><tt>Verify&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;class<br>
+&nbsp;<br>
+@param&nbsp;class_name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;class<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;True&nbsp;if&nbsp;the&nbsp;class&nbsp;name&nbsp;is&nbsp;valid,&nbsp;otherwise&nbsp;it's&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_class_manager"><strong>get_class_manager</strong></a>(self)</dt><dd><tt>Return&nbsp;directly&nbsp;the&nbsp;class&nbsp;manager<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;L{<a href="#ClassManager">ClassManager</a>}</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_classes"><strong>get_classes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_classes_names"><strong>get_classes_names</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;names&nbsp;of&nbsp;classes</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_constant_pool"><strong>get_constant_pool</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;constant&nbsp;pool&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_field"><strong>get_field</strong></a>(self, name)</dt><dd><tt>Return&nbsp;into&nbsp;a&nbsp;list&nbsp;all&nbsp;fields&nbsp;which&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;regexp<br>
+&nbsp;<br>
+@param&nbsp;name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;field&nbsp;(a&nbsp;regexp)</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_field_descriptor"><strong>get_field_descriptor</strong></a>(self, class_name, field_name, descriptor)</dt><dd><tt>Return&nbsp;the&nbsp;specific&nbsp;field<br>
+&nbsp;<br>
+@param&nbsp;class_name&nbsp;:&nbsp;the&nbsp;class&nbsp;name&nbsp;of&nbsp;the&nbsp;field<br>
+@param&nbsp;field_name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;field<br>
+@param&nbsp;descriptor&nbsp;:&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;field<br>
+&nbsp;<br>
+@rtype:&nbsp;L{<a href="#FieldInfo">FieldInfo</a>}</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_fields"><strong>get_fields</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;objects&nbsp;fields</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_generator"><strong>get_generator</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_method"><strong>get_method</strong></a>(self, name)</dt><dd><tt>Return&nbsp;into&nbsp;a&nbsp;list&nbsp;all&nbsp;methods&nbsp;which&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;regexp<br>
+&nbsp;<br>
+@param&nbsp;name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;method&nbsp;(a&nbsp;regexp)</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_method_descriptor"><strong>get_method_descriptor</strong></a>(self, class_name, method_name, descriptor)</dt><dd><tt>Return&nbsp;the&nbsp;specific&nbsp;method<br>
+&nbsp;<br>
+@param&nbsp;class_name&nbsp;:&nbsp;the&nbsp;class&nbsp;name&nbsp;of&nbsp;the&nbsp;method<br>
+@param&nbsp;method_name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;method<br>
+@param&nbsp;descriptor&nbsp;:&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;method<br>
+&nbsp;<br>
+@rtype:&nbsp;L{<a href="#MethodInfo">MethodInfo</a>}</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_methods"><strong>get_methods</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;objects&nbsp;methods</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_strings"><strong>get_strings</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;strings&nbsp;into&nbsp;the&nbsp;class</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-insert_craft_method"><strong>insert_craft_method</strong></a>(self, name, proto, codes)</dt><dd><tt>Insert&nbsp;a&nbsp;craft&nbsp;method&nbsp;into&nbsp;the&nbsp;class<br>
+&nbsp;<br>
+@param&nbsp;name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;method<br>
+@param&nbsp;proto&nbsp;:&nbsp;a&nbsp;list&nbsp;which&nbsp;describe&nbsp;the&nbsp;method&nbsp;(&nbsp;[&nbsp;ACCESS_FLAGS,&nbsp;RETURN_TYPE,&nbsp;ARGUMENTS&nbsp;],&nbsp;ie&nbsp;:&nbsp;[&nbsp;"ACC_PUBLIC",&nbsp;"[B",&nbsp;"[B"&nbsp;]&nbsp;)<br>
+@param&nbsp;codes&nbsp;:&nbsp;a&nbsp;list&nbsp;which&nbsp;represents&nbsp;the&nbsp;code&nbsp;into&nbsp;a&nbsp;human&nbsp;readable&nbsp;format&nbsp;(&nbsp;[&nbsp;"aconst_null"&nbsp;],&nbsp;[&nbsp;"areturn"&nbsp;]&nbsp;]&nbsp;)</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-insert_direct_method"><strong>insert_direct_method</strong></a>(self, name, ref_method)</dt><dd><tt>Insert&nbsp;a&nbsp;direct&nbsp;method&nbsp;(<a href="#MethodInfo">MethodInfo</a>&nbsp;<a href="__builtin__.html#object">object</a>)&nbsp;into&nbsp;the&nbsp;class<br>
+&nbsp;<br>
+@param&nbsp;name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;method<br>
+@param&nbsp;ref_method&nbsp;:&nbsp;the&nbsp;<a href="#MethodInfo">MethodInfo</a>&nbsp;Object</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-insert_field"><strong>insert_field</strong></a>(self, class_name, name, descriptor)</dt><dd><tt>Insert&nbsp;a&nbsp;field&nbsp;into&nbsp;the&nbsp;class<br>
+&nbsp;<br>
+@param&nbsp;class_name&nbsp;:&nbsp;the&nbsp;class&nbsp;of&nbsp;the&nbsp;field<br>
+@param&nbsp;name&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;field<br>
+@param&nbsp;descriptor&nbsp;:&nbsp;a&nbsp;list&nbsp;with&nbsp;the&nbsp;access_flag&nbsp;and&nbsp;the&nbsp;descriptor&nbsp;(&nbsp;[&nbsp;"ACC_PUBLIC",&nbsp;"I"&nbsp;]&nbsp;)</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-insert_string"><strong>insert_string</strong></a>(self, value)</dt><dd><tt>Insert&nbsp;a&nbsp;string&nbsp;into&nbsp;the&nbsp;constant&nbsp;pool&nbsp;list&nbsp;(Constant_Utf8)<br>
+&nbsp;<br>
+@param&nbsp;value&nbsp;:&nbsp;the&nbsp;new&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-pretty_show"><strong>pretty_show</strong></a>(self, vm_a)</dt><dd><tt>Show&nbsp;the&nbsp;.class&nbsp;format&nbsp;into&nbsp;a&nbsp;human&nbsp;readable&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-save"><strong>save</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;class&nbsp;(with&nbsp;the&nbsp;modifications)&nbsp;into&nbsp;raw&nbsp;format<br>
+&nbsp;<br>
+@rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-set_used_field"><strong>set_used_field</strong></a>(self, old, new)</dt><dd><tt>Change&nbsp;the&nbsp;description&nbsp;of&nbsp;a&nbsp;field<br>
+&nbsp;<br>
+@param&nbsp;old&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;which&nbsp;contained&nbsp;the&nbsp;original&nbsp;class&nbsp;name,&nbsp;the&nbsp;original&nbsp;field&nbsp;name&nbsp;and&nbsp;the&nbsp;original&nbsp;descriptor<br>
+@param&nbsp;new&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;which&nbsp;contained&nbsp;the&nbsp;new&nbsp;class&nbsp;name,&nbsp;the&nbsp;new&nbsp;field&nbsp;name&nbsp;and&nbsp;the&nbsp;new&nbsp;descriptor</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-set_used_method"><strong>set_used_method</strong></a>(self, old, new)</dt><dd><tt>Change&nbsp;the&nbsp;description&nbsp;of&nbsp;a&nbsp;method<br>
+@param&nbsp;old&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;which&nbsp;contained&nbsp;the&nbsp;original&nbsp;class&nbsp;name,&nbsp;the&nbsp;original&nbsp;method&nbsp;name&nbsp;and&nbsp;the&nbsp;original&nbsp;descriptor<br>
+@param&nbsp;new&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;which&nbsp;contained&nbsp;the&nbsp;new&nbsp;class&nbsp;name,&nbsp;the&nbsp;new&nbsp;method&nbsp;name&nbsp;and&nbsp;the&nbsp;new&nbsp;descriptor</tt></dd></dl>
+
+<dl><dt><a name="JVMFormat-set_vmanalysis"><strong>set_vmanalysis</strong></a>(self, vmanalysis)</dt></dl>
+
+<dl><dt><a name="JVMFormat-show"><strong>show</strong></a>(self)</dt><dd><tt>Show&nbsp;the&nbsp;.class&nbsp;format&nbsp;into&nbsp;a&nbsp;human&nbsp;readable&nbsp;format</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecode.html#_Bytecode">androguard.core.bytecode._Bytecode</a>:<br>
+<dl><dt><a name="JVMFormat-add_idx"><strong>add_idx</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_buff"><strong>get_buff</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-get_idx"><strong>get_idx</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-length_buff"><strong>length_buff</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMFormat-read"><strong>read</strong></a>(self, size)</dt></dl>
+
+<dl><dt><a name="JVMFormat-read_b"><strong>read_b</strong></a>(self, size)</dt></dl>
+
+<dl><dt><a name="JVMFormat-readat"><strong>readat</strong></a>(self, off)</dt></dl>
+
+<dl><dt><a name="JVMFormat-register"><strong>register</strong></a>(self, type_register, fct)</dt></dl>
+
+<dl><dt><a name="JVMFormat-set_buff"><strong>set_buff</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="JVMFormat-set_idx"><strong>set_idx</strong></a>(self, idx)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecode.html#_Bytecode">androguard.core.bytecode._Bytecode</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JavaCode">class <strong>JavaCode</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#JavaCode">JavaCode</a>&nbsp;manages&nbsp;a&nbsp;list&nbsp;of&nbsp;bytecode&nbsp;to&nbsp;a&nbsp;specific&nbsp;method,&nbsp;by&nbsp;decoding&nbsp;a&nbsp;raw&nbsp;buffer&nbsp;and&nbsp;transform&nbsp;each&nbsp;bytecode&nbsp;into&nbsp;a&nbsp;<a href="#JBC">JBC</a>&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="JavaCode-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="JavaCode-get"><strong>get</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;bytecodes<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;L{list}</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-get_at"><strong>get_at</strong></a>(self, idx)</dt><dd><tt>Return&nbsp;a&nbsp;specific&nbsp;bytecode&nbsp;at&nbsp;an&nbsp;index<br>
+&nbsp;<br>
+@param&nbsp;:&nbsp;the&nbsp;index&nbsp;of&nbsp;a&nbsp;bytecode<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;L{<a href="#JBC">JBC</a>}</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JavaCode-get_relative_idx"><strong>get_relative_idx</strong></a>(self, idx)</dt><dd><tt>Return&nbsp;the&nbsp;relative&nbsp;idx&nbsp;by&nbsp;given&nbsp;an&nbsp;offset&nbsp;in&nbsp;the&nbsp;code<br>
+&nbsp;<br>
+@param&nbsp;idx&nbsp;:&nbsp;an&nbsp;offset&nbsp;in&nbsp;the&nbsp;code<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;the&nbsp;relative&nbsp;index&nbsp;in&nbsp;the&nbsp;code,&nbsp;it's&nbsp;the&nbsp;position&nbsp;in&nbsp;the&nbsp;list&nbsp;of&nbsp;a&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-insert_at"><strong>insert_at</strong></a>(self, idx, byte_code)</dt><dd><tt>Insert&nbsp;bytecode&nbsp;at&nbsp;a&nbsp;specific&nbsp;index<br>
+&nbsp;<br>
+@param&nbsp;idx&nbsp;:&nbsp;the&nbsp;index&nbsp;to&nbsp;insert&nbsp;the&nbsp;bytecode<br>
+@param&nbsp;bytecode&nbsp;:&nbsp;a&nbsp;list&nbsp;which&nbsp;represent&nbsp;the&nbsp;bytecode<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;inserted&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-pretty_show"><strong>pretty_show</strong></a>(self, m_a)</dt><dd><tt>Display&nbsp;the&nbsp;code&nbsp;like&nbsp;a&nbsp;disassembler&nbsp;but&nbsp;with&nbsp;instructions'&nbsp;links</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-remove_at"><strong>remove_at</strong></a>(self, idx)</dt><dd><tt>Remove&nbsp;bytecode&nbsp;at&nbsp;a&nbsp;specific&nbsp;index<br>
+&nbsp;<br>
+@param&nbsp;idx&nbsp;:&nbsp;the&nbsp;index&nbsp;to&nbsp;remove&nbsp;the&nbsp;bytecode<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;removed&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-remplace_at"><strong>remplace_at</strong></a>(self, idx, bytecode)</dt><dd><tt>Remplace&nbsp;bytecode&nbsp;at&nbsp;a&nbsp;specific&nbsp;index&nbsp;by&nbsp;another&nbsp;bytecode&nbsp;(remplace&nbsp;=&nbsp;remove&nbsp;+&nbsp;insert)<br>
+&nbsp;<br>
+@param&nbsp;idx&nbsp;:&nbsp;the&nbsp;index&nbsp;to&nbsp;insert&nbsp;the&nbsp;bytecode<br>
+@param&nbsp;bytecode&nbsp;:&nbsp;a&nbsp;list&nbsp;which&nbsp;represent&nbsp;the&nbsp;bytecode<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;inserted&nbsp;bytecode</tt></dd></dl>
+
+<dl><dt><a name="JavaCode-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="JavaCode-show"><strong>show</strong></a>(self)</dt><dd><tt>Display&nbsp;the&nbsp;code&nbsp;like&nbsp;a&nbsp;disassembler</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LineNumberTableAttribute">class <strong>LineNumberTableAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#LineNumberTableAttribute">LineNumberTableAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LineNumberTableAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="LineNumberTableAttribute-get_line_number_table"><strong>get_line_number_table</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LineNumberTableAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LineNumberTableAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="LineNumberTableAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LineNumberTableAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LocalVariableTableAttribute">class <strong>LocalVariableTableAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#LocalVariableTableAttribute">LocalVariableTableAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LocalVariableTableAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="LocalVariableTableAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LocalVariableTableAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="LocalVariableTableAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LocalVariableTableAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LocalVariableTypeTableAttribute">class <strong>LocalVariableTypeTableAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#LocalVariableTypeTableAttribute">LocalVariableTypeTableAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LocalVariableTypeTableAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="LocalVariableTypeTableAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LocalVariableTypeTableAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="LocalVariableTypeTableAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LocalVariableTypeTableAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Long">class <strong>Long</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Long">Long</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Long-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Long-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Long-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Long-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Long-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Long-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Long-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Long-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodInfo">class <strong>MethodInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;represents&nbsp;a&nbsp;Method<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MethodInfo-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_access"><strong>get_access</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_class_name"><strong>get_class_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_code"><strong>get_code</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_descriptor"><strong>get_descriptor</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_descriptor_index"><strong>get_descriptor_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_local_variables"><strong>get_local_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_name_index"><strong>get_name_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-pretty_show"><strong>pretty_show</strong></a>(self, vm_a)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_access"><strong>set_access</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_descriptor"><strong>set_descriptor</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_descriptor_index"><strong>set_descriptor_index</strong></a>(self, descriptor_index)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_name"><strong>set_name</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="MethodInfo-set_name_index"><strong>set_name_index</strong></a>(self, name_index)</dt></dl>
+
+<dl><dt><a name="MethodInfo-show"><strong>show</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodInfo-with_descriptor"><strong>with_descriptor</strong></a>(self, descriptor)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodRef">class <strong>MethodRef</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#MethodRef">MethodRef</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MethodRef-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_class_index"><strong>get_class_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_name_and_type_index"><strong>get_name_and_type_index</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="MethodRef-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodRef-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="MethodRef-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NameAndType">class <strong>NameAndType</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#NameAndType">NameAndType</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NameAndType-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_descriptor_index"><strong>get_descriptor_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_get_name_index"><strong>get_get_name_index</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_name_index"><strong>get_name_index</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="NameAndType-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NameAndType-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="NameAndType-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ParameterAnnotation">class <strong>ParameterAnnotation</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ParameterAnnotation-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="ParameterAnnotation-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ParameterAnnotation-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeInvisibleAnnotationsAttribute">class <strong>RuntimeInvisibleAnnotationsAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleAnnotationsAttribute">RuntimeVisibleAnnotationsAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeInvisibleAnnotationsAttribute">RuntimeInvisibleAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleAnnotationsAttribute">RuntimeVisibleAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RuntimeInvisibleAnnotationsAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleAnnotationsAttribute">RuntimeVisibleAnnotationsAttribute</a>:<br>
+<dl><dt><a name="RuntimeInvisibleAnnotationsAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="RuntimeInvisibleAnnotationsAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="RuntimeInvisibleAnnotationsAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeInvisibleAnnotationsAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeInvisibleParameterAnnotationsAttribute">class <strong>RuntimeInvisibleParameterAnnotationsAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleParameterAnnotationsAttribute">RuntimeVisibleParameterAnnotationsAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeInvisibleParameterAnnotationsAttribute">RuntimeInvisibleParameterAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleParameterAnnotationsAttribute">RuntimeVisibleParameterAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RuntimeInvisibleParameterAnnotationsAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleParameterAnnotationsAttribute">RuntimeVisibleParameterAnnotationsAttribute</a>:<br>
+<dl><dt><a name="RuntimeInvisibleParameterAnnotationsAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="RuntimeInvisibleParameterAnnotationsAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="RuntimeInvisibleParameterAnnotationsAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeInvisibleParameterAnnotationsAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeVisibleAnnotationsAttribute">class <strong>RuntimeVisibleAnnotationsAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleAnnotationsAttribute">RuntimeVisibleAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RuntimeVisibleAnnotationsAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleAnnotationsAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleAnnotationsAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="RuntimeVisibleAnnotationsAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleAnnotationsAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeVisibleParameterAnnotationsAttribute">class <strong>RuntimeVisibleParameterAnnotationsAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#RuntimeVisibleParameterAnnotationsAttribute">RuntimeVisibleParameterAnnotationsAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RuntimeVisibleParameterAnnotationsAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleParameterAnnotationsAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleParameterAnnotationsAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="RuntimeVisibleParameterAnnotationsAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RuntimeVisibleParameterAnnotationsAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SameFrame">class <strong>SameFrame</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SameFrame-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="SameFrame-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SameFrame-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="SameFrame-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SameFrameExtended">class <strong>SameFrameExtended</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SameFrameExtended-__init__"><strong>__init__</strong></a>(self, buff)</dt></dl>
+
+<dl><dt><a name="SameFrameExtended-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SameFrameExtended-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="SameFrameExtended-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SameLocals1StackItemFrame">class <strong>SameLocals1StackItemFrame</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SameLocals1StackItemFrame-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrame-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrame-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrame-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SameLocals1StackItemFrameExtended">class <strong>SameLocals1StackItemFrameExtended</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SameLocals1StackItemFrameExtended-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrameExtended-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrameExtended-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="SameLocals1StackItemFrameExtended-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SignatureAttribute">class <strong>SignatureAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#SignatureAttribute">SignatureAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SignatureAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="SignatureAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SignatureAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="SignatureAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SignatureAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SourceDebugExtensionAttribute">class <strong>SourceDebugExtensionAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#SourceDebugExtensionAttribute">SourceDebugExtensionAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SourceDebugExtensionAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="SourceDebugExtensionAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SourceDebugExtensionAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="SourceDebugExtensionAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SourceDebugExtensionAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SourceFileAttribute">class <strong>SourceFileAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#SourceFileAttribute">SourceFileAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SourceFileAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="SourceFileAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SourceFileAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="SourceFileAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SourceFileAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StackMapTableAttribute">class <strong>StackMapTableAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#StackMapTableAttribute">StackMapTableAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="StackMapTableAttribute-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="StackMapTableAttribute-get_entries"><strong>get_entries</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StackMapTableAttribute-get_local_variables"><strong>get_local_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StackMapTableAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StackMapTableAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="StackMapTableAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="StackMapTableAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="String">class <strong>String</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#String">String</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="String-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="String-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="String-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="String-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="String-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="String-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="String-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="String-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SyntheticAttribute">class <strong>SyntheticAttribute</strong></a>(<a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#SyntheticAttribute">SyntheticAttribute</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SyntheticAttribute-__init__"><strong>__init__</strong></a>(self, cm, buff)</dt></dl>
+
+<dl><dt><a name="SyntheticAttribute-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SyntheticAttribute-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><a name="SyntheticAttribute-get_attributes"><strong>get_attributes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SyntheticAttribute-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#BasicAttribute">BasicAttribute</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Utf8">class <strong>Utf8</strong></a>(<a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.bytecodes.jvm.html#Utf8">Utf8</a></dd>
+<dd><a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Utf8-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><a name="Utf8-get_bytes"><strong>get_bytes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Utf8-get_format"><strong>get_format</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Utf8-get_length"><strong>get_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Utf8-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Utf8-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Utf8-set_bytes"><strong>set_bytes</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Utf8-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.bytecodes.jvm.html#CpInfo">CpInfo</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="VerificationTypeInfo">class <strong>VerificationTypeInfo</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="VerificationTypeInfo-__init__"><strong>__init__</strong></a>(self, class_manager, buff)</dt></dl>
+
+<dl><dt><a name="VerificationTypeInfo-get_raw"><strong>get_raw</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="VerificationTypeInfo-set_cm"><strong>set_cm</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="VerificationTypeInfo-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-EXTRACT_INFORMATION_SIMPLE"><strong>EXTRACT_INFORMATION_SIMPLE</strong></a>(op_value)</dt><dd><tt>Extract&nbsp;information&nbsp;(special&nbsp;functions)&nbsp;about&nbsp;a&nbsp;bytecode</tt></dd></dl>
+ <dl><dt><a name="-EXTRACT_INFORMATION_VARIABLE"><strong>EXTRACT_INFORMATION_VARIABLE</strong></a>(idx, op_value, raw_format)</dt></dl>
+ <dl><dt><a name="-LookupSwitch"><strong>LookupSwitch</strong></a>(idx, raw_format)</dt></dl>
+ <dl><dt><a name="-TableSwitch"><strong>TableSwitch</strong></a>(idx, raw_format)</dt></dl>
+ <dl><dt><a name="-calcsize"><strong>calcsize</strong></a>(...)</dt><dd><tt>Return&nbsp;size&nbsp;of&nbsp;C&nbsp;struct&nbsp;described&nbsp;by&nbsp;format&nbsp;string&nbsp;fmt.</tt></dd></dl>
+ <dl><dt><a name="-classToJclass"><strong>classToJclass</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-determineException"><strong>determineException</strong></a>(vm, m)</dt></dl>
+ <dl><dt><a name="-determineNext"><strong>determineNext</strong></a>(i, end, m)</dt></dl>
+ <dl><dt><a name="-formatFD"><strong>formatFD</strong></a>(v)</dt></dl>
+ <dl><dt><a name="-pack"><strong>pack</strong></a>(...)</dt><dd><tt>Return&nbsp;string&nbsp;containing&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;packed&nbsp;according&nbsp;to&nbsp;fmt.</tt></dd></dl>
+ <dl><dt><a name="-specialSwitch"><strong>specialSwitch</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F0"><strong>special_F0</strong></a>(x)</dt><dd><tt>#&nbsp;Special&nbsp;functions&nbsp;to&nbsp;manage&nbsp;more&nbsp;easily&nbsp;special&nbsp;arguments&nbsp;of&nbsp;bytecode</tt></dd></dl>
+ <dl><dt><a name="-special_F0R"><strong>special_F0R</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F1"><strong>special_F1</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F1R"><strong>special_F1R</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F2"><strong>special_F2</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F2R"><strong>special_F2R</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F3"><strong>special_F3</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F3R"><strong>special_F3R</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F4"><strong>special_F4</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-special_F4R"><strong>special_F4R</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-unpack"><strong>unpack</strong></a>(...)</dt><dd><tt>Unpack&nbsp;the&nbsp;string&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according&nbsp;to&nbsp;fmt.<br>
+Requires&nbsp;len(string)&nbsp;==&nbsp;<a href="#-calcsize">calcsize</a>(fmt).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ACC_CLASS_FLAGS</strong> = {1: ['ACC_PUBLIC', 'Declared public; may be accessed from outside its package.'], 16: ['ACC_FINAL', 'Declared final; no subclasses allowed.'], 32: ['ACC_SUPER', 'Treat superclass methods specially when invoked by the invokespecial instruction.'], 512: ['ACC_INTERFACE', 'Is an interface, not a class.'], 1024: ['ACC_ABSTRACT', 'Declared abstract; may not be instantiated.']}<br>
+<strong>ACC_FIELD_FLAGS</strong> = {1: ['ACC_PUBLIC', 'Declared public; may be accessed from outside its package.'], 2: ['ACC_PRIVATE', 'Declared private; usable only within the defining class.'], 4: ['ACC_PROTECTED', 'Declared protected; may be accessed within subclasses.'], 8: ['ACC_STATIC', 'Declared static.'], 16: ['ACC_FINAL', 'Declared final; no further assignment after initialization.'], 64: ['ACC_VOLATILE', 'Declared volatile; cannot be cached.'], 128: ['ACC_TRANSIENT', 'Declared transient; not written or read by a persistent object manager.']}<br>
+<strong>ACC_METHOD_FLAGS</strong> = {1: ['ACC_PUBLIC', 'Declared public; may be accessed from outside its package.'], 2: ['ACC_PRIVATE', 'Declared private; accessible only within the defining class.'], 4: ['ACC_PROTECTED', 'Declared protected; may be accessed within subclasses.'], 8: ['ACC_STATIC', 'Declared static.'], 16: ['ACC_FINAL', 'Declared final; may not be overridden.'], 32: ['ACC_SYNCHRONIZED', 'Declared synchronized; invocation is wrapped in a monitor lock.'], 256: ['ACC_NATIVE', 'Declared native; implemented in a language other than Java.'], 1024: ['ACC_ABSTRACT', 'Declared abstract; no implementation is provided.'], 2048: ['ACC_STRICT', 'Declared strictfp; floating-point mode is FP-strict']}<br>
+<strong>ARRAY_TYPE</strong> = {4: 'T_BOOLEAN', 5: 'T_CHAR', 6: 'T_FLOAT', 7: 'T_DOUBLE', 8: 'T_BYTE', 9: 'T_SHORT', 10: 'T_INT', 11: 'T_LONG'}<br>
+<strong>ATTRIBUTE_INFO</strong> = ['&gt;HL', &lt;class 'androguard.core.bytecodes.jvm.AttributeInfo'&gt;]<br>
+<strong>ATTRIBUTE_INFO_DESCR</strong> = {'AnnotationDefault': &lt;class 'androguard.core.bytecodes.jvm.AnnotationDefaultAttribute'&gt;, 'Code': &lt;class 'androguard.core.bytecodes.jvm.CodeAttribute'&gt;, 'ConstantValue': &lt;class 'androguard.core.bytecodes.jvm.ConstantValueAttribute'&gt;, 'Deprecated': &lt;class 'androguard.core.bytecodes.jvm.DeprecatedAttribute'&gt;, 'EnclosingMethod': &lt;class 'androguard.core.bytecodes.jvm.EnclosingMethodAttribute'&gt;, 'Exceptions': &lt;class 'androguard.core.bytecodes.jvm.ExceptionsAttribute'&gt;, 'InnerClasses': &lt;class 'androguard.core.bytecodes.jvm.InnerClassesAttribute'&gt;, 'LineNumberTable': &lt;class 'androguard.core.bytecodes.jvm.LineNumberTableAttribute'&gt;, 'LocalVariableTable': &lt;class 'androguard.core.bytecodes.jvm.LocalVariableTableAttribute'&gt;, 'LocalVariableTypeTable': &lt;class 'androguard.core.bytecodes.jvm.LocalVariableTypeTableAttribute'&gt;, ...}<br>
+<strong>BRANCH2_JVM_OPCODES</strong> = ['goto', 'goto.', 'jsr', 'jsr.', 'if.', 'return', '.return', 'tableswitch', 'lookupswitch']<br>
+<strong>BRANCH_JVM_OPCODES</strong> = ['goto', 'goto_w', 'if_acmpeq', 'if_icmpeq', 'if_icmpne', 'if_icmplt', 'if_icmpge', 'if_icmpgt', 'if_icmple', 'ifeq', 'ifne', 'iflt', 'ifge', 'ifgt', 'ifle', 'ifnonnull', 'ifnull', 'jsr', 'jsr_w']<br>
+<strong>BREAK_JVM_OPCODES</strong> = ['invoke.', 'put.', '.store', 'iinc', 'pop', '.return', 'if.']<br>
+<strong>CODE_LOW_STRUCT</strong> = ['&gt;HHL', &lt;class 'androguard.core.bytecodes.jvm.LOW'&gt;]<br>
+<strong>CONSTANT_INFO</strong> = {1: ['CONSTANT_Utf8', '&gt;BH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Utf8_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Utf8'&gt;], 3: ['CONSTANT_Integer', '&gt;BL', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Integer_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Integer'&gt;], 4: ['CONSTANT_Float', '&gt;BL', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Float_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Float'&gt;], 5: ['CONSTANT_Long', '&gt;BLL', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Long_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Long'&gt;], 6: ['CONSTANT_Double', '&gt;BLL', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Long_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Double'&gt;], 7: ['CONSTANT_Class', '&gt;BH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Class_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.Class'&gt;], 8: ['CONSTANT_String', '&gt;BH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_String_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.String'&gt;], 9: ['CONSTANT_Fieldref', '&gt;BHH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Fieldref_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.FieldRef'&gt;], 10: ['CONSTANT_Methodref', '&gt;BHH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_Methodref_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.MethodRef'&gt;], 11: ['CONSTANT_InterfaceMethodref', '&gt;BHH', &lt;class 'androguard.core.bytecodes.jvm.CONSTANT_InterfaceMethodref_info'&gt;, &lt;class 'androguard.core.bytecodes.jvm.InterfaceMethodRef'&gt;], ...}<br>
+<strong>ENUM_CONST_VALUE</strong> = ['&gt;HH', &lt;class 'androguard.core.bytecodes.jvm.EnumConstValue'&gt;]<br>
+<strong>EXCEPTION_TABLE</strong> = ['&gt;HHHH', &lt;class 'androguard.core.bytecodes.jvm.ExceptionTable'&gt;]<br>
+<strong>FD</strong> = {'B': 'byte', 'C': 'char', 'D': 'double', 'F': 'float', 'I': 'int', 'J': 'long', 'S': 'short', 'V': 'void', 'Z': 'boolean'}<br>
+<strong>FIELD_INFO</strong> = ['&gt;HHHH', &lt;class 'androguard.core.bytecodes.jvm.FieldInfo'&gt;]<br>
+<strong>FIELD_READ_JVM_OPCODES</strong> = ['get.']<br>
+<strong>FIELD_WRITE_JVM_OPCODES</strong> = ['put.']<br>
+<strong>INTEGER_INSTRUCTIONS</strong> = ['bipush', 'sipush']<br>
+<strong>INVERT_ACC_CLASS_FLAGS</strong> = {'ACC_ABSTRACT': 1024, 'ACC_FINAL': 16, 'ACC_INTERFACE': 512, 'ACC_PUBLIC': 1, 'ACC_SUPER': 32}<br>
+<strong>INVERT_ACC_FIELD_FLAGS</strong> = {'ACC_FINAL': 16, 'ACC_PRIVATE': 2, 'ACC_PROTECTED': 4, 'ACC_PUBLIC': 1, 'ACC_STATIC': 8, 'ACC_TRANSIENT': 128, 'ACC_VOLATILE': 64}<br>
+<strong>INVERT_ACC_METHOD_FLAGS</strong> = {'ACC_ABSTRACT': 1024, 'ACC_FINAL': 16, 'ACC_NATIVE': 256, 'ACC_PRIVATE': 2, 'ACC_PROTECTED': 4, 'ACC_PUBLIC': 1, 'ACC_STATIC': 8, 'ACC_STRICT': 2048, 'ACC_SYNCHRONIZED': 32}<br>
+<strong>INVERT_ARRAY_TYPE</strong> = {'T': 11}<br>
+<strong>INVERT_CONSTANT_INFO</strong> = {'CONSTANT_Class': 7, 'CONSTANT_Double': 6, 'CONSTANT_Fieldref': 9, 'CONSTANT_Float': 4, 'CONSTANT_Integer': 3, 'CONSTANT_InterfaceMethodref': 11, 'CONSTANT_Long': 5, 'CONSTANT_Methodref': 10, 'CONSTANT_NameAndType': 12, 'CONSTANT_String': 8, ...}<br>
+<strong>INVERT_JAVA_OPCODES</strong> = {'aaload': 50, 'aastore': 83, 'aconst_null': 1, 'aload': 25, 'aload_0': 42, 'aload_1': 43, 'aload_2': 44, 'aload_3': 45, 'anewarray': 189, 'areturn': 176, ...}<br>
+<strong>INVOKE_JVM_OPCODES</strong> = ['invoke.']<br>
+<strong>ITEM_Double</strong> = 3<br>
+<strong>ITEM_Float</strong> = 2<br>
+<strong>ITEM_Integer</strong> = 1<br>
+<strong>ITEM_Long</strong> = 4<br>
+<strong>ITEM_Null</strong> = 5<br>
+<strong>ITEM_Object</strong> = 7<br>
+<strong>ITEM_Top</strong> = 0<br>
+<strong>ITEM_Uninitialized</strong> = 8<br>
+<strong>ITEM_UninitializedThis</strong> = 6<br>
+<strong>JAVA_OPCODES</strong> = {0: ['nop'], 1: ['aconst_null'], 2: ['iconst_m1'], 3: ['iconst_0'], 4: ['iconst_1'], 5: ['iconst_2'], 6: ['iconst_3'], 7: ['iconst_4'], 8: ['iconst_5'], 9: ['lconst_0'], ...}<br>
+<strong>LINE_NUMBER_TABLE</strong> = ['&gt;HH', &lt;class 'androguard.core.bytecodes.jvm.LineNumberTable'&gt;]<br>
+<strong>LOCAL_VARIABLE_TABLE</strong> = ['&gt;HHHHH', &lt;class 'androguard.core.bytecodes.jvm.LocalVariableTable'&gt;]<br>
+<strong>LOCAL_VARIABLE_TYPE_TABLE</strong> = ['&gt;HHHHH', &lt;class 'androguard.core.bytecodes.jvm.LocalVariableTypeTable'&gt;]<br>
+<strong>MATH_JVM_OPCODES</strong> = {'.add': '+', '.and': '&amp;', '.div': '/', '.mul': '*', '.or': '|', '.shl': '&lt;&lt;', '.shr': '&gt;&gt;', '.sub': '-', '.xor': '^'}<br>
+<strong>MATH_JVM_RE</strong> = [(&lt;_sre.SRE_Pattern object&gt;, '&lt;&lt;'), (&lt;_sre.SRE_Pattern object&gt;, '^'), (&lt;_sre.SRE_Pattern object&gt;, '&gt;&gt;'), (&lt;_sre.SRE_Pattern object&gt;, '*'), (&lt;_sre.SRE_Pattern object&gt;, '/'), (&lt;_sre.SRE_Pattern object&gt;, '-'), (&lt;_sre.SRE_Pattern object&gt;, '&amp;'), (&lt;_sre.SRE_Pattern object&gt;, '|'), (&lt;_sre.SRE_Pattern object&gt;, '+')]<br>
+<strong>METHOD_INFO</strong> = ['&gt;HHHH', &lt;class 'androguard.core.bytecodes.jvm.MethodInfo'&gt;]<br>
+<strong>VERIFICATION_TYPE_INFO</strong> = {0: ['Top_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Top_variable_info'&gt;], 1: ['Integer_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Integer_variable_info'&gt;], 2: ['Float_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Float_variable_info'&gt;], 3: ['Double_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Double_variable_info'&gt;], 4: ['Long_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Long_variable_info'&gt;], 5: ['Null_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.Null_variable_info'&gt;], 6: ['UninitializedThis_variable_info', '&gt;B', &lt;class 'androguard.core.bytecodes.jvm.UninitializedThis_variable_info'&gt;], 7: ['Object_variable_info', '&gt;BH', &lt;class 'androguard.core.bytecodes.jvm.Object_variable_info'&gt;, [('cpool_index', 'get_class')]], 8: ['Uninitialized_variable_info', '&gt;BH', &lt;class 'androguard.core.bytecodes.jvm.Uninitialized_variable_info'&gt;]}<br>
+<strong>i</strong> = '.add'<br>
+<strong>k</strong> = 12</td></tr></table>
+</body></html>

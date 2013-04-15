@@ -1,0 +1,152 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.decompiler</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.decompiler</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/decompiler.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\decompiler.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2011,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="androguard.decompiler.dad.decompile.html">androguard.decompiler.dad.decompile</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="tempfile.html">tempfile</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.decompiler.html#DecompilerDAD">DecompilerDAD</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.decompiler.html#DecompilerDed">DecompilerDed</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.decompiler.html#DecompilerDex2Jad">DecompilerDex2Jad</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pygments.filter.html#Filter">pygments.filter.Filter</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.decompiler.html#MethodFilter">MethodFilter</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DecompilerDAD">class <strong>DecompilerDAD</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DecompilerDAD-__init__"><strong>__init__</strong></a>(self, vm, vmx)</dt></dl>
+
+<dl><dt><a name="DecompilerDAD-display_all"><strong>display_all</strong></a>(self, _class)</dt></dl>
+
+<dl><dt><a name="DecompilerDAD-display_source"><strong>display_source</strong></a>(self, m)</dt></dl>
+
+<dl><dt><a name="DecompilerDAD-get_all"><strong>get_all</strong></a>(self, class_name)</dt></dl>
+
+<dl><dt><a name="DecompilerDAD-get_source_class"><strong>get_source_class</strong></a>(self, _class)</dt></dl>
+
+<dl><dt><a name="DecompilerDAD-get_source_method"><strong>get_source_method</strong></a>(self, m)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DecompilerDed">class <strong>DecompilerDed</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DecompilerDed-__init__"><strong>__init__</strong></a>(self, vm, path<font color="#909090">='./decompiler/ded/'</font>, bin_ded<font color="#909090">='ded.sh'</font>, tmp_dir<font color="#909090">='/tmp/'</font>)</dt></dl>
+
+<dl><dt><a name="DecompilerDed-display_all"><strong>display_all</strong></a>(self, _class)</dt></dl>
+
+<dl><dt><a name="DecompilerDed-display_source"><strong>display_source</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="DecompilerDed-get_all"><strong>get_all</strong></a>(self, class_name)</dt></dl>
+
+<dl><dt><a name="DecompilerDed-get_source_method"><strong>get_source_method</strong></a>(self, method)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DecompilerDex2Jad">class <strong>DecompilerDex2Jad</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DecompilerDex2Jad-__init__"><strong>__init__</strong></a>(self, vm, path_dex2jar<font color="#909090">='./decompiler/dex2jar/'</font>, bin_dex2jar<font color="#909090">='dex2jar.sh'</font>, path_jad<font color="#909090">='./decompiler/jad/'</font>, bin_jad<font color="#909090">='jad'</font>, tmp_dir<font color="#909090">='/tmp/'</font>)</dt></dl>
+
+<dl><dt><a name="DecompilerDex2Jad-display_all"><strong>display_all</strong></a>(self, _class)</dt></dl>
+
+<dl><dt><a name="DecompilerDex2Jad-display_source"><strong>display_source</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="DecompilerDex2Jad-get_all"><strong>get_all</strong></a>(self, class_name)</dt></dl>
+
+<dl><dt><a name="DecompilerDex2Jad-get_source_method"><strong>get_source_method</strong></a>(self, method)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodFilter">class <strong>MethodFilter</strong></a>(<a href="pygments.filter.html#Filter">pygments.filter.Filter</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.decompiler.decompiler.html#MethodFilter">MethodFilter</a></dd>
+<dd><a href="pygments.filter.html#Filter">pygments.filter.Filter</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MethodFilter-__init__"><strong>__init__</strong></a>(self, **options)</dt></dl>
+
+<dl><dt><a name="MethodFilter-filter"><strong>filter</strong></a>(self, lexer, stream)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="pygments.filter.html#Filter">pygments.filter.Filter</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>PIPE</strong> = -1<br>
+<strong>PYGMENTS</strong> = True<br>
+<strong>STANDARD_TYPES</strong> = {Token: '', Token.Comment: 'c', Token.Comment.Multiline: 'cm', Token.Comment.Preproc: 'cp', Token.Comment.Single: 'c1', Token.Comment.Special: 'cs', Token.Error: 'err', Token.Generic: 'g', Token.Generic.Deleted: 'gd', Token.Generic.Emph: 'ge', ...}<br>
+<strong>STDOUT</strong> = -2<br>
+<strong>Text</strong> = Token.Text<br>
+<strong>Token</strong> = Token</td></tr></table>
+</body></html>

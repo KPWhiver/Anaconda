@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.writer</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.writer</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/writer.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\writer.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.writer.html#Writer">Writer</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Writer">class <strong>Writer</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Writer-__init__"><strong>__init__</strong></a>(self, graph, method)</dt></dl>
+
+<dl><dt><a name="Writer-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-dec_ind"><strong>dec_ind</strong></a>(self, i<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="Writer-end_ins"><strong>end_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-inc_ind"><strong>inc_ind</strong></a>(self, i<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="Writer-space"><strong>space</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-visit_alength"><strong>visit_alength</strong></a>(self, array)</dt></dl>
+
+<dl><dt><a name="Writer-visit_aload"><strong>visit_aload</strong></a>(self, array, index)</dt></dl>
+
+<dl><dt><a name="Writer-visit_assign"><strong>visit_assign</strong></a>(self, lhs, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_astore"><strong>visit_astore</strong></a>(self, array, index, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_base_class"><strong>visit_base_class</strong></a>(self, cls)</dt></dl>
+
+<dl><dt><a name="Writer-visit_binary_expression"><strong>visit_binary_expression</strong></a>(self, op, arg1, arg2)</dt></dl>
+
+<dl><dt><a name="Writer-visit_cast"><strong>visit_cast</strong></a>(self, op, arg)</dt></dl>
+
+<dl><dt><a name="Writer-visit_check_cast"><strong>visit_check_cast</strong></a>(self, arg, atype)</dt></dl>
+
+<dl><dt><a name="Writer-visit_cond_expression"><strong>visit_cond_expression</strong></a>(self, op, arg1, arg2)</dt></dl>
+
+<dl><dt><a name="Writer-visit_cond_node"><strong>visit_cond_node</strong></a>(self, cond)</dt></dl>
+
+<dl><dt><a name="Writer-visit_condz_expression"><strong>visit_condz_expression</strong></a>(self, op, arg)</dt></dl>
+
+<dl><dt><a name="Writer-visit_constant"><strong>visit_constant</strong></a>(self, cst)</dt></dl>
+
+<dl><dt><a name="Writer-visit_fill_array"><strong>visit_fill_array</strong></a>(self, array, value)</dt></dl>
+
+<dl><dt><a name="Writer-visit_filled_new_array"><strong>visit_filled_new_array</strong></a>(self, atype, size, args)</dt></dl>
+
+<dl><dt><a name="Writer-visit_get_instance"><strong>visit_get_instance</strong></a>(self, arg, name)</dt></dl>
+
+<dl><dt><a name="Writer-visit_get_static"><strong>visit_get_static</strong></a>(self, cls, name)</dt></dl>
+
+<dl><dt><a name="Writer-visit_ins"><strong>visit_ins</strong></a>(self, ins)</dt></dl>
+
+<dl><dt><a name="Writer-visit_invoke"><strong>visit_invoke</strong></a>(self, name, base, ptype, rtype, args)</dt></dl>
+
+<dl><dt><a name="Writer-visit_loop_node"><strong>visit_loop_node</strong></a>(self, loop)</dt></dl>
+
+<dl><dt><a name="Writer-visit_monitor_enter"><strong>visit_monitor_enter</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="Writer-visit_monitor_exit"><strong>visit_monitor_exit</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="Writer-visit_move"><strong>visit_move</strong></a>(self, lhs, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_move_result"><strong>visit_move_result</strong></a>(self, lhs, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_new"><strong>visit_new</strong></a>(self, atype)</dt></dl>
+
+<dl><dt><a name="Writer-visit_new_array"><strong>visit_new_array</strong></a>(self, atype, size)</dt></dl>
+
+<dl><dt><a name="Writer-visit_node"><strong>visit_node</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="Writer-visit_nop"><strong>visit_nop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-visit_param"><strong>visit_param</strong></a>(self, param)</dt></dl>
+
+<dl><dt><a name="Writer-visit_put_instance"><strong>visit_put_instance</strong></a>(self, lhs, name, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_put_static"><strong>visit_put_static</strong></a>(self, cls, name, rhs)</dt></dl>
+
+<dl><dt><a name="Writer-visit_return"><strong>visit_return</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Writer-visit_return_node"><strong>visit_return_node</strong></a>(self, ret)</dt></dl>
+
+<dl><dt><a name="Writer-visit_return_void"><strong>visit_return_void</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-visit_short_circuit_condition"><strong>visit_short_circuit_condition</strong></a>(self, nnot, aand, cond1, cond2)</dt></dl>
+
+<dl><dt><a name="Writer-visit_statement_node"><strong>visit_statement_node</strong></a>(self, stmt)</dt></dl>
+
+<dl><dt><a name="Writer-visit_switch"><strong>visit_switch</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Writer-visit_switch_node"><strong>visit_switch_node</strong></a>(self, switch)</dt></dl>
+
+<dl><dt><a name="Writer-visit_this"><strong>visit_this</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-visit_throw"><strong>visit_throw</strong></a>(self, ref)</dt></dl>
+
+<dl><dt><a name="Writer-visit_throw_node"><strong>visit_throw_node</strong></a>(self, throw)</dt></dl>
+
+<dl><dt><a name="Writer-visit_unary_expression"><strong>visit_unary_expression</strong></a>(self, op, arg)</dt></dl>
+
+<dl><dt><a name="Writer-visit_variable"><strong>visit_variable</strong></a>(self, var)</dt></dl>
+
+<dl><dt><a name="Writer-write"><strong>write</strong></a>(self, s)</dt></dl>
+
+<dl><dt><a name="Writer-write_ind"><strong>write_ind</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Writer-write_method"><strong>write_method</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-string"><strong>string</strong></a>(s)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ACCESS_FLAGS_METHODS</strong> = {1: 'public', 2: 'private', 4: 'protected', 8: 'static', 16: 'final', 32: 'synchronized', 64: 'bridge', 128: 'varargs', 256: 'native', 1024: 'abstract', ...}<br>
+<strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>

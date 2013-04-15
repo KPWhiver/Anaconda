@@ -1,0 +1,124 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.dataflow</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.dataflow</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/dataflow.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\dataflow.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.dataflow.html#BasicReachDef">BasicReachDef</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.dataflow.html#DummyNode">DummyNode</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BasicReachDef">class <strong>BasicReachDef</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BasicReachDef-__init__"><strong>__init__</strong></a>(self, graph, params)</dt></dl>
+
+<dl><dt><a name="BasicReachDef-run"><strong>run</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DummyNode">class <strong>DummyNode</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DummyNode-__init__"><strong>__init__</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="DummyNode-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DummyNode-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DummyNode-get_loc_with_ins"><strong>get_loc_with_ins</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-build_def_use"><strong>build_def_use</strong></a>(graph, lparams)</dt><dd><tt>Builds&nbsp;the&nbsp;Def-Use&nbsp;and&nbsp;Use-Def&nbsp;(DU/UD)&nbsp;chains&nbsp;of&nbsp;the&nbsp;variables&nbsp;of&nbsp;the<br>
+method.</tt></dd></dl>
+ <dl><dt><a name="-clear_path"><strong>clear_path</strong></a>(graph, reg, loc1, loc2)</dt><dd><tt>Check&nbsp;that&nbsp;the&nbsp;path&nbsp;from&nbsp;loc1&nbsp;to&nbsp;loc2&nbsp;is&nbsp;clear.<br>
+We&nbsp;have&nbsp;to&nbsp;check&nbsp;that&nbsp;there&nbsp;is&nbsp;no&nbsp;side&nbsp;effect&nbsp;between&nbsp;the&nbsp;two&nbsp;location<br>
+points.&nbsp;We&nbsp;also&nbsp;have&nbsp;to&nbsp;check&nbsp;that&nbsp;the&nbsp;variable&nbsp;`reg`&nbsp;is&nbsp;not&nbsp;redefined<br>
+along&nbsp;one&nbsp;of&nbsp;the&nbsp;possible&nbsp;pathes&nbsp;from&nbsp;loc1&nbsp;to&nbsp;loc2.</tt></dd></dl>
+ <dl><dt><a name="-clear_path_node"><strong>clear_path_node</strong></a>(graph, reg, loc1, loc2)</dt></dl>
+ <dl><dt><a name="-dead_code_elimination"><strong>dead_code_elimination</strong></a>(graph, du, ud)</dt><dd><tt>Run&nbsp;a&nbsp;dead&nbsp;code&nbsp;elimination&nbsp;pass.<br>
+Instructions&nbsp;are&nbsp;checked&nbsp;to&nbsp;be&nbsp;dead.&nbsp;If&nbsp;it&nbsp;is&nbsp;the&nbsp;case,&nbsp;we&nbsp;remove&nbsp;them&nbsp;and<br>
+we&nbsp;update&nbsp;the&nbsp;DU&nbsp;&amp;&nbsp;UD&nbsp;chains&nbsp;of&nbsp;its&nbsp;variables&nbsp;to&nbsp;check&nbsp;for&nbsp;further&nbsp;dead<br>
+instructions.</tt></dd></dl>
+ <dl><dt><a name="-dominance_frontier"><strong>dominance_frontier</strong></a>(graph, immdoms)</dt><dd><tt>Create&nbsp;the&nbsp;dominance&nbsp;frontier&nbsp;of&nbsp;each&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph.<br>
+The&nbsp;dominance&nbsp;frontier&nbsp;of&nbsp;a&nbsp;node&nbsp;n&nbsp;is&nbsp;the&nbsp;set&nbsp;of&nbsp;all&nbsp;nodes&nbsp;m&nbsp;such&nbsp;that<br>
+n&nbsp;dominates&nbsp;an&nbsp;immediate&nbsp;predecessor&nbsp;of&nbsp;m&nbsp;but&nbsp;does&nbsp;not&nbsp;strictly&nbsp;dominate&nbsp;m.</tt></dd></dl>
+ <dl><dt><a name="-register_propagation"><strong>register_propagation</strong></a>(graph, du, ud)</dt><dd><tt>Propagate&nbsp;the&nbsp;temporary&nbsp;registers&nbsp;between&nbsp;instructions&nbsp;and&nbsp;remove&nbsp;them&nbsp;if<br>
+necessary.<br>
+We&nbsp;process&nbsp;the&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph&nbsp;in&nbsp;reverse&nbsp;post&nbsp;order.&nbsp;For&nbsp;each<br>
+instruction&nbsp;in&nbsp;the&nbsp;node,&nbsp;we&nbsp;look&nbsp;at&nbsp;the&nbsp;variables&nbsp;that&nbsp;it&nbsp;uses.&nbsp;For&nbsp;each&nbsp;of<br>
+these&nbsp;variables&nbsp;we&nbsp;look&nbsp;where&nbsp;it&nbsp;is&nbsp;defined&nbsp;and&nbsp;if&nbsp;we&nbsp;can&nbsp;replace&nbsp;it&nbsp;with<br>
+its&nbsp;definition.<br>
+We&nbsp;have&nbsp;to&nbsp;be&nbsp;careful&nbsp;to&nbsp;the&nbsp;side&nbsp;effects&nbsp;some&nbsp;instructions&nbsp;may&nbsp;have.<br>
+To&nbsp;do&nbsp;the&nbsp;propagation,&nbsp;we&nbsp;use&nbsp;the&nbsp;computed&nbsp;DU&nbsp;and&nbsp;UD&nbsp;chains.</tt></dd></dl>
+ <dl><dt><a name="-update_chain"><strong>update_chain</strong></a>(graph, loc, du, ud)</dt><dd><tt>Updates&nbsp;the&nbsp;DU&nbsp;chain&nbsp;of&nbsp;the&nbsp;instruction&nbsp;located&nbsp;at&nbsp;loc&nbsp;such&nbsp;that&nbsp;there&nbsp;is<br>
+no&nbsp;more&nbsp;reference&nbsp;to&nbsp;it&nbsp;so&nbsp;that&nbsp;we&nbsp;can&nbsp;remove&nbsp;it.<br>
+When&nbsp;an&nbsp;instruction&nbsp;is&nbsp;found&nbsp;to&nbsp;be&nbsp;dead&nbsp;(i.e&nbsp;it&nbsp;has&nbsp;no&nbsp;side&nbsp;effect,&nbsp;and&nbsp;the<br>
+register&nbsp;defined&nbsp;is&nbsp;not&nbsp;used)&nbsp;we&nbsp;have&nbsp;to&nbsp;update&nbsp;the&nbsp;DU&nbsp;chain&nbsp;of&nbsp;all&nbsp;the<br>
+variables&nbsp;that&nbsp;may&nbsp;me&nbsp;used&nbsp;by&nbsp;the&nbsp;dead&nbsp;instruction.</tt></dd></dl>
+</td></tr></table>
+</body></html>

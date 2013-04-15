@@ -1,0 +1,984 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.core.analysis.analysis</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.core.html"><font color="#ffffff">core</font></a>.<a href="androguard.core.analysis.html"><font color="#ffffff">analysis</font></a>.analysis</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/core/analysis/analysis.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\core\analysis\analysis.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(C)&nbsp;2012,&nbsp;Anthony&nbsp;Desnos&nbsp;&lt;desnos&nbsp;at&nbsp;t0t0.fr&gt;<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="cPickle.html">cPickle</a><br>
+<a href="androguard.core.bytecodes.dvm.html">androguard.core.bytecodes.dvm</a><br>
+</td><td width="25%" valign=top><a href="androguard.core.bytecodes.jvm.html">androguard.core.bytecodes.jvm</a><br>
+<a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="string.html">string</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#BreakBlock">BreakBlock</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#JVMBreakBlock">JVMBreakBlock</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#Enum">Enum</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#BasicBlocks">BasicBlocks</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ContextField">ContextField</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ContextMethod">ContextMethod</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#DVMBasicBlock">DVMBasicBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ExceptionAnalysis">ExceptionAnalysis</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#Exceptions">Exceptions</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ExternalFM">ExternalFM</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ExternalMethod">ExternalMethod</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#JVMBasicBlock">JVMBasicBlock</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#MethodAnalysis">MethodAnalysis</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#PathP">PathP</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#PathVar">PathVar</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ReturnValues">ReturnValues</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#Stack">Stack</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#StackTraces">StackTraces</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#Tags">Tags</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#TaintedPackage">TaintedPackage</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#TaintedPackages">TaintedPackages</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#TaintedVariable">TaintedVariable</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#TaintedVariables">TaintedVariables</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#ToString">ToString</a>
+</font></dt><dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#VMAnalysis">VMAnalysis</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.core.analysis.analysis.html#uVMAnalysis">uVMAnalysis</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BasicBlocks">class <strong>BasicBlocks</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;all&nbsp;basic&nbsp;blocks&nbsp;of&nbsp;a&nbsp;method<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BasicBlocks-__init__"><strong>__init__</strong></a>(self, _vm, tv)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-get"><strong>get</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;return&nbsp;each&nbsp;basic&nbsp;block&nbsp;(:class:`<a href="#DVMBasicBlock">DVMBasicBlock</a>`&nbsp;<a href="__builtin__.html#object">object</a>)</tt></dd></dl>
+
+<dl><dt><a name="BasicBlocks-get_basic_block"><strong>get_basic_block</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-get_basic_block_pos"><strong>get_basic_block_pos</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-get_tainted_integers"><strong>get_tainted_integers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-get_tainted_packages"><strong>get_tainted_packages</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-get_tainted_variables"><strong>get_tainted_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-gets"><strong>gets</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;basic&nbsp;blocks&nbsp;(:class:`<a href="#DVMBasicBlock">DVMBasicBlock</a>`&nbsp;objects)</tt></dd></dl>
+
+<dl><dt><a name="BasicBlocks-pop"><strong>pop</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="BasicBlocks-push"><strong>push</strong></a>(self, bb)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BreakBlock">class <strong>BreakBlock</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BreakBlock-__init__"><strong>__init__</strong></a>(self, _vm, idx)</dt></dl>
+
+<dl><dt><a name="BreakBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BreakBlock-get_fields"><strong>get_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BreakBlock-get_methods"><strong>get_methods</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BreakBlock-get_ops"><strong>get_ops</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BreakBlock-get_start"><strong>get_start</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BreakBlock-push"><strong>push</strong></a>(self, ins)</dt></dl>
+
+<dl><dt><a name="BreakBlock-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ContextField">class <strong>ContextField</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ContextField-__init__"><strong>__init__</strong></a>(self, mode)</dt></dl>
+
+<dl><dt><a name="ContextField-set_details"><strong>set_details</strong></a>(self, details)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ContextMethod">class <strong>ContextMethod</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ContextMethod-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ContextMethod-set_details"><strong>set_details</strong></a>(self, details)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DVMBasicBlock">class <strong>DVMBasicBlock</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;simple&nbsp;basic&nbsp;block&nbsp;of&nbsp;a&nbsp;dalvik&nbsp;method<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DVMBasicBlock-__init__"><strong>__init__</strong></a>(self, start, vm, method, context)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_exception_analysis"><strong>get_exception_analysis</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_instructions"><strong>get_instructions</strong></a>(self)</dt><dd><tt>Get&nbsp;all&nbsp;instructions&nbsp;from&nbsp;a&nbsp;basic&nbsp;block.<br>
+&nbsp;<br>
+:rtype:&nbsp;Return&nbsp;all&nbsp;instructions&nbsp;in&nbsp;the&nbsp;current&nbsp;basic&nbsp;block</tt></dd></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_last"><strong>get_last</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_last_length"><strong>get_last_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_method"><strong>get_method</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_nb_instructions"><strong>get_nb_instructions</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_next"><strong>get_next</strong></a>(self)</dt><dd><tt>Get&nbsp;next&nbsp;basic&nbsp;blocks<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;next&nbsp;basic&nbsp;blocks</tt></dd></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_prev"><strong>get_prev</strong></a>(self)</dt><dd><tt>Get&nbsp;previous&nbsp;basic&nbsp;blocks<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;previous&nbsp;basic&nbsp;blocks</tt></dd></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_special_ins"><strong>get_special_ins</strong></a>(self, idx)</dt><dd><tt>Return&nbsp;the&nbsp;associated&nbsp;instruction&nbsp;to&nbsp;a&nbsp;specific&nbsp;instruction&nbsp;(for&nbsp;example&nbsp;a&nbsp;packed/sparse&nbsp;switch)<br>
+&nbsp;<br>
+:param&nbsp;idx:&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;instruction<br>
+&nbsp;<br>
+:rtype:&nbsp;None&nbsp;or&nbsp;an&nbsp;Instruction</tt></dd></dl>
+
+<dl><dt><a name="DVMBasicBlock-get_start"><strong>get_start</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-push"><strong>push</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-set_childs"><strong>set_childs</strong></a>(self, values)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-set_exception_analysis"><strong>set_exception_analysis</strong></a>(self, exception_analysis)</dt></dl>
+
+<dl><dt><a name="DVMBasicBlock-set_fathers"><strong>set_fathers</strong></a>(self, f)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Enum">class <strong>Enum</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Enum-__init__"><strong>__init__</strong></a>(self, names)</dt></dl>
+
+<dl><dt><a name="Enum-tuples"><strong>tuples</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExceptionAnalysis">class <strong>ExceptionAnalysis</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExceptionAnalysis-__init__"><strong>__init__</strong></a>(self, exception, bb)</dt></dl>
+
+<dl><dt><a name="ExceptionAnalysis-show_buff"><strong>show_buff</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Exceptions">class <strong>Exceptions</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Exceptions-__init__"><strong>__init__</strong></a>(self, _vm)</dt></dl>
+
+<dl><dt><a name="Exceptions-add"><strong>add</strong></a>(self, exceptions, basic_blocks)</dt></dl>
+
+<dl><dt><a name="Exceptions-get"><strong>get</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Exceptions-get_exception"><strong>get_exception</strong></a>(self, addr_start, addr_end)</dt></dl>
+
+<dl><dt><a name="Exceptions-gets"><strong>gets</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExternalFM">class <strong>ExternalFM</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExternalFM-__init__"><strong>__init__</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="ExternalFM-get_class_name"><strong>get_class_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExternalFM-get_descriptor"><strong>get_descriptor</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExternalFM-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExternalMethod">class <strong>ExternalMethod</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExternalMethod-__init__"><strong>__init__</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="ExternalMethod-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExternalMethod-set_fathers"><strong>set_fathers</strong></a>(self, f)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JVMBasicBlock">class <strong>JVMBasicBlock</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="JVMBasicBlock-__init__"><strong>__init__</strong></a>(self, start, vm, method, context)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-analyze"><strong>analyze</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-analyze_break_blocks"><strong>analyze_break_blocks</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-analyze_code"><strong>analyze_code</strong></a>(self)</dt><dd><tt>#&nbsp;FIXME&nbsp;:&nbsp;create&nbsp;a&nbsp;recursive&nbsp;function&nbsp;to&nbsp;follow&nbsp;the&nbsp;cfg,&nbsp;because&nbsp;it&nbsp;does&nbsp;not&nbsp;work&nbsp;with&nbsp;obfuscator</tt></dd></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_break_block"><strong>get_break_block</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_ins"><strong>get_ins</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_last"><strong>get_last</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_method"><strong>get_method</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_random_break_block"><strong>get_random_break_block</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_random_free_block_offset"><strong>get_random_free_block_offset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_stack"><strong>get_stack</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-get_start"><strong>get_start</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-next_free_block_offset"><strong>next_free_block_offset</strong></a>(self, idx<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-prev_free_block_offset"><strong>prev_free_block_offset</strong></a>(self, idx<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-push"><strong>push</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-random_free_block_offset"><strong>random_free_block_offset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-set_childs"><strong>set_childs</strong></a>(self, values)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-set_exception"><strong>set_exception</strong></a>(self, exception_analysis)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-set_fathers"><strong>set_fathers</strong></a>(self, f)</dt></dl>
+
+<dl><dt><a name="JVMBasicBlock-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="JVMBreakBlock">class <strong>JVMBreakBlock</strong></a>(<a href="androguard.core.analysis.analysis.html#BreakBlock">BreakBlock</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="androguard.core.analysis.analysis.html#JVMBreakBlock">JVMBreakBlock</a></dd>
+<dd><a href="androguard.core.analysis.analysis.html#BreakBlock">BreakBlock</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="JVMBreakBlock-__init__"><strong>__init__</strong></a>(self, _vm, idx)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-analyze"><strong>analyze</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-get_free"><strong>get_free</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-trans"><strong>trans</strong></a>(self, i)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.analysis.analysis.html#BreakBlock">BreakBlock</a>:<br>
+<dl><dt><a name="JVMBreakBlock-get_end"><strong>get_end</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-get_fields"><strong>get_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-get_methods"><strong>get_methods</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-get_ops"><strong>get_ops</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-get_start"><strong>get_start</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-push"><strong>push</strong></a>(self, ins)</dt></dl>
+
+<dl><dt><a name="JVMBreakBlock-show"><strong>show</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="androguard.core.analysis.analysis.html#BreakBlock">BreakBlock</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MethodAnalysis">class <strong>MethodAnalysis</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;analyses&nbsp;in&nbsp;details&nbsp;a&nbsp;method&nbsp;of&nbsp;a&nbsp;class/dex&nbsp;file<br>
+&nbsp;<br>
+:param&nbsp;vm:&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;represent&nbsp;the&nbsp;dex&nbsp;file<br>
+:param&nbsp;method:&nbsp;the&nbsp;original&nbsp;method<br>
+:param&nbsp;tv:&nbsp;a&nbsp;virtual&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;to&nbsp;get&nbsp;access&nbsp;to&nbsp;tainted&nbsp;information<br>
+:type&nbsp;vm:&nbsp;a&nbsp;:class:`DalvikVMFormat`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:type&nbsp;method:&nbsp;a&nbsp;:class:`EncodedMethod`&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MethodAnalysis-__init__"><strong>__init__</strong></a>(self, vm, method, tv)</dt></dl>
+
+<dl><dt><a name="MethodAnalysis-create_tags"><strong>create_tags</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;tags&nbsp;for&nbsp;the&nbsp;method</tt></dd></dl>
+
+<dl><dt><a name="MethodAnalysis-get_basic_blocks"><strong>get_basic_blocks</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;a&nbsp;:class:`<a href="#BasicBlocks">BasicBlocks</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="MethodAnalysis-get_length"><strong>get_length</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;an&nbsp;integer&nbsp;which&nbsp;is&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;code</tt></dd></dl>
+
+<dl><dt><a name="MethodAnalysis-get_local_variables"><strong>get_local_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodAnalysis-get_method"><strong>get_method</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodAnalysis-get_tags"><strong>get_tags</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;tags&nbsp;of&nbsp;the&nbsp;method<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#Tags">Tags</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="MethodAnalysis-get_vm"><strong>get_vm</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodAnalysis-show"><strong>show</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MethodAnalysis-show_methods"><strong>show_methods</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PathP">class <strong>PathP</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PathP-__init__"><strong>__init__</strong></a>(self, access, idx, src_idx, dst_idx)</dt></dl>
+
+<dl><dt><a name="PathP-get_access_flag"><strong>get_access_flag</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PathP-get_dst"><strong>get_dst</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="PathP-get_dst_idx"><strong>get_dst_idx</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PathP-get_idx"><strong>get_idx</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PathP-get_src"><strong>get_src</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="PathP-get_src_idx"><strong>get_src_idx</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PathVar">class <strong>PathVar</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PathVar-__init__"><strong>__init__</strong></a>(self, access, idx, dst_idx, info_obj)</dt></dl>
+
+<dl><dt><a name="PathVar-get_access_flag"><strong>get_access_flag</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PathVar-get_dst"><strong>get_dst</strong></a>(self, cm)</dt></dl>
+
+<dl><dt><a name="PathVar-get_idx"><strong>get_idx</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PathVar-get_var_info"><strong>get_var_info</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ReturnValues">class <strong>ReturnValues</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ReturnValues-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnValues-add_msg"><strong>add_msg</strong></a>(self, e)</dt></dl>
+
+<dl><dt><a name="ReturnValues-add_return"><strong>add_return</strong></a>(self, e)</dt></dl>
+
+<dl><dt><a name="ReturnValues-get_msg"><strong>get_msg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ReturnValues-get_return"><strong>get_return</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Stack">class <strong>Stack</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Stack-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Stack-get"><strong>get</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Stack-gets"><strong>gets</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Stack-insert_stack"><strong>insert_stack</strong></a>(self, idx, elems)</dt></dl>
+
+<dl><dt><a name="Stack-nil"><strong>nil</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Stack-pop"><strong>pop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Stack-push"><strong>push</strong></a>(self, elem)</dt></dl>
+
+<dl><dt><a name="Stack-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StackTraces">class <strong>StackTraces</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="StackTraces-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StackTraces-get"><strong>get</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StackTraces-save"><strong>save</strong></a>(self, idx, i_idx, ins, stack_pickle, msg_pickle)</dt></dl>
+
+<dl><dt><a name="StackTraces-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Tags">class <strong>Tags</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Handle&nbsp;specific&nbsp;tags<br>
+&nbsp;<br>
+:param&nbsp;patterns:<br>
+:params&nbsp;reverse:<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Tags-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="Tags-__init__"><strong>__init__</strong></a>(self, patterns<font color="#909090">={0: [0, 'Landroid'], 1: [0, 'Landroid/telephony'], 2: [0, 'Landroid/accessibilityservice'], 3: [0, 'Landroid/accounts'], 4: [0, 'Landroid/animation'], 5: [0, 'Landroid/app'], 6: [0, 'Landroid/bluetooth'], 7: [0, 'Landroid/content'], 8: [0, 'Landroid/database'], 9: [0, 'Landroid/drm'], ...}</font>, reverse<font color="#909090">={0: 'ANDROID', 1: 'TELEPHONY', 2: 'ACCESSIBILITYSERVICE', 3: 'ACCOUNTS', 4: 'ANIMATION', 5: 'APP', 6: 'BLUETOOTH', 7: 'CONTENT', 8: 'DATABASE', 9: 'DRM', ...}</font>)</dt></dl>
+
+<dl><dt><a name="Tags-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Tags-emit"><strong>emit</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="Tags-emit_by_classname"><strong>emit_by_classname</strong></a>(self, classname)</dt></dl>
+
+<dl><dt><a name="Tags-empty"><strong>empty</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TaintedPackage">class <strong>TaintedPackage</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TaintedPackage-__init__"><strong>__init__</strong></a>(self, vm, name)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_method"><strong>get_method</strong></a>(self, name, descriptor)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_methods"><strong>get_methods</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_new"><strong>get_new</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_objects_paths"><strong>get_objects_paths</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_paths"><strong>get_paths</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-get_paths_length"><strong>get_paths_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-gets"><strong>gets</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-push"><strong>push</strong></a>(self, access, idx, src_idx, dst_idx)</dt></dl>
+
+<dl><dt><a name="TaintedPackage-search_method"><strong>search_method</strong></a>(self, name, descriptor)</dt><dd><tt>@param&nbsp;name&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;method<br>
+@param&nbsp;descriptor&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;method<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackage-show"><strong>show</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TaintedPackages">class <strong>TaintedPackages</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TaintedPackages-__init__"><strong>__init__</strong></a>(self, _vm)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_external_packages"><strong>get_external_packages</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;external&nbsp;packages&nbsp;called&nbsp;in&nbsp;the&nbsp;application</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-get_internal_new_packages"><strong>get_internal_new_packages</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;internal&nbsp;packages&nbsp;created&nbsp;in&nbsp;the&nbsp;application</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-get_internal_packages"><strong>get_internal_packages</strong></a>(self)</dt><dd><tt>:rtype:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;internal&nbsp;packages&nbsp;called&nbsp;in&nbsp;the&nbsp;application</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-get_internal_packages_from_package"><strong>get_internal_packages_from_package</strong></a>(self, package)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_method"><strong>get_method</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_package"><strong>get_package</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_packages"><strong>get_packages</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_packages_by_bb"><strong>get_packages_by_bb</strong></a>(self, bb)</dt><dd><tt>:rtype:&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;packaged&nbsp;used&nbsp;in&nbsp;a&nbsp;basic&nbsp;block</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-get_packages_by_method"><strong>get_packages_by_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-get_permissions"><strong>get_permissions</strong></a>(self, permissions_needed)</dt><dd><tt>@param&nbsp;permissions_needed&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;restricted&nbsp;permissions&nbsp;to&nbsp;get&nbsp;([]&nbsp;returns&nbsp;all&nbsp;permissions)<br>
+@rtype&nbsp;:&nbsp;a&nbsp;dictionnary&nbsp;of&nbsp;permissions'&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-get_permissions_method"><strong>get_permissions_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="TaintedPackages-push_info"><strong>push_info</strong></a>(self, class_name, access, idx, method, idx_method)</dt><dd><tt>#self.<strong>context</strong>.get_tainted_packages().<a href="#TaintedPackages-push_info">push_info</a>(&nbsp;method_info[0],&nbsp;TAINTED_PACKAGE_CALL,&nbsp;idx,&nbsp;self,&nbsp;self.<strong>method</strong>,&nbsp;method_info[1],&nbsp;method_info[2][0]&nbsp;+&nbsp;method_info[2][1]&nbsp;)</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_crypto_packages"><strong>search_crypto_packages</strong></a>(self)</dt><dd><tt>@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;crypto&nbsp;packages</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_methods"><strong>search_methods</strong></a>(self, class_name, name, descriptor, re_expr<font color="#909090">=True</font>)</dt><dd><tt>@param&nbsp;class_name&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;class&nbsp;name&nbsp;of&nbsp;the&nbsp;method&nbsp;(the&nbsp;package)<br>
+@param&nbsp;name&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;method<br>
+@param&nbsp;descriptor&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;method<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;methods'&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_net_packages"><strong>search_net_packages</strong></a>(self)</dt><dd><tt>@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;net&nbsp;packages</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_objects"><strong>search_objects</strong></a>(self, class_name)</dt><dd><tt>@param&nbsp;class_name&nbsp;:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;class&nbsp;name<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;created&nbsp;objects'&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_packages"><strong>search_packages</strong></a>(self, package_name)</dt><dd><tt>:param&nbsp;package_name:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;package<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;packages'&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_telephony_packages"><strong>search_telephony_packages</strong></a>(self)</dt><dd><tt>@rtype&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;called&nbsp;telephony&nbsp;packages</tt></dd></dl>
+
+<dl><dt><a name="TaintedPackages-search_unique_packages"><strong>search_unique_packages</strong></a>(self, package_name)</dt><dd><tt>:param&nbsp;package_name:&nbsp;a&nbsp;regexp&nbsp;for&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;package</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TaintedVariable">class <strong>TaintedVariable</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TaintedVariable-__init__"><strong>__init__</strong></a>(self, var, _type)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-get_info"><strong>get_info</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-get_paths"><strong>get_paths</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-get_paths_access"><strong>get_paths_access</strong></a>(self, mode)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-get_paths_length"><strong>get_paths_length</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-push"><strong>push</strong></a>(self, access, idx, ref)</dt></dl>
+
+<dl><dt><a name="TaintedVariable-show_paths"><strong>show_paths</strong></a>(self, vm)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TaintedVariables">class <strong>TaintedVariables</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TaintedVariables-__init__"><strong>__init__</strong></a>(self, _vm)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-add"><strong>add</strong></a>(self, var, _type, _method<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-get_field"><strong>get_field</strong></a>(self, class_name, name, descriptor)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-get_fields"><strong>get_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-get_fields_by_method"><strong>get_fields_by_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-get_permissions"><strong>get_permissions</strong></a>(self, permissions_needed)</dt><dd><tt>@param&nbsp;permissions_needed&nbsp;:&nbsp;a&nbsp;list&nbsp;of&nbsp;restricted&nbsp;permissions&nbsp;to&nbsp;get&nbsp;([]&nbsp;returns&nbsp;all&nbsp;permissions)<br>
+&nbsp;<br>
+@rtype&nbsp;:&nbsp;a&nbsp;dictionnary&nbsp;of&nbsp;permissions'&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="TaintedVariables-get_permissions_method"><strong>get_permissions_method</strong></a>(self, method)</dt><dd><tt>#&nbsp;permission&nbsp;functions</tt></dd></dl>
+
+<dl><dt><a name="TaintedVariables-get_string"><strong>get_string</strong></a>(self, s)</dt><dd><tt>#&nbsp;functions&nbsp;to&nbsp;get&nbsp;particulars&nbsp;elements</tt></dd></dl>
+
+<dl><dt><a name="TaintedVariables-get_strings"><strong>get_strings</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-get_strings_by_method"><strong>get_strings_by_method</strong></a>(self, method)</dt><dd><tt>#&nbsp;specifics&nbsp;functions</tt></dd></dl>
+
+<dl><dt><a name="TaintedVariables-push_info"><strong>push_info</strong></a>(self, _type, var, access, idx, ref)</dt></dl>
+
+<dl><dt><a name="TaintedVariables-toPathVariable"><strong>toPathVariable</strong></a>(self, obj)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ToString">class <strong>ToString</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ToString-__init__"><strong>__init__</strong></a>(self, tab)</dt></dl>
+
+<dl><dt><a name="ToString-get_string"><strong>get_string</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ToString-push"><strong>push</strong></a>(self, name)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="VMAnalysis">class <strong>VMAnalysis</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;analyses&nbsp;a&nbsp;dex&nbsp;file<br>
+&nbsp;<br>
+:param&nbsp;_vm:&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;represent&nbsp;the&nbsp;dex&nbsp;file<br>
+:type&nbsp;_vm:&nbsp;a&nbsp;:class:`DalvikVMFormat`&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+:Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#VMAnalysis">VMAnalysis</a>(&nbsp;DalvikVMFormat(&nbsp;open("toto.dex",&nbsp;"r").read()&nbsp;)&nbsp;)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="VMAnalysis-__init__"><strong>__init__</strong></a>(self, _vm)</dt></dl>
+
+<dl><dt><a name="VMAnalysis-get_method"><strong>get_method</strong></a>(self, method)</dt><dd><tt>Return&nbsp;an&nbsp;analysis&nbsp;method<br>
+&nbsp;<br>
+:param&nbsp;method:&nbsp;a&nbsp;classical&nbsp;method&nbsp;<a href="__builtin__.html#object">object</a><br>
+:type&nbsp;method:&nbsp;an&nbsp;:class:`EncodedMethod`&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#MethodAnalysis">MethodAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_method_signature"><strong>get_method_signature</strong></a>(self, method, grammar_type<font color="#909090">=''</font>, options<font color="#909090">={}</font>, predef_sign<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;specific&nbsp;signature&nbsp;for&nbsp;a&nbsp;specific&nbsp;method<br>
+&nbsp;<br>
+:param&nbsp;method:&nbsp;a&nbsp;reference&nbsp;to&nbsp;method&nbsp;from&nbsp;a&nbsp;vm&nbsp;class<br>
+:type&nbsp;method:&nbsp;a&nbsp;:class:`EncodedMethod`&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+:param&nbsp;grammar_type:&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;signature&nbsp;(optional)<br>
+:type&nbsp;grammar_type:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;options:&nbsp;the&nbsp;options&nbsp;of&nbsp;the&nbsp;signature&nbsp;(optional)<br>
+:param&nbsp;options:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;predef_sign:&nbsp;used&nbsp;a&nbsp;predefined&nbsp;signature&nbsp;(optional)<br>
+:type&nbsp;predef_sign:&nbsp;string<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`Sign`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_methods"><strong>get_methods</strong></a>(self)</dt><dd><tt>Return&nbsp;each&nbsp;analysis&nbsp;method<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#MethodAnalysis">MethodAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_permissions"><strong>get_permissions</strong></a>(self, permissions_needed)</dt><dd><tt>Return&nbsp;the&nbsp;permissions&nbsp;used<br>
+&nbsp;<br>
+:param&nbsp;permissions_needed:&nbsp;a&nbsp;list&nbsp;of&nbsp;restricted&nbsp;permissions&nbsp;to&nbsp;get&nbsp;([]&nbsp;returns&nbsp;all&nbsp;permissions)<br>
+:type&nbsp;permissions_needed:&nbsp;list<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;dictionnary&nbsp;of&nbsp;permissions&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_permissions_method"><strong>get_permissions_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="VMAnalysis-get_tainted_field"><strong>get_tainted_field</strong></a>(self, class_name, name, descriptor)</dt><dd><tt>Return&nbsp;a&nbsp;specific&nbsp;tainted&nbsp;field<br>
+&nbsp;<br>
+:param&nbsp;class_name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;class<br>
+:param&nbsp;name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;field<br>
+:param&nbsp;descriptor:&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;field<br>
+:type&nbsp;class_name:&nbsp;string<br>
+:type&nbsp;name:&nbsp;string<br>
+:type&nbsp;descriptor:&nbsp;string<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#TaintedVariable">TaintedVariable</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_tainted_fields"><strong>get_tainted_fields</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="VMAnalysis-get_tainted_packages"><strong>get_tainted_packages</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;tainted&nbsp;packages<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#TaintedPackages">TaintedPackages</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_tainted_variables"><strong>get_tainted_variables</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;tainted&nbsp;variables<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#TaintedVariables">TaintedVariables</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="VMAnalysis-get_vm"><strong>get_vm</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="uVMAnalysis">class <strong>uVMAnalysis</strong></a>(<a href="androguard.core.analysis.analysis.html#VMAnalysis">VMAnalysis</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;analyses&nbsp;a&nbsp;dex&nbsp;file&nbsp;but&nbsp;on&nbsp;the&nbsp;fly&nbsp;(quicker&nbsp;!)<br>
+&nbsp;<br>
+:param&nbsp;_vm:&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;which&nbsp;represent&nbsp;the&nbsp;dex&nbsp;file<br>
+:type&nbsp;_vm:&nbsp;a&nbsp;:class:`DalvikVMFormat`&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+:Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#uVMAnalysis">uVMAnalysis</a>(&nbsp;DalvikVMFormat(&nbsp;open("toto.dex",&nbsp;"r").read()&nbsp;)&nbsp;)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="uVMAnalysis-__init__"><strong>__init__</strong></a>(self, vm)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_method"><strong>get_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_methods"><strong>get_methods</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_tainted_packages"><strong>get_tainted_packages</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_tainted_variables"><strong>get_tainted_variables</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_vm"><strong>get_vm</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="androguard.core.analysis.analysis.html#VMAnalysis">VMAnalysis</a>:<br>
+<dl><dt><a name="uVMAnalysis-get_method_signature"><strong>get_method_signature</strong></a>(self, method, grammar_type<font color="#909090">=''</font>, options<font color="#909090">={}</font>, predef_sign<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;specific&nbsp;signature&nbsp;for&nbsp;a&nbsp;specific&nbsp;method<br>
+&nbsp;<br>
+:param&nbsp;method:&nbsp;a&nbsp;reference&nbsp;to&nbsp;method&nbsp;from&nbsp;a&nbsp;vm&nbsp;class<br>
+:type&nbsp;method:&nbsp;a&nbsp;:class:`EncodedMethod`&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+:param&nbsp;grammar_type:&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;signature&nbsp;(optional)<br>
+:type&nbsp;grammar_type:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;options:&nbsp;the&nbsp;options&nbsp;of&nbsp;the&nbsp;signature&nbsp;(optional)<br>
+:param&nbsp;options:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;predef_sign:&nbsp;used&nbsp;a&nbsp;predefined&nbsp;signature&nbsp;(optional)<br>
+:type&nbsp;predef_sign:&nbsp;string<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`Sign`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="uVMAnalysis-get_permissions"><strong>get_permissions</strong></a>(self, permissions_needed)</dt><dd><tt>Return&nbsp;the&nbsp;permissions&nbsp;used<br>
+&nbsp;<br>
+:param&nbsp;permissions_needed:&nbsp;a&nbsp;list&nbsp;of&nbsp;restricted&nbsp;permissions&nbsp;to&nbsp;get&nbsp;([]&nbsp;returns&nbsp;all&nbsp;permissions)<br>
+:type&nbsp;permissions_needed:&nbsp;list<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;dictionnary&nbsp;of&nbsp;permissions&nbsp;paths</tt></dd></dl>
+
+<dl><dt><a name="uVMAnalysis-get_permissions_method"><strong>get_permissions_method</strong></a>(self, method)</dt></dl>
+
+<dl><dt><a name="uVMAnalysis-get_tainted_field"><strong>get_tainted_field</strong></a>(self, class_name, name, descriptor)</dt><dd><tt>Return&nbsp;a&nbsp;specific&nbsp;tainted&nbsp;field<br>
+&nbsp;<br>
+:param&nbsp;class_name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;class<br>
+:param&nbsp;name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;field<br>
+:param&nbsp;descriptor:&nbsp;the&nbsp;descriptor&nbsp;of&nbsp;the&nbsp;field<br>
+:type&nbsp;class_name:&nbsp;string<br>
+:type&nbsp;name:&nbsp;string<br>
+:type&nbsp;descriptor:&nbsp;string<br>
+&nbsp;<br>
+:rtype:&nbsp;a&nbsp;:class:`<a href="#TaintedVariable">TaintedVariable</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="uVMAnalysis-get_tainted_fields"><strong>get_tainted_fields</strong></a>(self)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-calc_nb"><strong>calc_nb</strong></a>(info)</dt></dl>
+ <dl><dt><a name="-dup"><strong>dup</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-dup2"><strong>dup2</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-getfield"><strong>getfield</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-getstatic"><strong>getstatic</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-invoke"><strong>invoke</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-is_crypto_code"><strong>is_crypto_code</strong></a>(dx)</dt><dd><tt>Crypto&nbsp;code&nbsp;is&nbsp;present&nbsp;?<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+ <dl><dt><a name="-is_dyn_code"><strong>is_dyn_code</strong></a>(dx)</dt><dd><tt>Dynamic&nbsp;code&nbsp;loading&nbsp;is&nbsp;present&nbsp;?<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+ <dl><dt><a name="-is_native_code"><strong>is_native_code</strong></a>(dx)</dt><dd><tt>Native&nbsp;code&nbsp;is&nbsp;present&nbsp;?<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+ <dl><dt><a name="-is_reflection_code"><strong>is_reflection_code</strong></a>(dx)</dt><dd><tt>Reflection&nbsp;is&nbsp;present&nbsp;?<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a><br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+ <dl><dt><a name="-ldc"><strong>ldc</strong></a>(_vm, ins, special, stack, res, ret_v)</dt><dd><tt>#FIXME</tt></dd></dl>
+ <dl><dt><a name="-multi_pop_objectref_i"><strong>multi_pop_objectref_i</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-new"><strong>new</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-pop_objectref"><strong>pop_objectref</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_float_d"><strong>push_float_d</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_integer_d"><strong>push_integer_d</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_integer_i"><strong>push_integer_i</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_objectref"><strong>push_objectref</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_objectref_l"><strong>push_objectref_l</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_objectref_l_i"><strong>push_objectref_l_i</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-push_objectres"><strong>push_objectres</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-putfield"><strong>putfield</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-putstatic"><strong>putstatic</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-set_arrayref"><strong>set_arrayref</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-set_objectref"><strong>set_objectref</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-set_objectref_i"><strong>set_objectref_i</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+ <dl><dt><a name="-show_DynCode"><strong>show_DynCode</strong></a>(dx)</dt><dd><tt>Show&nbsp;where&nbsp;dynamic&nbsp;code&nbsp;is&nbsp;used<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-show_NativeMethods"><strong>show_NativeMethods</strong></a>(dx)</dt><dd><tt>Show&nbsp;the&nbsp;native&nbsp;methods<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-show_Path"><strong>show_Path</strong></a>(vm, path)</dt></dl>
+ <dl><dt><a name="-show_PathVariable"><strong>show_PathVariable</strong></a>(vm, paths)</dt></dl>
+ <dl><dt><a name="-show_Paths"><strong>show_Paths</strong></a>(vm, paths)</dt><dd><tt>Show&nbsp;paths&nbsp;of&nbsp;packages<br>
+:param&nbsp;paths:&nbsp;a&nbsp;list&nbsp;of&nbsp;:class:`<a href="#PathP">PathP</a>`&nbsp;objects</tt></dd></dl>
+ <dl><dt><a name="-show_Permissions"><strong>show_Permissions</strong></a>(dx)</dt><dd><tt>Show&nbsp;where&nbsp;permissions&nbsp;are&nbsp;used&nbsp;in&nbsp;a&nbsp;specific&nbsp;application<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-show_ReflectionCode"><strong>show_ReflectionCode</strong></a>(dx)</dt><dd><tt>Show&nbsp;the&nbsp;reflection&nbsp;code&nbsp;<br>
+:param&nbsp;dx&nbsp;:&nbsp;the&nbsp;analysis&nbsp;virtual&nbsp;machine<br>
+:type&nbsp;dx:&nbsp;a&nbsp;:class:`<a href="#VMAnalysis">VMAnalysis</a>`&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-swap"><strong>swap</strong></a>(_vm, ins, special, stack, res, ret_v)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BO</strong> = {'BasicClass': &lt;class androguard.core.analysis.analysis.DVMBasicBlock&gt;, 'BasicOPCODES': ['throw', 'throw.', 'if.', 'goto', 'goto.', 'return', 'return.', 'packed-switch$', 'sparse-switch$'], 'BasicOPCODES_H': [&lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;], 'Dexception': &lt;function determineException&gt;, 'Dnext': &lt;function determineNext&gt;}<br>
+<strong>BREAK_JVM_OPCODES_RE</strong> = [&lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;, &lt;_sre.SRE_Pattern object&gt;]<br>
+<strong>DVM_FIELDS_ACCESS</strong> = {'iget': 'R', 'iget-boolean': 'R', 'iget-byte': 'R', 'iget-char': 'R', 'iget-object': 'R', 'iget-short': 'R', 'iget-wide': 'R', 'iput': 'W', 'iput-boolean': 'W', 'iput-byte': 'W', ...}<br>
+<strong>DVM_PERMISSIONS_BY_ELEMENT</strong> = {'Landroid/accessibilityservice/AccessibilityService;-clearWallpaper-()': 'SET_WALLPAPER', 'Landroid/accessibilityservice/AccessibilityService;-removeStickyBroadcast-(Landroid/content/Intent;)': 'BROADCAST_STICKY', 'Landroid/accessibilityservice/AccessibilityService;-sendStickyBroadcast-(Landroid/content/Intent;)': 'BROADCAST_STICKY', 'Landroid/accessibilityservice/AccessibilityServi...andler; I Ljava/lang/String; Landroid/os/Bundle;)': 'BROADCAST_STICKY', 'Landroid/accessibilityservice/AccessibilityService;-setWallpaper-(Landroid/graphics/Bitmap;)': 'SET_WALLPAPER', 'Landroid/accessibilityservice/AccessibilityService;-setWallpaper-(Ljava/io/InputStream;)': 'SET_WALLPAPER', 'Landroid/accounts/AbstractAccountAuthenticator$T...String; [L[Ljava/lang/Strin; Landroid/os/Bundle;)': 'ACCOUNT_MANAGER', 'Landroid/accounts/AbstractAccountAuthenticator$T...; Landroid/accounts/Account; Landroid/os/Bundle;)': 'ACCOUNT_MANAGER', 'Landroid/accounts/AbstractAccountAuthenticator$T...AccountAuthenticatorResponse; Ljava/lang/String;)': 'ACCOUNT_MANAGER', 'Landroid/accounts/AbstractAccountAuthenticator$T...uthenticatorResponse; Landroid/accounts/Account;)': 'ACCOUNT_MANAGER', ...}<br>
+<strong>DVM_PERMISSIONS_BY_PERMISSION</strong> = {'ACCESS_COARSE_LOCATION': {'Landroid/location/LocationManager;': [('C', 'NETWORK_PROVIDER', 'Ljava/lang/String;')], 'Landroid/telephony/PhoneStateListener;': [('C', 'LISTEN_CELL_LOCATION', 'I')], 'Landroid/telephony/TelephonyManager;': [('F', 'getCellLocation', '()')]}, 'ACCESS_DOWNLOAD_MANAGER': {'Landroid/net/Downloads$ById;': [('F', 'deleteDownload', '(Landroid/content/Context; J)'), ('F', 'getMimeTypeForId', '(Landroid/content/Context; J)'), ('F', 'getStatus', '(Landroid/content/Context; J)'), ('F', 'openDownload', '(Landroid/content/Context; J Ljava/lang/String;)'), ('F', 'openDownloadStream', '(Landroid/content/Context; J)'), ('F', 'startDownloadByUri', '(Landroid/content/Context; Ljava/lang/String; Lj...ng/String; Ljava/lang/String; Ljava/lang/String;)')], 'Landroid/net/Downloads$ByUri;': [('F', 'getCurrentOtaDownloads', '(Landroid/content/Context; Ljava/lang/String;)'), ('F', 'getProgressCursor', '(Landroid/content/Context; J)'), ('F', 'getStatus', '(Landroid/content/Context; Ljava/lang/String; J)'), ('F', 'removeAllDownloadsByPackage', '(Landroid/content/Context; Ljava/lang/String; Ljava/lang/String;)'), ('F', 'startDownloadByUri', '(Landroid/content/Context; Ljava/lang/String; Lj...ng/String; Ljava/lang/String; Ljava/lang/String;)')], 'Landroid/net/Downloads$DownloadBase;': [('F', 'startDownloadByUri', '(Landroid/content/Context; Ljava/lang/String; Lj...ng/String; Ljava/lang/String; Ljava/lang/String;)')]}, 'ACCESS_DRM': {'Landroid/provider/DrmStore;': [('F', 'enforceAccessDrmPermission', '(Landroid/content/Context;)')]}, 'ACCESS_FINE_LOCATION': {'Landroid/location/ILocationManager$Stub$Proxy;': [('F', 'addGpsStatusListener', '(Landroid/location/IGpsStatusListener;)'), ('F', 'addProximityAlert', '(D D F J Landroid/app/PendingIntent;)'), ('F', 'getLastKnownLocation', '(Ljava/lang/String;)'), ('F', 'getProviderInfo', '(Ljava/lang/String;)'), ('F', 'getProviders', '(B)'), ('F', 'isProviderEnabled', '(Ljava/lang/String;)'), ('F', 'requestLocationUpdates', '(Ljava/lang/String; J F Landroid/location/ILocationListener;)'), ('F', 'requestLocationUpdatesPI', '(Ljava/lang/String; J F Landroid/app/PendingIntent;)'), ('F', 'sendExtraCommand', '(Ljava/lang/String; Ljava/lang/String; Landroid/os/Bundle;)')], 'Landroid/location/LocationManager;': [('C', 'GPS_PROVIDER', 'Ljava/lang/String;'), ('C', 'NETWORK_PROVIDER', 'Ljava/lang/String;'), ('C', 'PASSIVE_PROVIDER', 'Ljava/lang/String;'), ('F', 'addGpsStatusListener', '(Landroid/location/GpsStatus/Listener;)'), ('F', 'addNmeaListener', '(Landroid/location/GpsStatus/NmeaListener;)'), ('F', '_requestLocationUpdates', '(Ljava/lang/String; J F Landroid/app/PendingIntent;)'), ('F', '_requestLocationUpdates', '(Ljava/lang/String; J F Landroid/location/LocationListener; Landroid/os/Looper;)'), ('F', 'addGpsStatusListener', '(Landroid/location/GpsStatus$Listener;)'), ('F', 'addNmeaListener', '(Landroid/location/GpsStatus$NmeaListener;)'), ('F', 'addProximityAlert', '(D D F J Landroid/app/PendingIntent;)'), ('F', 'best', '(Ljava/util/List;)'), ('F', 'getBestProvider', '(Landroid/location/Criteria; B)'), ('F', 'getLastKnownLocation', '(Ljava/lang/String;)'), ('F', 'getProvider', '(Ljava/lang/String;)'), ('F', 'getProviders', '(Landroid/location/Criteria; B)'), ('F', 'getProviders', '(B)'), ('F', 'isProviderEnabled', '(Ljava/lang/String;)'), ('F', 'requestLocationUpdates', '(Ljava/lang/String; J F Landroid/app/PendingIntent;)'), ('F', 'requestLocationUpdates', '(Ljava/lang/String; J F Landroid/location/LocationListener; Landroid/os/Looper;)'), ('F', 'requestLocationUpdates', '(Ljava/lang/String; J F Landroid/location/LocationListener;)'), ...], 'Landroid/telephony/TelephonyManager;': [('F', 'getCellLocation', '()'), ('F', 'getCellLocation', '()'), ('F', 'getNeighboringCellInfo', '()')], 'Landroid/webkit/GeolocationPermissions$Callback;': [('F', 'invok', '()')], 'Landroid/webkit/GeolocationService;': [('F', 'registerForLocationUpdates', '()'), ('F', 'setEnableGps', '(B)'), ('F', 'start', '()')], 'Landroid/webkit/WebChromeClient;': [('F', 'onGeolocationPermissionsShowPrompt', '(Ljava/lang/String; Landroid/webkit/GeolocationPermissions/Callback;)')], 'Lcom/android/internal/telephony/ITelephony$Stub$Proxy;': [('F', 'getCellLocation', '()'), ('F', 'getNeighboringCellInfo', '()')]}, 'ACCESS_MOCK_LOCATION': {'Landroid/location/ILocationManager$Stub$Proxy;': [('F', 'addTestProvider', '(Ljava/lang/String; B B B B B B B I I)'), ('F', 'clearTestProviderEnabled', '(Ljava/lang/String;)'), ('F', 'clearTestProviderLocation', '(Ljava/lang/String;)'), ('F', 'clearTestProviderStatus', '(Ljava/lang/String;)'), ('F', 'removeTestProvider', '(Ljava/lang/String;)'), ('F', 'setTestProviderEnabled', '(Ljava/lang/String; B)'), ('F', 'setTestProviderLocation', '(Ljava/lang/String; Landroid/location/Location;)'), ('F', 'setTestProviderStatus', '(Ljava/lang/String; I Landroid/os/Bundle; J)')], 'Landroid/location/LocationManager;': [('F', 'addTestProvider', '(Ljava/lang/String; B B B B B B B I I)'), ('F', 'clearTestProviderEnabled', '(Ljava/lang/String;)'), ('F', 'clearTestProviderLocation', '(Ljava/lang/String;)'), ('F', 'clearTestProviderStatus', '(Ljava/lang/String;)'), ('F', 'removeTestProvider', '(Ljava/lang/String;)'), ('F', 'setTestProviderEnabled', '(Ljava/lang/String; B)'), ('F', 'setTestProviderLocation', '(Ljava/lang/String; Landroid/location/Location;)'), ('F', 'setTestProviderStatus', '(Ljava/lang/String; I Landroid/os/Bundle; J)'), ('F', 'addTestProvider', '(Ljava/lang/String; B B B B B B B I I)'), ('F', 'clearTestProviderEnabled', '(Ljava/lang/String;)'), ('F', 'clearTestProviderLocation', '(Ljava/lang/String;)'), ('F', 'clearTestProviderStatus', '(Ljava/lang/String;)'), ('F', 'removeTestProvider', '(Ljava/lang/String;)'), ('F', 'setTestProviderEnabled', '(Ljava/lang/String; B)'), ('F', 'setTestProviderLocation', '(Ljava/lang/String; Landroid/location/Location;)'), ('F', 'setTestProviderStatus', '(Ljava/lang/String; I Landroid/os/Bundle; J)')]}, 'ACCESS_NETWORK_STATE': {'Landroid/net/ConnectivityManager;': [('F', 'getActiveNetworkInfo', '()'), ('F', 'getAllNetworkInfo', '()'), ('F', 'getLastTetherError', '(Ljava/lang/String;)'), ('F', 'getMobileDataEnabled', '()'), ('F', 'getNetworkInfo', '(I)'), ('F', 'getNetworkPreference', '()'), ('F', 'getTetherableIfaces', '()'), ('F', 'getTetherableUsbRegexs', '()'), ('F', 'getTetherableWifiRegexs', '()'), ('F', 'getTetheredIfaces', '()'), ('F', 'getTetheringErroredIfaces', '()'), ('F', 'isTetheringSupported', '()')], 'Landroid/net/IConnectivityManager$Stub$Proxy;': [('F', 'getActiveNetworkInfo', '()'), ('F', 'getAllNetworkInfo', '()'), ('F', 'getLastTetherError', '(Ljava/lang/String;)'), ('F', 'getMobileDataEnabled', '()'), ('F', 'getNetworkInfo', '(I)'), ('F', 'getNetworkPreference', '()'), ('F', 'getTetherableIfaces', '()'), ('F', 'getTetherableUsbRegexs', '()'), ('F', 'getTetherableWifiRegexs', '()'), ('F', 'getTetheredIfaces', '()'), ('F', 'getTetheringErroredIfaces', '()'), ('F', 'isTetheringSupported', '()'), ('F', 'startUsingNetworkFeature', '(I Ljava/lang/String; Landroid/os/IBinder;)')], 'Landroid/net/IThrottleManager$Stub$Proxy;': [('F', 'getByteCount', '(Ljava/lang/String; I I I)'), ('F', 'getCliffLevel', '(Ljava/lang/String; I)'), ('F', 'getCliffThreshold', '(Ljava/lang/String; I)'), ('F', 'getHelpUri', '()'), ('F', 'getPeriodStartTime', '(Ljava/lang/String;)'), ('F', 'getResetTime', '(Ljava/lang/String;)'), ('F', 'getThrottle', '(Ljava/lang/String;)')], 'Landroid/net/NetworkInfo;': [('F', 'isConnectedOrConnecting', '()')], 'Landroid/net/ThrottleManager;': [('F', 'getByteCount', '(Ljava/lang/String; I I I)'), ('F', 'getCliffLevel', '(Ljava/lang/String; I)'), ('F', 'getCliffThreshold', '(Ljava/lang/String; I)'), ('F', 'getHelpUri', '()'), ('F', 'getPeriodStartTime', '(Ljava/lang/String;)'), ('F', 'getResetTime', '(Ljava/lang/String;)')], 'Landroid/net/http/RequestQueue;': [('F', 'enablePlatformNotifications', '()'), ('F', 'setProxyConfig', '()')], 'Landroid/os/INetworkManagementService$Stub$Proxy;': [('F', 'getDnsForwarders', '()'), ('F', 'getInterfaceRxCounter', '(Ljava/lang/String;)'), ('F', 'getInterfaceRxThrottle', '(Ljava/lang/String;)'), ('F', 'getInterfaceTxCounter', '(Ljava/lang/String;)'), ('F', 'getInterfaceTxThrottle', '(Ljava/lang/String;)'), ('F', 'getIpForwardingEnabled', '()'), ('F', 'isTetheringStarted', '()'), ('F', 'isUsbRNDISStarted', '()'), ('F', 'listInterfaces', '()'), ('F', 'listTetheredInterfaces', '()'), ('F', 'listTtys', '()')]}, 'ACCESS_SURFACE_FLINGER': {'Landroid/view/Surface;': [('F', 'closeTransaction', '()'), ('F', 'freezeDisplay', '(I)'), ('F', 'setOrientation', '(I I I)'), ('F', 'setOrientation', '(I I)'), ('F', 'unfreezeDisplay', '(I)')], 'Landroid/view/SurfaceSession;': [('F', '&lt;init&gt;', '()')]}, 'ACCESS_WIFI_STATE': {'Landroid/net/sip/SipAudioCall;': [('F', 'startAudio', '()')], 'Landroid/net/wifi/IWifiManager$Stub$Proxy;': [('F', 'getConfiguredNetworks', '()'), ('F', 'getConnectionInfo', '()'), ('F', 'getDhcpInfo', '()'), ('F', 'getNumAllowedChannels', '()'), ('F', 'getScanResults', '()'), ('F', 'getValidChannelCounts', '()'), ('F', 'getWifiApEnabledState', '()'), ('F', 'getWifiEnabledState', '()'), ('F', 'isMulticastEnabled', '()')], 'Landroid/net/wifi/WifiManager;': [('F', 'getConfiguredNetworks', '()'), ('F', 'getConnectionInfo', '()'), ('F', 'getDhcpInfo', '()'), ('F', 'getNumAllowedChannels', '()'), ('F', 'getScanResults', '()'), ('F', 'getValidChannelCounts', '()'), ('F', 'getWifiApState', '()'), ('F', 'getWifiState', '()'), ('F', 'isMulticastEnabled', '()'), ('F', 'isWifiApEnabled', '()'), ('F', 'isWifiEnabled', '()')]}, 'ACCESS_WIMAX_STATE': {'Lcom/htc/net/wimax/WimaxController$Stub$Proxy;': [('F', 'getConnectionInf', '()'), ('F', 'getWimaxStat', '()'), ('F', 'isBackoffStat', '()'), ('F', 'isWimaxEnable', '()')]}, 'ACCOUNT_MANAGER': {'Landroid/accounts/AbstractAccountAuthenticator$Transport;': [('F', 'addAccount', '(Landroid/accounts/IAccountAuthenticatorResponse...String; [L[Ljava/lang/Strin; Landroid/os/Bundle;)'), ('F', 'confirmCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; Landroid/os/Bundle;)'), ('F', 'editProperties', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'getAccountRemovalAllowed', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account;)'), ('F', 'getAuthToken', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)'), ('F', 'getAuthTokenLabel', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'hasFeatures', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; [L[Ljava/lang/Strin;)'), ('F', 'updateCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)')], 'Landroid/accounts/AbstractAccountAuthenticator;': [('F', 'checkBinderPermission', '()'), ('F', 'confirmCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; Landroid/os/Bundle;)'), ('F', 'editProperties', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'getAccountRemovalAllowed', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account;)'), ('F', 'getAuthToken', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)'), ('F', 'getAuthTokenLabel', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'hasFeatures', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; [L[Ljava/lang/Strin;)'), ('F', 'updateCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)'), ('F', 'addAccount', '(Landroid/accounts/IAccountAuthenticatorResponse...String; [L[Ljava/lang/Strin; Landroid/os/Bundle;)')], 'Landroid/accounts/AccountManager;': [('C', 'KEY_ACCOUNT_MANAGER_RESPONSE', 'Ljava/lang/String;')], 'Landroid/accounts/IAccountAuthenticator$Stub$Proxy;': [('F', 'addAccount', '(Landroid/accounts/IAccountAuthenticatorResponse...String; [L[Ljava/lang/Strin; Landroid/os/Bundle;)'), ('F', 'confirmCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; Landroid/os/Bundle;)'), ('F', 'editProperties', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'getAccountRemovalAllowed', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account;)'), ('F', 'getAuthToken', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)'), ('F', 'getAuthTokenLabel', '(Landroid/accounts/IAccountAuthenticatorResponse; Ljava/lang/String;)'), ('F', 'hasFeatures', '(Landroid/accounts/IAccountAuthenticatorResponse; Landroid/accounts/Account; [L[Ljava/lang/Strin;)'), ('F', 'updateCredentials', '(Landroid/accounts/IAccountAuthenticatorResponse.../Account; Ljava/lang/String; Landroid/os/Bundle;)')]}, ...}<br>
+<strong>FIELDS</strong> = {'getfield': 'R', 'getstatic': 'R', 'putfield': 'W', 'putstatic': 'W'}<br>
+<strong>INSTRUCTIONS_ACTIONS</strong> = {'aaload': [{&lt;function pop_objectref&gt;: None}, {&lt;function pop_objectref&gt;: None}, {&lt;function push_objectref&gt;: 0}], 'aastore': [{&lt;function set_arrayref&gt;: None}], 'aconst_null': [{&lt;function push_objectref&gt;: 'null'}], 'aload': [{&lt;function push_objectref_l_i&gt;: None}], 'aload_0': [{&lt;function push_objectref_l&gt;: 0}], 'aload_1': [{&lt;function push_objectref_l&gt;: 1}], 'aload_2': [{&lt;function push_objectref_l&gt;: 2}], 'aload_3': [{&lt;function push_objectref_l&gt;: 3}], 'anewarray': [{&lt;function pop_objectref&gt;: None}, {&lt;function push_objectref&gt;: [1, 'ANEWARRAY']}], 'areturn': [{&lt;function pop_objectref&gt;: None}], ...}<br>
+<strong>JVM_TOSTRING</strong> = {'G': ['get.'], 'I': ['invoke.'], 'O': ['.shl', '.xor', '.shr', '.mul', '.div', '.sub', '.and', '.or', '.add'], 'P': ['put.']}<br>
+<strong>METHODS</strong> = ['invokestatic', 'invokevirtual', 'invokespecial']<br>
+<strong>SIGNATURES</strong> = {'L0_0': {'type': 0}, 'L0_1': {'type': 1}, 'L0_2': {'arguments': ['Landroid'], 'type': 2}, 'L0_3': {'arguments': ['Ljava'], 'type': 2}, 'L0_4': {'arguments': ['Landroid', 'Ljava'], 'type': 2}, 'L0_5': {'arguments': ['Landroid'], 'type': 3}, 'L0_6': {'arguments': ['Ljava'], 'type': 3}, 'hex': {}, 'sequencebb': {}}<br>
+<strong>SIGNATURE_HEX</strong> = 'hex'<br>
+<strong>SIGNATURE_L0_0</strong> = 'L0_0'<br>
+<strong>SIGNATURE_L0_0_L1</strong> = 'L0_0:L1'<br>
+<strong>SIGNATURE_L0_0_L2</strong> = 'L0_0:L2'<br>
+<strong>SIGNATURE_L0_0_L3</strong> = 'L0_0:L3'<br>
+<strong>SIGNATURE_L0_1</strong> = 'L0_1'<br>
+<strong>SIGNATURE_L0_1_L1</strong> = 'L0_1:L1'<br>
+<strong>SIGNATURE_L0_2</strong> = 'L0_2'<br>
+<strong>SIGNATURE_L0_2_L1</strong> = 'L0_2:L1'<br>
+<strong>SIGNATURE_L0_3</strong> = 'L0_3'<br>
+<strong>SIGNATURE_L0_3_L1</strong> = 'L0_3:L1'<br>
+<strong>SIGNATURE_L0_4</strong> = 'L0_4'<br>
+<strong>SIGNATURE_L0_4_L1</strong> = 'L0_4:L1'<br>
+<strong>SIGNATURE_L0_5</strong> = 'L0_5'<br>
+<strong>SIGNATURE_L0_5_L1</strong> = 'L0_5:L1'<br>
+<strong>SIGNATURE_L0_6</strong> = 'L0_6'<br>
+<strong>SIGNATURE_SEQUENCE_BB</strong> = 'sequencebb'<br>
+<strong>TAGS_ANDROID</strong> = {0: [0, 'Landroid'], 1: [0, 'Landroid/telephony'], 2: [0, 'Landroid/accessibilityservice'], 3: [0, 'Landroid/accounts'], 4: [0, 'Landroid/animation'], 5: [0, 'Landroid/app'], 6: [0, 'Landroid/bluetooth'], 7: [0, 'Landroid/content'], 8: [0, 'Landroid/database'], 9: [0, 'Landroid/drm'], ...}<br>
+<strong>TAG_ANDROID</strong> = &lt;androguard.core.analysis.analysis.Enum object&gt;<br>
+<strong>TAG_REVERSE_ANDROID</strong> = {0: 'ANDROID', 1: 'TELEPHONY', 2: 'ACCESSIBILITYSERVICE', 3: 'ACCOUNTS', 4: 'ANIMATION', 5: 'APP', 6: 'BLUETOOTH', 7: 'CONTENT', 8: 'DATABASE', 9: 'DRM', ...}<br>
+<strong>TAINTED_FIELD</strong> = 1<br>
+<strong>TAINTED_LOCAL_VARIABLE</strong> = 0<br>
+<strong>TAINTED_PACKAGE</strong> = {0: 'C', 1: 'M'}<br>
+<strong>TAINTED_PACKAGE_CALL</strong> = 1<br>
+<strong>TAINTED_PACKAGE_CREATE</strong> = 0<br>
+<strong>TAINTED_STRING</strong> = 2<br>
+<strong>i</strong> = 'sparse-switch$'</td></tr></table>
+</body></html>

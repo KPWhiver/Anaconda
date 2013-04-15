@@ -1,0 +1,363 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.opcode_ins</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.opcode_ins</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/opcode_ins.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\opcode_ins.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="androguard.decompiler.dad.util.html">androguard.decompiler.dad.util</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="androguard.decompiler.dad.opcode_ins.html#Op">Op</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Op">class <strong>Op</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>ADD</strong> = '+'</dl>
+
+<dl><dt><strong>AND</strong> = '&amp;'</dl>
+
+<dl><dt><strong>CMP</strong> = 'cmp'</dl>
+
+<dl><dt><strong>DIV</strong> = '/'</dl>
+
+<dl><dt><strong>EQUAL</strong> = '=='</dl>
+
+<dl><dt><strong>GEQUAL</strong> = '&gt;='</dl>
+
+<dl><dt><strong>GREATER</strong> = '&gt;'</dl>
+
+<dl><dt><strong>INTSHL</strong> = '&lt;&lt;'</dl>
+
+<dl><dt><strong>INTSHR</strong> = '&gt;&gt;'</dl>
+
+<dl><dt><strong>LEQUAL</strong> = '&lt;='</dl>
+
+<dl><dt><strong>LONGSHL</strong> = '&lt;&lt;'</dl>
+
+<dl><dt><strong>LONGSHR</strong> = '&gt;&gt;'</dl>
+
+<dl><dt><strong>LOWER</strong> = '&lt;'</dl>
+
+<dl><dt><strong>MOD</strong> = '%'</dl>
+
+<dl><dt><strong>MUL</strong> = '*'</dl>
+
+<dl><dt><strong>NEG</strong> = '-'</dl>
+
+<dl><dt><strong>NEQUAL</strong> = '!='</dl>
+
+<dl><dt><strong>NOT</strong> = '~'</dl>
+
+<dl><dt><strong>OR</strong> = '|'</dl>
+
+<dl><dt><strong>SUB</strong> = '-'</dl>
+
+<dl><dt><strong>XOR</strong> = '^'</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-adddouble"><strong>adddouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-adddouble2addr"><strong>adddouble2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-double/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addfloat"><strong>addfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addfloat2addr"><strong>addfloat2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-float/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addint"><strong>addint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addint2addr"><strong>addint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addintlit16"><strong>addintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addintlit8"><strong>addintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addlong"><strong>addlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-addlong2addr"><strong>addlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;add-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aget"><strong>aget</strong></a>(ins, vmap)</dt><dd><tt>#TODO:&nbsp;check&nbsp;type&nbsp;for&nbsp;all&nbsp;aget<br>
+#&nbsp;aget&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetboolean"><strong>agetboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-boolean&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetbyte"><strong>agetbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-byte&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetchar"><strong>agetchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-char&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetobject"><strong>agetobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-<a href="__builtin__.html#object">object</a>&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetshort"><strong>agetshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-short&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-agetwide"><strong>agetwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aget-wide&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andint"><strong>andint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andint2addr"><strong>andint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andintlit16"><strong>andintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andintlit8"><strong>andintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andlong"><strong>andlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-andlong2addr"><strong>andlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;and-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aput"><strong>aput</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput&nbsp;vAA,&nbsp;vBB,&nbsp;vCC</tt></dd></dl>
+ <dl><dt><a name="-aputboolean"><strong>aputboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-boolean&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aputbyte"><strong>aputbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-byte&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aputchar"><strong>aputchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-char&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aputobject"><strong>aputobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-<a href="__builtin__.html#object">object</a>&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aputshort"><strong>aputshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-short&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-aputwide"><strong>aputwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;aput-wide&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-arraylength"><strong>arraylength</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;array-length&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-assign_binary_2addr_exp"><strong>assign_binary_2addr_exp</strong></a>(ins, val_op, op_type, vmap)</dt></dl>
+ <dl><dt><a name="-assign_binary_exp"><strong>assign_binary_exp</strong></a>(ins, val_op, op_type, vmap)</dt></dl>
+ <dl><dt><a name="-assign_cast_exp"><strong>assign_cast_exp</strong></a>(val_a, val_b, val_op, op_type, vmap)</dt></dl>
+ <dl><dt><a name="-assign_cmp"><strong>assign_cmp</strong></a>(val_a, val_b, val_c, cmp_type, vmap)</dt></dl>
+ <dl><dt><a name="-assign_const"><strong>assign_const</strong></a>(dest_reg, cst, vmap)</dt></dl>
+ <dl><dt><a name="-assign_lit"><strong>assign_lit</strong></a>(op_type, val_cst, val_a, val_b, vmap)</dt></dl>
+ <dl><dt><a name="-checkcast"><strong>checkcast</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;check-cast&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-cmpgdouble"><strong>cmpgdouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;cmpg-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-cmpgfloat"><strong>cmpgfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;cmpg-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-cmpldouble"><strong>cmpldouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;cmpl-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-cmplfloat"><strong>cmplfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;cmpl-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-cmplong"><strong>cmplong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;cmp-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-const"><strong>const</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const&nbsp;vAA,&nbsp;#+BBBBBBBB&nbsp;(&nbsp;8b,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-const16"><strong>const16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const/16&nbsp;vAA,&nbsp;#+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-const4"><strong>const4</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const/4&nbsp;vA,&nbsp;#+B&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-constclass"><strong>constclass</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-class&nbsp;vAA,&nbsp;type@BBBB&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-consthigh16"><strong>consthigh16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const/high16&nbsp;vAA,&nbsp;#+BBBB0000&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-conststring"><strong>conststring</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-string&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-conststringjumbo"><strong>conststringjumbo</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-string/jumbo&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-constwide"><strong>constwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-wide&nbsp;vAA,&nbsp;#+BBBBBBBBBBBBBBBB&nbsp;(&nbsp;8b,&nbsp;64b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-constwide16"><strong>constwide16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-wide/16&nbsp;vAA,&nbsp;#+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-constwide32"><strong>constwide32</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-wide/32&nbsp;vAA,&nbsp;#+BBBBBBBB&nbsp;(&nbsp;8b,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-constwidehigh16"><strong>constwidehigh16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;const-wide/high16&nbsp;vAA,&nbsp;#+BBBB000000000000&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divdouble"><strong>divdouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divdouble2addr"><strong>divdouble2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-double/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divfloat"><strong>divfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divfloat2addr"><strong>divfloat2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-float/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divint"><strong>divint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divint2addr"><strong>divint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divintlit16"><strong>divintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divintlit8"><strong>divintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divlong"><strong>divlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-divlong2addr"><strong>divlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;div-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-doubletofloat"><strong>doubletofloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;double-to-float&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-doubletoint"><strong>doubletoint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;double-to-int&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-doubletolong"><strong>doubletolong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;double-to-long&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-fillarraydata"><strong>fillarraydata</strong></a>(ins, vmap, value)</dt><dd><tt>#&nbsp;fill-array-data&nbsp;vAA,&nbsp;+BBBBBBBB&nbsp;(&nbsp;8b,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-fillarraydatapayload"><strong>fillarraydatapayload</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;fill-array-data-payload&nbsp;vAA,&nbsp;+BBBBBBBB&nbsp;(&nbsp;8b,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-fillednewarray"><strong>fillednewarray</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;filled-new-array&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-fillednewarrayrange"><strong>fillednewarrayrange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;filled-new-array/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-floattodouble"><strong>floattodouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;float-to-double&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-floattoint"><strong>floattoint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;float-to-int&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-floattolong"><strong>floattolong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;float-to-long&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-get_args"><strong>get_args</strong></a>(vmap, param_type, largs)</dt></dl>
+ <dl><dt><a name="-get_variables"><strong>get_variables</strong></a>(vmap, *variables)</dt></dl>
+ <dl><dt><a name="-goto"><strong>goto</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;goto&nbsp;+AA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-goto16"><strong>goto16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;goto/16&nbsp;+AAAA&nbsp;(&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-goto32"><strong>goto32</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;goto/32&nbsp;+AAAAAAAA&nbsp;(&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifeq"><strong>ifeq</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-eq&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifeqz"><strong>ifeqz</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-eqz&nbsp;vAA,&nbsp;+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifge"><strong>ifge</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-ge&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifgez"><strong>ifgez</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-gez&nbsp;vAA,&nbsp;+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifgt"><strong>ifgt</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-gt&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifgtz"><strong>ifgtz</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-gtz&nbsp;vAA,&nbsp;+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifle"><strong>ifle</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-le&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iflez"><strong>iflez</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-lez&nbsp;vAA,&nbsp;+BBBB&nbsp;(8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iflt"><strong>iflt</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-lt&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifltz"><strong>ifltz</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-ltz&nbsp;vAA,&nbsp;+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifne"><strong>ifne</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-ne&nbsp;vA,&nbsp;vB,&nbsp;+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ifnez"><strong>ifnez</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;if-nez&nbsp;vAA,&nbsp;+BBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iget"><strong>iget</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetboolean"><strong>igetboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-boolean&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetbyte"><strong>igetbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-byte&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetchar"><strong>igetchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-char&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetobject"><strong>igetobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-<a href="__builtin__.html#object">object</a>&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetshort"><strong>igetshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-short&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-igetwide"><strong>igetwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iget-wide&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-instanceof"><strong>instanceof</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;instance-of&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttobyte"><strong>inttobyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-byte&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttochar"><strong>inttochar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-char&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttodouble"><strong>inttodouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-double&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttofloat"><strong>inttofloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-float&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttolong"><strong>inttolong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-long&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-inttoshort"><strong>inttoshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;int-to-short&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokedirect"><strong>invokedirect</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-direct&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokedirectrange"><strong>invokedirectrange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-direct/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokeinterface"><strong>invokeinterface</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-interface&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokeinterfacerange"><strong>invokeinterfacerange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-interface/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokestatic"><strong>invokestatic</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-static&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokestaticrange"><strong>invokestaticrange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-static/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokesuper"><strong>invokesuper</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-super&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokesuperrange"><strong>invokesuperrange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-super/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokevirtual"><strong>invokevirtual</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-virtual&nbsp;{vD,&nbsp;vE,&nbsp;vF,&nbsp;vG,&nbsp;vA}&nbsp;(&nbsp;4b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-invokevirtualrange"><strong>invokevirtualrange</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;invoke-virtual/range&nbsp;{vCCCC..vNNNN}&nbsp;(&nbsp;16b&nbsp;each&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iput"><strong>iput</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputboolean"><strong>iputboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-boolean&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputbyte"><strong>iputbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-byte&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputchar"><strong>iputchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-char&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputobject"><strong>iputobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-<a href="__builtin__.html#object">object</a>&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputshort"><strong>iputshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-short&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-iputwide"><strong>iputwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;iput-wide&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-load_array_exp"><strong>load_array_exp</strong></a>(val_a, val_b, val_c, ar_type, vmap)</dt></dl>
+ <dl><dt><a name="-longtodouble"><strong>longtodouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;long-to-double&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-longtofloat"><strong>longtofloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;long-to-float&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-longtoint"><strong>longtoint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;long-to-int&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-monitorenter"><strong>monitorenter</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;monitor-enter&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-monitorexit"><strong>monitorexit</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;monitor-exit&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-move"><strong>move</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-move16"><strong>move16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move/16&nbsp;vAAAA,&nbsp;vBBBB&nbsp;(&nbsp;16b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveexception"><strong>moveexception</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-exception&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-movefrom16"><strong>movefrom16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move/from16&nbsp;vAA,&nbsp;vBBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveobject"><strong>moveobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-<a href="__builtin__.html#object">object</a>&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveobject16"><strong>moveobject16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-<a href="__builtin__.html#object">object</a>/16&nbsp;vAAAA,&nbsp;vBBBB&nbsp;(&nbsp;16b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveobjectfrom16"><strong>moveobjectfrom16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-<a href="__builtin__.html#object">object</a>/from16&nbsp;vAA,&nbsp;vBBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveresult"><strong>moveresult</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;move-result&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveresultobject"><strong>moveresultobject</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;move-result-<a href="__builtin__.html#object">object</a>&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-moveresultwide"><strong>moveresultwide</strong></a>(ins, vmap, ret)</dt><dd><tt>#&nbsp;move-result-wide&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-movewide"><strong>movewide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-wide&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-movewide16"><strong>movewide16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-wide/16&nbsp;vAAAA,&nbsp;vBBBB&nbsp;(&nbsp;16b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-movewidefrom16"><strong>movewidefrom16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;move-wide/from16&nbsp;vAA,&nbsp;vBBBB&nbsp;(&nbsp;8b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-muldouble"><strong>muldouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-muldouble2addr"><strong>muldouble2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-double/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulfloat"><strong>mulfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulfloat2addr"><strong>mulfloat2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-float/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulint"><strong>mulint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulint2addr"><strong>mulint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulintlit16"><strong>mulintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mulintlit8"><strong>mulintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mullong"><strong>mullong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-mullong2addr"><strong>mullong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;mul-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-negdouble"><strong>negdouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;neg-double&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-negfloat"><strong>negfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;neg-float&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-negint"><strong>negint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;neg-int&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-neglong"><strong>neglong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;neg-long&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-newarray"><strong>newarray</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;new-array&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;8b,&nbsp;size&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-newinstance"><strong>newinstance</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;new-instance&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-nop"><strong>nop</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;nop</tt></dd></dl>
+ <dl><dt><a name="-notint"><strong>notint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;not-int&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-notlong"><strong>notlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;not-long&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orint"><strong>orint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orint2addr"><strong>orint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orintlit16"><strong>orintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orintlit8"><strong>orintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orlong"><strong>orlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-orlong2addr"><strong>orlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;or-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-pack"><strong>pack</strong></a>(...)</dt><dd><tt>Return&nbsp;string&nbsp;containing&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;packed&nbsp;according&nbsp;to&nbsp;fmt.</tt></dd></dl>
+ <dl><dt><a name="-packedswitch"><strong>packedswitch</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;packed-switch&nbsp;vAA,&nbsp;+BBBBBBBB&nbsp;(&nbsp;reg&nbsp;to&nbsp;test,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remdouble"><strong>remdouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remdouble2addr"><strong>remdouble2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-double/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remfloat"><strong>remfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remfloat2addr"><strong>remfloat2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-float/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remint"><strong>remint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remint2addr"><strong>remint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remintlit16"><strong>remintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remintlit8"><strong>remintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remlong"><strong>remlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-remlong2addr"><strong>remlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rem-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-return_reg"><strong>return_reg</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;return&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-returnobject"><strong>returnobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;return-<a href="__builtin__.html#object">object</a>&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-returnvoid"><strong>returnvoid</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;return-void</tt></dd></dl>
+ <dl><dt><a name="-returnwide"><strong>returnwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;return-wide&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-rsubint"><strong>rsubint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rsub-int&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-rsubintlit8"><strong>rsubintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;rsub-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sget"><strong>sget</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetboolean"><strong>sgetboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-boolean&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetbyte"><strong>sgetbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-byte&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetchar"><strong>sgetchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-char&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetobject"><strong>sgetobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-<a href="__builtin__.html#object">object</a>&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetshort"><strong>sgetshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-short&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sgetwide"><strong>sgetwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sget-wide&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shlint"><strong>shlint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shl-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shlint2addr"><strong>shlint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shl-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shlintlit8"><strong>shlintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shl-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shllong"><strong>shllong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shl-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shllong2addr"><strong>shllong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shl-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shrint"><strong>shrint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shr-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shrint2addr"><strong>shrint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shr-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shrintlit8"><strong>shrintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shr-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shrlong"><strong>shrlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shr-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-shrlong2addr"><strong>shrlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;shr-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sparseswitch"><strong>sparseswitch</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sparse-switch&nbsp;vAA,&nbsp;+BBBBBBBB&nbsp;(&nbsp;reg&nbsp;to&nbsp;test,&nbsp;32b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sput"><strong>sput</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputboolean"><strong>sputboolean</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-boolean&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputbyte"><strong>sputbyte</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-wide&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputchar"><strong>sputchar</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-char&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputobject"><strong>sputobject</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-<a href="__builtin__.html#object">object</a>&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputshort"><strong>sputshort</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-short&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sputwide"><strong>sputwide</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sput-wide&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-store_array_inst"><strong>store_array_inst</strong></a>(val_a, val_b, val_c, ar_type, vmap)</dt></dl>
+ <dl><dt><a name="-subdouble"><strong>subdouble</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-double&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-subdouble2addr"><strong>subdouble2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-double/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-subfloat"><strong>subfloat</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-float&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-subfloat2addr"><strong>subfloat2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-float/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-subint"><strong>subint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-subint2addr"><strong>subint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sublong"><strong>sublong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-sublong2addr"><strong>sublong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;sub-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-throw"><strong>throw</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;throw&nbsp;vAA&nbsp;(&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-unpack"><strong>unpack</strong></a>(...)</dt><dd><tt>Unpack&nbsp;the&nbsp;string&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according&nbsp;to&nbsp;fmt.<br>
+Requires&nbsp;len(string)&nbsp;==&nbsp;calcsize(fmt).</tt></dd></dl>
+ <dl><dt><a name="-ushrint"><strong>ushrint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;ushr-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ushrint2addr"><strong>ushrint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;ushr-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ushrintlit8"><strong>ushrintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;ushr-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ushrlong"><strong>ushrlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;ushr-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-ushrlong2addr"><strong>ushrlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;ushr-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorint"><strong>xorint</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-int&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorint2addr"><strong>xorint2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-int/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorintlit16"><strong>xorintlit16</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-int/lit16&nbsp;vA,&nbsp;vB,&nbsp;#+CCCC&nbsp;(&nbsp;4b,&nbsp;4b,&nbsp;16b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorintlit8"><strong>xorintlit8</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-int/lit8&nbsp;vAA,&nbsp;vBB,&nbsp;#+CC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorlong"><strong>xorlong</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-long&nbsp;vAA,&nbsp;vBB,&nbsp;vCC&nbsp;(&nbsp;8b,&nbsp;8b,&nbsp;8b&nbsp;)</tt></dd></dl>
+ <dl><dt><a name="-xorlong2addr"><strong>xorlong2addr</strong></a>(ins, vmap)</dt><dd><tt>#&nbsp;xor-long/2addr&nbsp;vA,&nbsp;vB&nbsp;(&nbsp;4b,&nbsp;4b&nbsp;)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>COND</strong> = 2<br>
+<strong>EXPR</strong> = 0<br>
+<strong>INST</strong> = 1<br>
+<strong>INSTRUCTION_SET</strong> = {'add-double': &lt;function adddouble&gt;, 'add-double/2addr': &lt;function adddouble2addr&gt;, 'add-float': &lt;function addfloat&gt;, 'add-float/2addr': &lt;function addfloat2addr&gt;, 'add-int': &lt;function addint&gt;, 'add-int/2addr': &lt;function addint2addr&gt;, 'add-int/lit16': &lt;function addintlit16&gt;, 'add-int/lit8': &lt;function addintlit8&gt;, 'add-long': &lt;function addlong&gt;, 'add-long/2addr': &lt;function addlong2addr&gt;, ...}<br>
+<strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module androguard.decompiler.dad.control_flow</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="androguard.html"><font color="#ffffff">androguard</font></a>.<a href="androguard.decompiler.html"><font color="#ffffff">decompiler</font></a>.<a href="androguard.decompiler.dad.html"><font color="#ffffff">dad</font></a>.control_flow</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///D:/python27/lib/site-packages/androguard-1.5-py2.7.egg/androguard/decompiler/dad/control_flow.py">d:\python27\lib\site-packages\androguard-1.5-py2.7.egg\androguard\decompiler\dad\control_flow.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;Androguard.<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2012&nbsp;Geoffroy&nbsp;Gueguen&nbsp;&lt;geoffroy.gueguen@gmail.com&gt;<br>
+#&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;Androguard&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;Lesser&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;Androguard.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-derived_sequence"><strong>derived_sequence</strong></a>(graph)</dt><dd><tt>Compute&nbsp;the&nbsp;derived&nbsp;sequence&nbsp;of&nbsp;the&nbsp;graph&nbsp;G<br>
+The&nbsp;intervals&nbsp;of&nbsp;G&nbsp;are&nbsp;collapsed&nbsp;into&nbsp;nodes,&nbsp;intervals&nbsp;of&nbsp;these&nbsp;nodes&nbsp;are<br>
+built,&nbsp;and&nbsp;the&nbsp;process&nbsp;is&nbsp;repeated&nbsp;iteratively&nbsp;until&nbsp;we&nbsp;obtain&nbsp;a&nbsp;single<br>
+node&nbsp;(if&nbsp;the&nbsp;graph&nbsp;is&nbsp;not&nbsp;irreducible)</tt></dd></dl>
+ <dl><dt><a name="-identify_structures"><strong>identify_structures</strong></a>(graph, idoms)</dt></dl>
+ <dl><dt><a name="-if_struct"><strong>if_struct</strong></a>(graph, idoms)</dt></dl>
+ <dl><dt><a name="-intervals"><strong>intervals</strong></a>(graph)</dt><dd><tt>Compute&nbsp;the&nbsp;intervals&nbsp;of&nbsp;the&nbsp;graph<br>
+Returns<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interval_graph:&nbsp;a&nbsp;graph&nbsp;of&nbsp;the&nbsp;intervals&nbsp;of&nbsp;G<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interv_heads:&nbsp;a&nbsp;dict&nbsp;of&nbsp;(header&nbsp;node,&nbsp;interval)</tt></dd></dl>
+ <dl><dt><a name="-loop_follow"><strong>loop_follow</strong></a>(start, end, nodes_in_loop)</dt></dl>
+ <dl><dt><a name="-loop_struct"><strong>loop_struct</strong></a>(graphs_list, intervals_list)</dt></dl>
+ <dl><dt><a name="-loop_type"><strong>loop_type</strong></a>(start, end, nodes_in_loop)</dt></dl>
+ <dl><dt><a name="-mark_loop"><strong>mark_loop</strong></a>(graph, start, end, interval)</dt></dl>
+ <dl><dt><a name="-mark_loop_rec"><strong>mark_loop_rec</strong></a>(graph, node, s_num, e_num, interval, nodes_in_loop)</dt></dl>
+ <dl><dt><a name="-short_circuit_struct"><strong>short_circuit_struct</strong></a>(graph, idom, node_map)</dt></dl>
+ <dl><dt><a name="-switch_struct"><strong>switch_struct</strong></a>(graph, idoms)</dt></dl>
+ <dl><dt><a name="-update_dom"><strong>update_dom</strong></a>(idoms, node_map)</dt></dl>
+ <dl><dt><a name="-while_block_struct"><strong>while_block_struct</strong></a>(graph, node_map)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>
