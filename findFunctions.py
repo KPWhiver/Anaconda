@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 import re
+import sys
 
-from androguard.androlyze import *
+sys.path.append('androguard')
+
+from androlyze import *
 
 # Parse the last argument of a function call
 def parseCall(call) :
@@ -40,9 +43,6 @@ def block(idx, method) :
 
 def instruction(idx, block) :
     return block.get_instructions()[idx]
-
-def printInstructionsWithNames(APK, instructionNames) :
-    print 'sup bro'
 
 
 def trackFromCall(method, register, blockIdx, instructionIdx) :

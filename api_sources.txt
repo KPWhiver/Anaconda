@@ -1,0 +1,53 @@
+//class (only non grey ones)                functions                     permission                                                          comment
+android.accounts.AccountManager             getAccounts                   android.permission.GET_ACCOUNTS                                     get account data (could be an emailadress)
+android.accounts.AccountManager             getAccountsByType
+android.accounts.AccountManager             getAccountsByTypeAndFeatures
+android.accounts.AccountManager             hasFeatures                                                                                       ???
+android.accounts.AccountManager             addOnAccountsUpdatedListener                                                               
+
+android.accounts.AccountManager             getPassword                   android.permission.AUTHENTICATE_ACCOUNTS
+android.accounts.AccountManager             getUserData
+
+android.app.ActivityManager                 getRecentTasks                android.permission.GET_TASKS
+android.app.ActivityManager                 getRunningTasks                       
+
+android.bluetooth.BluetoothAdapter          getAddress                    android.permission.BLUETOOTH                                        hardware (MAC?) address
+android.bluetooth.BluetoothAdapter          getBondedDevices                                                                                  returns BluetoothDevices
+android.bluetooth.BluetoothAdapter          getName                                                                                           your bluetooth name
+android.bluetooth.BluetoothDevice           getName
+
+android.location.LocationManager            getLastKnownLocation          android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.LocationManager            requestLocationUpdates                                                                            does not return location, instead allows you pass it a listener
+android.telephony.TelephonyManager          getNeighboringCellInfo
+
+android.net.ConnectivityManager             getActiveNetworkInfo          android.permission.ACCESS_NETWORK_STATE                             ???
+android.net.ConnectivityManager             getAllNetworkInfo
+android.net.ConnectivityManager             getNetworkInfo
+android.net.ConnectivityManager             getNetworkPreference
+
+android.net.wifi.WifiManager                getConfiguredNetworks         android.permission.ACCESS_WIFI_STATE
+android.net.wifi.WifiManager                getConnectionInfo
+android.net.wifi.WifiManager                getDhcpInfo
+
+android.provider.Browser                    getAllBookmarks               com.android.browser.permission.READ_HISTORY_BOOKMARKS             
+android.provider.Browser                    getAllVisitedUrls                                                                                          
+
+android.provider.CallLog$Calls              getLastOutgoingCall           android.permission.READ_CONTACTS
+android.provider.ContactsContract$Contacts  lookupContact
+com.android.internal.telephony.CallerInfo   getCallerId
+com.android.internal.telephony.CallerInfo   getCallerInfo
+
+android.telephony.gsm.SmsManager            sendDataMessage               android.permission.SEND_SMS                                         not a source but still interesting
+android.telephony.gsm.SmsManager            sendMultipartTextMessage
+android.telephony.gsm.SmsManager            sendTextMessage
+android.telephony.SmsManager                sendDataMessage
+android.telephony.SmsManager                sendMultipartTextMessage
+android.telephony.SmsManager                sendTextMessage
+
+android.telephony.TelephonyManager          getDeviceId                   android.permission.READ_PHONE_STATE                                 IMEI for gsm and MEID or ESN for CDMA
+android.telephony.TelephonyManager          getLine1Number
+android.telephony.TelephonyManager          getSimSerialNumber
+android.telephony.TelephonyManager          getSubscriberId                                                                                   IMSI
+
+android.telephony.TelephonyManager          listen                        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE   also uses a listener
+
