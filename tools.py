@@ -13,20 +13,30 @@ class Method :
         for block in methodInfo.get_basic_blocks().get() :
             self.d_blocks.append(block)
             
+    # MethodAnalysis object
     def method(self):
         return self.d_method
     
+    # Name of the function
+    def name(self):
+        return self.d_method.get_method().get_name()
+    
+    # Does the function contain code
+    def hasCode(self):
+        return self.d_method.get_method().get_code() != None
+    
+    # The code blocks
     def blocks(self):
         return self.d_blocks
 
 class APKstructure :
-    def __init__(self, dvm, analysis):
+    def __init__(self, file):
+        _, self.d_dvm, self.d_analysis = AnalyzeAPK(file, False, 'dad')
         self.d_methods = {}
-        self.d_dvm = dvm
-        self.d_analysis = analysis
-        for method in dvm.get_methods() :
-            self.d_methods[method.get_name()] = Method(analysis.get_method(method))
+        for method in self.d_dvm.get_methods() :
+            self.d_methods[method.get_name()] = Method(self.d_analysis.get_method(method))
             
+    
     def method(self, name):
         return self.d_methods[name]
     
@@ -38,14 +48,9 @@ class APKstructure :
     
     def analysis(self):
         return self.d_analysis
-    
-
-def analyse(file) :
-    _, d, dx = AnalyzeAPK(file, False, 'dad')
-    return APKstructure(d, dx)
 
 def forEveryInstruction(function, method) :
-    if method.method().get_method().get_code() == None:
+    if not method.hasCode():
         return
 
     # search through all blocks
@@ -55,15 +60,15 @@ def forEveryInstruction(function, method) :
             function(instruction)
            
 def printInstructionsWithNames(file, instructionNames) :
-    structure = analyse(file)
+    structure = APKstructure(file)
 
     def printIfInstruction(instruction) :
         if instruction.get_name() in instructionNames :
             print instruction.get_name(), instruction.get_output()
 
     # search through all methods
-    for method in structure.methods() :
-        forEveryInstruction(printIfInstruction, structure.method(method))
+    for _, method in structure.methods().items() :
+        forEveryInstruction(printIfInstruction, method)
         
         
         
