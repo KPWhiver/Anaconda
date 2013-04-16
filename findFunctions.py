@@ -6,6 +6,7 @@ import sys
 sys.path.append('androguard')
 
 from androlyze import *
+from tools import *
 
 # Parse the last argument of a function call
 def parseCall(call) :
@@ -46,53 +47,58 @@ def instruction(idx, block) :
 
 
 def trackFromCall(method, register, blockIdx, instructionIdx) :
-    for block in method.get_basic_blocks().get()[blockIdx:] :
-        startIdx = instructionIdx if block == method.get_basic_blocks().get()[blockIdx] else 0
+    for block in method.blocks()[blockIdx:] :
+        startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
         for instruction in block.get_instructions()[startIdx:] :
             print 'track'
      
-def main() :
+def analyzeBlocks(method, classAndFunctions):
+    
+    previousWasSource = False
+    
+    # search through all blocks
+    for blockIdx, block in enumerate(method.blocks()): 
 
-    # 
+        # search through all instructions
+        for instructionIdx, instruction in enumerate(block.get_instructions()):
+            
+            instructionArgs = [arg.strip() for arg in instruction.get_output().split(',')]
+            
+            
+            # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
+            if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
+                previousWasSource = False
+                className, methodName = parseCall(instructionArgs[-1])
+                if [className, methodName] in classAndFunctions:
+                    print className, methodName
+                    previousWasSource = True
+                    
+                elif className == 'java/net/Socket' and methodName == '<init>':
+                    print className, methodName
+                    
+            if instruction.get_name() in ['move-result-object', 'move-result', 'move-result-wide'] and previousWasSource :
+                trackFromCall(method, instructionArgs[0], blockIdx, instructionIdx)
+
+
+def main() :
 
     classAndFunctions = sources('api_sources.txt')
 
-    a, d, dx = AnalyzeAPK('apks/LeakTest1.apk', False, "dad")
+    structure = APKstructure('apks/LeakTest1.apk')
 
-    # search through all methods
-    for method in d.get_methods():
-        methodInfo = dx.get_method(method)
-        
-        method.get_class_name()
+    
 
-        if method.get_code() == None:
-            continue
-
-        # search through all blocks
-        for blockIdx, block in enumerate(methodInfo.get_basic_blocks().get()): 
-
-            # search through all instructions
-            for instructionIdx, instruction in enumerate(block.get_instructions()):
-                
-                instructionArgs = [arg.strip() for arg in instruction.get_output().split(',')]
-                
-                previousSource = False
-                
-                # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
-                if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
-                    previousSource = False
-                    className, methodName = parseCall(instructionArgs[-1])
-                    if [className, methodName] in classAndFunctions:
-                        # trackFromCall(methodInfo, blockIdx, instructionIdx)
-                        print className, methodName
-                        previousSource = True
-                        
-                if instruction.get_name() in ['move-result-object', 'move-result', 'move-result-wide'] and previousSource :
-                    trackFromCall(methodInfo, instructionArgs[0], blockIdx, instructionIdx)
-                           
+    # search through all classes
+    for _, jvmClass in structure.classes().items() :
+    
+        # search through all methods
+        for _, method in jvmClass.methods().items() :
+    
+            if not method.hasCode() :
+                continue
+    
+            analyzeBlocks(method, classAndFunctions)
             
-  
-  
 if __name__=="__main__":
     main()
     

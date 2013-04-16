@@ -29,19 +29,31 @@ class Method :
     def blocks(self):
         return self.d_blocks
 
+class Class :
+    def __init__(self, jvmClass, analysis):
+        self.d_class = jvmClass
+        self.d_methods = {}
+        for method in jvmClass.get_methods() :
+            self.d_methods[method.get_name()] = Method(analysis.get_method(method))
+            
+    def methods(self):
+        return self.d_methods      
+    
+    def methodByName(self, name):
+        return self.d_methods[name]  
+            
 class APKstructure :
     def __init__(self, file):
         _, self.d_dvm, self.d_analysis = AnalyzeAPK(file, False, 'dad')
-        self.d_methods = {}
-        for method in self.d_dvm.get_methods() :
-            self.d_methods[method.get_name()] = Method(self.d_analysis.get_method(method))
-            
+        self.d_classes = {}
+        for jvmClass in self.d_dvm.get_classes():
+            self.d_classes[jvmClass.get_name()] = Class(jvmClass, self.d_analysis)
+
+    def classes(self):
+        return self.d_classes
     
-    def method(self, name):
-        return self.d_methods[name]
-    
-    def methods(self):
-        return self.d_methods
+    def classByName(self, name):
+        return self.d_classes[name]
     
     def dvm(self):
         return self.d_dvm
@@ -67,8 +79,9 @@ def printInstructionsWithNames(file, instructionNames) :
             print instruction.get_name(), instruction.get_output()
 
     # search through all methods
-    for _, method in structure.methods().items() :
-        forEveryInstruction(printIfInstruction, method)
+    for _, jvmClass in structure.classes().items() :
+        for _, method in jvmClass.methods().items() :
+            forEveryInstruction(printIfInstruction, method)
         
         
         
