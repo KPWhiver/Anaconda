@@ -9,9 +9,9 @@ from androlyze import *
 class Method :
     def __init__(self, methodInfo):
         self.d_method = methodInfo
-        self.d_blocks = []
-        for block in methodInfo.get_basic_blocks().get() :
-            self.d_blocks.append(block)
+        self.d_blocks = methodInfo.get_basic_blocks().gets()
+        #for block in methodInfo.get_basic_blocks().get() :
+        #    self.d_blocks.append(block)
             
     # MethodAnalysis object
     def method(self):
@@ -35,6 +35,9 @@ class Class :
         self.d_methods = {}
         for method in jvmClass.get_methods() :
             self.d_methods[method.get_name()] = Method(analysis.get_method(method))
+            
+    def name(self):
+        return self.d_class.get_name()
             
     def methods(self):
         return self.d_methods      
@@ -61,6 +64,7 @@ class APKstructure :
     def analysis(self):
         return self.d_analysis
 
+# execute function for all instructions
 def forEveryInstruction(function, method) :
     if not method.hasCode():
         return
@@ -70,8 +74,35 @@ def forEveryInstruction(function, method) :
         # search through all instructions
         for instruction in block.get_instructions():   
             function(instruction)
-           
-def printInstructionsWithNames(file, instructionNames) :
+            
+        print '_'
+          
+# prints a minimal call graph of a class 
+def printBlocks(file, className) :
+    structure = APKstructure(file)
+
+    def printBlock(block):
+        for instruction in block.get_instructions():   
+            print instruction.get_name(), instruction.get_output()
+            
+    def printRecursive(block):
+        printBlock(block)
+        print '->'
+        for child in block.get_next():
+            printRecursive(child[2])
+            print '+'
+            
+
+    # search through all methods
+    jvmClass = structure.classByName(className)
+
+    for _, method in jvmClass.methods().items() :
+        # search through all blocks
+        printRecursive(method.blocks()[0])
+        print '\n\n'
+            
+# print all instruction with a certain name (for example: 'invoke-direct') 
+def printInstructions(file, instructionNames) :
     structure = APKstructure(file)
 
     def printIfInstruction(instruction) :
@@ -80,8 +111,9 @@ def printInstructionsWithNames(file, instructionNames) :
 
     # search through all methods
     for _, jvmClass in structure.classes().items() :
+ 
         for _, method in jvmClass.methods().items() :
             forEveryInstruction(printIfInstruction, method)
-        
+    
         
         
