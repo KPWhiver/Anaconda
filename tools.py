@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import sys, re
-from structure import *
+
+import structure
+reload(structure)
 
 sys.path.append('androguard')
 
@@ -51,16 +53,17 @@ def printBlocks(file, className):
 
 # print all instruction with a certain name (for example: 'invoke-direct') 
 def printInstructions(file, instructionNames):
-    structure = APKstructure(file)
+    struct = structure.APKstructure(file)
 
     def printIfInstruction(instruction):
         if instruction.opcode() in instructionNames:
-            print instruction.opcode(), instruction.classAndMethod()
+            print instruction.opcode(), instruction.parameters()
 
     # search through all methods
-    for _, jvmClass in structure.classes().items():
+    for _, jvmClass in struct.classes().items():
  
         for _, method in jvmClass.methods().items():
+            print method
             forEveryInstruction(printIfInstruction, method)
     
         
