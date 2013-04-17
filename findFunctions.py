@@ -48,9 +48,11 @@ def analyzeInstruction(instruction, register):
         if not (instructionClass is None):
             instructionMethod = instructionClass.methodByName(methodName)
             if not (instructionMethod is None):
-                parameterRegister = 'v' + (instructionMethod.numberOfLocalRegisters() + paramterIndex)
-                trackFromCall(instructionMethod, paramterRegister, 0, 0)
                 print 'Information is used in method call defined in apk'
+                print 'Tracking recursively.....'
+                parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
+                trackFromCall(instructionMethod, parameterRegister, 0, 0)
+                
                 # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
             else:
                 # method is not defined within APK
@@ -106,7 +108,6 @@ def analyzeBlocks(method, classAndFunctions):
         # search through all instructions
         for instructionIdx, instruction in enumerate(block.instructions()):
             # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
-
             if instruction.opcode() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
                 previousWasSource = False
                 className, methodName = instruction.classAndMethod()
