@@ -9,13 +9,31 @@ def parseCall(call) :
     if call != '' and call[0] == '[':
         return '', ''
     
-    match = re.match('L([\w/\$]*);->([\w\$<>]*)\(.*', call)
+    match = re.match('(L[\w/\$]*;)->([\w\$<>]*)\(.*', call)
     if match == None:
-        print call
+        print 'error: ', call
         return '', ''
     
     return match.group(1), match.group(2)
 
+def replaceRange(parameters):
+    match = re.match('v([\d]+)[\s]*\.\.\.[\s]*v([\d]+)', parameters[0])
+    if match == None:
+        print 'error: ', parameters
+        return
+    
+    firstInt = int(match.group(1))
+    secondInt = int(match.group(2))
+    
+    if secondInt < firstInt or firstInt == None or secondInt == None:
+        print 'error: ', parameters
+        return
+    
+    parameters.pop(0)
+    
+    for number in range(firstInt, secondInt + 1):
+        parameters.insert(number - firstInt, 'v' + str(number))
+        
 class Instruction:
     def __init__(self, instruction):
         self.d_instruction = instruction
@@ -24,8 +42,14 @@ class Instruction:
         self.d_calledClass = None
         self.d_calledMethod = None
         
-        # if this instruction is a function call parse the function (apparently also range ones exist, skipping...)
+        # if the argument is a range convert it
+        if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
+            replaceRange(self.d_parameters)
+        
+        # if this instruction is a function call parse the function (there is also something like invoke-quick?)
         if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
+            self.d_calledClass, self.d_calledMethod = parseCall(self.d_parameters[-1]) 
+        elif instruction.get_name() in ['invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']:
             self.d_calledClass, self.d_calledMethod = parseCall(self.d_parameters[-1])
         
     def instruction(self):
@@ -39,6 +63,9 @@ class Instruction:
         
     def classAndMethod(self):
         return self.d_calledClass, self.d_calledMethod
+    
+    def __str__(self):
+        return self.opcode() + str(self.d_parameters)
         
 class Block:
     def __init__(self, block):
@@ -52,6 +79,9 @@ class Block:
         
     def instructions(self):
         return self.d_instructions
+    
+    def __str__(self):
+        return ''
 
 class Method:
     def __init__(self, methodInfo):
@@ -75,6 +105,9 @@ class Method:
     # The code blocks
     def blocks(self):
         return self.d_blocks
+    
+    def __str__(self):
+        return self.name()
 
 class Class:
     def __init__(self, jvmClass, analysis):
@@ -91,6 +124,9 @@ class Class:
     
     def methodByName(self, name):
         return self.d_methods[name]  
+    
+    def __str__(self):
+        return self.name()
             
 class APKstructure:
     def __init__(self, file):
@@ -110,3 +146,6 @@ class APKstructure:
     
     def analysis(self):
         return self.d_analysis
+    
+    def __str__(self):
+        return ''
