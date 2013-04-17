@@ -90,6 +90,9 @@ class Method:
         for block in methodInfo.get_basic_blocks().get():
             self.d_blocks.append(Block(block))
             
+        self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
+        self.d_name
+            
     # MethodAnalysis object
     def method(self):
         return self.d_method
