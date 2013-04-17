@@ -7,18 +7,6 @@ sys.path.append('androguard')
 
 from androlyze import *
 from tools import *
-
-# Parse the last argument of a function call
-def parseCall(call) :
-    if call != '' and call[0] == '[':
-        return '', ''
-    
-    match = re.match('L([\w/\$]*);->([\w\$<>]*)\(.*', call)
-    if match == None:
-        print call
-        return '', ''
-    
-    return match.group(1), match.group(2)
  
 # Read the list of api sources       
 def sources(filename) :
@@ -63,8 +51,7 @@ def analyzeBlocks(method, classAndFunctions):
         for instructionIdx, instruction in enumerate(block.get_instructions()):
             
             instructionArgs = [arg.strip() for arg in instruction.get_output().split(',')]
-            
-            
+
             # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
             if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
                 previousWasSource = False
