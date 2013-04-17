@@ -100,10 +100,16 @@ class Method:
     
     def numberOfRegisters(self):
         return self.d_method.get_method().get_code().get_registers_size()
+        
+    def numberOfParameters(self):
+        return self.d_method.get_method().get_code().get_ins_size()
+        
+    def numberOfLocalRegisters(self):
+        return self.numberOfRegisters() - self.numberOfParameters()
     
     # Does the function contain code
     def hasCode(self):
-        return self.d_method.get_method().get_code() != None
+        return self.d_method.get_method().get_code() is not None
     
     # The code blocks
     def blocks(self):

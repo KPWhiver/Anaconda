@@ -41,14 +41,15 @@ def analyzeInstruction(instruction, register):
     parameterIndex = instruction.parameters().index(register)
 
     if 'invoke' in instruction.opcode():
-        className, methodName = instruction.classAndMethod()[0]
+        className, methodName = instruction.classAndMethod()
         
         # attempt to find the method used within the apk
         instructionClass = structure.classByName(className)
         if not (instructionClass is None):
             instructionMethod = instructionClass.methodByName(methodName)
             if not (instructionMethod is None):
-                #trackFromCall(instructionMethod,  , 0, 0)
+                parameterRegister = 'v' + (instructionMethod.numberOfLocalRegisters() + paramterIndex)
+                trackFromCall(instructionMethod, paramterRegister, 0, 0)
                 print 'Information is used in method call defined in apk'
                 # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
             else:
@@ -104,12 +105,12 @@ def analyzeBlocks(method, classAndFunctions):
 
         # search through all instructions
         for instructionIdx, instruction in enumerate(block.instructions()):
-
             # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
+
             if instruction.opcode() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
                 previousWasSource = False
                 className, methodName = instruction.classAndMethod()
-                if [className, methodName] in classAndFunctions:
+                if [className[1:-1], methodName] in classAndFunctions:
                     print className, methodName
                     previousWasSource = True
                     
@@ -125,8 +126,6 @@ def main():
     global structure
     structure = APKstructure('apks/LeakTest1.apk')
 
-    
-
     # search through all classes
     for _, jvmClass in structure.classes().items():
     
@@ -135,7 +134,7 @@ def main():
     
             if not method.hasCode():
                 continue
-    
+            
             analyzeBlocks(method, classAndFunctions)
             
 if __name__=="__main__":
