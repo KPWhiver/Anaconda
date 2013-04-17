@@ -98,6 +98,9 @@ class Method:
     def name(self):
         return self.d_method.get_method().get_name()
     
+    def numberOfRegisters(self):
+        return self.d_method.get_method().get_code().get_registers_size()
+    
     # Does the function contain code
     def hasCode(self):
         return self.d_method.get_method().get_code() != None

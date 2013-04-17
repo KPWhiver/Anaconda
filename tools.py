@@ -60,11 +60,14 @@ def printInstructions(file, instructionNames):
             print instruction.opcode(), instruction.parameters()
 
     # search through all methods
-    for _, jvmClass in struct.classes().items():
+    #for _, jvmClass in struct.classes().items():
  
-        for _, method in jvmClass.methods().items():
-            print method
-            forEveryInstruction(printIfInstruction, method)
+    #for _, method in jvmClass.methods().items():
+    jvmClass = struct.classByName('Lcom/example/leaktest1/MainActivity;')
+    method = jvmClass.methodByName('onCreate')
+    
+    print method, method.numberOfRegisters(), method.method().get_method().get_code().get_ins_size()
+    forEveryInstruction(printIfInstruction, method)
     
         
         
