@@ -90,7 +90,7 @@ class Class:
         return self.d_methods      
     
     def methodByName(self, name):
-        return self.d_methods[name]  
+        return self.d_methods.get(name, None)
             
 class APKstructure:
     def __init__(self, file):
@@ -103,7 +103,7 @@ class APKstructure:
         return self.d_classes
     
     def classByName(self, name):
-        return self.d_classes[name]
+        return self.d_classes.get(name, None)
     
     def dvm(self):
         return self.d_dvm

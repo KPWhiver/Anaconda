@@ -6,6 +6,7 @@ import sys
 sys.path.append('androguard')
 
 from androlyze import *
+from structure import *
 from tools import *
  
 # Read the list of api sources       
@@ -33,46 +34,66 @@ def block(idx, method):
 def instruction(idx, block):
     return block.get_instructions()[idx]
 
-def parseInstruction(instruction):
+
+def analyzeInstruction(instruction, register):
+    print instruction.opcode(), instruction.parameters()
+    
+    parameterIndex = instruction.parameters().index(register)
+
     if 'invoke' in instruction.opcode():
-        instructionClass = structure.classByName(instruction.classAndmethod())
-        if not (instructionClass is None):
-            instructionMethod = instructionClass.methodByName(instruction.classAndMethod())
-            if not (instructionMethod is None):
-                print('method found')
-                return
-                # Parameter p* is tainted in method instructionMethod
-                
-        # class is not defined within APK
-        print('method not found')
+        className, methodName = instruction.classAndMethod()[0]
         
+        # attempt to find the method used within the apk
+        instructionClass = structure.classByName(className)
+        if not (instructionClass is None):
+            instructionMethod = instructionClass.methodByName(methodName)
+            if not (instructionMethod is None):
+                #trackFromCall(instructionMethod,  , 0, 0)
+                print 'Information is used in method call defined in apk'
+                # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
+            else:
+                # method is not defined within APK
+                print 'Method', methodName, 'not found in class', className
+        else:  
+            # class is not defined within APK
+            print 'Class' , className, 'not found in apk'
+            if [className, methodName] in []: # is the method a known sink?
+                print 'data is leaking'
+            
+    elif 'if-' in instruction.opcode():
+        print 'Register is used in if statement'
+    
     elif 'put' in instruction.opcode():
+        print 'Value is put in field'
         #Value is put inside array, 'aput'
         #Value is put in instance field, 'iput'
         #Value is put in static field, 'sput'
         
+    elif 'return' in instruction.opcode():
+        print 'Value was returned'
+        
     elif 'move' in instruction.opcode():
+        print 'move'
         #Value is moved into other register, 'move'
         
     else:
-        print('Unknown operation performed')
-        print(instruction.classAndMethod)
-    
+        print 'Unknown operation performed'
+
     
 
 def trackFromCall(method, register, blockIdx, instructionIdx):
-    print "Tracking register", register
+    print "Tracking the result in register", register
     for block in method.blocks()[blockIdx:]:
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
-        for instruction in block.get_instructions()[startIdx:]:
-            if register in instruction.get_output():
+        for instruction in block.instructions()[startIdx:]:
+            if register in instruction.parameters():
                 
-                if instruction.get_name() in ['move-result-object', 'move-result', 'move-result-wide']:
+                if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
                     return # register is overwritten
                 
-                print instruction.get_name(), instruction.get_output()
+                analyzeInstruction(instruction, register)
                 
-    print("\n")
+    print
      
 def analyzeBlocks(method, classAndFunctions):
     
@@ -82,14 +103,12 @@ def analyzeBlocks(method, classAndFunctions):
     for blockIdx, block in enumerate(method.blocks()): 
 
         # search through all instructions
-        for instructionIdx, instruction in enumerate(block.get_instructions()):
-            
-            instructionArgs = [arg.strip() for arg in instruction.get_output().split(',')]
+        for instructionIdx, instruction in enumerate(block.instructions()):
 
             # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
-            if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
+            if instruction.opcode() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
                 previousWasSource = False
-                className, methodName = parseCall(instructionArgs[-1])
+                className, methodName = instruction.classAndMethod()
                 if [className, methodName] in classAndFunctions:
                     print className, methodName
                     previousWasSource = True
@@ -97,15 +116,14 @@ def analyzeBlocks(method, classAndFunctions):
                 elif className == 'java/net/Socket' and methodName == '<init>':
                     print className, methodName
                     
-            if instruction.get_name() in ['move-result-object', 'move-result', 'move-result-wide'] and previousWasSource:
-                trackFromCall(method, instructionArgs[0], blockIdx, instructionIdx + 1)
-
+            if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide'] and previousWasSource:
+                trackFromCall(method, instruction.parameters()[0], blockIdx, instructionIdx + 1)
 
 def main():
 
     classAndFunctions = sources('api_sources.txt')
-
-    global structure = APKstructure('apks/LeakTest1.apk')
+    global structure
+    structure = APKstructure('apks/LeakTest1.apk')
 
     
 
