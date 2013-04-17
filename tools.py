@@ -66,7 +66,7 @@ def printInstructions(file, instructionNames):
     jvmClass = struct.classByName('Lcom/example/leaktest1/MainActivity;')
     method = jvmClass.methodByName('onCreate')
     
-    print method, method.numberOfRegisters(), method.method().get_method().get_code().get_ins_size()
+    print method, method.method().get_method().get_descriptor()
     forEveryInstruction(printIfInstruction, method)
     
         
