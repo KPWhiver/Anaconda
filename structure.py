@@ -69,7 +69,13 @@ class Instruction:
             return self.d_parameters[-2], self.d_parameters[-1]
         
         return None, None
-    
+    """
+    def classAndMethodByStructure(self, structure):
+        if self.d_parameters > 1:
+            return self.d_parameters[-2], self.d_parameters[-1]
+        
+        return structure.classByName(self.d_parameters[-2]), structureF@*& C@
+    """
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
@@ -91,8 +97,8 @@ class Block:
         return ''
 
 class Method:
-    def __init__(self, methodInfo, jvmClass):
-        self.d_class = jvmClass
+    def __init__(self, methodInfo, classObject):
+        self.d_class = classObject
         self.d_method = methodInfo
         self.d_blocks = []
         for block in methodInfo.get_basic_blocks().get():
@@ -180,7 +186,7 @@ class Class:
         self.d_initialized = True
 
         for method in self.d_class.get_methods():
-            newMethod = Method(self.d_analysis.get_method(method), self.d_class)
+            newMethod = Method(self.d_analysis.get_method(method), self)
             self.d_methods[newMethod.name()] = newMethod
 
             
