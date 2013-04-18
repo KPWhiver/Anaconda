@@ -239,9 +239,9 @@ class APKstructure:
             descriptor = '.'
         else:
             descriptor = methodName[descriptorLoc:]
-            descriptor.replace('(', '\(')
-            descriptor.replace(')', '\)')
-            descriptor.replace('$', '\$')
+            descriptor = descriptor.replace('(', '\(')
+            descriptor = descriptor.replace(')', '\)')
+            descriptor = descriptor.replace('$', '\$')
             methodName = methodName[0:descriptorLoc]
         
         pathps = self.d_analysis.tainted_packages.search_methods(className, methodName, descriptor)

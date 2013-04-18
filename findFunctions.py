@@ -36,11 +36,11 @@ def instruction(idx, block):
     return block.get_instructions()[idx]
 
 
-def analyzeInstruction(instruction, register):
+def analyzeInstruction(method, instruction, register):
     print instruction.opcode(), instruction.parameters()
     
     parameterIndex = instruction.parameters().index(register)
-
+    
     if 'invoke' in instruction.opcode():
         className, methodName = instruction.classAndMethod()
         
@@ -74,7 +74,9 @@ def analyzeInstruction(instruction, register):
         #Value is put in static field, 'sput'
         
     elif 'return' in instruction.opcode():
-        print 'Value was returned'
+        print 'Value was returned. Looking for usages of this function' 
+        
+        trackUsages(method.memberOf().name(), method.name())
         
     elif 'move' in instruction.opcode():
         print 'move'
@@ -93,9 +95,11 @@ def trackFromCall(method, blockIdx, instructionIdx):
         print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
         return
         
-    instructionIdx += 1 # set it 
+    
     print '>', method.name()
     print 'Tracking the result in register', register
+    
+    instructionIdx += 1 # move the pointer to the instruction after the move-result
     for block in method.blocks()[blockIdx:]:
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
         for instruction in block.instructions()[startIdx:]:
@@ -104,40 +108,30 @@ def trackFromCall(method, blockIdx, instructionIdx):
                 if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
                     return # register is overwritten
                 
-                analyzeInstruction(instruction, register)
+                analyzeInstruction(method, instruction, register)
                 
     print
-     
-def analyzeBlocks(method, classAndFunctions):
     
-    previousWasSource = False
+def trackUsages(className, methodName):
+    methods = structure.calledMethodByName(className, methodName)
+    #print 'Method', methodName, className 
+    if len(methods): 
+        print '---------'
+        print 'Method', methodName, className, 'is used in:\n' 
     
-    # search through all blocks
-    for blockIdx, block in enumerate(method.blocks()): 
-
-        # search through all instructions
-        for instructionIdx, instruction in enumerate(block.instructions()):
-            # search for indirect calls (constructors are always direct (either that or java is even weirder than I thought))
-            if instruction.opcode() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
-                previousWasSource = False
-                className, methodName = instruction.classAndMethod()
-                
-                if [className, methodName[0:methodName.find('(')]] in classAndFunctions:
-                    print className, methodName
-                    previousWasSource = True
-                    
-                elif className == 'Ljava/net/Socket;' and methodName == '<init>':
-                    print className, methodName
-                    
-            if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide'] and previousWasSource:
-                trackFromCall(method, instruction.parameters()[0], blockIdx, instructionIdx + 1)
+    # search through all the methods where it is called
+    for method in methods:
+        
+        indices = method.calledInstructionByName(className, methodName)
+        for blockIdx, instructionIdx in indices:
+            trackFromCall(method, blockIdx, instructionIdx + 1) 
 
 def main():
     point = time.time()
 
     classAndFunctions = sources('api_sources.txt')
     global structure
-    structure = APKstructure('apks/LeakTest1.apk')
+    structure = APKstructure('apks/LeakTest2.apk')
     
     # find socket creations (or other known sinks)
     methods = structure.calledMethodByName('Ljava/net/Socket;', '<init>')
@@ -150,31 +144,11 @@ def main():
     
     # search for all tainted methods
     for className, methodName in classAndFunctions:
-        methods = structure.calledMethodByName(className, methodName)
-        if len(methods): print 'Method', methodName, 'is used in:\n'
-        # search through all the methods where it is called
-        for method in methods:
-            
-            indices = method.calledInstructionByName(className, methodName)
-            for blockIdx, instructionIdx in indices:
-                trackFromCall(method, blockIdx, instructionIdx + 1) 
-        if len(methods): print '---------'
-    
+        trackUsages(className, methodName)
     
 
     print 'total time: ', time.time() - point 
 
-    """# search through all classes
-    for _, jvmClass in structure.classes().items():
-    
-        # search through all methods
-        for _, method in jvmClass.methods().items():
-    
-            if not method.hasCode():
-                continue
-            
-            analyzeBlocks(method, classAndFunctions)"""
-            
 if __name__=="__main__":
     main()
     
