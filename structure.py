@@ -116,7 +116,7 @@ class Method:
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.opCode() in Instruction.invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                if instruction.opcode() in Instruction.invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -156,12 +156,6 @@ class Class:
         self.d_methods = {}
         self.d_initialized = False
         self.d_analysis = analysis
-        
-        """
-        for method in jvmClass.get_methods():
-            newMethod = Method(analysis.get_method(method))
-            self.d_methods[newMethod.name()] = newMethod
-        """
 
     def name(self):
         return self.d_class.get_name()

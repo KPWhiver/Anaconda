@@ -48,7 +48,7 @@ def analyzeInstruction(instruction, register):
         instructionClass = structure.classByName(className)
         if not (instructionClass is None):
             instructionMethod = instructionClass.methodByName(methodName)
-            if not (instructionMethod is None):
+            if not (instructionMethod is None) and instructionMethod.hasCode():
                 print 'Information is used in method call defined in apk'
                 print 'Tracking recursively.....'
                 parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
@@ -85,8 +85,17 @@ def analyzeInstruction(instruction, register):
 
     
 
-def trackFromCall(method, register, blockIdx, instructionIdx):
-    print "Tracking the result in register", register
+def trackFromCall(method, blockIdx, instructionIdx):
+    resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
+    if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
+        register = resultInstruction.parameters()[0]
+    else:
+        print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
+        return
+        
+    instructionIdx += 1 # set it 
+    print '>', method.name()
+    print 'Tracking the result in register', register
     for block in method.blocks()[blockIdx:]:
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
         for instruction in block.instructions()[startIdx:]:
@@ -124,12 +133,38 @@ def analyzeBlocks(method, classAndFunctions):
                 trackFromCall(method, instruction.parameters()[0], blockIdx, instructionIdx + 1)
 
 def main():
+    point = time.time()
 
     classAndFunctions = sources('api_sources.txt')
     global structure
     structure = APKstructure('apks/LeakTest1.apk')
+    
+    # find socket creations (or other known sinks)
+    methods = structure.calledMethodByName('Ljava/net/Socket;', '<init>')
+    for method in methods:
+        print 'Socket created in', method.name()
+        method.calledInstructionByName('Ljava/net/Socket;', '<init>')
+        # Track it and mark new sinks
+    
+    print
+    
+    # search for all tainted methods
+    for className, methodName in classAndFunctions:
+        methods = structure.calledMethodByName(className, methodName)
+        if len(methods): print 'Method', methodName, 'is used in:\n'
+        # search through all the methods where it is called
+        for method in methods:
+            
+            indices = method.calledInstructionByName(className, methodName)
+            for blockIdx, instructionIdx in indices:
+                trackFromCall(method, blockIdx, instructionIdx + 1) 
+        if len(methods): print '---------'
+    
+    
 
-    # search through all classes
+    print 'total time: ', time.time() - point 
+
+    """# search through all classes
     for _, jvmClass in structure.classes().items():
     
         # search through all methods
@@ -138,7 +173,7 @@ def main():
             if not method.hasCode():
                 continue
             
-            analyzeBlocks(method, classAndFunctions)
+            analyzeBlocks(method, classAndFunctions)"""
             
 if __name__=="__main__":
     main()
