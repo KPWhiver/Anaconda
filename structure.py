@@ -106,6 +106,15 @@ class Method:
     def name(self):
         return self.d_name
     
+    def calledInstructionByName(self, className, methodName):
+        list = []
+        for blockIdx, block in enumerate(self.d_blocks):
+            for instructionIdx, instruction in enumerate(block.instructions()):
+                if instruction.opCodes() in invokeOpcodes and className in instruction[-2] and methodName in instruction[-1]:                
+                    list.append([blockIdx, instructionIdx])
+        
+        return list
+                
     def numberOfRegisters(self):
         if self.hasCode():
             return self.d_method.get_method().get_code().get_registers_size()
