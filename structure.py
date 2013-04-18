@@ -69,13 +69,17 @@ class Instruction:
             return self.d_parameters[-2], self.d_parameters[-1]
         
         return None, None
-    """
+    
     def classAndMethodByStructure(self, structure):
         if self.d_parameters > 1:
             return self.d_parameters[-2], self.d_parameters[-1]
         
-        return structure.classByName(self.d_parameters[-2]), structureF@*& C@
-    """
+        classObject = structure.classByName(self.d_parameters[-2])
+        if classObject is None:
+            return None, None
+        
+        return classObject, classObject.methodByName(self.d_parameters[-1])
+    
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
@@ -206,7 +210,14 @@ class APKstructure:
     def classByName(self, name):
         return self.d_classes.get(name, None)
     
-    def calledMethodByName(self, className, methodName, descriptor = '.'):
+    def calledMethodByName(self, className, methodName):
+        descriptorLoc = methodName.find('(')
+        if descriptorLoc == -1:
+            descriptor = '.'
+        else:
+            descriptor = methodName[descriptorLoc:]
+            methodName = methodName[0:descriptorLoc]
+        
         pathps = self.d_analysis.tainted_packages.search_methods(className, methodName, descriptor)
         methods = []
         for path in pathps:
