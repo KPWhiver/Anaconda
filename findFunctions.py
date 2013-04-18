@@ -20,6 +20,7 @@ def sources(filename) :
         classAndFunction = line.split()[0:2]
         if classAndFunction != []:
             classAndFunction[0] = classAndFunction[0].replace('.', '/')
+            classAndFunction[0] = 'L' + classAndFunction[0] + ';'
             functions.append(classAndFunction)
             
     return functions
@@ -111,11 +112,12 @@ def analyzeBlocks(method, classAndFunctions):
             if instruction.opcode() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
                 previousWasSource = False
                 className, methodName = instruction.classAndMethod()
-                if [className[1:-1], methodName] in classAndFunctions:
+                
+                if [className, methodName[0:methodName.find('(')]] in classAndFunctions:
                     print className, methodName
                     previousWasSource = True
                     
-                elif className == 'java/net/Socket' and methodName == '<init>':
+                elif className == 'Ljava/net/Socket;' and methodName == '<init>':
                     print className, methodName
                     
             if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide'] and previousWasSource:

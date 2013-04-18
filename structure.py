@@ -1,4 +1,4 @@
-import sys, re
+import sys, re, time
 
 sys.path.append('androguard')
 
@@ -9,7 +9,7 @@ def parseCall(call) :
     if call != '' and call[0] == '[':
         return '', ''
     
-    match = re.match('(L[\w/\$]*;)->([\w\$<>]*)\(.*', call)
+    match = re.match('(L[\w/\$]*;)->(.*)', call)
     if match == None:
         print 'error: ', call
         return '', ''
@@ -34,23 +34,25 @@ def replaceRange(parameters):
     for number in range(firstInt, secondInt + 1):
         parameters.insert(number - firstInt, 'v' + str(number))
         
+invokeOpcodes = ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface', 
+                 'invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']
+
+        
 class Instruction:
     def __init__(self, instruction):
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
-        # this could possibly be done with inheritance?
-        self.d_calledClass = None
-        self.d_calledMethod = None
         
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
             replaceRange(self.d_parameters)
         
         # if this instruction is a function call parse the function (there is also something like invoke-quick?)
-        if instruction.get_name() in ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface']:
-            self.d_calledClass, self.d_calledMethod = parseCall(self.d_parameters[-1]) 
-        elif instruction.get_name() in ['invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']:
-            self.d_calledClass, self.d_calledMethod = parseCall(self.d_parameters[-1])
+        if instruction.get_name() in invokeOpcodes:
+            calledClass, calledMethod = parseCall(self.d_parameters[-1]) 
+            self.d_parameters[-1] = calledClass
+            self.d_parameters.append(calledMethod)
+        
         
     def instruction(self):
         return self.d_instruction
@@ -62,7 +64,10 @@ class Instruction:
         return self.d_parameters
         
     def classAndMethod(self):
-        return self.d_calledClass, self.d_calledMethod
+        if self.d_parameters > 1:
+            return self.d_parameters[-2], self.d_parameters[-1]
+        
+        return None, None
     
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
@@ -91,7 +96,7 @@ class Method:
             self.d_blocks.append(Block(block))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
-        self.d_name
+        self.d_name.replace(' ', '')
             
     # MethodAnalysis object
     def method(self):
@@ -99,16 +104,25 @@ class Method:
     
     # Name of the function
     def name(self):
-        return self.d_method.get_method().get_name()
+        return self.d_name
     
     def numberOfRegisters(self):
-        return self.d_method.get_method().get_code().get_registers_size()
+        if self.hasCode():
+            return self.d_method.get_method().get_code().get_registers_size()
+        else:
+            return None    
         
     def numberOfParameters(self):
-        return self.d_method.get_method().get_code().get_ins_size()
+        if self.hasCode():
+            return self.d_method.get_method().get_code().get_ins_size()
+        else:
+            return None
         
     def numberOfLocalRegisters(self):
-        return self.numberOfRegisters() - self.numberOfParameters()
+        if self.hasCode():
+            return self.numberOfRegisters() - self.numberOfParameters()
+        else:
+            return 0
     
     # Does the function contain code
     def hasCode(self):
@@ -126,7 +140,8 @@ class Class:
         self.d_class = jvmClass
         self.d_methods = {}
         for method in jvmClass.get_methods():
-            self.d_methods[method.get_name()] = Method(analysis.get_method(method))
+            newMethod = Method(analysis.get_method(method))
+            self.d_methods[newMethod.name()] = newMethod
             
     def name(self):
         return self.d_class.get_name()
@@ -142,10 +157,13 @@ class Class:
             
 class APKstructure:
     def __init__(self, file):
+        point = time.time()
         _, self.d_dvm, self.d_analysis = AnalyzeAPK(file, False, 'dad')
+        
         self.d_classes = {}
         for jvmClass in self.d_dvm.get_classes():
             self.d_classes[jvmClass.get_name()] = Class(jvmClass, self.d_analysis)
+        print 'parse time: ', time.time() - point
 
     def classes(self):
         return self.d_classes
