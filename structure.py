@@ -132,7 +132,7 @@ class Method:
     def memberOf(self):
         return self.d_class
     
-    # indices in the list of Block object and the list of Instruction objects within that, where a method is called
+    # indices in the list of Block object and the list of Instruction objects within that, where the given method is called
     def calledInstructionByName(self, className, methodName):
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
@@ -142,30 +142,32 @@ class Method:
         
         return list
                 
-    
+    # number of registers e.g. v1, v2, v3 etc (this includes the parameters)
     def numberOfRegisters(self):
         if self.hasCode():
             return self.d_method.get_method().get_code().get_registers_size()
         else:
             return None    
         
+    # number of parameters
     def numberOfParameters(self):
         if self.hasCode():
             return self.d_method.get_method().get_code().get_ins_size()
         else:
             return None
         
+    # number of registers without the parameters
     def numberOfLocalRegisters(self):
         if self.hasCode():
             return self.numberOfRegisters() - self.numberOfParameters()
         else:
             return 0
     
-    # Does the function contain code
+    # does the function contain code
     def hasCode(self):
         return self.d_method.get_method().get_code() is not None
     
-    # The code blocks
+    # list of Block objects
     def blocks(self):
         return self.d_blocks
     
@@ -180,15 +182,18 @@ class Class:
         self.d_initialized = False
         self.d_analysis = analysis
 
+    # name of the class
     def name(self):
         return self.d_class.get_name()
             
+    # dictionary containing the Method objects by name
     def methods(self):
         if self.d_initialized == False:
             self._initializeMethods()
             
         return self.d_methods      
     
+    # Method object with a certain name
     def methodByName(self, name):
         # if no methods in this class parse them
         if self.d_initialized == False:
@@ -199,6 +204,7 @@ class Class:
     def __str__(self):
         return self.name()
     
+    # initializes the dictionary of Method objects, only called when needed
     def _initializeMethods(self):
         self.d_initialized = True
 
@@ -217,13 +223,17 @@ class APKstructure:
             self.d_classes[jvmClass.get_name()] = Class(jvmClass, self.d_analysis)
         print 'parse time: ', time.time() - point
 
+    # dictionary of Class objects by name
     def classes(self):
         return self.d_classes
     
+    # Class object with a certain name
     def classByName(self, name):
         return self.d_classes.get(name, None)
     
+    # Method objects in which the given method is called
     def calledMethodByName(self, className, methodName):
+        # search_methods requires regexp's, this makes sure it gets them
         descriptorLoc = methodName.find('(')
         if descriptorLoc == -1:
             descriptor = '.'
@@ -252,9 +262,11 @@ class APKstructure:
             
         return methods
     
+    # androguard DalvikVMFormat
     def dvm(self):
         return self.d_dvm
     
+    # androguard uVMAnalysis
     def analysis(self):
         return self.d_analysis
     
