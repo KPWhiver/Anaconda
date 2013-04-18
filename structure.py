@@ -34,12 +34,13 @@ def replaceRange(parameters):
     for number in range(firstInt, secondInt + 1):
         parameters.insert(number - firstInt, 'v' + str(number))
         
-invokeOpcodes = ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface', 
-                 'invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']
 
         
 class Instruction:
-    def __init__(self, instruction):
+    invokeOpcodes = ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface', 
+                     'invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']
+
+    def __init__(self, instruction):        
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
         
@@ -48,7 +49,7 @@ class Instruction:
             replaceRange(self.d_parameters)
         
         # if this instruction is a function call parse the function (there is also something like invoke-quick?)
-        if instruction.get_name() in invokeOpcodes:
+        if instruction.get_name() in Instruction.invokeOpcodes:
             calledClass, calledMethod = parseCall(self.d_parameters[-1]) 
             self.d_parameters[-1] = calledClass
             self.d_parameters.append(calledMethod)
@@ -72,6 +73,7 @@ class Instruction:
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
+        
 class Block:
     def __init__(self, block):
         self.d_block = block
@@ -89,7 +91,8 @@ class Block:
         return ''
 
 class Method:
-    def __init__(self, methodInfo):
+    def __init__(self, methodInfo, jvmClass):
+        self.d_class = jvmClass
         self.d_method = methodInfo
         self.d_blocks = []
         for block in methodInfo.get_basic_blocks().get():
@@ -106,11 +109,14 @@ class Method:
     def name(self):
         return self.d_name
     
+    def memberOf(self):
+        return self.d_class
+    
     def calledInstructionByName(self, className, methodName):
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.opCode() in invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                if instruction.opCode() in Instruction.invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -148,21 +154,41 @@ class Class:
     def __init__(self, jvmClass, analysis):
         self.d_class = jvmClass
         self.d_methods = {}
+        self.d_initialized = False
+        self.d_analysis = analysis
+        
+        """
         for method in jvmClass.get_methods():
             newMethod = Method(analysis.get_method(method))
             self.d_methods[newMethod.name()] = newMethod
-            
+        """
+
     def name(self):
         return self.d_class.get_name()
             
     def methods(self):
+        if self.d_initialized == False:
+            self._initializeMethods()
+            
         return self.d_methods      
     
     def methodByName(self, name):
+        # if no methods in this class parse them
+        if self.d_initialized == False:
+            self._initializeMethods()
+            
         return self.d_methods.get(name, None)
     
     def __str__(self):
         return self.name()
+    
+    def _initializeMethods(self):
+        self.d_initialized = True
+
+        for method in self.d_class.get_methods():
+            newMethod = Method(self.d_analysis.get_method(method), self.d_class)
+            self.d_methods[newMethod.name()] = newMethod
+
             
 class APKstructure:
     def __init__(self, file):
