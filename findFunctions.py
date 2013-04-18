@@ -128,6 +128,7 @@ def trackUsages(className, methodName):
             trackFromCall(method, blockIdx, instructionIdx + 1) 
 
 def main():
+    point = time.time()
 
     classAndFunctions = sources('api_sources.txt')
     global structure
@@ -146,6 +147,8 @@ def main():
     for className, methodName in classAndFunctions:
         trackUsages(className, methodName)
     
+
+    print 'total time: ', time.time() - point 
 
 if __name__=="__main__":
     main()
