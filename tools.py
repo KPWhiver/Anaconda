@@ -57,8 +57,8 @@ def printInstructions(file, instructionNames):
 
     def printIfInstruction(instruction):
         if instruction.opcode() in instructionNames:
-            print '\t', instruction
-            
+            #print '\t', instruction
+            pass
     #jvmClass = struct.classByName('Lcom/example/leaktest1/MainActivity;')
     #method = jvmClass.methodByName('onCreate(Landroid/os/Bundle;)V')
     
@@ -67,7 +67,7 @@ def printInstructions(file, instructionNames):
  
         for _, method in jvmClass.methods().items():
 
-            print method
+            #print method
             forEveryInstruction(printIfInstruction, method)
     
         

@@ -171,6 +171,25 @@ class APKstructure:
     def classByName(self, name):
         return self.d_classes.get(name, None)
     
+    def calledMethodByName(self, className, methodName, descriptor = '.'):
+        pathps = self.d_analysis.tainted_packages.search_methods(className, methodName, descriptor)
+        methods = []
+        for path in pathps:
+            # find the Method object that is associated with this path
+            location = path.get_src(self.d_dvm.get_class_manager())
+            jvmClass = self.classByName(location[0])
+            if jvmClass is None:
+                print 'error couldn\'t find class ', location[0]
+                continue
+            method = jvmClass.methodByName(location[1] + location[2])
+            if method is None:
+                print 'error couldn\'t find method ', location[1] + location[2]
+                continue
+            
+            methods.append(method)
+            
+        return methods
+    
     def dvm(self):
         return self.d_dvm
     
