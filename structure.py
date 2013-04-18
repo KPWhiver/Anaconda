@@ -110,7 +110,7 @@ class Method:
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.opCode() in invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                if instruction.opcode() in invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
