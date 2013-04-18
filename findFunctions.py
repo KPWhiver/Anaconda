@@ -76,7 +76,7 @@ def analyzeInstruction(method, instruction, register):
     elif 'return' in instruction.opcode():
         print 'Value was returned. Looking for usages of this function' 
         
-        trackUsages('.', method.name()) # TODO: potentially not unique!
+        trackUsages(method.memberOf().name(), method.name())
         
     elif 'move' in instruction.opcode():
         print 'move'
@@ -114,16 +114,15 @@ def trackFromCall(method, blockIdx, instructionIdx):
     
 def trackUsages(className, methodName):
     methods = structure.calledMethodByName(className, methodName)
-    
+    #print 'Method', methodName, className 
     if len(methods): 
         print '---------'
-        print 'Method', methodName, 'is used in:\n' 
+        print 'Method', methodName, className, 'is used in:\n' 
     
     # search through all the methods where it is called
     for method in methods:
         
         indices = method.calledInstructionByName(className, methodName)
-        print 'indices', indices
         for blockIdx, instructionIdx in indices:
             trackFromCall(method, blockIdx, instructionIdx + 1) 
 
