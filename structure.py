@@ -45,6 +45,7 @@ class Instruction:
     def __init__(self, instruction):        
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
+        self.d_isSink = False
         
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
@@ -63,7 +64,15 @@ class Instruction:
     # type of instruction, e.g. 'invoke-virtual'
     def opcode(self):
         return self.d_instruction.get_name()
+    
+    # mark this instruction as being a sink    
+    def markAsSink(self):
+        self.d_isSink = True
         
+    # is this instruction a sink
+    def isSink(self):
+        return self.d_isSink
+    
     # parameters of opcode, e.g. registers, and other things like method to call
     def parameters(self):
         return self.d_parameters
