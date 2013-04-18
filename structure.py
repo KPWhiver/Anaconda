@@ -70,6 +70,16 @@ class Instruction:
         
         return None, None
     
+    def classAndMethodByStructure(self, structure):
+        if self.d_parameters > 1:
+            return self.d_parameters[-2], self.d_parameters[-1]
+        
+        classObject = structure.classByName(self.d_parameters[-2])
+        if classObject is None:
+            return None, None
+        
+        return classObject, classObject.methodByName(self.d_parameters[-1])
+    
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
@@ -91,8 +101,8 @@ class Block:
         return ''
 
 class Method:
-    def __init__(self, methodInfo, jvmClass):
-        self.d_class = jvmClass
+    def __init__(self, methodInfo, classObject):
+        self.d_class = classObject
         self.d_method = methodInfo
         self.d_blocks = []
         for block in methodInfo.get_basic_blocks().get():
@@ -180,7 +190,7 @@ class Class:
         self.d_initialized = True
 
         for method in self.d_class.get_methods():
-            newMethod = Method(self.d_analysis.get_method(method), self.d_class)
+            newMethod = Method(self.d_analysis.get_method(method), self)
             self.d_methods[newMethod.name()] = newMethod
 
             
@@ -200,7 +210,14 @@ class APKstructure:
     def classByName(self, name):
         return self.d_classes.get(name, None)
     
-    def calledMethodByName(self, className, methodName, descriptor = '.'):
+    def calledMethodByName(self, className, methodName):
+        descriptorLoc = methodName.find('(')
+        if descriptorLoc == -1:
+            descriptor = '.'
+        else:
+            descriptor = methodName[descriptorLoc:]
+            methodName = methodName[0:descriptorLoc]
+        
         pathps = self.d_analysis.tainted_packages.search_methods(className, methodName, descriptor)
         methods = []
         for path in pathps:
