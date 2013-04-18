@@ -2,6 +2,7 @@
 
 import re
 import sys
+import trackSockets
 
 sys.path.append('androguard')
 
@@ -134,11 +135,13 @@ def main():
     structure = APKstructure('apks/LeakTest2.apk')
     
     # find socket creations (or other known sinks)
-    methods = structure.calledMethodByName('Ljava/net/Socket;', '<init>')
+    methods = structure.calledMethodByName('Ljava/net/Socket;', 'getOutputStream')
     for method in methods:
         print 'Socket created in', method.name()
-        method.calledInstructionByName('Ljava/net/Socket;', '<init>')
+        indices = method.calledInstructionByName('Ljava/net/Socket;', 'getOutputStream')
         # Track it and mark new sinks
+        for idx in indices:
+            trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
     
     print
     
