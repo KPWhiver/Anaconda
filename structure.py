@@ -4,7 +4,7 @@ sys.path.append('androguard')
 
 from androlyze import *
 
-# Parse the last argument of a function call
+# parse the last argument of a function call
 def parseCall(call) :
     if call != '' and call[0] == '[':
         return '', ''
@@ -16,6 +16,7 @@ def parseCall(call) :
     
     return match.group(1), match.group(2)
 
+# replace 'v1 ... v3' with 'v1', 'v2', 'v3'
 def replaceRange(parameters):
     match = re.match('v([\d]+)[\s]*\.\.\.[\s]*v([\d]+)', parameters[0])
     if match == None:
@@ -29,13 +30,14 @@ def replaceRange(parameters):
         print 'error: ', parameters
         return
     
+    # remove first 'ranged' parameter
     parameters.pop(0)
     
     for number in range(firstInt, secondInt + 1):
         parameters.insert(number - firstInt, 'v' + str(number))
         
 
-        
+# class containing information about a single construction
 class Instruction:
     invokeOpcodes = ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface', 
                      'invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']
@@ -54,22 +56,26 @@ class Instruction:
             self.d_parameters[-1] = calledClass
             self.d_parameters.append(calledMethod)
         
-        
+    # androguard instruction object
     def instruction(self):
         return self.d_instruction
-        
+    
+    # type of instruction, e.g. 'invoke-virtual'
     def opcode(self):
         return self.d_instruction.get_name()
         
+    # parameters of opcode, e.g. registers, and other things like method to call
     def parameters(self):
         return self.d_parameters
         
+    # the name of the class and method this instruction is calling
     def classAndMethod(self):
         if self.d_parameters > 1:
             return self.d_parameters[-2], self.d_parameters[-1]
         
         return None, None
     
+    # the Class object and Method object this instruction is calling
     def classAndMethodByStructure(self, structure):
         if self.d_parameters > 1:
             return self.d_parameters[-2], self.d_parameters[-1]
@@ -83,7 +89,7 @@ class Instruction:
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
-        
+# class containing information about a single block (for example all the different scopes in a method)
 class Block:
     def __init__(self, block):
         self.d_block = block
@@ -91,15 +97,18 @@ class Block:
         for instruction in block.get_instructions():
             self.d_instructions.append(Instruction(instruction))
         
+    # androguard block
     def block(self):
         return self.d_block
         
+    # Instruction objects within this block
     def instructions(self):
         return self.d_instructions
     
     def __str__(self):
         return ''
 
+# class containing information about a single method
 class Method:
     def __init__(self, methodInfo, classObject):
         self.d_class = classObject
@@ -115,13 +124,15 @@ class Method:
     def method(self):
         return self.d_method
     
-    # Name of the function
+    # name of the function
     def name(self):
         return self.d_name
     
+    # Class object this method is a member of
     def memberOf(self):
         return self.d_class
     
+    # indices in the list of Block object and the list of Instruction objects within that, where a method is called
     def calledInstructionByName(self, className, methodName):
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
@@ -131,6 +142,7 @@ class Method:
         
         return list
                 
+    
     def numberOfRegisters(self):
         if self.hasCode():
             return self.d_method.get_method().get_code().get_registers_size()
@@ -160,6 +172,7 @@ class Method:
     def __str__(self):
         return self.name()
 
+# class containing information about a single class
 class Class:
     def __init__(self, jvmClass, analysis):
         self.d_class = jvmClass
@@ -193,7 +206,7 @@ class Class:
             newMethod = Method(self.d_analysis.get_method(method), self)
             self.d_methods[newMethod.name()] = newMethod
 
-            
+# class containing information about an entire APK file
 class APKstructure:
     def __init__(self, file):
         point = time.time()
@@ -216,6 +229,9 @@ class APKstructure:
             descriptor = '.'
         else:
             descriptor = methodName[descriptorLoc:]
+            descriptor.replace('(', '\(')
+            descriptor.replace(')', '\)')
+            descriptor.replace('$', '\$')
             methodName = methodName[0:descriptorLoc]
         
         pathps = self.d_analysis.tainted_packages.search_methods(className, methodName, descriptor)
