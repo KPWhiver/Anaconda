@@ -135,6 +135,7 @@ def main():
     structure = APKstructure('apks/LeakTest2.apk')
     
     # find socket creations (or other known sinks)
+    trackSockets.structure = structure
     methods = structure.calledMethodByName('Ljava/net/Socket;', 'getOutputStream')
     for method in methods:
         print 'Socket created in', method.name()
