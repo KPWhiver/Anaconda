@@ -85,10 +85,7 @@ class Instruction:
         return None, None
     
     # the Class object and Method object this instruction is calling
-    def classAndMethodByStructure(self, structure):
-        if self.d_parameters > 1:
-            return self.d_parameters[-2], self.d_parameters[-1]
-        
+    def classAndMethodByStructure(self, structure):       
         classObject = structure.classByName(self.d_parameters[-2])
         if classObject is None:
             return None, None

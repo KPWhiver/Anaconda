@@ -1,6 +1,6 @@
 structure = 0
 
-def analyzeInstruction(method, instruction, register):
+def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
     print instruction.opcode(), instruction.parameters()
     
     parameterIndex = instruction.parameters().index(register)
@@ -10,23 +10,29 @@ def analyzeInstruction(method, instruction, register):
         
         if parameterIndex == 0:
             instruction.markAsSink()
+            print 'Marking as sink: ', instruction
             return
         
-        print 'MethodObject: '
-        print methodObject
-
+        print 'Tracking register: ', instruction.parameters()[0], ' because of: ', instruction
+        # track the object we put our inputstream into
+        trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
+        
+        
+        
+        """
         # attempt to find the method used within the apk
         if not (methodObject is None):
             print 'Information is used in method call defined in apk'
             print 'Tracking recursively.....'
 
-            parameterRegister = 'v' + str(methodObject.numberOfLocalRegisters() + parameterIndex)
-            trackFromCall(methodObject, parameterRegister, 0)
+            parameterRegister = 'v%d' % (methodObject.numberOfLocalRegisters() + parameterIndex)
+            trackFromCall(methodObject, 0, 0, parameterRegister)
                 
             # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:
             # method is not defined within APK
             print 'Method', methodObject, 'not found'
+        """
 
     elif 'if-' in instruction.opcode():
         print 'Register is used in if statement'
@@ -50,19 +56,21 @@ def analyzeInstruction(method, instruction, register):
         print 'Unknown operation performed'
 
 
-def trackFromCall(method, blockIdx, instructionIdx):
-    resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
-    if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
-        register = resultInstruction.parameters()[0]
-    else:
-        print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
-        return
+def trackFromCall(method, blockIdx, instructionIdx, register = None):
+    if register is None:
+        resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
+        if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
+            register = resultInstruction.parameters()[0]
+            instructionIdx += 1 # move the pointer to the instruction after the move-result
+        else:
+            print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
+            return
         
     
     print '>', method.name()
     print 'Tracking the result in register', register
     
-    instructionIdx += 1 # move the pointer to the instruction after the move-result
+    
     for block in method.blocks()[blockIdx:]:
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
         for instruction in block.instructions()[startIdx:]:
@@ -71,6 +79,8 @@ def trackFromCall(method, blockIdx, instructionIdx):
                 if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
                     return # register is overwritten
                 
-                analyzeInstruction(method, instruction, register)
+                analyzeInstruction(method, instruction, register, blockIdx, instructionIdx)
                 
+            instructionIdx += 1
+        blockIdx += 1
     print
