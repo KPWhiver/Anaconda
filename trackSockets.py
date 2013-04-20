@@ -21,12 +21,12 @@ def analyzeInstruction(method, instruction, register):
             print 'Tracking recursively.....'
 
             parameterRegister = 'v%d' % (methodObject.numberOfLocalRegisters() + parameterIndex)
-            trackFromCall(methodObject, parameterRegister, 0)
+            trackFromCall(methodObject, 0, 0, parameterRegister)
                 
             # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:
             # method is not defined within APK
-            print 'Method', methodName, 'not found'
+            print 'Method', instruction.classAndMethod(), 'not found'
 
     elif 'if-' in instruction.opcode():
         print 'Register is used in if statement'
@@ -50,19 +50,21 @@ def analyzeInstruction(method, instruction, register):
         print 'Unknown operation performed'
 
 
-def trackFromCall(method, blockIdx, instructionIdx):
-    resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
-    if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
-        register = resultInstruction.parameters()[0]
-    else:
-        print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
-        return
+def trackFromCall(method, blockIdx, instructionIdx, register = None):
+    if register is None:
+        resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
+        if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
+            register = resultInstruction.parameters()[0]
+            instructionIdx += 1 # move the pointer to the instruction after the move-result
+        else:
+            print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
+            return
         
     
     print '>', method.name()
     print 'Tracking the result in register', register
     
-    instructionIdx += 1 # move the pointer to the instruction after the move-result
+    
     for block in method.blocks()[blockIdx:]:
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
         for instruction in block.instructions()[startIdx:]:
