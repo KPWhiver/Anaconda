@@ -40,6 +40,9 @@ def instruction(idx, block):
 def analyzeInstruction(method, instruction, register):
     print instruction.opcode(), instruction.parameters()
     
+    if instruction.isSink():
+        print 'Value is put in sink!'
+    
     parameterIndex = instruction.parameters().index(register)
     
     if 'invoke' in instruction.opcode():
@@ -132,7 +135,7 @@ def main():
 
     classAndFunctions = sources('api_sources.txt')
     global structure
-    structure = APKstructure('apks/LeakTest2.apk')
+    structure = APKstructure('apks/LeakTest1.apk')
     
     # find socket creations (or other known sinks)
     trackSockets.structure = structure
