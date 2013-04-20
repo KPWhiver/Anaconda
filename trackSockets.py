@@ -6,7 +6,7 @@ def analyzeInstruction(method, instruction, register):
     parameterIndex = instruction.parameters().index(register)
     
     if 'invoke' in instruction.opcode():
-        classObject, methodObject = instruction.classAndMethodByStructure(structure)
+        _, methodObject = instruction.classAndMethodByStructure(structure)
         
         if parameterIndex == 0:
             instruction.markAsSink()
@@ -20,13 +20,13 @@ def analyzeInstruction(method, instruction, register):
             print 'Information is used in method call defined in apk'
             print 'Tracking recursively.....'
 
-            parameterRegister = 'v%d' % (methodObject.numberOfLocalRegisters() + parameterIndex)
+            parameterRegister = 'v' + str(methodObject.numberOfLocalRegisters() + parameterIndex)
             trackFromCall(methodObject, parameterRegister, 0)
                 
             # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:
             # method is not defined within APK
-            print 'Method', methodName, 'not found'
+            print 'Method', methodObject, 'not found'
 
     elif 'if-' in instruction.opcode():
         print 'Register is used in if statement'
