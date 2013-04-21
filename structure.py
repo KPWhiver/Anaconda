@@ -92,6 +92,22 @@ class Instruction:
         
         return classObject, classObject.methodByName(self.d_parameters[-1])
     
+    # the Class objects and Method objects this instruction is possibly calling (possibly due to inheritance)
+    def classesAndMethodsByStructure(self, structure):       
+        classObject = structure.classByName(self.d_parameters[-2])        
+        if classObject is None:
+            return []
+        classes = [classObject] + classObject.subClasses() # TODO make unique + recursive
+        
+        classesAndMethods = []
+        
+        for classObject in classes:
+            method = classObject.methodByName(self.d_parameters[-1])
+            if not (method is None):
+                classesAndMethods += [classObject, method]
+                
+        return classesAndMethods
+    
     def __str__(self):
         return self.opcode() + str(self.d_parameters)
         
@@ -181,15 +197,69 @@ class Method:
         return self.name()
 
 # class containing information about a single class
-class Class:
-    def __init__(self, jvmClass, analysis):
+class Class:    
+    # if jvmClass is None we can't find the class
+    def __init__(self, jvmClass = None, analysis = None):
         self.d_class = jvmClass
         self.d_methods = {}
-        self.d_initialized = False
+        if(jvmClass is None):
+            self.d_initialized = False
+        else:
+            self.d_initialized = True
         self.d_analysis = analysis
+        
+        self.d_subClasses = []
+        self.d_haveRecursiveSearched = False
+
+    # add subclasses this class has
+    def addSubclass(self, subClasses):
+        self.d_subClasses.append(subClasses) # TODO: duplicates?
+
+    # subClasses of this class
+    def subClasses(self):
+        if self.d_haveRecursiveSearched == False:
+            self._addSubClassesRecursively()
+            
+        return self.d_subClasses
+    
+    def _addSubClassesRecursively(self):
+        self.d_haveRecursiveSearched = True
+        
+        newList = []
+        
+        for subClass in self.d_subClasses:
+            newList += subClass.subClasses()
+            
+        self.d_subClasses += newList
+        set = {}
+        map(set.__setitem__, self.d_subClasses, [])
+        self.d_subClasses = set.keys()
+
+    # androguard class
+    def dvmClass(self):
+        return self.d_class
+    
+    # source code in java of this class
+    def sourceCode(self):
+        return self.dvmClass().source()
+    
+    # superclass of this class
+    def superClassName(self):
+        return self.d_class.get_superclassname()
+    
+    def interfaceNames(self):
+        interfacesString = self.d_class.get_interfaces()
+        if interfacesString is None:
+            return []
+        interfacesString.replace('(', '')
+        interfacesString.replace(')', '')
+        return interfacesString.split(' ')
 
     # name of the class
     def name(self):
+        if self.d_class is None:
+            return 'Java API class'
+            
         return self.d_class.get_name()
             
     # dictionary containing the Method objects by name
@@ -222,11 +292,26 @@ class Class:
 class APKstructure:
     def __init__(self, file):
         point = time.time()
+        
         _, self.d_dvm, self.d_analysis = AnalyzeAPK(file, False, 'dad')
         
         self.d_classes = {}
         for jvmClass in self.d_dvm.get_classes():
             self.d_classes[jvmClass.get_name()] = Class(jvmClass, self.d_analysis)
+           
+        # add subclasses to classes
+        for _, classObject in self.d_classes.items():
+            superClasses = [classObject.superClassName()] + classObject.interfaceNames()
+
+            # loop through all super classes of this class and add this class as subclass
+            for superClass in superClasses:
+                superClassObject = self.d_classes.get(superClass, None)
+                if superClassObject is None:
+                    superClassObject = Class()
+                    self.d_classes[superClass] = superClassObject
+                    
+                superClassObject.addSubclass(classObject)
+                        
         print 'parse time: ', time.time() - point
 
     # dictionary of Class objects by name
@@ -261,7 +346,7 @@ class APKstructure:
                 continue
             method = jvmClass.methodByName(location[1] + location[2])
             if method is None:
-                print 'error couldn\'t find method ', location[1] + location[2]
+                print 'error couldn\'t find method ', location[1] + location[2], ' in class ', location[0]
                 continue
             
             methods.append(method)

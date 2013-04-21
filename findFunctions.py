@@ -135,7 +135,7 @@ def main():
 
     classAndFunctions = sources('api_sources.txt')
     global structure
-    structure = APKstructure('apks/LeakTest1.apk')
+    structure = APKstructure('apks/LeakTest2.apk')
     
     # find socket creations (or other known sinks)
     trackSockets.structure = structure

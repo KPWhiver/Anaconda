@@ -14,12 +14,10 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
             return
         
         print 'Tracking register: ', instruction.parameters()[0], ' because of: ', instruction
+        print
         # track the object we put our inputstream into
         trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
-        
-        
-        
-        """
+
         # attempt to find the method used within the apk
         if not (methodObject is None):
             print 'Information is used in method call defined in apk'
@@ -27,12 +25,14 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
 
             parameterRegister = 'v%d' % (methodObject.numberOfLocalRegisters() + parameterIndex)
             trackFromCall(methodObject, 0, 0, parameterRegister)
+            
+            # optional:
+            #trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
                 
-            # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:
             # method is not defined within APK
-            print 'Method', methodObject, 'not found'
-        """
+            trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
+
 
     elif 'if-' in instruction.opcode():
         print 'Register is used in if statement'
