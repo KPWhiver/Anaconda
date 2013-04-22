@@ -75,6 +75,7 @@ class Instruction:
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
         self.d_isSink = False
+        self.d_type = parseOpcode(instruction.get_name())
         
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
@@ -93,6 +94,10 @@ class Instruction:
     # type of instruction, e.g. 'invoke-virtual'
     def opcode(self):
         return self.d_instruction.get_name()
+    
+    # type of instruction as int
+    def type(self):
+        return self.d_type
     
     # mark this instruction as being a sink    
     def markAsSink(self):
