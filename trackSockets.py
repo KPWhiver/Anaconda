@@ -15,8 +15,6 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
         
         print 'Tracking register: ', instruction.parameters()[0], ' because of: ', instruction
         print
-        # track the object we put our inputstream into
-        trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
 
         # attempt to find the method used within the apk
         if not (methodObject is None):
