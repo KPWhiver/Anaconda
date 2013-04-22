@@ -6,6 +6,7 @@ from androlyze import *
 
 # enum class with opcodes as fields
 class InstructionType :
+	NONE = -1
     NOP = 0
     MOVE = 1
     RETURN = 2
@@ -17,18 +18,20 @@ class InstructionType :
     def parseOpcode(opcode):
         if 'nop' in opcode:
             return NOP
-        if 'move' in opcode:
+		elif 'move' in opcode:
             return MOVE
-        if 'return' in opcode:
+        elif 'return' in opcode:
             return RETURN
-        if 'if-' in opcode:
+        elif 'if-' in opcode:
             return IF
-        if 'get' in opcode:
+        elif 'get' in opcode:
             return GET
-        if 'put' in opcode:
+        elif 'put' in opcode:
             return PUT
-        if 'invoke' in opcode:
+        elif 'invoke' in opcode:
             return INVOKE
+		else:
+			return NONE
 
 
 # parse the last argument of a function call
