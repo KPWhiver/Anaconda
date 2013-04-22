@@ -147,20 +147,20 @@ def main():
 
     # find file creations
     # track file objects:
-    methods = structure.calledMethodByName('Ljava/io/File;', '<init>')
+    methods = structure.calledMethodsByMethodName('Ljava/io/File;', '<init>')
     for method in methods:
         print 'New File created in', method.name()
-        indices = method.calledInstructionByName('Ljava/io/File;', '<init>')
+        indices = method.calledInstructionsByMethodName('Ljava/io/File;', '<init>')
         # Track it and mark new sinks
         for idx in indices:
             register = method.blocks()[idx[0]].instructions()[idx[1]]
             trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
 
     # track file output streams
-    methods = structure.calledMethodByName('Ljava/io/FileOutputStream;', '<init>')
+    methods = structure.calledMethodsByMethodName('Ljava/io/FileOutputStream;', '<init>')
     for method in methods:
         print 'New FileOutputStream created in', method.name()
-        indices = method.calledInstructionByName('Ljava/io/FileOutputStream;', '<init>')
+        indices = method.calledInstructionsByMethodName('Ljava/io/FileOutputStream;', '<init>')
         # Track it and mark new sinks
         for idx in indices:
             register = method.blocks()[idx[0]].instructions()[idx[1]]
