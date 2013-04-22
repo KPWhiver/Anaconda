@@ -68,9 +68,7 @@ def replaceRange(parameters):
 
 # class containing information about a single construction
 class Instruction:
-    invokeOpcodes = ['invoke-direct', 'invoke-virtual', 'invoke-super', 'invoke-static', 'invoke-interface', 
-                     'invoke-direct/range', 'invoke-virtual/range', 'invoke-super/range', 'invoke-static/range', 'invoke-interface/range']
-
+    
     def __init__(self, instruction):        
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
@@ -82,7 +80,7 @@ class Instruction:
             replaceRange(self.d_parameters)
         
         # if this instruction is a function call parse the function (there is also something like invoke-quick?)
-        if instruction.get_name() in Instruction.invokeOpcodes:
+        if self.d_type == InstructionType.INVOKE:
             calledClass, calledMethod = parseCall(self.d_parameters[-1]) 
             self.d_parameters[-1] = calledClass
             self.d_parameters.append(calledMethod)
@@ -118,7 +116,7 @@ class Instruction:
         
         return None, None
     
-    # the Class object and Method object this instruction is calling
+    # the Class object and Method object this instruction is calling (deprecated)
     def classAndMethodByStructure(self, structure):  
         classObject = structure.classByName(self.d_parameters[-2])
         if classObject is None:
@@ -206,7 +204,7 @@ class Method:
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.opcode() in Instruction.invokeOpcodes and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                if instruction.type() == InstructionType.INVOKE and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -406,6 +404,35 @@ class APKstructure:
             method = jvmClass.methodByName(location[1] + location[2])
             if method is None:
                 print 'error couldn\'t find method ', location[1] + location[2], ' in class ', location[0]
+                continue
+            
+            methods.append(method)
+            
+        return methods
+    
+    # Method objects in which the given field is accessed, descriptor is type
+    def calledMethodByFieldName(self, className, fieldName, descriptor):
+        
+        pathps = self.d_analysis.tainted_variables.get_field(className, fieldName, descriptor).get_paths()
+        methods = []
+        
+        for data, methodIdx in pathps:
+            
+            # we are only interested in field reads
+            if data[0] == 'W':
+                continue
+            
+            # find the Method object that is associated with this path
+            className, methodName, parameters = self.d_dvm.get_cm_method(methodIdx)
+            methodName += parameters[0] + parameters[1]
+            
+            jvmClass = self.classByName(className)
+            if jvmClass is None:
+                print 'error couldn\'t find class ', className
+                continue
+            method = jvmClass.methodByName(methodName)
+            if method is None:
+                print 'error couldn\'t find method ', methodName, ' in class ', className
                 continue
             
             methods.append(method)
