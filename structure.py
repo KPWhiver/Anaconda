@@ -4,6 +4,36 @@ sys.path.append('androguard')
 
 from androlyze import *
 
+# enum class with opcodes as fields
+class InstructionType :
+    NONE = -1
+    NOP = 0
+    MOVE = 1
+    RETURN = 2
+    IF = 3
+    GET = 4
+    PUT = 5
+    INVOKE = 6
+
+    def parseOpcode(opcode):
+        if 'nop' in opcode:
+            return NOP
+        elif 'move' in opcode:
+            return MOVE
+        elif 'return' in opcode:
+            return RETURN
+        elif 'if-' in opcode:
+            return IF
+        elif 'get' in opcode:
+            return GET
+        elif 'put' in opcode:
+            return PUT
+        elif 'invoke' in opcode:
+            return INVOKE
+        else:
+            return NONE
+
+
 # parse the last argument of a function call
 def parseCall(call) :
     if call != '' and call[0] == '[':
