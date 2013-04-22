@@ -85,7 +85,7 @@ class Instruction:
         return None, None
     
     # the Class object and Method object this instruction is calling
-    def classAndMethodByStructure(self, structure):       
+    def classAndMethodByStructure(self, structure):  
         classObject = structure.classByName(self.d_parameters[-2])
         if classObject is None:
             return None, None
@@ -202,10 +202,16 @@ class Class:
     def __init__(self, jvmClass = None, analysis = None):
         self.d_class = jvmClass
         self.d_methods = {}
-        if(jvmClass is None):
-            self.d_initialized = False
-        else:
-            self.d_initialized = True
+        
+        # TODO: Klaas, please review commented code below:
+        # when a jvmClass is provided d_methods is not initialized, causing all lookups to fail
+        
+        #if(jvmClass is None):
+        self.d_initialized = False
+        #else:
+        #    self.d_initialized = True
+        
+        
         self.d_analysis = analysis
         
         self.d_subClasses = []

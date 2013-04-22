@@ -47,27 +47,20 @@ def analyzeInstruction(method, instruction, register):
     parameterIndex = instruction.parameters().index(register)
     
     if 'invoke' in instruction.opcode():
-        className, methodName = instruction.classAndMethod()
-        
         # attempt to find the method used within the apk
-        instructionClass = structure.classByName(className)
-        if not (instructionClass is None):
-            instructionMethod = instructionClass.methodByName(methodName)
-            if not (instructionMethod is None) and instructionMethod.hasCode():
-                print 'Information is used in method call defined in apk'
-                print 'Tracking recursively.....'
-                parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
-                trackFromCall(instructionMethod, 0, 0, parameterRegister)
-                
-                # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
-            else:
-                # method is not defined within APK
-                print 'Method', methodName, 'not found in class', className
+        _, instructionMethod= instruction.classAndMethodByStructure(structure)
+        if not (instructionMethod is None):
+            print 'Information is used in method call defined in apk'
+            print 'Tracking recursively.....'
+            parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
+            trackFromCall(instructionMethod, 0, 0, parameterRegister)
+            
+            # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:  
             # class is not defined within APK
-            print 'Class' , className, 'not found in apk'
-            if [className, methodName] in []: # is the method a known sink?
-                print 'data is leaking'
+            className, methodName = instruction.classAndMethod()
+            print 'Method', methodName, 'not found in class', className
+            
             
     elif 'if-' in instruction.opcode():
         print 'Register is used in if statement'
@@ -139,7 +132,7 @@ def main():
     classAndFunctions = sources('api_sources.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest3.apk')
+    structure = APKstructure('apks/LeakTest1.apk')
     
     # find socket creations (or other known sinks)
     trackSockets.structure = structure
