@@ -15,24 +15,23 @@ class InstructionType :
     PUT = 5
     INVOKE = 6
 
-    def parseOpcode(opcode):
-        if 'nop' in opcode:
-            return NOP
-        elif 'move' in opcode:
-            return MOVE
-        elif 'return' in opcode:
-            return RETURN
-        elif 'if-' in opcode:
-            return IF
-        elif 'get' in opcode:
-            return GET
-        elif 'put' in opcode:
-            return PUT
-        elif 'invoke' in opcode:
-            return INVOKE
-        else:
-            return NONE
-
+def parseOpcode(opcode):
+    if 'nop' in opcode:
+        return InstructionType.NOP
+    elif 'move' in opcode:
+        return InstructionType.MOVE
+    elif 'return' in opcode:
+        return InstructionType.RETURN
+    elif 'if-' in opcode:
+        return InstructionType.IF
+    elif 'get' in opcode:
+        return InstructionType.GET
+    elif 'put' in opcode:
+        return InstructionType.PUT
+    elif 'invoke' in opcode:
+        return InstructionType.INVOKE
+    else:
+        return InstructionType.NONE
 
 # parse the last argument of a function call
 def parseCall(call) :
