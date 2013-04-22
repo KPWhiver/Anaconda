@@ -113,7 +113,7 @@ def trackFromCall(method, blockIdx, instructionIdx, register = None):
     print
     
 def trackUsages(className, methodName):
-    methods = structure.calledMethodByName(className, methodName)
+    methods = structure.calledMethodsByMethodName(className, methodName)
     #print 'Method', methodName, className 
     if len(methods): 
         print '---------'
@@ -122,7 +122,7 @@ def trackUsages(className, methodName):
     # search through all the methods where it is called
     for method in methods:
         
-        indices = method.calledInstructionByName(className, methodName)
+        indices = method.calledInstructionsByMethodName(className, methodName)
         for blockIdx, instructionIdx in indices:
             trackFromCall(method, blockIdx, instructionIdx + 1) 
 
@@ -132,20 +132,20 @@ def main():
     classAndFunctions = sources('api_sources.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest1.apk')
+    structure = APKstructure('apks/LeakTest4.apk')
     
     # find socket creations (or other known sinks)
     trackSockets.structure = structure
-    methods = structure.calledMethodByName('Ljava/net/Socket;', 'getOutputStream')
+    methods = structure.calledMethodsByMethodName('Ljava/net/Socket;', 'getOutputStream')
     for method in methods:
         print 'Socket created in', method.name()
-        indices = method.calledInstructionByName('Ljava/net/Socket;', 'getOutputStream')
+        indices = method.calledInstructionsByMethodName('Ljava/net/Socket;', 'getOutputStream')
         # Track it and mark new sinks
         for idx in indices:
             trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
     
     print
-    
+        
     # search for all tainted methods
     for className, methodName in classAndFunctions:
         trackUsages(className, methodName)

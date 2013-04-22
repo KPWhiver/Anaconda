@@ -11,9 +11,11 @@ class InstructionType :
     MOVE = 1
     RETURN = 2
     IF = 3
-    GET = 4
-    PUT = 5
-    INVOKE = 6
+    ARRAYGET = 4
+    FIELDGET = 5
+    ARRAYPUT = 6
+    FIELDPUT = 7
+    INVOKE = 8
 
 def parseOpcode(opcode):
     if 'nop' in opcode:
@@ -24,30 +26,51 @@ def parseOpcode(opcode):
         return InstructionType.RETURN
     elif 'if-' in opcode:
         return InstructionType.IF
+    elif 'aget' in opcode:
+        return InstructionType.ARRAYGET
     elif 'get' in opcode:
-        return InstructionType.GET
+        return InstructionType.FIELDGET
+    elif 'aput' in opcode:
+        return InstructionType.ARRAYPUT
     elif 'put' in opcode:
-        return InstructionType.PUT
+        return InstructionType.FIELDPUT
     elif 'invoke' in opcode:
         return InstructionType.INVOKE
     else:
         return InstructionType.NONE
 
+# variables for parsing
+classParse = '(L[\w/\$_]*;)'
+whitespaceParse = '[\s]*'
+
+
 # parse the last argument of a function call
-def parseCall(call) :
+def parseInvoke(call) :
     if call != '' and call[0] == '[':
         return '', ''
     
-    match = re.match('(L[\w/\$]*;)->(.*)', call)
+    match = re.match(classParse + '->(.*)', call)
     if match == None:
         print 'error: ', call
         return '', ''
     
     return match.group(1), match.group(2)
 
+def parseFieldGet(call) :
+    #if call != '' and call[0] == '[':
+    #    return '', ''
+    # ^ ???
+    
+    match = re.match(classParse + '->([\w_]*)' + whitespaceParse + '([L[\w/\$_]*;]|\w)', call)
+    if match == None:
+        print 'error: ', call
+        return '', '', ''
+    
+    return match.group(1), match.group(2), match.group(3)
+
 # replace 'v1 ... v3' with 'v1', 'v2', 'v3'
 def replaceRange(parameters):
-    match = re.match('v([\d]+)[\s]*\.\.\.[\s]*v([\d]+)', parameters[0])
+    match = re.match('v([\d]+)' + whitespaceParse + '\.\.\.' + whitespaceParse + 'v([\d]+)', parameters[0])
     if match == None:
         print 'error: ', parameters
         return
@@ -81,9 +104,13 @@ class Instruction:
         
         # if this instruction is a function call parse the function (there is also something like invoke-quick?)
         if self.d_type == InstructionType.INVOKE:
-            calledClass, calledMethod = parseCall(self.d_parameters[-1]) 
+            calledClass, calledMethod = parseInvoke(self.d_parameters[-1]) 
             self.d_parameters[-1] = calledClass
             self.d_parameters.append(calledMethod)
+        elif self.d_type == InstructionType.FIELDGET or self.d_type == InstructionType.FIELDPUT:
+            calledClass, calledField, type = parseFieldGet(self.d_parameters[-1])
+            self.d_parameters[-1] = calledClass
+            self.d_parameters += [calledField, type]
         
     # androguard instruction object
     def instruction(self):
@@ -200,11 +227,21 @@ class Method:
         return self.d_class
     
     # indices in the list of Block object and the list of Instruction objects within that, where the given method is called
-    def calledInstructionByName(self, className, methodName):
+    def calledInstructionsByMethodName(self, className, methodName):
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
                 if instruction.type() == InstructionType.INVOKE and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                    list.append([blockIdx, instructionIdx])
+        
+        return list
+    
+    # indices in the list of Block object and the list of Instruction objects within that, where the given field is accessed
+    def calledInstructionsByFieldName(self, className, fieldName):
+        list = []
+        for blockIdx, block in enumerate(self.d_blocks):
+            for instructionIdx, instruction in enumerate(block.instructions()):
+                if instruction.type() == InstructionType.FIELDGET and className in instruction.parameters()[-3] and fieldName in instruction.parameters()[-2]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -380,7 +417,7 @@ class APKstructure:
         return self.d_classes.get(name, None)
     
     # Method objects in which the given method is called
-    def calledMethodByName(self, className, methodName):
+    def calledMethodsByMethodName(self, className, methodName):
         # search_methods requires regexp's, this makes sure it gets them
         descriptorLoc = methodName.find('(')
         if descriptorLoc == -1:
@@ -411,7 +448,7 @@ class APKstructure:
         return methods
     
     # Method objects in which the given field is accessed, descriptor is type
-    def calledMethodByFieldName(self, className, fieldName, descriptor):
+    def calledMethodsByFieldName(self, className, fieldName, descriptor):
         
         pathps = self.d_analysis.tainted_variables.get_field(className, fieldName, descriptor).get_paths()
         methods = []
