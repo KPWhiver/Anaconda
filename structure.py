@@ -97,6 +97,17 @@ class Instruction:
         classObject = structure.classByName(self.d_parameters[-2])        
         if classObject is None:
             return []
+        
+        if 'invoke-virtual' not in self.opcode() and 'invoke-interface' not in self.opcode():# and
+            #'invoke-static' not in self.opcode():
+            superClass = classObject.superClass()
+            if 'invoke-super' in self.opcode() and superClass.dvmClass() is None:
+                return []
+            elif 'invoke-super' in self.opcode():
+                return [[superClass, superClass.methodByName(self.d_parameters[-1])]]
+            else:
+                return [[classObject, classObject.methodByName(self.d_parameters[-1])]]
+        
         classes = [classObject] + classObject.subClasses() # TODO make unique + recursive
         
         classesAndMethods = []
@@ -203,17 +214,14 @@ class Class:
         self.d_class = jvmClass
         self.d_methods = {}
         
-        # TODO: Klaas, please review commented code below:
-        # when a jvmClass is provided d_methods is not initialized, causing all lookups to fail
-        
-        #if(jvmClass is None):
-        self.d_initialized = False
-        #else:
-        #    self.d_initialized = True
-        
+        if(jvmClass is None):
+            self.d_initialized = True
+        else:
+            self.d_initialized = False
         
         self.d_analysis = analysis
         
+        self.d_superClass = None
         self.d_subClasses = []
         self.d_haveRecursiveSearched = False
 
@@ -250,6 +258,14 @@ class Class:
         return self.dvmClass().source()
     
     # superclass of this class
+    def superClass(self):
+        return self.d_superClass
+    
+    # set superclass of this class
+    def setSuperClass(self, superclass):
+        self.d_superClass = superclass
+    
+    # name of superclass of this class
     def superClassName(self):
         return self.d_class.get_superclassname()
     
@@ -316,6 +332,7 @@ class APKstructure:
                     superClassObject = Class()
                     self.d_classes[superClass] = superClassObject
                     
+                classObject.setSuperClass(superClassObject)
                 superClassObject.addSubclass(classObject)
                         
         print 'parse time: ', time.time() - point
