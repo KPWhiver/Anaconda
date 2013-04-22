@@ -8,7 +8,7 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
     if 'invoke' in instruction.opcode():
         _, methodObject = instruction.classAndMethodByStructure(structure)
         
-        if parameterIndex == 0:
+        if parameterIndex == 0 or 'invoke-static' in instruction.opcode():
             instruction.markAsSink()
             print 'Marking as sink: ', instruction
             return
