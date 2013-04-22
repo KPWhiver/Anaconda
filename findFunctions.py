@@ -133,9 +133,9 @@ def main():
     global structure
 
     structure = APKstructure('apks/LeakTest1.apk')
+    trackSockets.structure = structure
     
     # find socket creations (or other known sinks)
-    trackSockets.structure = structure
     methods = structure.calledMethodByName('Ljava/net/Socket;', 'getOutputStream')
     for method in methods:
         print 'Socket created in', method.name()
@@ -143,6 +143,27 @@ def main():
         # Track it and mark new sinks
         for idx in indices:
             trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
+
+    # find file creations
+    # track file objects:
+    methods = structure.calledMethodByName('Ljava/io/File;', '<init>')
+    for method in methods:
+        print 'New File created in', method.name()
+        indices = method.calledInstructionByName('Ljava/io/File;', '<init>')
+        # Track it and mark new sinks
+        for idx in indices:
+            register = method.blocks()[idx[0]].instructions()[idx[1]]
+            trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
+
+    # track file output streams
+    methods = structure.calledMethodByName('Ljava/io/FileOutputStream;', '<init>')
+    for method in methods:
+        print 'New FileOutputStream created in', method.name()
+        indices = method.calledInstructionByName('Ljava/io/FileOutputStream;', '<init>')
+        # Track it and mark new sinks
+        for idx in indices:
+            register = method.blocks()[idx[0]].instructions()[idx[1]]
+            trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
     
     print
     
