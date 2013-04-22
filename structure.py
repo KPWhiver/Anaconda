@@ -98,8 +98,10 @@ class Instruction:
         if classObject is None:
             return []
         
-        if 'invoke-virtual' not in self.opcode() and 'invoke-interface' not in self.opcode():# and
-            #'invoke-static' not in self.opcode():
+        # is it a static call that's executed virtually
+        virtualStatic = 'invoke-static' in self.opcode() and classObject.methodByName(self.d_parameters[-1]) is None
+        
+        if 'invoke-virtual' not in self.opcode() and 'invoke-interface' not in self.opcode() and not virtualStatic:
             superClass = classObject.superClass()
             if 'invoke-super' in self.opcode() and superClass.dvmClass() is None:
                 return []
