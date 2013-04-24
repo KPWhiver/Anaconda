@@ -114,19 +114,6 @@ android.app.ContextImpl$ApplicationContentResolver    openTypedAssetFileDescript
 android.app.ContextImpl$ApplicationContentResolver    openFileDescriptor
 android.app.ContextImpl$ApplicationContentResolver    query                 
 
-#listeners
-android.accounts.AccountManager                       addOnAccountsUpdatedListener 
-android.content.ContentResolver                       registerContentObserver
-android.telephony.TelephonyManager                    listen                                                   android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
-android.location.ILocationManager$Stub$Proxy          addProximityAlert                                         
-android.location.LocationManager                      requestLocationUpdates                                   android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
-android.location.ILocationManager$Stub$Proxy          requestLocationUpdates
-android.location.ILocationManager$Stub$Proxy          requestLocationUpdatesPI
-android.location.LocationManager                      _requestLocationUpdates
-android.provider.Browser                              requestAllIcons
-android.telephony.cdma.CdmaCellLocation               getBaseStationId
-com.android.internal.telephony.ITelephonyRegistry$Stub$Proxy listen
-
 #fields
 android.accounts.Account                              name java.lang.String                                    android.permission.GET_ACCOUNTS       
 android.accounts.Account                              type java.lang.String
@@ -152,3 +139,15 @@ android.net.wifi.WifiConfiguration                    wepKeys [java.lang.String
 android.net.wifi.ScanResult                           BSSID
 android.net.wifi.ScanResult                           SSID
 
+#listeners
+android.accounts.AccountManager                       addOnAccountsUpdatedListener 
+android.content.ContentResolver                       registerContentObserver
+android.telephony.TelephonyManager                    listen                                                   android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
+android.location.ILocationManager$Stub$Proxy          addProximityAlert                                         
+android.location.LocationManager                      requestLocationUpdates                                   android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdates
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdatesPI
+android.location.LocationManager                      _requestLocationUpdates
+android.provider.Browser                              requestAllIcons
+android.telephony.cdma.CdmaCellLocation               getBaseStationId
+com.android.internal.telephony.ITelephonyRegistry$Stub$Proxy listen

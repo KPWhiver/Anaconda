@@ -8,18 +8,23 @@ from androlyze import *
 class InstructionType :
     NONE = -1
     NOP = 0
-    MOVE = 1
-    RETURN = 2
-    IF = 3
-    ARRAYGET = 4
-    FIELDGET = 5
-    ARRAYPUT = 6
-    FIELDPUT = 7
-    INVOKE = 8
+    MOVERESULT = 1
+    MOVE = 2
+    RETURN = 3
+    IF = 4
+    ARRAYGET = 5
+    FIELDGET = 6
+    STATICGET = 7
+    ARRAYPUT = 8
+    FIELDPUT = 9
+    STATICINVOKE = 10
+    INVOKE = 11
 
 def parseOpcode(opcode):
     if 'nop' in opcode:
         return InstructionType.NOP
+    elif 'move-result' in opcode:
+        return InstructionType.MOVERESULT
     elif 'move' in opcode:
         return InstructionType.MOVE
     elif 'return' in opcode:
@@ -28,12 +33,16 @@ def parseOpcode(opcode):
         return InstructionType.IF
     elif 'aget' in opcode:
         return InstructionType.ARRAYGET
-    elif 'get' in opcode:
+    elif 'iget' in opcode:
         return InstructionType.FIELDGET
+    elif 'sget' in opcode:
+        return InstructionType.STATICGET
     elif 'aput' in opcode:
         return InstructionType.ARRAYPUT
     elif 'put' in opcode:
         return InstructionType.FIELDPUT
+    elif 'invoke-static' in opcode:
+        return InstructionType.STATICINVOKE
     elif 'invoke' in opcode:
         return InstructionType.INVOKE
     else:
@@ -100,11 +109,11 @@ class Instruction:
             replaceRange(self.d_parameters)
         
         # if this instruction is a function call parse the function (there is also something like invoke-quick?)
-        if self.d_type == InstructionType.INVOKE:
+        if self.d_type == InstructionType.INVOKE or self.d_type == InstructionType.STATICINVOKE:
             calledClass, calledMethod = parseInvoke(self.d_parameters[-1]) 
             self.d_parameters[-1] = calledClass
             self.d_parameters.append(calledMethod)
-        elif self.d_type == InstructionType.FIELDGET or self.d_type == InstructionType.FIELDPUT:
+        elif self.d_type in [InstructionType.FIELDGET, InstructionType.STATICGET, InstructionType.FIELDPUT]:
             calledClass, calledField, type = parseFieldGet(self.d_parameters[-1])
             self.d_parameters[-1] = calledClass
             self.d_parameters += [calledField, type]
@@ -228,7 +237,7 @@ class Method:
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.type() == InstructionType.INVOKE and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:                
+                if instruction.type() in [InstructionType.INVOKE, InstructionType.STATICINVOKE] and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -238,7 +247,7 @@ class Method:
         list = []
         for blockIdx, block in enumerate(self.d_blocks):
             for instructionIdx, instruction in enumerate(block.instructions()):
-                if instruction.type() == InstructionType.FIELDGET and className in instruction.parameters()[-3] and fieldName in instruction.parameters()[-2]:                
+                if instruction.type() in [InstructionType.FIELDGET, InstructionType.STATICGET] and className in instruction.parameters()[-3] and fieldName in instruction.parameters()[-2]:                
                     list.append([blockIdx, instructionIdx])
         
         return list
@@ -447,7 +456,12 @@ class APKstructure:
     # Method objects in which the given field is accessed, descriptor is type
     def calledMethodsByFieldName(self, className, fieldName, descriptor):
         
-        pathps = self.d_analysis.tainted_variables.get_field(className, fieldName, descriptor).get_paths()
+        field = self.d_analysis.tainted_variables.get_field(className, fieldName, descriptor)
+        if field is None:
+            print 'Field', className, fieldName, descriptor, 'could not be found'
+            return
+            
+        pathps = field.get_paths()
         methods = []
         
         for data, methodIdx in pathps:
@@ -469,7 +483,8 @@ class APKstructure:
                 print 'error couldn\'t find method ', methodName, ' in class ', className
                 continue
             
-            methods.append(method)
+            if method not in methods:
+                methods.append(method)
             
         return methods
     
