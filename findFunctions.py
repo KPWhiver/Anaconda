@@ -15,12 +15,12 @@ def sources(filename) :
     file = open(filename)
     
     for line in file: # Throw away the first lines
-        if line == '#functions\n':
+        if '#methods' in line:
             break
     
     functions = []
     for line in file: # Read the functions
-        if line == '#fields\n': 
+        if '#fields' in line: 
             break
             
         classAndFunction = line.split()[0:2]
@@ -31,13 +31,16 @@ def sources(filename) :
     
     fields = []
     for line in file: # Read the fields
+        if '#listeners' in line: 
+            break
+        
         classAndField = line.split()[0:3]
         if classAndField != []:
-            classAndField[0] = classAndFunction[0].replace('.', '/')
-            classAndField[0] = 'L' + classAndFunction[0] + ';'
-            classAndField[2] = classAndFunction[2].replace('.', '/')
-            classAndField[2] = 'L' + classAndFunction[2] + ';'
-            fields.append(classAndFunction)
+            classAndField[0] = classAndField[0].replace('.', '/')
+            classAndField[0] = 'L' + classAndField[0] + ';'
+            classAndField[2] = classAndField[2].replace('.', '/')
+            classAndField[2] = 'L' + classAndField[2] + ';'
+            fields.append(classAndField)
     
     return functions, fields
         
@@ -159,7 +162,7 @@ def trackFromCall(method, blockIdx, instructionIdx, register = None):
         for insIdx, instruction in enumerate(block.instructions()[startIdx:]):
             if register in instruction.parameters():
                 
-                if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
+                if resultInstruction.type() == InstructionType.MOVERESULT:
                     return # register is overwritten
                 
                 overwritten = analyzeInstruction(method, instruction, register, blkIdx, insIdx)
@@ -184,6 +187,8 @@ def trackMethodUsages(className, methodName):
 
 def trackFieldUsages(className, fieldName, type):
     methods = structure.calledMethodsByFieldName(className, fieldName, type)
+    if methods is None:
+        return
     
     if len(methods): 
         print '---------------------------------------------------'

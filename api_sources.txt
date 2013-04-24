@@ -1,5 +1,5 @@
 //class (only non grey ones)                 function/field                      permission                                                          comment
-#methods                                                                  
+#methods
 android.accounts.AccountManager              getPassword                         android.permission.AUTHENTICATE_ACCOUNTS
 android.accounts.AccountManager              getUserData
 
@@ -136,8 +136,8 @@ android.net.wifi.WifiConfiguration                    BSSID java.lang.String
 android.net.wifi.WifiConfiguration                    preSharedKey java.lang.String
 android.net.wifi.WifiConfiguration                    wepKeys [java.lang.String
 
-android.net.wifi.ScanResult                           BSSID
-android.net.wifi.ScanResult                           SSID
+android.net.wifi.ScanResult                           BSSID java.lang.String
+android.net.wifi.ScanResult                           SSID java.lang.String
 
 #listeners
 android.accounts.AccountManager                       addOnAccountsUpdatedListener 

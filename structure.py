@@ -458,8 +458,7 @@ class APKstructure:
         
         field = self.d_analysis.tainted_variables.get_field(className, fieldName, descriptor)
         if field is None:
-            print 'Field', className, fieldName, descriptor, 'could not be found'
-            return
+            return None
             
         pathps = field.get_paths()
         methods = []
