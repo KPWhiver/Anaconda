@@ -40,15 +40,12 @@ def parseOpcode(opcode):
         return InstructionType.NONE
 
 # variables for parsing
-classParse = '(L[\w/\$_]*;)'
+classParse = '(\[*L[\w/\$_]*;)'
 whitespaceParse = '[\s]*'
 
 
 # parse the last argument of a function call
-def parseInvoke(call) :
-    if call != '' and call[0] == '[':
-        return '', ''
-    
+def parseInvoke(call) :    
     match = re.match(classParse + '->(.*)', call)
     if match == None:
         print 'error: ', call
@@ -61,7 +58,7 @@ def parseFieldGet(call) :
     #    return '', ''
     # ^ ???
     
-    match = re.match(classParse + '->([\w_]*)' + whitespaceParse + '([L[\w/\$_]*;]|\w)', call)
+    match = re.match(classParse + '->([\w_]*)' + whitespaceParse + '(\[*L[\w/\$_]*;|\[*[VZBSCIJFD])', call)
     if match == None:
         print 'error: ', call
         return '', '', ''
@@ -434,11 +431,11 @@ class APKstructure:
         for path in pathps:
             # find the Method object that is associated with this path
             location = path.get_src(self.d_dvm.get_class_manager())
-            jvmClass = self.classByName(location[0])
-            if jvmClass is None:
+            classObject = self.classByName(location[0])
+            if classObject is None:
                 print 'error couldn\'t find class ', location[0]
                 continue
-            method = jvmClass.methodByName(location[1] + location[2])
+            method = classObject.methodByName(location[1] + location[2])
             if method is None:
                 print 'error couldn\'t find method ', location[1] + location[2], ' in class ', location[0]
                 continue
@@ -463,11 +460,11 @@ class APKstructure:
             className, methodName, parameters = self.d_dvm.get_cm_method(methodIdx)
             methodName += parameters[0] + parameters[1]
             
-            jvmClass = self.classByName(className)
-            if jvmClass is None:
+            classObject = self.classByName(className)
+            if classObject is None:
                 print 'error couldn\'t find class ', className
                 continue
-            method = jvmClass.methodByName(methodName)
+            method = classObject.methodByName(methodName)
             if method is None:
                 print 'error couldn\'t find method ', methodName, ' in class ', className
                 continue
