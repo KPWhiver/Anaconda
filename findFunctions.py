@@ -140,7 +140,7 @@ def main():
 
     for method in methods:
         print 'Socket created in', method.name()
-        indices = method.calledInstructionsByMethodName('Ljava/net/Socket;', 'getOutputStream')
+        indices = method.calledInstructionsByMethodName('Ljava/net/Socket;', 'getOutputStream')# or BluetoothSocket! # or DataGramS !
         # Track it and mark new sinks
         for idx in indices:
             trackSockets.trackFromCall(method, idx[0], idx[1] + 1)

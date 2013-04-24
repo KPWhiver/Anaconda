@@ -1,53 +1,154 @@
-//class (only non grey ones)                functions                     permission                                                          comment
-android.accounts.AccountManager             getAccounts                   android.permission.GET_ACCOUNTS                                     get account data (could be an emailadress)
-android.accounts.AccountManager             getAccountsByType
-android.accounts.AccountManager             getAccountsByTypeAndFeatures
-android.accounts.AccountManager             hasFeatures                                                                                       ???
-android.accounts.AccountManager             addOnAccountsUpdatedListener                                                               
+//class (only non grey ones)                 function/field                      permission                                                          comment
+#methods                                                                  
+android.accounts.AccountManager              getPassword                         android.permission.AUTHENTICATE_ACCOUNTS
+android.accounts.AccountManager              getUserData
 
-android.accounts.AccountManager             getPassword                   android.permission.AUTHENTICATE_ACCOUNTS
-android.accounts.AccountManager             getUserData
+android.accounts.AccountManagerService       getPassword                   
+android.accounts.AccountManagerService       getUserData
 
-android.app.ActivityManager                 getRecentTasks                android.permission.GET_TASKS
-android.app.ActivityManager                 getRunningTasks                       
+android.accounts.IAccountManager$Stub$Proxy  getPassword
+android.accounts.IAccountManager$Stub$Proxy  getUserData
 
-android.bluetooth.BluetoothAdapter          getAddress                    android.permission.BLUETOOTH                                        hardware (MAC?) address
-android.bluetooth.BluetoothAdapter          getBondedDevices                                                                                  returns BluetoothDevices
-android.bluetooth.BluetoothAdapter          getName                                                                                           your bluetooth name
-android.bluetooth.BluetoothDevice           getName
+android.accounts.Account                     toString                            android.permission.GET_ACCOUNTS   
 
-android.location.LocationManager            getLastKnownLocation          android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
-android.location.LocationManager            requestLocationUpdates                                                                            does not return location, instead allows you pass it a listener
-android.telephony.TelephonyManager          getNeighboringCellInfo
+android.bluetooth.BluetoothAdapter           getAddress                          android.permission.BLUETOOTH                                        hardware (MAC?) address
+android.bluetooth.BluetoothAdapter           getName                                                                                                 your bluetooth name
 
-android.net.ConnectivityManager             getActiveNetworkInfo          android.permission.ACCESS_NETWORK_STATE                             ???
-android.net.ConnectivityManager             getAllNetworkInfo
-android.net.ConnectivityManager             getNetworkInfo
-android.net.ConnectivityManager             getNetworkPreference
+android.bluetooth.BluetoothDevice            getName
+android.bluetooth.BluetoothDevice            getAddress
+android.bluetooth.BluetoothDevice            toString
 
-android.net.wifi.WifiManager                getConfiguredNetworks         android.permission.ACCESS_WIFI_STATE
-android.net.wifi.WifiManager                getConnectionInfo
-android.net.wifi.WifiManager                getDhcpInfo
+android.bluetooth.IBluetooth$Stub$Proxy      getAddress
+android.bluetooth.IBluetooth$Stub$Proxy      getName
+android.bluetooth.IBluetooth$Stub$Proxy      getRemoteName
 
-android.provider.Browser                    getAllBookmarks               com.android.browser.permission.READ_HISTORY_BOOKMARKS             
-android.provider.Browser                    getAllVisitedUrls                                                                                          
+android.server.BluetoothService              getAddress
+android.server.BluetoothService              getAddressFromObjectPath
+android.server.BluetoothService              getName
+android.server.BluetoothService              getRemoteName
 
-android.provider.CallLog$Calls              getLastOutgoingCall           android.permission.READ_CONTACTS
-android.provider.ContactsContract$Contacts  lookupContact
-com.android.internal.telephony.CallerInfo   getCallerId
-com.android.internal.telephony.CallerInfo   getCallerInfo
+android.location.LocationManager             getLastKnownLocation                android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.ILocationManager$Stub$Proxy getLastKnownLocation
+                                      
+android.telephony.gsm.GsmCellLocation        getCid
+android.telephony.gsm.GsmCellLocation        getLac
+android.telephony.gsm.GsmCellLocation        getPsc
+android.telephony.gsm.GsmCellLocation        toString
 
-android.telephony.gsm.SmsManager            sendDataMessage               android.permission.SEND_SMS                                         not a source but still interesting
-android.telephony.gsm.SmsManager            sendMultipartTextMessage
-android.telephony.gsm.SmsManager            sendTextMessage
-android.telephony.SmsManager                sendDataMessage
-android.telephony.SmsManager                sendMultipartTextMessage
-android.telephony.SmsManager                sendTextMessage
+android.telephony.cdma.CdmaCellLocation      getSystemId
+android.telephony.cdma.CdmaCellLocation      getNetworkId
+android.telephony.cdma.CdmaCellLocation      getBaseStationLongitude
+android.telephony.cdma.CdmaCellLocation      getBaseStationLatitude
+android.telephony.cdma.CdmaCellLocation      getBaseStationId
+android.telephony.cdma.CdmaCellLocation      toString
+                                      
+android.telephony.NeighboringCellInfo        getCid
+android.telephony.NeighboringCellInfo        getLac
+android.telephony.NeighboringCellInfo        getPsc
+android.telephony.NeighboringCellInfo        getRssi
+android.telephony.NeighboringCellInfo        toString
 
-android.telephony.TelephonyManager          getDeviceId                   android.permission.READ_PHONE_STATE                                 IMEI for gsm and MEID or ESN for CDMA
-android.telephony.TelephonyManager          getLine1Number
-android.telephony.TelephonyManager          getSimSerialNumber
-android.telephony.TelephonyManager          getSubscriberId                                                                                   IMSI
+com.android.internal.telephony.ITelephony$Stub$Proxy getCellLocation
 
-android.telephony.TelephonyManager          listen                        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE   also uses a listener
+android.net.wifi.WifiConfiguration           toString                            android.permission.ACCESS_WIFI_STATE
+
+android.net.wifi.ScanResult                  toString
+
+android.net.wifi.WifiInfo                    getBSSID
+android.net.wifi.WifiInfo                    getIpAddress
+android.net.wifi.WifiInfo                    getMacAddress
+android.net.wifi.WifiInfo                    getSSID
+android.net.wifi.WifiInfo                    toString
+
+android.provider.Browser                     getAllBookmarks                     com.android.browser.permission.READ_HISTORY_BOOKMARKS             
+android.provider.Browser                     getAllVisitedUrls        
+android.provider.Browser                     getVisitedHistory      
+android.provider.Browser                     getVisitedLike     
+
+android.provider.Calendar$CalendarAlerts     query                               android.permission.READ_CALENDAR
+android.provider.Calendar$Calendars          query   
+android.provider.Calendar$EventDays          query   
+android.provider.Calendar$Events             query  
+android.provider.Calendar$Instances          query     
+
+android.provider.CalendarContract.Attendees  query            
+android.provider.CalendarContract.EventDays  query     
+android.provider.CalendarContract.Reminders  query                
+
+android.provider.CallLog$Calls               getLastOutgoingCall                 android.permission.READ_CONTACTS
+android.provider.Contacts$People             loadContactPhoto
+android.provider.Contacts$People             openContactPhotoInputStream
+android.provider.Contacts$People             queryGroups
+android.provider.ContactsContract$Contacts   openContactPhotoInputStream
+
+com.android.internal.telephony.CallerInfo    getCallerId
+
+android.provider.Telephony$Mms               query                               android.permission.READ_SMS
+android.provider.Telephony$Sms               query
+
+android.telephony.TelephonyManager           getDeviceId                         android.permission.READ_PHONE_STATE                                 IMEI for gsm and MEID or ESN for CDMA
+android.telephony.TelephonyManager           getLine1Number
+android.telephony.TelephonyManager           getSimSerialNumber
+android.telephony.TelephonyManager           getSubscriberId                                                                                        IMSI
+android.telephony.TelephonyManager           getNetworkCountryIso 
+android.telephony.TelephonyManager           getNetworkOperator
+android.telephony.TelephonyManager           getNetworkOperatorName
+android.telephony.TelephonyManager           getSimCountryIso
+android.telephony.TelephonyManager           getSimOperator
+android.telephony.TelephonyManager           getSimOperatorName
+android.telephony.TelephonyManager           getSimSerialNumber
+
+com.android.internal.telephony.IPhoneSubInfo$Stub$Proxy getDeviceId
+com.android.internal.telephony.IPhoneSubInfo$Stub$Proxy getDeviceSvn
+com.android.internal.telephony.IPhoneSubInfo$Stub$Proxy getIccSerialNumber
+com.android.internal.telephony.IPhoneSubInfo$Stub$Proxy getLine1Number
+com.android.internal.telephony.ISms$Stub$Proxy          getAllMessagesFromIccEf
+
+android.content.ContentResolver              openTypedAssetFileDescriptor        ~
+android.content.ContentResolver              openInputStream
+android.content.ContentResolver              openFileDescriptor
+android.content.ContentResolver              query                                                                                                   queries a special database of contacts/bookmarks/etc...
+
+android.app.ContextImpl$ApplicationContentResolver    openInputStream
+android.app.ContextImpl$ApplicationContentResolver    openTypedAssetFileDescriptor
+android.app.ContextImpl$ApplicationContentResolver    openFileDescriptor
+android.app.ContextImpl$ApplicationContentResolver    query                 
+
+#listeners
+android.accounts.AccountManager                       addOnAccountsUpdatedListener 
+android.content.ContentResolver                       registerContentObserver
+android.telephony.TelephonyManager                    listen                                                   android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
+android.location.ILocationManager$Stub$Proxy          addProximityAlert                                         
+android.location.LocationManager                      requestLocationUpdates                                   android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdates
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdatesPI
+android.location.LocationManager                      _requestLocationUpdates
+android.provider.Browser                              requestAllIcons
+android.telephony.cdma.CdmaCellLocation               getBaseStationId
+com.android.internal.telephony.ITelephonyRegistry$Stub$Proxy listen
+
+#fields
+android.accounts.Account                              name java.lang.String                                    android.permission.GET_ACCOUNTS       
+android.accounts.Account                              type java.lang.String
+
+android.app.ActivityManager.RecentTaskInfo            description java.lang.CharSequence                       android.permission.GET_TASKS
+android.app.ActivityManager.RecentTaskInfo            origActivity android.content.ComponentName
+
+android.app.ActivityManager.RunningAppProcessInfo     processName java.lang.String
+android.app.ActivityManager.RunningAppProcessInfo     importanceReasonComponent android.content.ComponentName
+
+android.app.ActivityManager.RunningServiceInfo        process java.lang.String
+android.app.ActivityManager.RunningServiceInfo        service android.content.ComponentName
+
+android.app.ActivityManager.RunningTaskInfo           baseActivity android.content.ComponentName
+android.app.ActivityManager.RunningTaskInfo           description java.lang.CharSequence 
+android.app.ActivityManager.RunningTaskInfo           topActivity android.content.ComponentName
+
+android.net.wifi.WifiConfiguration                    SSID java.lang.String                                    android.permission.ACCESS_WIFI_STATE
+android.net.wifi.WifiConfiguration                    BSSID java.lang.String 
+android.net.wifi.WifiConfiguration                    preSharedKey java.lang.String
+android.net.wifi.WifiConfiguration                    wepKeys [java.lang.String
+
+android.net.wifi.ScanResult                           BSSID
+android.net.wifi.ScanResult                           SSID
 
