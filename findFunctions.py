@@ -12,19 +12,34 @@ from tools import *
  
 # Read the list of api sources       
 def sources(filename) :
-    with open(filename) as sourcesFile:
-        sources = sourcesFile.readlines()
-        
+    file = open(filename)
+    
+    for line in file: # Throw away the first lines
+        if line == '#functions\n':
+            break
+    
     functions = []
-        
-    for line in sources[1:]:
+    for line in file: # Read the functions
+        if line == '#fields\n': 
+            break
+            
         classAndFunction = line.split()[0:2]
         if classAndFunction != []:
             classAndFunction[0] = classAndFunction[0].replace('.', '/')
             classAndFunction[0] = 'L' + classAndFunction[0] + ';'
             functions.append(classAndFunction)
-            
-    return functions
+    
+    fields = []
+    for line in file: # Read the fields
+        classAndField = line.split()[0:3]
+        if classAndField != []:
+            classAndField[0] = classAndFunction[0].replace('.', '/')
+            classAndField[0] = 'L' + classAndFunction[0] + ';'
+            classAndField[2] = classAndFunction[2].replace('.', '/')
+            classAndField[2] = 'L' + classAndFunction[2] + ';'
+            fields.append(classAndFunction)
+    
+    return functions, fields
         
 # these functions are here to keep my head clear
 def method(idx, analysis):
@@ -37,18 +52,28 @@ def instruction(idx, block):
     return block.get_instructions()[idx]
 
 
-def analyzeInstruction(method, instruction, register):
+# Analyze the provided instruction, perform aditional tracking if needed. If register is overwritten in the 
+# instruction, return true
+
+def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
     print instruction.opcode(), instruction.parameters()
     
     if instruction.isSink():
-        print 'Value is put in sink!'
+        print 'Data is put in sink!'
         return
     
     parameterIndex = instruction.parameters().index(register)
-    
-    if 'invoke' in instruction.opcode():
-        # attempt to find the method used within the apk
-        _, instructionMethod= instruction.classAndMethodByStructure(structure)
+    if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
+        # Function is called on a source object. Track the result.
+        print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
+        trackFromCall(method, blockIdx, instructionIdx + 1)
+        
+    elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.INVOKE:
+        # The register is passed as a parameter to a function. Attempt to continue tracking in the function
+        # TODO: Return by reference
+        
+        # Attempt to find the method used within the apk
+        _, instructionMethod = instruction.classAndMethodByStructure(structure)
         if not (instructionMethod is None):
             print 'Information is used in method call defined in apk'
             print 'Tracking recursively.....'
@@ -57,67 +82,98 @@ def analyzeInstruction(method, instruction, register):
             
             # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
         else:  
-            # class is not defined within APK
+            # Class is not defined within APK
             className, methodName = instruction.classAndMethod()
             print 'Method', methodName, 'not found in class', className
             
             
-    elif 'if-' in instruction.opcode():
+    elif instruction.type() == InstructionType.IF:
+        # The register is used in a if statement
         print 'Register is used in if statement'
     
-    elif 'put' in instruction.opcode():
-        print 'Value is put in field'
-        #Value is put inside array, 'aput'
-        #Value is put in instance field, 'iput'
-        #Value is put in static field, 'sput'
+    elif instruction.type() == InstructionType.FIELDPUT:
+        # The content of the register is put inside a field, either of an instance or a class. Use trackFieldUsages to
+        # lookup where this field is read and continue tracking there
+        parameters = instruction.parameters()
+        print 'Data is put in field', parameters[-2], 'of class', parameters[-3]
+        trackFieldUsages(parameters[-3], parameters[-2], parameters[-1])
         
-    elif 'return' in instruction.opcode():
-        print 'Value was returned. Looking for usages of this function' 
+    elif instruction.type() == InstructionType.FIELDGET:
+        # Register is used in a get instruction. This means either a field of the source object is read, or the
+        # register is overwritten. Case is determined by the parameter index.
+        if parameterIndex == 0:
+            print 'Data was read from sink object'
+        else:
+            print 'Register was overwritten'
+            return True
+    elif instruction.type() == InstructionType.STATICGET:
+        # Register is used in a static get, the register is overwritten.
+        print 'Register was overwritten'
+        return True
+    elif instruction.type() == InstructionType.RETURN:
+        # Register is used in return instruction. use trackMethodUsages to look for usages of this function and track
+        # the register containing the result.
         
-        trackUsages(method.memberOf().name(), method.name())
+        print 'Data was returned. Looking for usages of this function' 
         
-    elif 'move' in instruction.opcode():
-        print 'move'
-        #Value is moved into other register, 'move'
+        trackMethodUsages(method.memberOf().name(), method.name())
+        
+    elif instruction.type() == InstructionType.MOVE:
+        # Value is moved into other register. When first parameter the register is overwritten, else the value is
+        # copied into another register. Track that register as well.
+        
+        if parameterIndex == 0:
+            print 'Register was overwritten'
+            return True
+        else:
+            newRegister = instruction.parameters[0]
+            print 'Data copied into new register', newRegister
+            trackFromCall(method, blockIdx, instructionIdx + 1, newRegister)
         
     else:
+        # Uncaught instruction used
         print 'Unknown operation performed'
 
     
 
+# Track a register from the specified block and instrucion index in the provided method. If no register is provided,
+# attempt to read the register to track from the move-result instruction on the instruction specified.
+
 def trackFromCall(method, blockIdx, instructionIdx, register = None):
     if register is None:
         resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
-        if resultInstruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
+        if resultInstruction.type() == InstructionType.MOVERESULT:
             register = resultInstruction.parameters()[0]
             instructionIdx += 1 # move the pointer to the instruction after the move-result
         else:
-            print "No move-result instruction was found for", method.blocks()[blockIdx].instructions()[instructionIdx]
+            print "No move-result instruction was found, instead \'", method.blocks()[blockIdx].instructions()[instructionIdx], '\' was found'
             return
         
     
-    print '>', method.name()
+    print '>', method.memberOf().name(), method.name()
     print 'Tracking the result in register', register
     
     
-    for block in method.blocks()[blockIdx:]:
+    for blkIdx, block in enumerate(method.blocks()[blockIdx:]):
         startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
-        for instruction in block.instructions()[startIdx:]:
+        for insIdx, instruction in enumerate(block.instructions()[startIdx:]):
             if register in instruction.parameters():
                 
                 if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
                     return # register is overwritten
                 
-                analyzeInstruction(method, instruction, register)
+                overwritten = analyzeInstruction(method, instruction, register, blkIdx, insIdx)
+                if overwritten:
+                    return # register is overwritten
                 
     print
     
-def trackUsages(className, methodName):
+def trackMethodUsages(className, methodName):
     methods = structure.calledMethodsByMethodName(className, methodName)
     #print 'Method', methodName, className 
     if len(methods): 
-        print '---------'
-        print 'Method', methodName, className, 'is used in:\n' 
+        print '---------------------------------------------------'
+        print 'Method', methodName, className, 'is used in', len(methods), 'method(s):\n' 
     
     # search through all the methods where it is called
     for method in methods:
@@ -126,13 +182,26 @@ def trackUsages(className, methodName):
         for blockIdx, instructionIdx in indices:
             trackFromCall(method, blockIdx, instructionIdx + 1) 
 
+def trackFieldUsages(className, fieldName, type):
+    methods = structure.calledMethodsByFieldName(className, fieldName, type)
+    
+    if len(methods): 
+        print '---------------------------------------------------'
+        print 'Field', fieldName, className, 'is used in', len(methods), 'method(s):\n' 
+        
+    for method in methods:
+        indices = method.calledInstructionsByFieldName(className, fieldName)
+        for blockIdx, instructionIdx in indices:
+            register = method.blocks()[blockIdx].instructions()[instructionIdx].parameters()[0]
+            trackFromCall(method, blockIdx, instructionIdx + 1, register)
+
 def main():
     point = time.time()
 
-    classAndFunctions = sources('api_sources.txt')
+    classAndFunctions, fields = sources('api_sources.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest1.apk')
+    structure = APKstructure('apks/LeakTest4.apk')
     trackSockets.structure = structure
     
     # find socket creations (or other known sinks)
@@ -170,7 +239,10 @@ def main():
         
     # search for all tainted methods
     for className, methodName in classAndFunctions:
-        trackUsages(className, methodName)
+        trackMethodUsages(className, methodName)
+        
+    for className, fieldName, type in fields:
+        trackFieldUsages(className, fieldName, type)
     
 
     print 'total time: ', time.time() - point 

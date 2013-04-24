@@ -1,4 +1,5 @@
 //class (only non grey ones)                functions                     permission                                                          comment
+#functions
 android.accounts.AccountManager             getAccounts                   android.permission.GET_ACCOUNTS                                     get account data (could be an emailadress)
 android.accounts.AccountManager             getAccountsByType
 android.accounts.AccountManager             getAccountsByTypeAndFeatures
