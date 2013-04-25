@@ -106,6 +106,8 @@ class Instruction:
         self.d_block = block
         self.d_index = index
         
+       
+        
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
             replaceRange(self.d_parameters)
@@ -118,7 +120,9 @@ class Instruction:
         elif self.d_type in [InstructionType.FIELDGET, InstructionType.STATICGET, InstructionType.FIELDPUT]:
             calledClass, calledField, type = parseFieldGet(self.d_parameters[-1])
             self.d_parameters[-1] = calledClass
-            self.d_parameters += [calledField, type]
+            self.d_parameters += [calledField, type] 
+            
+        print instruction.get_length(), self
         
     # androguard instruction object
     def instruction(self):
@@ -230,7 +234,7 @@ class Method:
             self.d_blocks.append(Block(block, self, blockIdx))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
-        self.d_name.replace(' ', '')
+        self.d_name = self.d_name.replace(' ', '')
             
     # MethodAnalysis object
     def method(self):
@@ -292,6 +296,10 @@ class Method:
     # list of Block objects
     def blocks(self):
         return self.d_blocks
+    
+    # java source code
+    def sourceCode(self):
+        return self.d_method.source()
     
     def __str__(self):
         return self.name()
