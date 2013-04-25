@@ -79,18 +79,22 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
         # TODO: Return by reference
         
         # Attempt to find the method used within the apk
-        _, instructionMethod = instruction.classAndMethodByStructure(structure)
-        if not (instructionMethod is None):
+        usages = instruction.classesAndMethodsByStructure(structure)
+        if len(usages) > 0:  
             print 'Information is used in method call defined in apk'
-            print 'Tracking recursively.....'
-            parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
-            trackFromCall(instructionMethod, 0, 0, parameterRegister)
-            
-            # Parameter p* is tainted in method instructionMethod, taint it and continue tracking
-        else:  
+            print len(usages), 'potentially called methods have been found'
+        else:
             # Class is not defined within APK
             className, methodName = instruction.classAndMethod()
             print 'Method', methodName, 'not found in class', className
+        
+        for _, instructionMethod in usages:
+            
+            print 'Tracking recursively.....'
+            parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
+            trackFromCall(instructionMethod, 0, 0, parameterRegister)
+                
+        
             
             
     elif instruction.type() == InstructionType.IF:
@@ -152,7 +156,7 @@ def trackFromCall(method, startBlockIdx, startInstructionIdx, register = None):
             register = resultInstruction.parameters()[0]
             startInstructionIdx += 1 # move the pointer to the instruction after the move-result
         else:
-            print 'No move-result instruction was found, instead \'', method.blocks()[startBlockIdx].instructions()[startInstructionIdx], '\' was found'
+            print 'ERROR: No move-result instruction was found, instead \'', method.blocks()[startBlockIdx].instructions()[startInstructionIdx], '\' was found'
             return
         
     

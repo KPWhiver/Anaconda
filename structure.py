@@ -182,7 +182,7 @@ class Instruction:
         for classObject in classes:
             method = classObject.methodByName(self.d_parameters[-1])
             if not (method is None):
-                classesAndMethods += [classObject, method]
+                classesAndMethods.append([classObject, method])
                 
         return classesAndMethods
     
