@@ -98,11 +98,13 @@ def replaceRange(parameters):
 # class containing information about a single construction
 class Instruction:
     
-    def __init__(self, instruction):        
+    def __init__(self, instruction, block, index):        
         self.d_instruction = instruction
         self.d_parameters = [arg.strip() for arg in instruction.get_output().split(',')]
         self.d_isSink = False
         self.d_type = parseOpcode(instruction.get_name())
+        self.d_block = block
+        self.d_index = index
         
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
@@ -121,6 +123,10 @@ class Instruction:
     # androguard instruction object
     def instruction(self):
         return self.d_instruction
+    
+    # indices inside the Method and Block object
+    def indices(self):
+        return self.d_block.index(), self.d_index
     
     # type of instruction, e.g. 'invoke-virtual'
     def opcode(self):
@@ -191,15 +197,21 @@ class Instruction:
         
 # class containing information about a single block (for example all the different scopes in a method)
 class Block:
-    def __init__(self, block):
+    def __init__(self, block, method, index):
         self.d_block = block
+        self.d_index = index
+        self.d_method = method
         self.d_instructions = []
-        for instruction in block.get_instructions():
-            self.d_instructions.append(Instruction(instruction))
+        for instructionIdx, instruction in enumerate(block.get_instructions()):
+            self.d_instructions.append(Instruction(instruction, self, instructionIdx))
         
     # androguard block
     def block(self):
         return self.d_block
+    
+    # index inside the Method object
+    def index(self):
+        return self.d_index
         
     # Instruction objects within this block
     def instructions(self):
@@ -214,8 +226,8 @@ class Method:
         self.d_class = classObject
         self.d_method = methodInfo
         self.d_blocks = []
-        for block in methodInfo.get_basic_blocks().get():
-            self.d_blocks.append(Block(block))
+        for blockIdx, block in enumerate(methodInfo.get_basic_blocks().get()):
+            self.d_blocks.append(Block(block, self, blockIdx))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
         self.d_name.replace(' ', '')

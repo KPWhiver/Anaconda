@@ -58,7 +58,7 @@ def instruction(idx, block):
 # Analyze the provided instruction, perform aditional tracking if needed. If register is overwritten in the 
 # instruction, return true
 
-def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
+def analyzeInstruction(method, instruction, register):
     print instruction.opcode(), instruction.parameters()
     
     if instruction.isSink():
@@ -72,6 +72,7 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
             print 'Function', instruction.parameters()[-1], 'called on source object, but returns void'
         else:
             print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
+            blockIdx, instructionIdx = instruction.indices()
             trackFromCall(method, blockIdx, instructionIdx + 1)
         
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.INVOKE:
@@ -164,15 +165,15 @@ def trackFromCall(method, startBlockIdx, startInstructionIdx, register = None):
     print 'Tracking the result in register', register
     
     
-    for blkIdx, block in enumerate(method.blocks()[startBlockIdx:]):
+    for block in method.blocks()[startBlockIdx:]:
         startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
-        for insIdx, instruction in enumerate(block.instructions()[startIdx:]):
+        for instruction in block.instructions()[startIdx:]:
             if register in instruction.parameters():
                 
                 if instruction.type() == InstructionType.MOVERESULT:
                     return # register is overwritten
                 
-                overwritten = analyzeInstruction(method, instruction, register, blkIdx, insIdx)
+                overwritten = analyzeInstruction(method, instruction, register)
                 if overwritten:
                     return # register is overwritten
                 
