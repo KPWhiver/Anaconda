@@ -44,6 +44,20 @@ def sources(filename) :
     
     return functions, fields
         
+# Read the list of api sinks
+def sinks(filename) :
+    file = open(filename)
+
+    classes = []
+    for line in file:
+        classAndFunction = line.split()
+        if classAndFunction != []:
+            classAndFunction[0] = classAndFunction[0].replace('.', '/')
+            classAndFunction[0] = 'L' + classAndFunction[0] + ';'
+            classes.append(classAndFunction)
+
+    return classes
+
 # these functions are here to keep my head clear
 def method(idx, analysis):
     return analysis.get_method(analysis.get_vm().get_methods()[idx])
@@ -207,46 +221,34 @@ def trackFieldUsages(className, fieldName, type):
             register = method.blocks()[blockIdx].instructions()[instructionIdx].parameters()[0]
             trackFromCall(method, blockIdx, instructionIdx + 1, register)
 
+def trackSink(className, methodName, isSink, direct):
+    methods = structure.calledMethodsByMethodName(className, methodName)
+    for method in methods:
+        print 'New', className, 'created in', method.name()
+        indices = method.calledInstructionsByMethodName(className, methodName)
+        # Track it and mark new sinks
+        for idx in indices:
+            if 'is-sink' in isSink:
+                register = method.blocks()[idx[0]].instructions()[idx[1]]
+                trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
+            else:
+                trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
+                
+
 def main():
     point = time.time()
 
     classAndFunctions, fields = sources('api_sources.txt')
+    sinkClasses = sinks('api_sinks.txt')
     global structure
 
     structure = APKstructure('apks/LeakTest4.apk')
     trackSockets.structure = structure
     
-    # find socket creations (or other known sinks)
-    methods = structure.calledMethodsByMethodName('Ljava/net/Socket;', 'getOutputStream')
+    # search for and mark sinks
+    for className, methodName, isSink, direct in sinkClasses:
+        trackSink(className, methodName, isSink, direct)
 
-    for method in methods:
-        print 'Socket created in', method.name()
-        indices = method.calledInstructionsByMethodName('Ljava/net/Socket;', 'getOutputStream')# or BluetoothSocket! # or DataGramS !
-        # Track it and mark new sinks
-        for idx in indices:
-            trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
-
-    # find file creations
-    # track file objects:
-    methods = structure.calledMethodsByMethodName('Ljava/io/File;', '<init>')
-    for method in methods:
-        print 'New File created in', method.name()
-        indices = method.calledInstructionsByMethodName('Ljava/io/File;', '<init>')
-        # Track it and mark new sinks
-        for idx in indices:
-            register = method.blocks()[idx[0]].instructions()[idx[1]]
-            trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
-
-    # track file output streams
-    methods = structure.calledMethodsByMethodName('Ljava/io/FileOutputStream;', '<init>')
-    for method in methods:
-        print 'New FileOutputStream created in', method.name()
-        indices = method.calledInstructionsByMethodName('Ljava/io/FileOutputStream;', '<init>')
-        # Track it and mark new sinks
-        for idx in indices:
-            register = method.blocks()[idx[0]].instructions()[idx[1]]
-            trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
-    
     print
         
     # search for all tainted methods
