@@ -80,13 +80,14 @@ def analyzeInstruction(method, instruction, register):
         return
     
     parameterIndex = instruction.parameters().index(register)
+    blockIdx, instructionIdx = instruction.indices()
+    
     if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
         # Function is called on a source object. Track the result.
         if instruction.parameters()[-1][-1] == 'V': # it returns a void
             print 'Function', instruction.parameters()[-1], 'called on source object, but returns void'
         else:
             print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
-            blockIdx, instructionIdx = instruction.indices()
             trackFromCall(method, blockIdx, instructionIdx + 1)
         
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
