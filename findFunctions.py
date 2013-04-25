@@ -10,6 +10,10 @@ from androlyze import *
 from structure import *
 from tools import *
  
+class TrackType:
+    SINK = 0
+    SOURCE = 1
+ 
 # Read the list of api sources       
 def sources(filename) :
     file = open(filename)
@@ -58,21 +62,10 @@ def sinks(filename) :
 
     return classes
 
-# these functions are here to keep my head clear
-def method(idx, analysis):
-    return analysis.get_method(analysis.get_vm().get_methods()[idx])
-
-def block(idx, method):
-    return method.get_basic_blocks().get()[idx]
-
-def instruction(idx, block):
-    return block.get_instructions()[idx]
-
-
 # Analyze the provided instruction, perform aditional tracking if needed. If register is overwritten in the 
 # instruction, return true
 
-def analyzeInstruction(method, instruction, register):
+def analyzeInstruction(trackType, method, instruction, register):
     print instruction.opcode(), instruction.parameters()
     
     if instruction.isSink():
@@ -87,7 +80,7 @@ def analyzeInstruction(method, instruction, register):
         else:
             print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
             blockIdx, instructionIdx = instruction.indices()
-            trackFromCall(method, blockIdx, instructionIdx + 1)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1)
         
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.INVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
@@ -107,7 +100,7 @@ def analyzeInstruction(method, instruction, register):
             
             print 'Tracking recursively.....'
             parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
-            trackFromCall(instructionMethod, 0, 0, parameterRegister)
+            trackFromCall(trackType, instructionMethod, 0, 0, parameterRegister)
                 
         
             
@@ -121,7 +114,7 @@ def analyzeInstruction(method, instruction, register):
         # lookup where this field is read and continue tracking there
         parameters = instruction.parameters()
         print 'Data is put in field', parameters[-2], 'of class', parameters[-3]
-        trackFieldUsages(parameters[-3], parameters[-2], parameters[-1])
+        trackFieldUsages(trackType, parameters[-3], parameters[-2], parameters[-1])
         
     elif instruction.type() == InstructionType.FIELDGET:
         # Register is used in a get instruction. This means either a field of the source object is read, or the
@@ -141,7 +134,7 @@ def analyzeInstruction(method, instruction, register):
         
         print 'Data was returned. Looking for usages of this function' 
         
-        trackMethodUsages(method.memberOf().name(), method.name())
+        trackMethodUsages(trackType, method.memberOf().name(), method.name())
         
     elif instruction.type() == InstructionType.MOVE:
         # Value is moved into other register. When first parameter the register is overwritten, else the value is
@@ -153,7 +146,7 @@ def analyzeInstruction(method, instruction, register):
         else:
             newRegister = instruction.parameters[0]
             print 'Data copied into new register', newRegister
-            trackFromCall(method, blockIdx, instructionIdx + 1, newRegister)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, newRegister)
         
     else:
         # Uncaught instruction used
@@ -164,7 +157,7 @@ def analyzeInstruction(method, instruction, register):
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 
-def trackFromCall(method, startBlockIdx, startInstructionIdx, register = None):
+def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, register = None):
     if register is None:
         resultInstruction = method.blocks()[startBlockIdx].instructions()[startInstructionIdx]
         if resultInstruction.type() == InstructionType.MOVERESULT:
@@ -187,13 +180,13 @@ def trackFromCall(method, startBlockIdx, startInstructionIdx, register = None):
                 if instruction.type() == InstructionType.MOVERESULT:
                     return # register is overwritten
                 
-                overwritten = analyzeInstruction(method, instruction, register)
+                overwritten = analyzeInstruction(trackType, method, instruction, register)
                 if overwritten:
                     return # register is overwritten
                 
     print
     
-def trackMethodUsages(className, methodName):
+def trackMethodUsages(trackType, className, methodName):
     methods = structure.calledMethodsByMethodName(className, methodName)
     #print 'Method', methodName, className 
     if len(methods): 
@@ -205,9 +198,9 @@ def trackMethodUsages(className, methodName):
         
         indices = method.calledInstructionsByMethodName(className, methodName)
         for blockIdx, instructionIdx in indices:
-            trackFromCall(method, blockIdx, instructionIdx + 1) 
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1) 
 
-def trackFieldUsages(className, fieldName, type):
+def trackFieldUsages(trackType, className, fieldName, type):
     methods = structure.calledMethodsByFieldName(className, fieldName, type)
     if methods is None:
         return
@@ -220,7 +213,7 @@ def trackFieldUsages(className, fieldName, type):
         indices = method.calledInstructionsByFieldName(className, fieldName)
         for blockIdx, instructionIdx in indices:
             register = method.blocks()[blockIdx].instructions()[instructionIdx].parameters()[0]
-            trackFromCall(method, blockIdx, instructionIdx + 1, register)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, register)
 
 def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
@@ -231,9 +224,9 @@ def trackSink(className, methodName, isSink, direct):
         for idx in indices:
             if 'is-sink' in isSink:
                 register = method.blocks()[idx[0]].instructions()[idx[1]]
-                trackSockets.trackFromCall(method, idx[0], idx[1] + 1, register.parameters()[0])
+                trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1, register.parameters()[0])
             else:
-                trackSockets.trackFromCall(method, idx[0], idx[1] + 1)
+                trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1)
                 
 
 def main():
@@ -254,10 +247,10 @@ def main():
         
     # search for all tainted methods
     for className, methodName in classAndFunctions:
-        trackMethodUsages(className, methodName)
+        trackMethodUsages(TrackType.SOURCE, className, methodName)
         
     for className, fieldName, type in fields:
-        trackFieldUsages(className, fieldName, type)
+        trackFieldUsages(TrackType.SOURCE, className, fieldName, type)
     
 
     print 'total time: ', time.time() - point 

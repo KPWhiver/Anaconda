@@ -1,3 +1,5 @@
+
+
 structure = 0
 
 def analyzeInstruction(method, instruction, register):
