@@ -1,6 +1,6 @@
 structure = 0
 
-def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
+def analyzeInstruction(method, instruction, register):
     print instruction.opcode(), instruction.parameters()
     
     parameterIndex = instruction.parameters().index(register)
@@ -29,6 +29,7 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
                 
         else:
             # method is not defined within APK
+            blockIdx, instructionIdx = instruction.indices()
             trackFromCall(method, blockIdx, instructionIdx, instruction.parameters()[0])
 
 
@@ -44,7 +45,7 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
     elif 'return' in instruction.opcode():
         print 'Value was returned. Looking for usages of this function' 
         
-        trackUsages(method.memberOf().name(), method.name())
+        #trackUsages(method.memberOf().name(), method.name())
         
     elif 'move' in instruction.opcode():
         print 'move'
@@ -77,8 +78,6 @@ def trackFromCall(method, blockIdx, instructionIdx, register = None):
                 if instruction.opcode() in ['move-result-object', 'move-result', 'move-result-wide']:
                     return # register is overwritten
                 
-                analyzeInstruction(method, instruction, register, blockIdx, instructionIdx)
-                
-            instructionIdx += 1
-        blockIdx += 1
+                analyzeInstruction(method, instruction, register)
+
     print
