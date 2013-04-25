@@ -68,8 +68,11 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
     parameterIndex = instruction.parameters().index(register)
     if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
         # Function is called on a source object. Track the result.
-        print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
-        trackFromCall(method, blockIdx, instructionIdx + 1)
+        if instruction.parameters()[-1][-1] == 'V': # it returns a void
+            print 'Function', instruction.parameters()[-1], 'called on source object, but returns void'
+        else:
+            print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
+            trackFromCall(method, blockIdx, instructionIdx + 1)
         
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.INVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
@@ -142,14 +145,14 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 
-def trackFromCall(method, blockIdx, instructionIdx, register = None):
+def trackFromCall(method, startBlockIdx, startInstructionIdx, register = None):
     if register is None:
-        resultInstruction = method.blocks()[blockIdx].instructions()[instructionIdx]
+        resultInstruction = method.blocks()[startBlockIdx].instructions()[startInstructionIdx]
         if resultInstruction.type() == InstructionType.MOVERESULT:
             register = resultInstruction.parameters()[0]
-            instructionIdx += 1 # move the pointer to the instruction after the move-result
+            startInstructionIdx += 1 # move the pointer to the instruction after the move-result
         else:
-            print "No move-result instruction was found, instead \'", method.blocks()[blockIdx].instructions()[instructionIdx], '\' was found'
+            print 'No move-result instruction was found, instead \'', method.blocks()[startBlockIdx].instructions()[startInstructionIdx], '\' was found'
             return
         
     
@@ -157,12 +160,12 @@ def trackFromCall(method, blockIdx, instructionIdx, register = None):
     print 'Tracking the result in register', register
     
     
-    for blkIdx, block in enumerate(method.blocks()[blockIdx:]):
-        startIdx = instructionIdx if block == method.blocks()[blockIdx] else 0
+    for blkIdx, block in enumerate(method.blocks()[startBlockIdx:]):
+        startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
         for insIdx, instruction in enumerate(block.instructions()[startIdx:]):
             if register in instruction.parameters():
                 
-                if resultInstruction.type() == InstructionType.MOVERESULT:
+                if instruction.type() == InstructionType.MOVERESULT:
                     return # register is overwritten
                 
                 overwritten = analyzeInstruction(method, instruction, register, blkIdx, insIdx)
