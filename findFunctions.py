@@ -74,7 +74,7 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
             print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
             trackFromCall(method, blockIdx, instructionIdx + 1)
         
-    elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.INVOKE:
+    elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
         # TODO: Return by reference
         
@@ -87,6 +87,14 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
             # Class is not defined within APK
             className, methodName = instruction.classAndMethod()
             print 'Method', methodName, 'not found in class', className
+            if instruction.type() == InstructionType.INVOKE:
+                # It was an instance call, track the object the function was called on
+                trackFromCall(method, blockIdx, instructionIdx + 1, instruction.parameters()[0])
+            else: 
+                # It was a static call, track the object that was returned, if any
+                if instruction.parameters()[-1].endswith(')V'): # it does not return a void
+                    trackFromCall(method, blockIdx, instructionIdx + 1)
+            
         
         for _, instructionMethod in usages:
             
@@ -94,7 +102,8 @@ def analyzeInstruction(method, instruction, register, blockIdx, instructionIdx):
             parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
             trackFromCall(instructionMethod, 0, 0, parameterRegister)
                 
-        
+        if instruction.parameters()[-1][-1] != 'V': # It returns something
+            trackFromCall(method, blockIdx, instructionIdx + 1)
             
             
     elif instruction.type() == InstructionType.IF:
@@ -213,7 +222,7 @@ def main():
     classAndFunctions, fields = sources('api_sources.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest4.apk')
+    structure = APKstructure('apks/LeakTest5.apk')
     trackSockets.structure = structure
     
     # find socket creations (or other known sinks)
