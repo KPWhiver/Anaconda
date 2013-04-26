@@ -149,6 +149,10 @@ class Instruction:
     # parameters of opcode, e.g. registers, and other things like method to call
     def parameters(self):
         return self.d_parameters
+    
+    # androguard's smali
+    def smali(self, prepend = ''):
+        return prepend + self.__str__() + '\n'
         
     # the name of the class and method this instruction is calling
     def classAndMethod(self):
@@ -220,9 +224,10 @@ class Block:
         return self.d_instructions
         
     # androguard's smali  
-    def smali(self):
+    def smali(self, prepend = ''):
+        code = ''
         for instruction in self.d_instructions:
-            code += instruction.opcode() + ' ' + instruction.parameters() + '\n'
+            code += instruction.smali(prepend)
           
         return code
     
@@ -304,14 +309,14 @@ class Method:
     
     # java source code
     def sourceCode(self):
-        return self.d_method.source()
+        return self.d_method.get_method().source()
       
     # androguard's smali  
-    def smali(self):
-        code = self.name() + ':\n'
+    def smali(self, prepend = ''):
+        code = prepend + self.name() + ':\n'
         for block in self.d_blocks:
             code += '\n'
-            code += block.smali()
+            code += block.smali(prepend + '    ')
           
         return code
     
@@ -371,9 +376,9 @@ class Class:
     # androguard's smali  
     def smali(self):
         code = self.name() + ':\n'
-        for method in self.d_methods:
+        for _, method in self.d_methods.items():
             code += '\n'
-            code += method.smali()
+            code += method.smali('    ')
           
         return code
     

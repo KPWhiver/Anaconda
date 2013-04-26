@@ -2,7 +2,6 @@
 
 import re
 import sys
-import trackSockets
 
 sys.path.append('androguard')
 
@@ -186,6 +185,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
         # Out of list bounds!
         return
         
+    
     if register is None:
         resultInstruction = method.blocks()[startBlockIdx].instructions()[startInstructionIdx]
         if resultInstruction.type() == InstructionType.MOVERESULT:
@@ -257,14 +257,13 @@ def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
     
     for method in methods:
-        print method.memberOf().smali()
         print 'New', className, 'created in', method.name()
         indices = method.calledInstructionsByMethodName(className, methodName)
         # Track it and mark new sinks
         for idx in indices:
             if 'is-sink' in isSink:
                 instruction = method.blocks()[idx[0]].instructions()[idx[1]]
-                trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1, [], instruction.parameters()[0])
+                trackFromCall(TrackType.SINK, method, idx[0], idx[1], [], instruction.parameters()[0])
             else:
                 trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1)
                 
