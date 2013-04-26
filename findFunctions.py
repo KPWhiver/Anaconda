@@ -98,7 +98,7 @@ def analyzeInstruction(method, instruction, register, trackedPath):
         usages = instruction.classesAndMethodsByStructure(structure)
         if len(usages) > 0:  
             print 'Information is used in method call defined in apk'
-            print len(usages), 'potentially called methods have been found'
+            print len(usages), 'potentially called method(s) have been found'
         else:
             # Class is not defined within APK
             className, methodName = instruction.classAndMethod()

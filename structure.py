@@ -230,7 +230,6 @@ class Method:
             self.d_blocks.append(Block(block, self, blockIdx))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
-        self.d_name.replace(' ', '')
             
     # MethodAnalysis object
     def method(self):

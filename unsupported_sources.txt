@@ -1,0 +1,9 @@
+#listeners
+android.location.ILocationManager$Stub$Proxy          addProximityAlert         // Cannot track PendingIntent
+android.location.LocationManager                      addProximityAlert          
+android.location.LocationManager                      requestLocationUpdates(J F android.location.Criteria android.app.PendingIntent)
+android.location.LocationManager                      requestLocationUpdates(java.lang.String J F android.app.PendingIntent)            
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdatesPI(java.lang.String J F android.app.PendingIntent)         
+android.location.LocationManager                      _requestLocationUpdates(java.lang.String J F android.app.PendingIntent) 
+
+com.android.internal.telephony.ITelephonyRegistry$Stub$Proxy listen(java.lang.String com.android.internal.telephony.IPhoneStateListener I Z) // Functions of IPhoneStateListener unknown
