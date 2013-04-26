@@ -121,8 +121,6 @@ class Instruction:
             calledClass, calledField, type = parseFieldGet(self.d_parameters[-1])
             self.d_parameters[-1] = calledClass
             self.d_parameters += [calledField, type] 
-            
-        print instruction.get_length(), self
         
     # androguard instruction object
     def instruction(self):
@@ -220,6 +218,13 @@ class Block:
     # Instruction objects within this block
     def instructions(self):
         return self.d_instructions
+        
+    # androguard's smali  
+    def smali(self):
+        for instruction in self.d_instructions:
+            code += instruction.opcode() + ' ' + instruction.parameters() + '\n'
+          
+        return code
     
     def __str__(self):
         return ''
@@ -300,6 +305,15 @@ class Method:
     # java source code
     def sourceCode(self):
         return self.d_method.source()
+      
+    # androguard's smali  
+    def smali(self):
+        code = self.name() + ':\n'
+        for block in self.d_blocks:
+            code += '\n'
+            code += block.smali()
+          
+        return code
     
     def __str__(self):
         return self.name()
@@ -353,6 +367,15 @@ class Class:
     # source code in java of this class
     def sourceCode(self):
         return self.dvmClass().source()
+      
+    # androguard's smali  
+    def smali(self):
+        code = self.name() + ':\n'
+        for method in self.d_methods:
+            code += '\n'
+            code += method.smali()
+          
+        return code
     
     # superclass of this class
     def superClass(self):

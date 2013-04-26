@@ -66,9 +66,9 @@ def sinks(filename) :
 # instruction, return true
 
 def analyzeInstruction(trackType, method, instruction, register, trackedPath):
-    print instruction.opcode(), instruction.parameters()
+    print '---->', instruction.opcode(), instruction.parameters()
     
-    if instruction.isSink():
+    if instruction.isSink() and trackType == TrackType.SOURCE:
         print 'Data is put in sink!'
         return
     
@@ -76,18 +76,25 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
     blockIdx, instructionIdx = instruction.indices()
     
     if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
-        # Function is called on a source object. Track the result.
-        if instruction.parameters()[-1][-1] == 'V': # it returns a void
-            print 'Function', instruction.parameters()[-1], 'called on source object, but returns void'
-        else:
-            print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
+    
+        if trackType == TrackType.SINK: # if tracking a sink mark instruction as sink
+            instruction.markAsSink()
+            print 'Marking as sink: ', instruction
+            return
+        else:                           # if tracking a source continue tracking
+            # Function is called on a source object. Track the result.
+            if instruction.parameters()[-1][-1] == 'V': # it returns a void
+                print 'Function', instruction.parameters()[-1], 'called on source object, but returns void'
+            else:
+                print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
 
-            trackFromCall(trackType, method, blockIdx, instructionIdx + 1)
+                trackFromCall(trackType, method, blockIdx, instructionIdx + 1)
 
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
         # TODO: Return by reference
-        
+        # TODO: doing instructionIdx + 1 while the function we just met might be a sink
+                
         # Attempt to find the method used within the apk
         usages = instruction.classesAndMethodsByStructure(structure)
         if len(usages) > 0:  
@@ -135,10 +142,11 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         # Register is used in a get instruction. This means either a field of the source object is read, or the
         # register is overwritten. Case is determined by the parameter index.
         if parameterIndex == 0:
-            print 'Data was read from sink object'
-        else:
             print 'Register was overwritten'
             return True
+        else:
+            print 'Data was read from source object'
+            
     elif instruction.type() == InstructionType.STATICGET:
         # Register is used in a static get, the register is overwritten.
         print 'Register was overwritten'
@@ -247,14 +255,16 @@ def trackFieldUsages(trackType, className, fieldName, type, trackedPath = []):
 
 def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
+    
     for method in methods:
+        print method.memberOf().smali()
         print 'New', className, 'created in', method.name()
         indices = method.calledInstructionsByMethodName(className, methodName)
         # Track it and mark new sinks
         for idx in indices:
             if 'is-sink' in isSink:
-                register = method.blocks()[idx[0]].instructions()[idx[1]]
-                trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1, register.parameters()[0])
+                instruction = method.blocks()[idx[0]].instructions()[idx[1]]
+                trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1, [], instruction.parameters()[0])
             else:
                 trackFromCall(TrackType.SINK, method, idx[0], idx[1] + 1)
                 
@@ -267,7 +277,7 @@ def main():
     global structure
 
     structure = APKstructure('apks/LeakTest5.apk')
-    trackSockets.structure = structure
+    #trackSockets.structure = structure
     
     # search for and mark sinks
     for className, methodName, isSink, direct in sinkClasses:
