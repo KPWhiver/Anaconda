@@ -128,7 +128,8 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         # lookup where this field is read and continue tracking there
         parameters = instruction.parameters()
         print 'Data is put in field', parameters[-2], 'of class', parameters[-3]
-        trackFieldUsages(trackType, parameters[-3], parameters[-2], parameters[-1])
+
+        trackFieldUsages(trackType, parameters[-3], parameters[-2], parameters[-1], trackedPath)
         
     elif instruction.type() == InstructionType.FIELDGET:
         # Register is used in a get instruction. This means either a field of the source object is read, or the
@@ -148,7 +149,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         
         print 'Data was returned. Looking for usages of this function' 
         
-        trackMethodUsages(trackType, method.memberOf().name(), method.name())
+        trackMethodUsages(trackType, method.memberOf().name(), method.name(), trackedPath)
         
     elif instruction.type() == InstructionType.MOVE:
         # Value is moved into other register. When first parameter the register is overwritten, else the value is
@@ -158,7 +159,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
             print 'Register was overwritten'
             return True
         else:
-            newRegister = instruction.parameters[0]
+            newRegister = instruction.parameters()[0]
             print 'Data copied into new register', newRegister
 
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, newRegister)
@@ -214,7 +215,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
                 
     print
     
-def trackMethodUsages(trackType, className, methodName):
+def trackMethodUsages(trackType, className, methodName, trackedPath = []):
     methods = structure.calledMethodsByMethodName(className, methodName)
     #print 'Method', methodName, className 
     if len(methods): 
@@ -226,9 +227,9 @@ def trackMethodUsages(trackType, className, methodName):
         
         indices = method.calledInstructionsByMethodName(className, methodName)
         for blockIdx, instructionIdx in indices:
-            trackFromCall(trackType, method, blockIdx, instructionIdx + 1) 
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath) 
 
-def trackFieldUsages(trackType, className, fieldName, type):
+def trackFieldUsages(trackType, className, fieldName, type, trackedPath = []):
     methods = structure.calledMethodsByFieldName(className, fieldName, type)
     if methods is None:
         return
@@ -242,7 +243,7 @@ def trackFieldUsages(trackType, className, fieldName, type):
         for blockIdx, instructionIdx in indices:
             register = method.blocks()[blockIdx].instructions()[instructionIdx].parameters()[0]
 
-            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, [], register)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, register)
 
 def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
@@ -265,7 +266,7 @@ def main():
     sinkClasses = sinks('api_sinks.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest4.apk')
+    structure = APKstructure('apks/LeakTest6.apk')
     trackSockets.structure = structure
     
     # search for and mark sinks
