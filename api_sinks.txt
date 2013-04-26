@@ -1,3 +1,2 @@
 java.net.Socket           getOutputStream  returns-sink  direct
-java.io.File              <init>           is-sink       indirect
 java.io.FileOutputStream  <init>           is-sink       indirect
