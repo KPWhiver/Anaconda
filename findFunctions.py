@@ -93,6 +93,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
         # TODO: Return by reference
         # TODO: doing instructionIdx + 1 while the function we just met might be a sink
+        # TODO: in case of unfindable method: what about what it returns? Might be fixed by fixing above TODO and changing to instructionIdx
                 
         # Attempt to find the method used within the apk
         usages = instruction.classesAndMethodsByStructure(structure)
@@ -106,11 +107,12 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
             if instruction.type() == InstructionType.INVOKE:
                 # It was an instance call, track the object the function was called on
                 print 'Tracking the instance the method is called on'
-                trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, instruction.parameters()[0])
+                trackFromCall(trackType, method, blockIdx, instructionIdx, trackedPath, instruction.parameters()[0])
             else: 
                 # It was a static call, track the object that was returned, if any
                 if instruction.parameters()[-1].endswith(')V'): # it does not return a void
                     print 'Tracking the object returned'
+                    instruction.markAsSink()
                     trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath)
             
         

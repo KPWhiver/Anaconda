@@ -152,7 +152,7 @@ class Instruction:
     
     # androguard's smali
     def smali(self, prepend = ''):
-        return prepend + self.__str__() + '\n'
+        return str(self.d_instruction.get_length()) + prepend + self.__str__() + '\n'
         
     # the name of the class and method this instruction is calling
     def classAndMethod(self):
@@ -244,6 +244,7 @@ class Method:
             self.d_blocks.append(Block(block, self, blockIdx))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
+        self.d_name = self.d_name.replace(' ', '')
             
     # MethodAnalysis object
     def method(self):
@@ -375,7 +376,7 @@ class Class:
     # androguard's smali  
     def smali(self):
         code = self.name() + ':\n'
-        for _, method in self.d_methods.items():
+        for _, method in self.methods().items():
             code += '\n'
             code += method.smali('    ')
           
