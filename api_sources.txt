@@ -140,14 +140,12 @@ android.net.wifi.ScanResult                           BSSID java.lang.String
 android.net.wifi.ScanResult                           SSID java.lang.String
 
 #listeners
-android.accounts.AccountManager                       addOnAccountsUpdatedListener 
-android.content.ContentResolver                       registerContentObserver
-android.telephony.TelephonyManager                    listen                                                   android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
-android.location.ILocationManager$Stub$Proxy          addProximityAlert                                         
-android.location.LocationManager                      requestLocationUpdates                                   android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
-android.location.ILocationManager$Stub$Proxy          requestLocationUpdates
-android.location.ILocationManager$Stub$Proxy          requestLocationUpdatesPI
-android.location.LocationManager                      _requestLocationUpdates
-android.provider.Browser                              requestAllIcons
-android.telephony.cdma.CdmaCellLocation               getBaseStationId
-com.android.internal.telephony.ITelephonyRegistry$Stub$Proxy listen
+android.accounts.AccountManager                              addOnAccountsUpdatedListener(android.accounts.OnAccountsUpdateListener android.os.Handler Z)                  OnAccountsUpdateListener     onAccountsUpdated 0           
+android.telephony.TelephonyManager                           listen(android.telephony.PhoneStateListener I)                                                                PhoneStateListener           onCallStateChanged 1    onCellInfoChanged 0      onCellLocationChanged 0        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
+android.location.LocationManager                             requestLocationUpdates(J F android.location.Criteria android.location.LocationListener android.os.Looper)     LocationListener             onLocationChanged 0                                                             android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.LocationManager                             requestLocationUpdates(java.lang.String J F android.location.LocationListener)                                LocationListener             onLocationChanged 0                                                             
+android.location.LocationManager                             requestLocationUpdates(java.lang.String J F android.location.LocationListener android.os.Looper)              LocationListener             onLocationChanged 0                                                             
+android.location.ILocationManager$Stub$Proxy                 requestLocationUpdates(java.lang.String J F android.location.LocationListener)                                LocationListener             onLocationChanged 0     
+android.location.LocationManager                             _requestLocationUpdates(java.lang.String J F android.location.LocationListener android.os.Looper)             LocationListener             onLocationChanged 0     
+android.provider.Browser                                     requestAllIcons(android.content.ContentResolver java.lang.String android.webkit.WebIconDatabase.IconListener) WebIconDatabase.IconListener onReceivedIcon 0        onReceivedIcon 1
+

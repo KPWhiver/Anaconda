@@ -106,6 +106,8 @@ class Instruction:
         self.d_block = block
         self.d_index = index
         
+       
+        
         # if the argument is a range convert it
         if len(self.d_parameters) > 0 and '...' in self.d_parameters[0]:
             replaceRange(self.d_parameters)
@@ -118,7 +120,7 @@ class Instruction:
         elif self.d_type in [InstructionType.FIELDGET, InstructionType.STATICGET, InstructionType.FIELDPUT]:
             calledClass, calledField, type = parseFieldGet(self.d_parameters[-1])
             self.d_parameters[-1] = calledClass
-            self.d_parameters += [calledField, type]
+            self.d_parameters += [calledField, type] 
         
     # androguard instruction object
     def instruction(self):
@@ -147,6 +149,10 @@ class Instruction:
     # parameters of opcode, e.g. registers, and other things like method to call
     def parameters(self):
         return self.d_parameters
+    
+    # androguard's smali
+    def smali(self, prepend = ''):
+        return str(self.d_instruction.get_length()) + prepend + self.__str__() + '\n'
         
     # the name of the class and method this instruction is calling
     def classAndMethod(self):
@@ -216,6 +222,14 @@ class Block:
     # Instruction objects within this block
     def instructions(self):
         return self.d_instructions
+        
+    # androguard's smali  
+    def smali(self, prepend = ''):
+        code = ''
+        for instruction in self.d_instructions:
+            code += instruction.smali(prepend)
+          
+        return code
     
     def __str__(self):
         return ''
@@ -230,7 +244,7 @@ class Method:
             self.d_blocks.append(Block(block, self, blockIdx))
             
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
-        self.d_name.replace(' ', '')
+        self.d_name = self.d_name.replace(' ', '')
             
     # MethodAnalysis object
     def method(self):
@@ -293,6 +307,19 @@ class Method:
     def blocks(self):
         return self.d_blocks
     
+    # java source code
+    def sourceCode(self):
+        return self.d_method.get_method().source()
+      
+    # androguard's smali  
+    def smali(self, prepend = ''):
+        code = prepend + self.name() + ':\n'
+        for block in self.d_blocks:
+            code += '\n'
+            code += block.smali(prepend + '    ')
+          
+        return code
+    
     def __str__(self):
         return self.name()
 
@@ -345,6 +372,15 @@ class Class:
     # source code in java of this class
     def sourceCode(self):
         return self.dvmClass().source()
+      
+    # androguard's smali  
+    def smali(self):
+        code = self.name() + ':\n'
+        for _, method in self.methods().items():
+            code += '\n'
+            code += method.smali('    ')
+          
+        return code
     
     # superclass of this class
     def superClass(self):
