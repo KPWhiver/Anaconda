@@ -45,7 +45,22 @@ def sources(filename) :
             classAndField[2] = 'L' + classAndField[2] + ';'
             fields.append(classAndField)
     
-    return functions, fields
+    listeners = []
+    for line in file: # Read the listeners
+        line = line.replace('.', '/')
+        classAndRest = line.split(None, 1) # The Class name of the listened to + rest
+        if classAndRest != []:
+            tuple = classAndRest[1].rpartition(')')
+            method = tuple[0] + tuple[1]
+            rest = tuple[2].split() # Everything behind addlistener function
+            listenerMethods = []
+            for idx in range(1, len(rest), 2):
+                if idx + 1 < len(rest):
+                    listenerMethods.append([rest[idx], rest[idx + 1]])
+            
+            listeners.append(['L' + classAndRest[0] + ';', method, 'L' + rest[0] + ';', listenerMethods])
+    
+    return functions, fields, listeners
         
 # Read the list of api sinks
 def sinks(filename) :
@@ -273,11 +288,12 @@ def trackSink(className, methodName, isSink, direct):
 def main():
     point = time.time()
 
-    classAndFunctions, fields = sources('api_sources.txt')
+    classAndFunctions, fields, listeners = sources('api_sources.txt')
+    print listeners
     sinkClasses = sinks('api_sinks.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest5.apk')
+    structure = APKstructure('apks/LeakTest7.apk')
     #trackSockets.structure = structure
     
     # search for and mark sinks
