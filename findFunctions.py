@@ -218,13 +218,13 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
         print 'identifier', method, startBlockIdx, startInstructionIdx, register
         return
     
-    trackedPath.append(identifier)
+    trackedPath = trackedPath + identifier
     
     print '>', method.memberOf().name(), method.name()
     print 'Tracking the result in register', register
     
     firstBlock = method.blocks()[startBlockIdx]
-    analyzeBlocks(trackType, method, firstBlock, startInstructionIdx, trackedPath, register)
+    analyzeBlocks(trackType, method, firstBlock, startInstructionIdx, trackedPath, [], register)
     
     """for block in method.blocks()[startBlockIdx:]:
         startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
@@ -241,9 +241,15 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
                 """
     print
 
-def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, register):
+def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, trackedBlocks, register):
     #block = method.blocks()[startBlockIdx]
     #startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
+    
+    if block.index() in trackedBlocks:
+        return
+    
+    trackedBlocks = trackedBlocks + [block.index()]
+    print trackedBlocks
     for instruction in block.instructions()[startInstructionIdx:]:
         if register in instruction.parameters():
             
@@ -256,7 +262,7 @@ def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, re
                 return true # register is overwritten
 
     for nextBlock in block.nextBlocks():
-        overwritten = analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, register)
+        overwritten = analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, trackedBlocks, register)
         if overwritten:
             return true
  
