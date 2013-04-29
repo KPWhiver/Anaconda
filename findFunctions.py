@@ -9,6 +9,7 @@ from androlyze import *
 from structure import *
 from tools import *
 from tree import *
+from jinja2 import Template
  
 class TrackType:
     SINK = 0
@@ -264,7 +265,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTr
     
     print
     if trackTree is None:
-        print #node.toHTML()#toString()
+        trackedTrees.append(node) #node.toHTML()#toString()
 
 def analyzeBlocks(trackType, method, block, startInstructionIdx, trackTree, trackedBlocks, register):   
     if block.index() in trackedBlocks:
@@ -357,7 +358,9 @@ def main():
     classAndFunctions, fields, listeners = sources('api_sources.txt')
     sinkClasses = sinks('api_sinks.txt')
     global structure
-
+    global trackedTrees
+    trackedTrees = []
+    
     structure = APKstructure('apks/LeakTest10.apk')
     #trackSockets.structure = structure
     
@@ -373,8 +376,6 @@ def main():
 
     print
     
-    global trackedMethods
-    trackedMethods = []
     # search for all tainted methods
     for className, methodName in classAndFunctions:
         trackMethodUsages(TrackType.SOURCE, className, methodName, None)
@@ -384,13 +385,18 @@ def main():
     
 
     print 'total time: ', time.time() - point 
+    
+    # make html page
+    with open('html/results.text', 'r') as textFile:
+        text = textFile.read()
+        
+    template = Template(text)
+    html = template.render(treeStructure = trackedTrees)
+    
+    with open("html/results.html", "w") as htmlFile:
+        htmlFile.write(html)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
     
-
-
-#get_name: type of instruction
-#get_output: argument to instruction
-#get_literals: variables
 
