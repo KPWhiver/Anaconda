@@ -249,7 +249,6 @@ def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, tr
         return
     
     trackedBlocks = trackedBlocks + [block.index()]
-    print trackedBlocks
     for instruction in block.instructions()[startInstructionIdx:]:
         if register in instruction.parameters():
             
