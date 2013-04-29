@@ -101,7 +101,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
             else:
                 print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
 
-                trackFromCall(trackType, method, blockIdx, instructionIdx + 1)
+                trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath)
 
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
@@ -144,7 +144,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
     elif instruction.type() == InstructionType.IF:
         # The register is used in a if statement
         print 'Register is used in if statement'
-    
+        
     elif instruction.type() == InstructionType.FIELDPUT:
         # The content of the register is put inside a field, either of an instance or a class. Use trackFieldUsages to
         # lookup where this field is read and continue tracking there
@@ -152,6 +152,15 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         print 'Data is put in field', parameters[-2], 'of class', parameters[-3]
 
         trackFieldUsages(trackType, parameters[-3], parameters[-2], parameters[-1], trackedPath)
+        
+    elif instruction.type() == InstructionType.ARRAYPUT:
+        if parameterIndex == 0: # Data is put in an array. Track the array
+            print "Data is put in an array"
+            newRegister = instruction.parameters()[1] # target array
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, newRegister)
+        else:
+            # Something else is put into the array being tracked (param = 1), or it is used as index (param = 2)
+            print "Data is put in source array or used as index"
         
     elif instruction.type() == InstructionType.FIELDGET:
         # Register is used in a get instruction. This means either a field of the source object is read, or the
@@ -166,6 +175,20 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
         # Register is used in a static get, the register is overwritten.
         print 'Register was overwritten'
         return True
+        
+    elif instruction.type() == InstructionType.ARRAYGET:
+        if parameterIndex == 0:
+            # Data is put into the tracked register, the register is overwritten
+            print 'Register was overwritten'
+            return True
+        elif parameterIndex == 1:
+            # Data is taken out of tainted Array, assume this data is tainted as well
+            print 'Data read from tainted array'
+            newRegister = instruction.parameters()[0] # target register
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, newRegister)
+        elif parameterIndex == 2:
+            print 'Tainted data used as index for array'
+        
     elif instruction.type() == InstructionType.RETURN:
         # Register is used in return instruction. use trackMethodUsages to look for usages of this function and track
         # the register containing the result.
@@ -197,9 +220,16 @@ def analyzeInstruction(trackType, method, instruction, register, trackedPath):
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 
 def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackedPath = [], register = None):
-    if startBlockIdx >= len(method.blocks()) or startInstructionIdx >= len(method.blocks()[startBlockIdx].instructions()):
-        # Out of list bounds!
-        return
+    if startInstructionIdx >= len(method.blocks()[startBlockIdx].instructions()):
+        # Instruction is out of bounds, see if there is a next block. 
+        if len(method.blocks()[startBlockIdx].nextBlocks()) == 0 :
+            # Out of list bounds!
+            print "WARNING: Out of bounds!"
+            return
+        else: # Continue tracking in the next blocks
+            for block in method.blocks()[startBlockIdx].nextBlocks():
+                trackFromCall(trackType, method, block.index(), 0, trackedPath, register)
+            return
         
     # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
     if register is None:
@@ -245,7 +275,7 @@ def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, tr
             if overwritten:
                 return # register is overwritten
     
-    # Recursively analyzze all next blocks
+    # Recursively analyze all next blocks
     for nextBlock in block.nextBlocks():
         analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, trackedBlocks, register)
         
@@ -320,7 +350,7 @@ def main():
     sinkClasses = sinks('api_sinks.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest7.apk')
+    structure = APKstructure('apks/LeakTest10.apk')
     #trackSockets.structure = structure
     
     # search for and mark sinks
