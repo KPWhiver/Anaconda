@@ -115,29 +115,29 @@ android.app.ContextImpl$ApplicationContentResolver    openFileDescriptor
 android.app.ContextImpl$ApplicationContentResolver    query                 
 
 #fields
-android.accounts.Account                              name java.lang.String                                    android.permission.GET_ACCOUNTS       
-android.accounts.Account                              type java.lang.String
+android.accounts.Account                              name Ljava.lang.String;                                    android.permission.GET_ACCOUNTS       
+android.accounts.Account                              type Ljava.lang.String;
 
-android.app.ActivityManager.RecentTaskInfo            description java.lang.CharSequence                       android.permission.GET_TASKS
-android.app.ActivityManager.RecentTaskInfo            origActivity android.content.ComponentName
+android.app.ActivityManager.RecentTaskInfo            description Ljava.lang.CharSequence;                       android.permission.GET_TASKS
+android.app.ActivityManager.RecentTaskInfo            origActivity Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningAppProcessInfo     processName java.lang.String
-android.app.ActivityManager.RunningAppProcessInfo     importanceReasonComponent android.content.ComponentName
+android.app.ActivityManager.RunningAppProcessInfo     processName Ljava.lang.String;
+android.app.ActivityManager.RunningAppProcessInfo     importanceReasonComponent Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningServiceInfo        process java.lang.String
-android.app.ActivityManager.RunningServiceInfo        service android.content.ComponentName
+android.app.ActivityManager.RunningServiceInfo        process Ljava.lang.String;
+android.app.ActivityManager.RunningServiceInfo        service Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningTaskInfo           baseActivity android.content.ComponentName
-android.app.ActivityManager.RunningTaskInfo           description java.lang.CharSequence 
-android.app.ActivityManager.RunningTaskInfo           topActivity android.content.ComponentName
+android.app.ActivityManager.RunningTaskInfo           baseActivity Landroid.content.ComponentName;
+android.app.ActivityManager.RunningTaskInfo           description Ljava.lang.CharSequence; 
+android.app.ActivityManager.RunningTaskInfo           topActivity Landroid.content.ComponentName;
 
-android.net.wifi.WifiConfiguration                    SSID java.lang.String                                    android.permission.ACCESS_WIFI_STATE
-android.net.wifi.WifiConfiguration                    BSSID java.lang.String 
-android.net.wifi.WifiConfiguration                    preSharedKey java.lang.String
-android.net.wifi.WifiConfiguration                    wepKeys [java.lang.String
+android.net.wifi.WifiConfiguration                    SSID Ljava.lang.String;                                    android.permission.ACCESS_WIFI_STATE
+android.net.wifi.WifiConfiguration                    BSSID Ljava.lang.String; 
+android.net.wifi.WifiConfiguration                    preSharedKey Ljava.lang.String;
+android.net.wifi.WifiConfiguration                    wepKeys [Ljava.lang.String;
 
-android.net.wifi.ScanResult                           BSSID java.lang.String
-android.net.wifi.ScanResult                           SSID java.lang.String
+android.net.wifi.ScanResult                           BSSID Ljava.lang.String;
+android.net.wifi.ScanResult                           SSID Ljava.lang.String;
 
 #listeners
 android.accounts.AccountManager                       addOnAccountsUpdatedListener(Landroid.accounts.OnAccountsUpdateListener; Landroid.os.Handler; Z)                    android.accounts.OnAccountsUpdateListener     onAccountsUpdated 0           

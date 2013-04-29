@@ -42,7 +42,6 @@ def sources(filename) :
             classAndField[0] = classAndField[0].replace('.', '/')
             classAndField[0] = 'L' + classAndField[0] + ';'
             classAndField[2] = classAndField[2].replace('.', '/')
-            classAndField[2] = 'L' + classAndField[2] + ';'
             fields.append(classAndField)
     
     listeners = []
@@ -224,8 +223,10 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
     print '>', method.memberOf().name(), method.name()
     print 'Tracking the result in register', register
     
+    firstBlock = method.blocks()[startBlockIdx]
+    analyzeBlocks(trackType, method, firstBlock, startInstructionIdx, trackedPath, register)
     
-    for block in method.blocks()[startBlockIdx:]:
+    """for block in method.blocks()[startBlockIdx:]:
         startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
         for instruction in block.instructions()[startIdx:]:
             if register in instruction.parameters():
@@ -237,8 +238,28 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
 
                 if overwritten:
                     return # register is overwritten
-                
+                """
     print
+
+def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, register):
+    #block = method.blocks()[startBlockIdx]
+    #startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
+    for instruction in block.instructions()[startInstructionIdx:]:
+        if register in instruction.parameters():
+            
+            if instruction.type() == InstructionType.MOVERESULT:
+                return true # register is overwritten
+            
+            overwritten = analyzeInstruction(trackType, method, instruction, register, trackedPath)
+
+            if overwritten:
+                return true # register is overwritten
+
+    for nextBlock in block.nextBlocks():
+        overwritten = analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, register)
+        if overwritten:
+            return true
+ 
     
 def trackMethodUsages(trackType, className, methodName, trackedPath = []):
     methods = structure.calledMethodsByMethodName(className, methodName)
