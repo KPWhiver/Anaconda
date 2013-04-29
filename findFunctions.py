@@ -271,10 +271,12 @@ def trackFieldUsages(trackType, className, fieldName, type, trackedPath = []):
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, register)
 
 def trackListenerUsages(superClassName, methods):
+    # Find the listeners that have been overriden
     superClass = structure.classByName(superClassName)
     if superClass is None:
         return
         
+    # Find the subclasses of the found classes and find their overriden methods
     subClasses = superClass.subClasses()
     for subClass in subClasses:
         for methodName, method in subClass.methods().items():
@@ -314,6 +316,9 @@ def main():
     for className, methodName, isSink, direct in sinkClasses:
         trackSink(className, methodName, isSink, direct)
 
+    print
+    
+    # search for all data receiving listeners
     for _, _, superClassName, methods in listeners:
         trackListenerUsages(superClassName, methods)
 
