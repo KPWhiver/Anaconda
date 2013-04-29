@@ -270,6 +270,21 @@ def trackFieldUsages(trackType, className, fieldName, type, trackedPath = []):
 
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, register)
 
+def trackListenerUsages(superClassName, methods):
+    superClass = structure.classByName(superClassName)
+    if superClass is None:
+        return
+        
+    subClasses = superClass.subClasses()
+    for subClass in subClasses:
+        for methodName, method in subClass.methods().items():
+            for listener in methods:
+                if listener[0] in methodName:
+                    print '---------------------------------------------------'
+                    print 'Listener', superClassName, listener[0], 'is overriden by', subClass.name(), '\n' 
+                    parameterNumber = method.numberOfLocalRegisters() + int(listener[1]) + 1
+                    trackFromCall(TrackType.SOURCE, method, 0, 0, [], 'v' + str(parameterNumber))
+
 def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
     
@@ -289,7 +304,6 @@ def main():
     point = time.time()
 
     classAndFunctions, fields, listeners = sources('api_sources.txt')
-    print listeners
     sinkClasses = sinks('api_sinks.txt')
     global structure
 
@@ -299,6 +313,9 @@ def main():
     # search for and mark sinks
     for className, methodName, isSink, direct in sinkClasses:
         trackSink(className, methodName, isSink, direct)
+
+    for _, _, superClassName, methods in listeners:
+        trackListenerUsages(superClassName, methods)
 
     print
     

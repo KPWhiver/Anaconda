@@ -398,8 +398,8 @@ class Class:
         interfacesString = self.d_class.get_interfaces()
         if interfacesString is None:
             return []
-        interfacesString.replace('(', '')
-        interfacesString.replace(')', '')
+        interfacesString = interfacesString.replace('(', '')
+        interfacesString = interfacesString.replace(')', '')
         return interfacesString.split(' ')
 
     # name of the class
