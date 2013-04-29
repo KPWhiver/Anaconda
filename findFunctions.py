@@ -201,7 +201,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
         # Out of list bounds!
         return
         
-    
+    # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
     if register is None:
         resultInstruction = method.blocks()[startBlockIdx].instructions()[startInstructionIdx]
         if resultInstruction.type() == InstructionType.MOVERESULT:
@@ -226,44 +226,29 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
     firstBlock = method.blocks()[startBlockIdx]
     analyzeBlocks(trackType, method, firstBlock, startInstructionIdx, trackedPath, [], register)
     
-    """for block in method.blocks()[startBlockIdx:]:
-        startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
-        for instruction in block.instructions()[startIdx:]:
-            if register in instruction.parameters():
-                
-                if instruction.type() == InstructionType.MOVERESULT:
-                    return # register is overwritten
-                
-                overwritten = analyzeInstruction(trackType, method, instruction, register, trackedPath)
-
-                if overwritten:
-                    return # register is overwritten
-                """
     print
 
-def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, trackedBlocks, register):
-    #block = method.blocks()[startBlockIdx]
-    #startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
-    
+def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, trackedBlocks, register):   
     if block.index() in trackedBlocks:
-        return
+        return  # Recursion, stop tracking
     
     trackedBlocks = trackedBlocks + [block.index()]
-    for instruction in block.instructions()[startInstructionIdx:]:
+    # Inspect all instruction for usage of the register
+    for instruction in block.instructions()[startInstructionIdx:]: 
         if register in instruction.parameters():
             
             if instruction.type() == InstructionType.MOVERESULT:
-                return true # register is overwritten
+                return # register is overwritten
             
             overwritten = analyzeInstruction(trackType, method, instruction, register, trackedPath)
 
             if overwritten:
-                return true # register is overwritten
-
+                return # register is overwritten
+    
+    # Recursively analyzze all next blocks
     for nextBlock in block.nextBlocks():
-        overwritten = analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, trackedBlocks, register)
-        if overwritten:
-            return true
+        analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, trackedBlocks, register)
+        
  
     
 def trackMethodUsages(trackType, className, methodName, trackedPath = []):
