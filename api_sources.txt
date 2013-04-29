@@ -115,37 +115,37 @@ android.app.ContextImpl$ApplicationContentResolver    openFileDescriptor
 android.app.ContextImpl$ApplicationContentResolver    query                 
 
 #fields
-android.accounts.Account                              name java.lang.String                                    android.permission.GET_ACCOUNTS       
-android.accounts.Account                              type java.lang.String
+android.accounts.Account                              name Ljava.lang.String;                                    android.permission.GET_ACCOUNTS       
+android.accounts.Account                              type Ljava.lang.String;
 
-android.app.ActivityManager.RecentTaskInfo            description java.lang.CharSequence                       android.permission.GET_TASKS
-android.app.ActivityManager.RecentTaskInfo            origActivity android.content.ComponentName
+android.app.ActivityManager.RecentTaskInfo            description Ljava.lang.CharSequence;                       android.permission.GET_TASKS
+android.app.ActivityManager.RecentTaskInfo            origActivity Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningAppProcessInfo     processName java.lang.String
-android.app.ActivityManager.RunningAppProcessInfo     importanceReasonComponent android.content.ComponentName
+android.app.ActivityManager.RunningAppProcessInfo     processName Ljava.lang.String;
+android.app.ActivityManager.RunningAppProcessInfo     importanceReasonComponent Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningServiceInfo        process java.lang.String
-android.app.ActivityManager.RunningServiceInfo        service android.content.ComponentName
+android.app.ActivityManager.RunningServiceInfo        process Ljava.lang.String;
+android.app.ActivityManager.RunningServiceInfo        service Landroid.content.ComponentName;
 
-android.app.ActivityManager.RunningTaskInfo           baseActivity android.content.ComponentName
-android.app.ActivityManager.RunningTaskInfo           description java.lang.CharSequence 
-android.app.ActivityManager.RunningTaskInfo           topActivity android.content.ComponentName
+android.app.ActivityManager.RunningTaskInfo           baseActivity Landroid.content.ComponentName;
+android.app.ActivityManager.RunningTaskInfo           description Ljava.lang.CharSequence; 
+android.app.ActivityManager.RunningTaskInfo           topActivity Landroid.content.ComponentName;
 
-android.net.wifi.WifiConfiguration                    SSID java.lang.String                                    android.permission.ACCESS_WIFI_STATE
-android.net.wifi.WifiConfiguration                    BSSID java.lang.String 
-android.net.wifi.WifiConfiguration                    preSharedKey java.lang.String
-android.net.wifi.WifiConfiguration                    wepKeys [java.lang.String
+android.net.wifi.WifiConfiguration                    SSID Ljava.lang.String;                                    android.permission.ACCESS_WIFI_STATE
+android.net.wifi.WifiConfiguration                    BSSID Ljava.lang.String; 
+android.net.wifi.WifiConfiguration                    preSharedKey Ljava.lang.String;
+android.net.wifi.WifiConfiguration                    wepKeys [Ljava.lang.String;
 
-android.net.wifi.ScanResult                           BSSID java.lang.String
-android.net.wifi.ScanResult                           SSID java.lang.String
+android.net.wifi.ScanResult                           BSSID Ljava.lang.String;
+android.net.wifi.ScanResult                           SSID Ljava.lang.String;
 
 #listeners
-android.accounts.AccountManager                              addOnAccountsUpdatedListener(android.accounts.OnAccountsUpdateListener android.os.Handler Z)                  OnAccountsUpdateListener     onAccountsUpdated 0           
-android.telephony.TelephonyManager                           listen(android.telephony.PhoneStateListener I)                                                                PhoneStateListener           onCallStateChanged 1    onCellInfoChanged 0      onCellLocationChanged 0        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
-android.location.LocationManager                             requestLocationUpdates(J F android.location.Criteria android.location.LocationListener android.os.Looper)     LocationListener             onLocationChanged 0                                                             android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
-android.location.LocationManager                             requestLocationUpdates(java.lang.String J F android.location.LocationListener)                                LocationListener             onLocationChanged 0                                                             
-android.location.LocationManager                             requestLocationUpdates(java.lang.String J F android.location.LocationListener android.os.Looper)              LocationListener             onLocationChanged 0                                                             
-android.location.ILocationManager$Stub$Proxy                 requestLocationUpdates(java.lang.String J F android.location.LocationListener)                                LocationListener             onLocationChanged 0     
-android.location.LocationManager                             _requestLocationUpdates(java.lang.String J F android.location.LocationListener android.os.Looper)             LocationListener             onLocationChanged 0     
-android.provider.Browser                                     requestAllIcons(android.content.ContentResolver java.lang.String android.webkit.WebIconDatabase.IconListener) WebIconDatabase.IconListener onReceivedIcon 0        onReceivedIcon 1
+android.accounts.AccountManager                       addOnAccountsUpdatedListener(Landroid.accounts.OnAccountsUpdateListener; Landroid.os.Handler; Z)                    android.accounts.OnAccountsUpdateListener     onAccountsUpdated 0           
+android.telephony.TelephonyManager                    listen(Landroid.telephony.PhoneStateListener; I)                                                                    android.telephony.PhoneStateListener           onCallStateChanged 1    onCellInfoChanged 0      onCellLocationChanged 0        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE
+android.location.LocationManager                      requestLocationUpdates(J F Landroid.location.Criteria; android.location.LocationListener; Landroid.os.Looper;)      android.listener.LocationListener             onLocationChanged 0                                                             android.permission.ACCESS_FINE_LOCATION/.ACCESS_COARSE_LOCATION
+android.location.LocationManager                      requestLocationUpdates(Ljava.lang.String; J F Landroid.location.LocationListener;)                                  android.listener.LocationListener             onLocationChanged 0                                                             
+android.location.LocationManager                      requestLocationUpdates(Ljava.lang.String; J F Landroid.location.LocationListener; Landroid.os.Looper;)              android.listener.LocationListener             onLocationChanged 0                                                             
+android.location.ILocationManager$Stub$Proxy          requestLocationUpdates(Ljava.lang.String; J F Landroid.location.LocationListener;)                                  android.listener.LocationListener             onLocationChanged 0     
+android.location.LocationManager                      _requestLocationUpdates(Ljava.lang.String; J F Landroid.location.LocationListener; Landroid.os.Looper;)             android.listener.LocationListener             onLocationChanged 0     
+android.provider.Browser                              requestAllIcons(Landroid.content.ContentResolver; Ljava.lang.String; Landroid.webkit.WebIconDatabase.IconListener;) android.webkit.WebIconDatabase$IconListener onReceivedIcon 0        onReceivedIcon 1
 

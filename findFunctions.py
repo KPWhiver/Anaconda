@@ -42,10 +42,24 @@ def sources(filename) :
             classAndField[0] = classAndField[0].replace('.', '/')
             classAndField[0] = 'L' + classAndField[0] + ';'
             classAndField[2] = classAndField[2].replace('.', '/')
-            classAndField[2] = 'L' + classAndField[2] + ';'
             fields.append(classAndField)
     
-    return functions, fields
+    listeners = []
+    for line in file: # Read the listeners
+        line = line.replace('.', '/')
+        classAndRest = line.split(None, 1) # The Class name of the listened to + rest
+        if classAndRest != []:
+            tuple = classAndRest[1].rpartition(')')
+            method = tuple[0] + tuple[1]
+            rest = tuple[2].split() # Everything behind addlistener function
+            listenerMethods = []
+            for idx in range(1, len(rest), 2):
+                if idx + 1 < len(rest):
+                    listenerMethods.append([rest[idx], rest[idx + 1]])
+            
+            listeners.append(['L' + classAndRest[0] + ';', method, 'L' + rest[0] + ';', listenerMethods])
+    
+    return functions, fields, listeners
         
 # Read the list of api sinks
 def sinks(filename) :
@@ -187,7 +201,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
         # Out of list bounds!
         return
         
-    
+    # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
     if register is None:
         resultInstruction = method.blocks()[startBlockIdx].instructions()[startInstructionIdx]
         if resultInstruction.type() == InstructionType.MOVERESULT:
@@ -204,26 +218,38 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, tracked
         print 'identifier', method, startBlockIdx, startInstructionIdx, register
         return
     
-    trackedPath.append(identifier)
+    trackedPath = trackedPath + identifier
     
     print '>', method.memberOf().name(), method.name()
     print 'Tracking the result in register', register
     
+    firstBlock = method.blocks()[startBlockIdx]
+    analyzeBlocks(trackType, method, firstBlock, startInstructionIdx, trackedPath, [], register)
     
-    for block in method.blocks()[startBlockIdx:]:
-        startIdx = startInstructionIdx if block == method.blocks()[startBlockIdx] else 0
-        for instruction in block.instructions()[startIdx:]:
-            if register in instruction.parameters():
-                
-                if instruction.type() == InstructionType.MOVERESULT:
-                    return # register is overwritten
-                
-                overwritten = analyzeInstruction(trackType, method, instruction, register, trackedPath)
-
-                if overwritten:
-                    return # register is overwritten
-                
     print
+
+def analyzeBlocks(trackType, method, block, startInstructionIdx, trackedPath, trackedBlocks, register):   
+    if block.index() in trackedBlocks:
+        return  # Recursion, stop tracking
+    
+    trackedBlocks = trackedBlocks + [block.index()]
+    # Inspect all instruction for usage of the register
+    for instruction in block.instructions()[startInstructionIdx:]: 
+        if register in instruction.parameters():
+            
+            if instruction.type() == InstructionType.MOVERESULT:
+                return # register is overwritten
+            
+            overwritten = analyzeInstruction(trackType, method, instruction, register, trackedPath)
+
+            if overwritten:
+                return # register is overwritten
+    
+    # Recursively analyzze all next blocks
+    for nextBlock in block.nextBlocks():
+        analyzeBlocks(trackType, method, nextBlock, 0, trackedPath, trackedBlocks, register)
+        
+ 
     
 def trackMethodUsages(trackType, className, methodName, trackedPath = []):
     methods = structure.calledMethodsByMethodName(className, methodName)
@@ -255,6 +281,23 @@ def trackFieldUsages(trackType, className, fieldName, type, trackedPath = []):
 
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, register)
 
+def trackListenerUsages(superClassName, methods):
+    # Find the listeners that have been overriden
+    superClass = structure.classByName(superClassName)
+    if superClass is None:
+        return
+        
+    # Find the subclasses of the found classes and find their overriden methods
+    subClasses = superClass.subClasses()
+    for subClass in subClasses:
+        for methodName, method in subClass.methods().items():
+            for listener in methods:
+                if listener[0] in methodName:
+                    print '---------------------------------------------------'
+                    print 'Listener', superClassName, listener[0], 'is overriden by', subClass.name(), '\n' 
+                    parameterNumber = method.numberOfLocalRegisters() + int(listener[1]) + 1
+                    trackFromCall(TrackType.SOURCE, method, 0, 0, [], 'v' + str(parameterNumber))
+
 def trackSink(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
     
@@ -273,16 +316,22 @@ def trackSink(className, methodName, isSink, direct):
 def main():
     point = time.time()
 
-    classAndFunctions, fields = sources('api_sources.txt')
+    classAndFunctions, fields, listeners = sources('api_sources.txt')
     sinkClasses = sinks('api_sinks.txt')
     global structure
 
-    structure = APKstructure('apks/LeakTest5.apk')
+    structure = APKstructure('apks/LeakTest7.apk')
     #trackSockets.structure = structure
     
     # search for and mark sinks
     for className, methodName, isSink, direct in sinkClasses:
         trackSink(className, methodName, isSink, direct)
+
+    print
+    
+    # search for all data receiving listeners
+    for _, _, superClassName, methods in listeners:
+        trackListenerUsages(superClassName, methods)
 
     print
     

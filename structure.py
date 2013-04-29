@@ -152,7 +152,7 @@ class Instruction:
     
     # androguard's smali
     def smali(self, prepend = ''):
-        return str(self.d_instruction.get_length()) + prepend + self.__str__() + '\n'
+        return prepend + self.__str__() + '\n'
         
     # the name of the class and method this instruction is calling
     def classAndMethod(self):
@@ -207,9 +207,25 @@ class Block:
         self.d_block = block
         self.d_index = index
         self.d_method = method
+        
         self.d_instructions = []
+        self.d_logicalNextBlocks = []
+        
+        
+        #for dvmBlock in self.d_block.get_next():
+        #   self.d_logicalNextBlocks.append(Block(dvmBlock[2], method, 0))
+        
         for instructionIdx, instruction in enumerate(block.get_instructions()):
             self.d_instructions.append(Instruction(instruction, self, instructionIdx))
+    
+    # only used by Method
+    def addNextBlock(self, logicalNextBlock):
+        self.d_logicalNextBlocks.append(logicalNextBlock)
+
+        
+    # logical next block
+    def nextBlocks(self):
+        return self.d_logicalNextBlocks
         
     # androguard block
     def block(self):
@@ -240,12 +256,37 @@ class Method:
         self.d_class = classObject
         self.d_method = methodInfo
         self.d_blocks = []
+        self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
+        
         for blockIdx, block in enumerate(methodInfo.get_basic_blocks().get()):
             self.d_blocks.append(Block(block, self, blockIdx))
+         
+        # find catch blocks and make sure they are next to a try block
+        previousBlock = None
+        for block in self.d_blocks:
+            for instruction in block.instructions():
+                if instruction.opcode() == 'move-exception' and not (previousBlock is None):
+                    previousBlock.addNextBlock(block)
+                    break
+                elif instruction.opcode() == 'move-exception':
+                    print 'error: a catch block is first block of method ', self
+                    break
             
-        self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
-        self.d_name = self.d_name.replace(' ', '')
+            previousBlock = block
             
+        # make sure all blocks know what their next block is
+        for block in self.d_blocks:
+            nextDvmBlockList = block.block().get_next()
+            if nextDvmBlockList == []:
+                continue
+            for nextBlock in self.d_blocks:
+                for nextDvmBlock in nextDvmBlockList:
+                    if nextBlock.block() is nextDvmBlock[2]:
+                        block.addNextBlock(nextBlock)
+        
+            
+        
+
     # MethodAnalysis object
     def method(self):
         return self.d_method
@@ -398,8 +439,8 @@ class Class:
         interfacesString = self.d_class.get_interfaces()
         if interfacesString is None:
             return []
-        interfacesString.replace('(', '')
-        interfacesString.replace(')', '')
+        interfacesString = interfacesString.replace('(', '')
+        interfacesString = interfacesString.replace(')', '')
         return interfacesString.split(' ')
 
     # name of the class
