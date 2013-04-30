@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>Results</title>
 
-	<!--<link rel="stylesheet" type="text/css" href="css/tree.css">-->
+	<link rel="stylesheet" type="text/css" href="css/tree.css">
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet">
 	<style type="text/css">
 	body {
@@ -52,7 +52,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand">Androwarn Report</a>
+			<a class="brand">Anaconda Report</a>
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li><a>com.example.leaktest1</a></li>
@@ -72,7 +72,7 @@
 					
 					{% for tree in treeStructure %}
 					
-		        <li><a href="#{{ tree.uniqueId }}" data-toggle="tab">{{ tree.content()[0] }}</a></li>
+		        <li><a href="#{{ tree.uniqueId() }}" data-toggle="tab">{{ tree.content()[0] }}</a></li>
 		        
 		      {% endfor %}
 		        
@@ -89,9 +89,9 @@
 					
 					{% for tree in treeStructure %}
 
-		        <div class="tab-pane" id="{{ tree.uniqueId }}">
+		        <div class="tab-pane" id="{{ tree.uniqueId() }}">
 							<h2>{{ tree.content()[0] }}</h2>
-							<h3>N/A</h3>
+							<h3>{{ tree.toHTML() }}</h3>
 						</div>
 		        
 		      {% endfor %}
