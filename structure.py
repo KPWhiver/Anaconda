@@ -175,6 +175,7 @@ class Instruction:
         if classObject is None:
             return []
         
+        #TODO: if virtual we only look at the subclasses not at the superclass self
         # is it a static call that's executed virtually
         virtualStatic = 'invoke-static' in self.opcode() and classObject.methodByName(self.d_parameters[-1]) is None
         
