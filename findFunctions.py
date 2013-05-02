@@ -366,7 +366,7 @@ def main():
     global trackedTrees
     trackedTrees = []
     
-    structure = APKstructure('apks/stkl.spectropolarisclient.MenuActivity.apk')
+    structure = APKstructure('apks/nl.peperzaken.android.nu-1.apk')
     #trackSockets.structure = structure
     
     # search for and mark sinks
