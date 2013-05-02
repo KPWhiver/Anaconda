@@ -1,0 +1,11 @@
+Prio:
+
+
+Later:
+- Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
+
+- Track whether or not a listener is actually added. Now we only track if a listener is inherited.
+
+- Analyze conditional statements 
+
+- Track fields by object instance instead of assuming that field is tainted for all instances of that class.
