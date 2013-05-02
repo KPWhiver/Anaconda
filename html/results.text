@@ -83,10 +83,14 @@
 					<div class="tab-content">
 					
 					{% for tree in treeStructure %}
+					  
 
 		        <div class="tab-pane" id="{{ tree.uniqueId() }}">
 							<h2>{{ tree.content()[0] }}</h2>
-							<h3>{{ tree.toHTML() }}</h3>
+              <h3>Comments:</h3>
+              {{ tree.listComments() }}
+							<h3>Tree:</h3>
+							{{ tree.toHTML() }}
 						</div>
 		        
 		      {% endfor %}

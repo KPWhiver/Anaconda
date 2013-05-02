@@ -1,2 +1,4 @@
-java.net.Socket           getOutputStream  returns-sink  direct
-java.io.FileOutputStream  <init>           is-sink       indirect
+java.net.Socket                    getOutputStream  returns-sink  direct
+android.bluetooth.BluetoothSocket  getOutputStream  returns-sink  direct
+java.net.DatagramSocket            <init>           is-sink       direct
+java.io.FileOutputStream           <init>           is-sink       indirect
