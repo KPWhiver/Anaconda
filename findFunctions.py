@@ -214,6 +214,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
         
     else:
         # Uncaught instruction used
+        # TODO: new-instance
         print 'Unknown operation performed'
 
     
@@ -361,7 +362,7 @@ def main():
     global trackedTrees
     trackedTrees = []
     
-    structure = APKstructure('apks/LeakTest10.apk')
+    structure = APKstructure('apks/stkl.spectropolarisclient.MenuActivity.apk')
     #trackSockets.structure = structure
     
     # search for and mark sinks
