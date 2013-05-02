@@ -19,6 +19,7 @@ class InstructionType :
     FIELDPUT = 9
     STATICINVOKE = 10
     INVOKE = 11
+    CONST = 12
 
 def parseOpcode(opcode):
     if 'nop' in opcode:
@@ -45,6 +46,8 @@ def parseOpcode(opcode):
         return InstructionType.STATICINVOKE
     elif 'invoke' in opcode:
         return InstructionType.INVOKE
+    elif 'const' in opcode:
+        return InstructionType.CONST
     else:
         return InstructionType.NONE
 
@@ -172,7 +175,7 @@ class Instruction:
     # the Class objects and Method objects this instruction is possibly calling (possibly due to inheritance)
     def classesAndMethodsByStructure(self, structure):       
         classObject = structure.classByName(self.d_parameters[-2])        
-        if classObject is None:
+        if classObject is None or classObject.dvmClass() is None:
             return []
         
         #TODO: if virtual we only look at the subclasses not at the superclass self

@@ -115,10 +115,10 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
         # TODO: in case of unfindable method: what about what it returns? Might be fixed by fixing above TODO and changing to instructionIdx
                 
         # Attempt to find the method used within the apk
-        usages = instruction.classesAndMethodsByStructure(structure)
-        if len(usages) > 0:  
+        definitions = instruction.classesAndMethodsByStructure(structure)
+        if len(definitions) > 0:  
             print 'Information is used in method call defined in apk'
-            print len(usages), 'potentially called method(s) have been found'
+            print len(definitions), 'definitions of the called method have been found'
         else:
             # Class is not defined within APK
             className, methodName = instruction.classAndMethod()
@@ -134,14 +134,18 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
                     instruction.markAsSink()
                     trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree)
             
-        
-        for _, instructionMethod in usages:
+        # Defined within the apk, continue tracking the data in the method definition
+        for _, instructionMethod in definitions:
+            if not instructionMethod.hasCode():
+                print 'No code was found for method', method.memberOf().name(), method.name()
+                continue
             
             print 'Tracking recursively.....'
             parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
 
             trackFromCall(trackType, instructionMethod, 0, 0, trackTree, parameterRegister)
-                
+        
+        # Check if something was returned, track the register it was put in
         if instruction.parameters()[-1][-1] != 'V': # It returns something
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree)
             
@@ -162,7 +166,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
         if parameterIndex == 0: # Data is put in an array. Track the array
             print "Data is put in an array"
             newRegister = instruction.parameters()[1] # target array
-            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, newRegister)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree, newRegister)
         else:
             # Something else is put into the array being tracked (param = 1), or it is used as index (param = 2)
             print "Data is put in source array or used as index"
@@ -190,12 +194,12 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
             # Data is taken out of tainted Array, assume this data is tainted as well
             print 'Data read from tainted array'
             newRegister = instruction.parameters()[0] # target register
-            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackedPath, newRegister)
+            trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree, newRegister)
         elif parameterIndex == 2:
             print 'Tainted data used as index for array'
         
     elif instruction.type() == InstructionType.RETURN:
-        # Register is used in return instruction. use trackMethodUsages to look for usages of this function and track
+        # Register is used in return instruction. Use trackMethodUsages to look for usages of this function and track
         # the register containing the result.
         
         print 'Data was returned. Looking for usages of this function' 
@@ -214,7 +218,11 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
             print 'Data copied into new register', newRegister
 
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree, newRegister)
-        
+    elif instruction.type() == InstructionType.CONST:
+        # Constant value is put in tracked register, register overwritten
+        print 'Register was overwritten'
+        return True
+    
     else:
         # Uncaught instruction used
         # TODO: new-instance
@@ -225,6 +233,9 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTree, register = None):
+    if startBlockIdx == 0:
+        print 'method', method.memberOf().name(), method.name()
+    
     if startInstructionIdx >= len(method.blocks()[startBlockIdx].instructions()):
         # Instruction is out of bounds, see if there is a next block. 
         if len(method.blocks()[startBlockIdx].nextBlocks()) == 0 :
@@ -255,6 +266,12 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTr
     node = Tree(trackTree, identifier) # If trackTree = None it means this will be the root node
     if not (trackTree is None):
         trackTree.addChild(node)
+        
+        #root = node.d_parent
+        #while not (root.d_parent is None):
+        #    root = root.d_parent
+        #    
+        #root.toString()
     
         if trackTree.inBranch(identifier):
             node.addComment(startBlockIdx, startInstructionIdx, 'Recursion: Already tracked this method.')
@@ -364,9 +381,12 @@ def main():
     sinkClasses = sinks('api_sinks.txt')
     global structure
     global trackedTrees
+    global history
     trackedTrees = []
+    history = {}
     
     structure = APKstructure('apks/nl.peperzaken.android.nu-1.apk')
+
     #trackSockets.structure = structure
     
     # search for and mark sinks
