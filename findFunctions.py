@@ -218,11 +218,17 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
             print 'Data copied into new register', newRegister
 
             trackFromCall(trackType, method, blockIdx, instructionIdx + 1, trackTree, newRegister)
-    elif instruction.type() == InstructionType.CONST:
-        # Constant value is put in tracked register, register overwritten
-        print 'Register was overwritten'
-        return True
+            
+    # Might convert it and store it in the same register
+    #elif instruction.type() == InstructionType.CONVERSION:
+    #    if parameterIndex = 0:
+    #        print 'Register was overwritten'
     
+    elif instruction.type() == InstructionType.CONST or instruction.type() == InstructionType.NEWINSTANCE or \
+         (instruction.type() == InstructionType.NEWARRAY and parameterIndex == 0):
+        # Value is put in tracked register, register overwritten
+        print 'Register was overwritten'
+        return True    
     else:
         # Uncaught instruction used
         print 'Unknown operation performed'
@@ -232,9 +238,6 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTree, register = None):
-    if startBlockIdx == 0:
-        print 'method', method.memberOf().name(), method.name()
-    
     if startInstructionIdx >= len(method.blocks()[startBlockIdx].instructions()):
         # Instruction is out of bounds, see if there is a next block. 
         if len(method.blocks()[startBlockIdx].nextBlocks()) == 0 :
@@ -270,7 +273,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTr
         #while not (root.d_parent is None):
         #    root = root.d_parent
         #    
-        #root.toString()
+        #print root.toString()
     
         if trackTree.inBranch(identifier):
             node.addComment(startBlockIdx, startInstructionIdx, 'Recursion: Already tracked this method.')
