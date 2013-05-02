@@ -85,6 +85,8 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
     
     if instruction.isSink() and trackType == TrackType.SOURCE:
         print 'Data is put in sink!'
+        blockIdx, instructionIdx = instruction.indices()
+        trackTree.addComment(blockIdx, instructionIdx, 'Data is put in sink!')
         return
     
     parameterIndex = instruction.parameters().index(register)
@@ -95,6 +97,7 @@ def analyzeInstruction(trackType, method, instruction, register, trackTree):
         if trackType == TrackType.SINK: # if tracking a sink mark instruction as sink
             instruction.markAsSink()
             print 'Marking as sink: ', instruction
+            trackTree.addComment(blockIdx, instructionIdx, 'Marked instruction ' + ' as sink.')
             return
         else:                           # if tracking a source continue tracking
             # Function is called on a source object. Track the result.
@@ -270,6 +273,7 @@ def trackFromCall(trackType, method, startBlockIdx, startInstructionIdx, trackTr
         #root.toString()
     
         if trackTree.inBranch(identifier):
+            node.addComment(startBlockIdx, startInstructionIdx, 'Recursion: Already tracked this method.')
             print 'RECURSION: Already tracked this register in this method, aborting'
             print 'identifier', method, startBlockIdx, startInstructionIdx, register
             return

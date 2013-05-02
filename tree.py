@@ -1,12 +1,24 @@
+import jinja2
+
 class Tree:
     
     def __init__(self, parent, content):
         self.d_children = []
+        self.d_comments = {}
         self.d_parent = parent
         self.d_content = content
         
     def addChild(self, child):
         self.d_children.append(child)
+
+    def addComment(self, blockIdx, instructionIdx, comment):
+        dictValue = self.d_comments.get((blockIdx, instructionIdx), None)
+        commentWithSyntax = '\t\t' + comment + '\n'
+
+        if dictValue is None:
+            self.d_comments[(blockIdx, instructionIdx)] = commentWithSyntax
+        else:
+            self.d_comments[(blockIdx, instructionIdx)] += commentWithSyntax
         
     def inBranch(self, content):
         if content == self.d_content:
@@ -37,7 +49,7 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ul><li>\n'
             
-        output += prepend + '<a href="#">' + self.d_content[0].name() + '<br>' + str(self.d_content[1]) + ' ' + str(self.d_content[2]) + ' ' + self.d_content[3] + '</a>\n'
+        output += prepend + '<a href="#">' + self.d_content[0].name() + '<br>blockIdx: ' + str(self.d_content[1]) + ', instructionIdx: ' + str(self.d_content[2]) + ', register: ' + self.d_content[3] + '</a>\n'
         
         if len(self.d_children) > 0:
             output += prepend + '<ul>\n'
@@ -55,3 +67,28 @@ class Tree:
             output += '</div>\n'
             
         return output
+
+    def listComments(self):
+        output = ''
+
+        output += '<pre>'
+        
+        for blockIdx, block in enumerate(self.d_content[0].blocks()):
+            for instructionIdx, instruction in enumerate(block.instructions()):
+                output += instruction.smali()
+                output += self.d_comments.get((blockIdx, instructionIdx), '')
+
+        output += '</pre>'
+
+        for child in self.d_children:
+            output += child.listComments()
+
+        return output
+
+
+   # structure.classByNAme
+   # methodByName
+
+   # for block in method
+   #     for instruction in block
+   #         enumerate
