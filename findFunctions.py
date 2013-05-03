@@ -265,7 +265,15 @@ def distribute(trackType, instructions, visitedInstructions, trackTree, register
 
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
-def trackFromCall(trackType, instruction, visitedInstructions, trackTree, register):        
+def trackFromCall(trackType, instruction, visitedInstructions, trackTree, register):   
+    if history.get((instruction, register), False) == True:
+        print 'ALREADY TRACKED: Already tracked this method from this starting point, aborting'
+        print 'method: ', instruction.method()
+        print '    instruction:', instruction, ', with register:', register
+        return
+    
+    history[(instruction, register)] = True
+         
     # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
     if register is None:
         if instruction.type() == InstructionType.MOVERESULT:
@@ -289,8 +297,9 @@ def trackFromCall(trackType, instruction, visitedInstructions, trackTree, regist
         # Check if the identifier is common in this branch    
         if trackTree.inBranch(identifier):
             node.addComment(instruction, 'Recursion: Already tracked this method.')
-            print 'RECURSION: Already tracked this method with this startpoint and register, aborting'
-            print 'identifier', instructions, register
+            print 'RECURSION: Already tracked this method from this starting point, aborting, (this should never print)'
+            print 'method', instruction.method()
+            print '    instruction:', instruction, ', with register:', register
             return
     
     print '>', instruction.method().memberOf().name(), instruction.method().name()
@@ -301,7 +310,7 @@ def trackFromCall(trackType, instruction, visitedInstructions, trackTree, regist
 
         # Have we been here before?
         if visitedInstructions.get((instruction, register), False) == True:
-            print 'RECURSION: Already tracked this register in this instruction in this method, aborting'
+            print 'LOOPING: Already tracked this location in this method, aborting'
             print instruction, register
             break
     
@@ -401,7 +410,7 @@ def main():
     trackedTrees = []
     history = {}
     
-    structure = APKstructure('apks/LeakTest3.apk')
+    structure = APKstructure('apks/nl.ns.android.activity-1.apk')
 
     #trackSockets.structure = structure
     
