@@ -110,6 +110,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
     
     parameterIndices = [idx for idx, param in enumerate(instruction.parameters()) if param == register]
     
+    isOverwritten = None
     for parameterIndex in parameterIndices:
         if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
         
@@ -209,20 +210,23 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             # register is overwritten. Case is determined by the parameter index.
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                return True
+                isOverwritten = True
+                continue
             else:
                 print 'Data was read from source object'
                 
         elif instruction.type() == InstructionType.STATICGET:
             # Register is used in a static get, the register is overwritten.
             print 'Register was overwritten'
-            return True
+            isOverwritten = True
+            continue
             
         elif instruction.type() == InstructionType.ARRAYGET:
             if parameterIndex == 0:
                 # Data is put into the tracked register, the register is overwritten
                 print 'Register was overwritten'
-                return True
+                isOverwritten = True
+                continue
             elif parameterIndex == 1:
                 # Data is taken out of tainted Array, assume this data is tainted as well
                 print 'Data read from tainted array'
@@ -245,27 +249,44 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                return True
+                isOverwritten = True
+                continue
             else:
                 newRegister = instruction.parameters()[0]
                 print 'Data copied into new register', newRegister
 
                 startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
-        # Might convert it and store it in the same register
-        #elif instruction.type() == InstructionType.CONVERSION:
-        #    if parameterIndex = 0:
-        #        print 'Register was overwritten'
         
+        elif instruction.type() == InstructionType.CONVERSION or instruction.type() == InstructionType.OPERATION:
+            # For both a conversion or operation instruction, the result is put in the register which is parameter 0.
+            # If the tracked register is used as second or third parameter, the taint should propegate to the target
+            # register, parameter 0.
+            if parameterIndex == 0:
+                print 'Register was overwritten'
+                isOverwritten = True
+                continue
+            else: # Tracked data is converted
+                print 'Data converted into different type or used in operation'
+                newRegister = instruction.parameters()[0]
+                startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
+        elif instruction.type() == InstructionType.INSTANCEOF or instruction.type() == InstructionType.ARRAYLENGTH:
+            if parameterIndex == 0:
+                print 'Register was overwritten'
+                isOverwritten = True
+                continue
         elif instruction.type() == InstructionType.CONST or instruction.type() == InstructionType.NEWINSTANCE or \
              (instruction.type() == InstructionType.NEWARRAY and parameterIndex == 0):
             # Value is put in tracked register, register overwritten
 
             print 'Register was overwritten'
-            return True    
+            isOverwritten = True
+            continue  
         else:
             # Uncaught instruction used
             # TODO: new-instance
             print 'Unknown operation performed'
+    
+    return isOverwritten
 
 # Call this when you want to track some new register
 def startTracking(trackInfo, instructions, trackTree, register = None):
