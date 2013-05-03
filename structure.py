@@ -149,6 +149,10 @@ class Instruction:
     def markAsSink(self):
         self.d_isSink = True
         
+    # method this instruction belongs to
+    def method(self):
+        return self.d_block.method()
+        
     # is this instruction a sink
     def isSink(self):
         return self.d_isSink
@@ -250,6 +254,10 @@ class Block:
     # androguard block
     def block(self):
         return self.d_block
+    
+    # method this block belongs to
+    def method(self):
+        return self.d_method
     
     # index inside the Method object
     def index(self):
