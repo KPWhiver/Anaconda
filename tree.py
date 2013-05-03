@@ -11,14 +11,14 @@ class Tree:
     def addChild(self, child):
         self.d_children.append(child)
 
-    def addComment(self, blockIdx, instructionIdx, comment):
-        dictValue = self.d_comments.get((blockIdx, instructionIdx), None)
+    def addComment(self, instruction, comment):
+        dictValue = self.d_comments.get(instruction, None)
         commentWithSyntax = '  |------> ' + comment + '\n'
 
         if dictValue is None:
-            self.d_comments[(blockIdx, instructionIdx)] = commentWithSyntax
+            self.d_comments[instruction] = commentWithSyntax
         else:
-            self.d_comments[(blockIdx, instructionIdx)] += commentWithSyntax
+            self.d_comments[instruction] += commentWithSyntax
         
     def inBranch(self, content):
         if content == self.d_content:
@@ -35,7 +35,7 @@ class Tree:
         return id(self)
     
     def toString(self, prepend = ''):
-        output = '<>' + prepend + self.d_content[0].name() + ' ' + self.d_content[3] + '\n'
+        output = '<>' + prepend + self.d_content[0].method().name() + ' ' + self.d_content[1] + '\n'
         
         for child in self.d_children:
             output += child.toString(prepend + '    ')
@@ -49,7 +49,7 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ul><li>\n'
             
-        output += prepend + '<a href="#">' + self.d_content[0].name() + '<br>blockIdx: ' + str(self.d_content[1]) + ', instructionIdx: ' + str(self.d_content[2]) + ', register: ' + self.d_content[3] + '</a>\n'
+        output += prepend + '<a href="#">' + self.d_content[0].method().name() + '<br>register: ' + self.d_content[1] + '</a>\n'
         
         if len(self.d_children) > 0:
             output += prepend + '<ul>\n'
@@ -71,14 +71,14 @@ class Tree:
     def listComments(self):
         output = ''
 
-        output += '<h4>' + str(self.d_content[0]) + '</h4>'
+        output += '<h4>' + str(self.d_content[0].method()) + '</h4>'
 
         output += '<pre>'
         
-        for blockIdx, block in enumerate(self.d_content[0].blocks()):
-            for instructionIdx, instruction in enumerate(block.instructions()):
+        for block in self.d_content[0].method().blocks():
+            for instruction in block.instructions():
                 output += instruction.smali()
-                comment = self.d_comments.get((blockIdx, instructionIdx), None)
+                comment = self.d_comments.get(instruction, None)
                 if comment is not None:
                     output += '  |\n' + comment + '\n'
 

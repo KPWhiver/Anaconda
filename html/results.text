@@ -67,7 +67,7 @@
 					
 					{% for tree in treeStructure %}
 					
-		        <li><a href="#{{ tree.uniqueId() }}" data-toggle="tab">{{ tree.content()[0] }}</a></li>
+		        <li><a href="#{{ tree.uniqueId() }}" data-toggle="tab">{{ tree.content()[0].method() }}</a></li>
 		        
 		      {% endfor %}
 		        
@@ -86,7 +86,7 @@
 					  
 
 		        <div class="tab-pane" id="{{ tree.uniqueId() }}">
-							<h2>{{ tree.content()[0] }}</h2>
+							<h2>{{ tree.content()[0].method() }}</h2>
               <h3>Comments:</h3>
               {{ tree.listComments() }}
 							<h3>Tree:</h3>
