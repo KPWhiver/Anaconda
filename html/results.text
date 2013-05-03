@@ -62,18 +62,27 @@
 
 			<div class="span3">
 				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
+					<ul class="nav nav-list">	      
+					<li class="nav-header">Sinks</li>
+		      
+		      {% for tree in treeStructure %}
+		        {% if tree[1].trackType() == 0 %}
+
+            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">{{ tree[1].reason() }}</a></li>
+            
+            {% endif %}
+          {% endfor %}
+          
 					<li class="nav-header">Sources</li>
 					
-					{% for tree in treeStructure %}
-					
-		        <li><a href="#{{ tree.uniqueId() }}" data-toggle="tab">{{ tree.content()[0].method() }}</a></li>
+          {% for tree in treeStructure %}
+            {% if tree[1].trackType() == 1 %}
+          
+            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">{{ tree[1].reason() }}</a></li>
+            
+            {% endif %}
+          {% endfor %}
 		        
-		      {% endfor %}
-		        
-		      <li class="nav-header">Sinks</li>
-
-						
 					</ul>
 				</div><!--/.well -->
 			</div><!--/span-->
@@ -85,12 +94,12 @@
 					{% for tree in treeStructure %}
 					  
 
-		        <div class="tab-pane" id="{{ tree.uniqueId() }}">
-							<h2>{{ tree.content()[0].method() }}</h2>
+		        <div class="tab-pane" id="{{ tree[0].uniqueId() }}">
+							<h2>{{ tree[0].content()[0].method() }}</h2>
               <h3>Comments:</h3>
-              {{ tree.listComments() }}
+              {{ tree[0].listComments() }}
 							<h3>Tree:</h3>
-							{{ tree.toHTML() }}
+							{{ tree[0].toHTML() }}
 						</div>
 		        
 		      {% endfor %}

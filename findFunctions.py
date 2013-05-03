@@ -13,9 +13,19 @@ from tree import *
 from jinja2 import Template
 from optparse import OptionParser
  
-class TrackType:
+class TrackInfo:
     SINK = 0
     SOURCE = 1
+    
+    def __init__(self, trackType, reason):
+        self.d_trackType = trackType
+        self.d_reason = reason
+        
+    def trackType(self):
+        return self.d_trackType
+    
+    def reason(self):
+        return self.d_reason
  
 # Read the list of api sources       
 def sources(filename) :
@@ -82,21 +92,19 @@ def sinks(filename) :
 # Analyze the provided instruction, perform aditional tracking if needed. If register is overwritten in the 
 # instruction, return true
 
-def analyzeInstruction(trackType, instruction, trackTree, register):
+def analyzeInstruction(trackInfo, instruction, trackTree, register):
     print '---->', instruction.opcode(), instruction.parameters()
     
-    if instruction.isSink() and trackType == TrackType.SOURCE:
+    if instruction.isSink() and trackInfo.trackType() == TrackInfo.SOURCE:
         print 'Data is put in sink!'
-        blockIdx, instructionIdx = instruction.indices()
         trackTree.addComment(instruction, 'Data is put in sink!')
         return
     
     parameterIndex = instruction.parameters().index(register)
-    blockIdx, instructionIdx = instruction.indices()
     
     if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
     
-        if trackType == TrackType.SINK: # if tracking a sink mark instruction as sink
+        if trackInfo.trackType() == TrackInfo.SINK: # if tracking a sink mark instruction as sink
             instruction.markAsSink()
             print 'Marking as sink: ', instruction
             trackTree.addComment(instruction, 'Marked instruction as sink.')
@@ -110,7 +118,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
                 print 'Function', instruction.parameters()[-1], 'called on source object, tracking result'
                 trackTree.addComment(instruction, 'Function ' + str(instruction.parameters()[-1]) + ' called on source object, tracking result')
 
-                startTracking(trackType, instruction.nextInstructions(), trackTree)
+                startTracking(trackInfo, instruction.nextInstructions(), trackTree)
 
     elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
         # The register is passed as a parameter to a function. Attempt to continue tracking in the function
@@ -135,7 +143,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
                 # It was an instance call, track the object the function was called on
                 print 'Tracking the instance the method is called on'
 
-                startTracking(trackType, [instruction], trackTree, instruction.parameters()[0])
+                startTracking(trackInfo, [instruction], trackTree, instruction.parameters()[0])
                 trackTree.addComment(instruction, 'Tracking the instance the method is called on')
             else: 
                 # It was a static call, track the object that was returned, if any
@@ -144,7 +152,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
 
                     trackTree.addComment(instruction, 'Tracking the object returned')
                     instruction.markAsSink()
-                    startTracking(trackType, instruction.nextInstructions(), trackTree)
+                    startTracking(trackInfo, instruction.nextInstructions(), trackTree)
             
         # Defined within the apk, continue tracking the data in the method definition
         for _, instructionMethod in definitions:
@@ -157,11 +165,11 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
 
             parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
 
-            startTracking(trackType, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
+            startTracking(trackInfo, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
         
         # Check if something was returned, track the register it was put in
         if instruction.parameters()[-1][-1] != 'V': # It returns something
-            startTracking(trackType, instruction.nextInstructions(), trackTree)
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree)
             
             
     elif instruction.type() == InstructionType.IF:
@@ -176,13 +184,13 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
         print 'Data is put in field', parameters[-2], 'of class', parameters[-3]
         trackTree.addComment(instruction, 'Data is put in field ' + str(parameters[-2]) + ' of class ' + str(parameters[-3]))
 
-        trackFieldUsages(trackType, parameters[-3], parameters[-2], parameters[-1], trackTree)
+        trackFieldUsages(trackInfo, parameters[-3], parameters[-2], parameters[-1], trackTree)
         
     elif instruction.type() == InstructionType.ARRAYPUT:
         if parameterIndex == 0: # Data is put in an array. Track the array
             print "Data is put in an array"
             newRegister = instruction.parameters()[1] # target array
-            startTracking(trackType, instruction.nextInstructions(), trackTree, newRegister)
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
         else:
             # Something else is put into the array being tracked (param = 1), or it is used as index (param = 2)
             print "Data is put in source array or used as index"
@@ -210,7 +218,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
             # Data is taken out of tainted Array, assume this data is tainted as well
             print 'Data read from tainted array'
             newRegister = instruction.parameters()[0] # target register
-            startTracking(trackType, instruction.nextInstructions(), trackTree, newRegister)
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
         elif parameterIndex == 2:
             print 'Tainted data used as index for array'
         
@@ -220,7 +228,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
         
         print 'Data was returned. Looking for usages of this function' 
         
-        trackMethodUsages(trackType, instruction.method().memberOf().name(), instruction.method().name(), trackTree)
+        trackMethodUsages(trackInfo, instruction.method().memberOf().name(), instruction.method().name(), trackTree)
         
     elif instruction.type() == InstructionType.MOVE:
         # Value is moved into other register. When first parameter the register is overwritten, else the value is
@@ -233,7 +241,7 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
             newRegister = instruction.parameters()[0]
             print 'Data copied into new register', newRegister
 
-            startTracking(trackType, instruction.nextInstructions(), trackTree, newRegister)
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
     # Might convert it and store it in the same register
     #elif instruction.type() == InstructionType.CONVERSION:
     #    if parameterIndex = 0:
@@ -251,23 +259,23 @@ def analyzeInstruction(trackType, instruction, trackTree, register):
         print 'Unknown operation performed'
 
 # Call this when you want to track some new register
-def startTracking(trackType, instructions, trackTree, register = None):
-    distribute(trackType, [None] + instructions, {}, trackTree, register)
+def startTracking(trackInfo, instructions, trackTree, register = None):
+    distribute(trackInfo, [None] + instructions, {}, trackTree, register)
 
 # Distribute the given list of instructions over several tracks
-def distribute(trackType, instructions, visitedInstructions, trackTree, register):
+def distribute(trackInfo, instructions, visitedInstructions, trackTree, register):
     if instructions == []:
         print "No next instruction was found"
         return None
     if len(instructions) > 1:
         for instruction in instructions[1:]:
-            trackFromCall(trackType, instruction, visitedInstructions, trackTree, register)
+            trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, register)
    
     return instructions[0]
 
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
-def trackFromCall(trackType, instruction, visitedInstructions, trackTree, register):   
+def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, register):   
     if history.get((instruction, register), False) == True:
         print 'ALREADY TRACKED: Already tracked this method from this starting point, aborting'
         print 'method: ', instruction.method()
@@ -281,7 +289,7 @@ def trackFromCall(trackType, instruction, visitedInstructions, trackTree, regist
         if instruction.type() == InstructionType.MOVERESULT:
             register = instruction.parameters()[0]
             instructions = instruction.nextInstructions()
-            instruction = distribute(trackType, instructions, visitedInstructions, trackTree, register)
+            instruction = distribute(trackInfo, instructions, visitedInstructions, trackTree, register)
             if instruction is None:
                 return # end of the method
         else:
@@ -325,25 +333,29 @@ def trackFromCall(trackType, instruction, visitedInstructions, trackTree, regist
             if instruction.type() == InstructionType.MOVERESULT:
                 return # register is overwritten
             
-            overwritten = analyzeInstruction(trackType, instruction, node, register)
+            overwritten = analyzeInstruction(trackInfo, instruction, node, register)
     
             if overwritten:
                 return # register is overwritten
         
         instructions = instruction.nextInstructions()
-        instruction = distribute(trackType, instructions, visitedInstructions, node, register)
+        instruction = distribute(trackInfo, instructions, visitedInstructions, node, register)
     
     print
     if trackTree is None:
-        trackedTrees.append(node) #node.toHTML()#toString()
+        trackedTrees.append((node, trackInfo)) #node.toHTML()#toString()
 
     
-def trackMethodUsages(trackType, className, methodName, trackTree):
+def trackMethodUsages(trackInfo, className, methodName, trackTree):
     methods = structure.calledMethodsByMethodName(className, methodName)
     #print 'Method', methodName, className 
     if len(methods): 
         print '---------------------------------------------------'
         print 'Method', methodName, className, 'is used in', len(methods), 'method(s):\n' 
+    
+    # Check if this is the first time it's called
+    if trackInfo is None:
+        trackInfo = TrackInfo(TrackInfo.SOURCE, className + '->' + methodName + ' is called')
     
     # search through all the methods where it is called
     for method in methods:
@@ -351,9 +363,9 @@ def trackMethodUsages(trackType, className, methodName, trackTree):
         instructions = method.calledInstructionsByMethodName(className, methodName)
         for instruction in instructions:
             
-            startTracking(trackType, instruction.nextInstructions(), trackTree) 
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree) 
 
-def trackFieldUsages(trackType, className, fieldName, type, trackTree):
+def trackFieldUsages(trackInfo, className, fieldName, type, trackTree):
     methods = structure.calledMethodsByFieldName(className, fieldName, type)
     if methods is None:
         return
@@ -362,12 +374,17 @@ def trackFieldUsages(trackType, className, fieldName, type, trackTree):
         print '---------------------------------------------------'
         print 'Field', fieldName, className, 'is used in', len(methods), 'method(s):\n' 
         
+    # Check if this is the first time it's called
+    if trackInfo is None:
+        trackInfo = TrackInfo(TrackInfo.SOURCE, className + '->' + fieldName + ' is used')
+        
     for method in methods:
         instructions = method.calledInstructionsByFieldName(className, fieldName)
         for instruction in instructions:
             register = instruction.parameters()[0]
 
-            startTracking(trackType, [instruction], trackTree, register)
+            
+            startTracking(trackInfo, [instruction], trackTree, register)
 
 def trackListenerUsages(superClassName, methods):
     # Find the listeners that have been overriden
@@ -378,15 +395,16 @@ def trackListenerUsages(superClassName, methods):
     # Find the subclasses of the found classes and find their overriden methods
     subClasses = superClass.subClasses()
     for subClass in subClasses:
+        # Check if any of the methods in the subclass match a listener method
         for methodName, method in subClass.methods().items():
             for listener in methods:
                 if listener[0] in methodName:
                     print '---------------------------------------------------'
                     print 'Listener', superClassName, listener[0], 'is overriden by', subClass.name(), '\n' 
                     parameterNumber = method.numberOfLocalRegisters() + int(listener[1]) + 1
-                    startTracking(TrackType.SOURCE, [method.firstIntruction()], None, 'v' + str(parameterNumber))
+                    startTracking(TrackInfo(TrackInfo.SOURCE, superClassName + '->' + listener[0] + ' overriden'), [method.firstIntruction()], None, 'v' + str(parameterNumber))
 
-def trackSink(className, methodName, isSink, direct):
+def trackSinkUsages(className, methodName, isSink, direct):
     methods = structure.calledMethodsByMethodName(className, methodName)
     
     for method in methods:
@@ -395,10 +413,10 @@ def trackSink(className, methodName, isSink, direct):
         # Track it and mark new sinks
         for instruction in instructions:
             if 'is-sink' in isSink:
-                startTracking(TrackType.SINK, [instruction], None, instruction.parameters()[0])
+                startTracking(TrackInfo(TrackInfo.SINK, className + ' created'), [instruction], None, instruction.parameters()[0])
             else:
                 # We add None to the list because we don't want to get an instruction from this function
-                startTracking(TrackType.SINK, instruction.nextInstructions(), None)
+                startTracking(TrackInfo(TrackInfo.SINK, className + ' created'), instruction.nextInstructions(), None)
                 
 
 def main():
@@ -434,7 +452,7 @@ def main():
     print '* Marking sinks *'
     print '*****************'
     for className, methodName, isSink, direct in sinkClasses:
-        trackSink(className, methodName, isSink, direct)
+        trackSinkUsages(className, methodName, isSink, direct)
 
     print
     
@@ -450,10 +468,10 @@ def main():
     print '* Tracking tainted methods *'
     print '****************************'
     for className, methodName in classAndFunctions:
-        trackMethodUsages(TrackType.SOURCE, className, methodName, None)
+        trackMethodUsages(None, className, methodName, None)
         
     for className, fieldName, type in fields:
-        trackFieldUsages(TrackType.SOURCE, className, fieldName, type, None)
+        trackFieldUsages(None, className, fieldName, type, None)
     
 
     print 'total time: ', time.time() - point 
