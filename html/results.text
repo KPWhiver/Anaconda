@@ -68,7 +68,11 @@
 		      {% for tree in treeStructure %}
 		        {% if tree[1].trackType() == 0 %}
 
-            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">{{ tree[1].reason() }}</a></li>
+            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">
+
+              
+              {{ tree[1].reason() }}
+            </a></li>
             
             {% endif %}
           {% endfor %}
@@ -78,7 +82,17 @@
           {% for tree in treeStructure %}
             {% if tree[1].trackType() == 1 %}
           
-            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">{{ tree[1].reason() }}</a></li>
+            <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab"> 
+                         
+              {% if tree[1].leaks() %}
+              
+              Leaks: 
+            
+              {% endif %}
+              
+              {{ tree[1].reason() }}
+              
+              </a></li>
             
             {% endif %}
           {% endfor %}

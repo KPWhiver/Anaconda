@@ -20,12 +20,19 @@ class TrackInfo:
     def __init__(self, trackType, reason):
         self.d_trackType = trackType
         self.d_reason = reason
+        self.d_leaks = False
         
     def trackType(self):
         return self.d_trackType
     
     def reason(self):
         return self.d_reason
+    
+    def markAsLeaking(self):
+        self.d_leaks = True
+        
+    def leaks(self):
+        return self.d_leaks
  
 # Read the list of api sources       
 def sources(filename) :
@@ -96,6 +103,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
     print '---->', instruction.opcode(), instruction.parameters()
     
     if instruction.isSink() and trackInfo.trackType() == TrackInfo.SOURCE:
+        trackInfo.markAsLeaking()
         print 'Data is put in sink!'
         trackTree.addComment(instruction, 'Data is put in sink!')
         return
@@ -344,7 +352,6 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     print
     if trackTree is None:
         trackedTrees.append((node, trackInfo)) #node.toHTML()#toString()
-
     
 def trackMethodUsages(trackInfo, className, methodName, trackTree):
     methods = structure.calledMethodsByMethodName(className, methodName)
