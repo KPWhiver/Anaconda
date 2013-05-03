@@ -80,7 +80,7 @@ class Tree:
         output += '<pre>'
         
         if self.d_node_comments:
-            output += 'Node information:\n'
+            output += 'Node information:\n\n'
 
             for comment in self.d_node_comments:
                 output += comment
