@@ -1,0 +1,23 @@
+---------------Prio:
+- Instruction found in ns apk:
+----> iput-object ['v2', 'v0', '', '', '']
+Possible result of nearby error
+
+- Register containing tainted data can be used more than once in the same instruction. For example 
+float-to-int ['v0', 'v0']
+
+
+- Unsupported instructions that are used:
+sub-float/2addr ['v0', 'v1']
+float-to-int ['v0', 'v0']
+
+---------------Later:
+- Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
+
+- Track whether or not a listener is actually added. Now we only track if a listener is inherited.
+
+- Analyze conditional statements 
+
+- Track fields by object instance instead of assuming that field is tainted for all instances of that class.
+
+- Parallelize the lookup of tainted methods
