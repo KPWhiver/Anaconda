@@ -13,7 +13,7 @@ class Tree:
 
     def addComment(self, blockIdx, instructionIdx, comment):
         dictValue = self.d_comments.get((blockIdx, instructionIdx), None)
-        commentWithSyntax = '\t\t' + comment + '\n'
+        commentWithSyntax = '  |------> ' + comment + '\n'
 
         if dictValue is None:
             self.d_comments[(blockIdx, instructionIdx)] = commentWithSyntax
@@ -71,12 +71,16 @@ class Tree:
     def listComments(self):
         output = ''
 
+        output += '<h4>' + str(self.d_content[0]) + '</h4>'
+
         output += '<pre>'
         
         for blockIdx, block in enumerate(self.d_content[0].blocks()):
             for instructionIdx, instruction in enumerate(block.instructions()):
                 output += instruction.smali()
-                output += self.d_comments.get((blockIdx, instructionIdx), '')
+                comment = self.d_comments.get((blockIdx, instructionIdx), None)
+                if comment is not None:
+                    output += '  |\n' + comment + '\n'
 
         output += '</pre>'
 

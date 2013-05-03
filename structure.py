@@ -20,6 +20,9 @@ class InstructionType :
     STATICINVOKE = 10
     INVOKE = 11
     CONST = 12
+    NEWINSTANCE = 13
+    NEWARRAY = 14
+    CONVERSION = 15
 
 def parseOpcode(opcode):
     if 'nop' in opcode:
@@ -48,6 +51,12 @@ def parseOpcode(opcode):
         return InstructionType.INVOKE
     elif 'const' in opcode:
         return InstructionType.CONST
+    elif 'new-instance' in opcode:
+        return InstructionType.NEWINSTANCE
+    elif 'new-array' in opcode:
+        return InstructionType.NEWARRAY
+    elif '-to-' in opcode:
+        return InstructionType.CONVERSION
     else:
         return InstructionType.NONE
 
@@ -60,7 +69,7 @@ whitespaceParse = '[\s]*'
 def parseInvoke(call) :    
     match = re.match(classParse + '->(.*)', call)
     if match == None:
-        print 'error: ', call
+        print 'error (parseInvoke): ', call
         return '', ''
     
     return match.group(1), match.group(2)
@@ -70,9 +79,9 @@ def parseFieldGet(call) :
     #    return '', ''
     # ^ ???
     
-    match = re.match(classParse + '->([\w_]*)' + whitespaceParse + '(\[*L[\w/\$_]*;|\[*[VZBSCIJFD])', call)
+    match = re.match(classParse + '->([\w\$_]*)' + whitespaceParse + '(\[*L[\w/\$_]*;|\[*[VZBSCIJFD])', call)
     if match == None:
-        print 'error: ', call
+        print 'error (parseFieldGet): ', call
         return '', '', ''
     
     return match.group(1), match.group(2), match.group(3)
@@ -81,14 +90,14 @@ def parseFieldGet(call) :
 def replaceRange(parameters):
     match = re.match('v([\d]+)' + whitespaceParse + '\.\.\.' + whitespaceParse + 'v([\d]+)', parameters[0])
     if match == None:
-        print 'error: ', parameters
+        print 'error (replaceRange(1)): ', parameters
         return
     
     firstInt = int(match.group(1))
     secondInt = int(match.group(2))
     
     if secondInt < firstInt or firstInt == None or secondInt == None:
-        print 'error: ', parameters
+        print 'error  (replaceRange(2)): ', parameters
         return
     
     # remove first 'ranged' parameter
