@@ -5,6 +5,7 @@ class Tree:
     def __init__(self, parent, content):
         self.d_children = []
         self.d_comments = {}
+        self.d_node_comments = []
         self.d_parent = parent
         self.d_content = content
         
@@ -19,6 +20,9 @@ class Tree:
             self.d_comments[instruction] = commentWithSyntax
         else:
             self.d_comments[instruction] += commentWithSyntax
+
+    def addNodeComment(self, comment):
+        self.d_node_comments.append(str(comment) + '\n')
         
     def inBranch(self, content):
         if content == self.d_content:
@@ -74,6 +78,14 @@ class Tree:
         output += '<h4>' + str(self.d_content[0].method()) + '</h4>'
 
         output += '<pre>'
+        
+        if self.d_node_comments:
+            output += 'Node information:\n\n'
+
+            for comment in self.d_node_comments:
+                output += comment
+
+            output += '\n------------------------------\n\n'
         
         for block in self.d_content[0].method().blocks():
             for instruction in block.instructions():
