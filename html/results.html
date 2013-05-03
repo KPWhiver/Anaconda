@@ -67,23 +67,23 @@
 					
 					
 					
-		        <li><a href="#4380884432" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
+		        <li><a href="#4380880768" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
 		        
 		      
 					
-		        <li><a href="#4380892696" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4380892984" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#4321736320" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321740632" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#4321735528" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321739840" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
-		        <li><a href="#4321736392" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        <li><a href="#4321740776" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
 					
@@ -109,10 +109,10 @@
 					
 					  
 
-		        <div class="tab-pane" id="4380884432">
+		        <div class="tab-pane" id="4380880768">
 							<h2>onCreate(Landroid/os/Bundle;)V</h2>
               <h3>Comments:</h3>
-              <pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+              <h4>onCreate(Landroid/os/Bundle;)V</h4><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
 invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
 iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
 new-instance['v3', 'Ljava/net/Socket;']
@@ -123,6 +123,10 @@ new-instance['v2', 'Ljava/io/ObjectOutputStream;']
 invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
 move-result-object['v5']
 invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+  |
+  |------> Method <init>(Ljava/io/OutputStream;)V not found in class Ljava/io/ObjectOutputStream;
+  |------> Tracking the instance the method is called on
+
 invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
 return-void['']
 move-exception['v1']
@@ -130,7 +134,7 @@ sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
 invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
 invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
 goto['-a']
-</pre><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+</pre><h4>onCreate(Landroid/os/Bundle;)V</h4><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
 invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
 iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
 new-instance['v3', 'Ljava/net/Socket;']
@@ -141,9 +145,13 @@ new-instance['v2', 'Ljava/io/ObjectOutputStream;']
 invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
 move-result-object['v5']
 invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 return-void['']
 move-exception['v1']
 sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
@@ -168,10 +176,10 @@ goto['-a']
 		      
 					  
 
-		        <div class="tab-pane" id="4380892696">
+		        <div class="tab-pane" id="4380892984">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
-              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+              <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
 move-result['v4']
 if-eqz['v4', '+3a']
@@ -206,7 +214,9 @@ const/4['v3', '0']
 new-instance['v3', 'Ljava/io/FileOutputStream;']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 return-object['v3']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
@@ -262,10 +272,10 @@ throw['v4']
 		      
 					  
 
-		        <div class="tab-pane" id="4321736320">
+		        <div class="tab-pane" id="4321740632">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
-              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+              <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
 move-result['v4']
 if-eqz['v4', '+3a']
@@ -327,7 +337,9 @@ throw['v4']
 new-instance['v3', 'Ljava/io/FileOutputStream;']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 goto['-36']
 move-exception['v1']
 new-instance['v4', 'Ljava/io/IOException;']
@@ -356,10 +368,10 @@ throw['v4']
 		      
 					  
 
-		        <div class="tab-pane" id="4321735528">
+		        <div class="tab-pane" id="4321739840">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
-              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+              <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
 move-result['v4']
 if-eqz['v4', '+3a']
@@ -394,7 +406,9 @@ const/4['v3', '0']
 new-instance['v3', 'Ljava/io/FileOutputStream;']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 return-object['v3']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'delete()Z']
@@ -450,10 +464,10 @@ throw['v4']
 		      
 					  
 
-		        <div class="tab-pane" id="4321736392">
+		        <div class="tab-pane" id="4321740776">
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
-              <pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
+              <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-virtual['v4', 'Ljava/io/File;', 'exists()Z']
 move-result['v4']
 if-eqz['v4', '+3a']
@@ -515,7 +529,9 @@ throw['v4']
 new-instance['v3', 'Ljava/io/FileOutputStream;']
 iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
 invoke-direct['v3', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
-		Marked instruction  as sink.
+  |
+  |------> Marked instruction as sink.
+
 goto['-36']
 move-exception['v1']
 new-instance['v4', 'Ljava/io/IOException;']
@@ -547,7 +563,7 @@ throw['v4']
 		        <div class="tab-pane" id="4321743720">
 							<h2>loadInBackground()Landroid/database/Cursor;</h2>
               <h3>Comments:</h3>
-              <pre>invoke-virtual['v7', 'Landroid/support/v4/content/CursorLoader;', 'getContext()Landroid/content/Context;']
+              <h4>loadInBackground()Landroid/database/Cursor;</h4><pre>invoke-virtual['v7', 'Landroid/support/v4/content/CursorLoader;', 'getContext()Landroid/content/Context;']
 move-result-object['v0']
 invoke-virtual['v0', 'Landroid/content/Context;', 'getContentResolver()Landroid/content/ContentResolver;']
 move-result-object['v0']
@@ -559,17 +575,31 @@ iget-object['v5', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mSortOrder
 invoke-virtual/range['v0', 'v1', 'v2', 'v3', 'v4', 'v5', 'Landroid/content/ContentResolver;', 'query(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;']
 move-result-object['v6']
 if-eqz['v6', '+a']
+  |
+  |------> Register is used in if statement
+
 invoke-interface['v6', 'Landroid/database/Cursor;', 'getCount()I']
+  |
+  |------> Function getCount()I called on source object, tracking result
+
 iget-object['v0', 'v7', 'Landroid/support/v4/content/CursorLoader;', 'mObserver', 'Landroid/support/v4/content/Loader$ForceLoadContentObserver;']
 invoke-virtual['v7', 'v6', 'v0', 'Landroid/support/v4/content/CursorLoader;', 'registerContentObserver(Landroid/database/Cursor; Landroid/database/ContentObserver;)V']
+  |
+  |------> Information is used in method call defined in apk
+  |------> 1 potentially called method(s) have been found
+  |------> Tracking recursively...
+
 return-object['v6']
-</pre><pre>iget-object['v0', 'v1', 'Landroid/support/v4/content/CursorLoader;', 'mObserver', 'Landroid/support/v4/content/Loader$ForceLoadContentObserver;']
+</pre><h4>registerContentObserver(Landroid/database/Cursor; Landroid/database/ContentObserver;)V</h4><pre>iget-object['v0', 'v1', 'Landroid/support/v4/content/CursorLoader;', 'mObserver', 'Landroid/support/v4/content/Loader$ForceLoadContentObserver;']
 invoke-interface['v2', 'v0', 'Landroid/database/Cursor;', 'registerContentObserver(Landroid/database/ContentObserver;)V']
+  |
+  |------> Function registerContentObserver(Landroid/database/ContentObserver;)V called on source object, but returns void
+
 return-void['']
-</pre><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
+</pre><h4>loadInBackground()Ljava/lang/Object;</h4><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
 move-result-object['v0']
 return-object['v0']
-</pre><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
+</pre><h4>loadInBackground()Ljava/lang/Object;</h4><pre>invoke-virtual['v1', 'Landroid/support/v4/content/CursorLoader;', 'loadInBackground()Landroid/database/Cursor;']
 move-result-object['v0']
 return-object['v0']
 </pre>
@@ -599,7 +629,7 @@ return-object['v0']
 		        <div class="tab-pane" id="4321840592">
 							<h2>onCreate(Landroid/os/Bundle;)V</h2>
               <h3>Comments:</h3>
-              <pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+              <h4>onCreate(Landroid/os/Bundle;)V</h4><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
 invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
 iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
 new-instance['v3', 'Ljava/net/Socket;']
@@ -611,14 +641,20 @@ invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStrea
 move-result-object['v5']
 invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
 invoke-virtual['v2', 'v0', 'Ljava/io/ObjectOutputStream;', 'writeObject(Ljava/lang/Object;)V']
-		Data is put in sink!
+  |
+  |------> Data is put in sink!
+
 return-void['']
 move-exception['v1']
 sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
 invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+  |
+  |------> Method println(Ljava/lang/Object;)V not found in class Ljava/io/PrintStream;
+  |------> Tracking the instance the method is called on
+
 invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
 goto['-a']
-</pre><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
+</pre><h4>onCreate(Landroid/os/Bundle;)V</h4><pre>new-instance['v4', 'Landroid/net/wifi/WifiConfiguration;']
 invoke-direct['v4', 'Landroid/net/wifi/WifiConfiguration;', '<init>()V']
 iget-object['v0', 'v4', 'Landroid/net/wifi/WifiConfiguration;', 'wepKeys', '[Ljava/lang/String;']
 new-instance['v3', 'Ljava/net/Socket;']
@@ -634,6 +670,9 @@ return-void['']
 move-exception['v1']
 sget-object['v5', 'Ljava/lang/System;', 'err', 'Ljava/io/PrintStream;']
 invoke-virtual['v5', 'v0', 'Ljava/io/PrintStream;', 'println(Ljava/lang/Object;)V']
+  |
+  |------> Function println(Ljava/lang/Object;)V called on source object, but returns void
+
 invoke-virtual['v1', 'Ljava/io/IOException;', 'printStackTrace()V']
 goto['-a']
 </pre>
