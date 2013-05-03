@@ -67,6 +67,7 @@
 					
 					
 					
+<<<<<<< HEAD
 		        <li><a href="#293264344" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
 		        
 		      
@@ -108,6 +109,33 @@
 		      
 					
 		        <li><a href="#316696624" data-toggle="tab">loadInBackground()Landroid/database/Cursor;</a></li>
+=======
+		        <li><a href="#4380910368" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
+		        
+		      
+					
+		        <li><a href="#4321753568" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        
+		      
+					
+		        <li><a href="#4321754792" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        
+		      
+					
+		        <li><a href="#4321754936" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        
+		      
+					
+		        <li><a href="#4321754864" data-toggle="tab">startWrite()Ljava/io/FileOutputStream;</a></li>
+		        
+		      
+					
+		        <li><a href="#4321761976" data-toggle="tab">onCreate(Landroid/os/Bundle;)V</a></li>
+		        
+		      
+					
+		        <li><a href="#4321853952" data-toggle="tab">loadInBackground()Landroid/database/Cursor;</a></li>
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 		        
 		      
 		        
@@ -125,7 +153,86 @@
 					
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="293264344">
+=======
+		        <div class="tab-pane" id="4380910368">
+							<h2>onCreate(Landroid/os/Bundle;)V</h2>
+              <h3>Comments:</h3>
+              <h4>onCreate(Landroid/os/Bundle;)V</h4><pre>invoke-super['v7', 'v8', 'Landroid/app/Activity;', 'onCreate(Landroid/os/Bundle;)V']
+const/high16['v5', '32515 # [1.7412886744782398e+38]']
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'setContentView(I)V']
+const-string['v5', "'phone'"]
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'getSystemService(Ljava/lang/String;)Ljava/lang/Object;']
+move-result-object['v4']
+check-cast['v4', 'Landroid/telephony/TelephonyManager;']
+invoke-virtual['v4', 'Landroid/telephony/TelephonyManager;', 'getDeviceId()Ljava/lang/String;']
+move-result-object['v1']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+  |
+  |------> Method <init>(Ljava/io/OutputStream;)V not found in class Ljava/io/ObjectOutputStream;
+  |------> Tracking the instance the method is called on
+
+invoke-virtual['v2', 'v1', 'Ljava/io/ObjectOutputStream;', 'writeUTF(Ljava/lang/String;)V']
+return-void['']
+move-exception['v0']
+invoke-virtual['v0', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-5']
+</pre><h4>onCreate(Landroid/os/Bundle;)V</h4><pre>invoke-super['v7', 'v8', 'Landroid/app/Activity;', 'onCreate(Landroid/os/Bundle;)V']
+const/high16['v5', '32515 # [1.7412886744782398e+38]']
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'setContentView(I)V']
+const-string['v5', "'phone'"]
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'getSystemService(Ljava/lang/String;)Ljava/lang/Object;']
+move-result-object['v4']
+check-cast['v4', 'Landroid/telephony/TelephonyManager;']
+invoke-virtual['v4', 'Landroid/telephony/TelephonyManager;', 'getDeviceId()Ljava/lang/String;']
+move-result-object['v1']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+  |
+  |------> Marked instruction as sink.
+
+invoke-virtual['v2', 'v1', 'Ljava/io/ObjectOutputStream;', 'writeUTF(Ljava/lang/String;)V']
+  |
+  |------> Marked instruction as sink.
+
+return-void['']
+move-exception['v0']
+invoke-virtual['v0', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-5']
+</pre>
+							<h3>Tree:</h3>
+							<div class="tree">
+<ul><li>
+<a href="#">onCreate(Landroid/os/Bundle;)V<br>register: v5</a>
+<ul>
+<li>
+  <a href="#">onCreate(Landroid/os/Bundle;)V<br>register: v2</a>
+</li>
+</ul>
+</li></ul>
+</div>
+
+						</div>
+		        
+		      
+					  
+
+		        <div class="tab-pane" id="4321753568">
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
               <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
@@ -221,7 +328,11 @@ throw['v4']
 		      
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="293265488">
+=======
+		        <div class="tab-pane" id="4321754792">
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
               <h3>Comments:</h3>
               <h4>startWrite()Ljava/io/FileOutputStream;</h4><pre>iget-object['v4', 'v7', 'Landroid/support/v4/util/AtomicFile;', 'mBaseName', 'Ljava/io/File;']
@@ -399,8 +510,13 @@ throw['v4']
 		      
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="293265704">
 							<h2>write(Ljava/io/File; [B)V</h2>
+=======
+		        <div class="tab-pane" id="4321754936">
+							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
               <h3>Comments:</h3>
               <h4>write(Ljava/io/File; [B)V</h4><pre>invoke-virtual['v3', 'Ljava/io/File;', 'exists()Z']
 move-result['v2']
@@ -463,8 +579,13 @@ goto['-f']
 		      
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="293265776">
 							<h2>write(Ljava/lang/Object; Ljava/io/File;)V</h2>
+=======
+		        <div class="tab-pane" id="4321754864">
+							<h2>startWrite()Ljava/io/FileOutputStream;</h2>
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
               <h3>Comments:</h3>
               <h4>write(Ljava/lang/Object; Ljava/io/File;)V</h4><pre>new-instance['v0', 'Ljava/io/FileOutputStream;']
 invoke-direct['v0', 'v4', 'Ljava/io/FileOutputStream;', '<init>(Ljava/io/File;)V']
@@ -7615,6 +7736,7 @@ goto['-2']
 		      
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="315536232">
 							<h2>getBestLocation()Landroid/location/Location;</h2>
               <h3>Comments:</h3>
@@ -7982,6 +8104,29 @@ return-void['']
 
 const/16['v0', '200']
 invoke-direct['v1', 'v2', 'v0', 'Lcom/androidquery/callback/LocationAjaxCallback;', 'status(Landroid/location/Location; I)V']
+=======
+		        <div class="tab-pane" id="4321761976">
+							<h2>onCreate(Landroid/os/Bundle;)V</h2>
+              <h3>Comments:</h3>
+              <h4>onCreate(Landroid/os/Bundle;)V</h4><pre>invoke-super['v7', 'v8', 'Landroid/app/Activity;', 'onCreate(Landroid/os/Bundle;)V']
+const/high16['v5', '32515 # [1.7412886744782398e+38]']
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'setContentView(I)V']
+const-string['v5', "'phone'"]
+invoke-virtual['v7', 'v5', 'Lcom/example/leaktest1/MainActivity;', 'getSystemService(Ljava/lang/String;)Ljava/lang/Object;']
+move-result-object['v4']
+check-cast['v4', 'Landroid/telephony/TelephonyManager;']
+invoke-virtual['v4', 'Landroid/telephony/TelephonyManager;', 'getDeviceId()Ljava/lang/String;']
+move-result-object['v1']
+new-instance['v3', 'Ljava/net/Socket;']
+const-string['v5', "'www.google.com'"]
+const/16['v6', '1337']
+invoke-direct['v3', 'v5', 'v6', 'Ljava/net/Socket;', '<init>(Ljava/lang/String; I)V']
+new-instance['v2', 'Ljava/io/ObjectOutputStream;']
+invoke-virtual['v3', 'Ljava/net/Socket;', 'getOutputStream()Ljava/io/OutputStream;']
+move-result-object['v5']
+invoke-direct['v2', 'v5', 'Ljava/io/ObjectOutputStream;', '<init>(Ljava/io/OutputStream;)V']
+invoke-virtual['v2', 'v1', 'Ljava/io/ObjectOutputStream;', 'writeUTF(Ljava/lang/String;)V']
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
   |
   |------> Information is used in method call defined in apk
   |------> 1 definitions of the called method have been found
@@ -7989,6 +8134,7 @@ invoke-direct['v1', 'v2', 'v0', 'Lcom/androidquery/callback/LocationAjaxCallback
 
 invoke-virtual['v1', 'Lcom/androidquery/callback/LocationAjaxCallback;', 'callback()V']
 return-void['']
+<<<<<<< HEAD
 </pre><h4>isBetter(Landroid/location/Location;)Z</h4><pre>const/4['v1', '1']
 iget-object['v0', 'v6', 'Lcom/androidquery/callback/LocationAjaxCallback;', 'result', 'Ljava/lang/Object;']
 if-nez['v0', '+4']
@@ -8818,10 +8964,16 @@ invoke-virtual['v1', 'Ljava/io/ByteArrayOutputStream;', 'toByteArray()[B']
 move-result-object['v0']
 invoke-virtual['v1', 'Ljava/io/ByteArrayOutputStream;', 'close()V']
 return-object['v0']
+=======
+move-exception['v0']
+invoke-virtual['v0', 'Ljava/io/IOException;', 'printStackTrace()V']
+goto['-5']
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 </pre>
 							<h3>Tree:</h3>
 							<div class="tree">
 <ul><li>
+<<<<<<< HEAD
 <a href="#">scaleImage(Landroid/content/Context; Landroid/net/Uri;)[B<br>register: v3</a>
 <ul>
 <li>
@@ -8841,6 +8993,9 @@ return-object['v0']
   </ul>
 </li>
 </ul>
+=======
+<a href="#">onCreate(Landroid/os/Bundle;)V<br>register: v1</a>
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 </li></ul>
 </div>
 
@@ -8849,7 +9004,11 @@ return-object['v0']
 		      
 					  
 
+<<<<<<< HEAD
 		        <div class="tab-pane" id="316696624">
+=======
+		        <div class="tab-pane" id="4321853952">
+>>>>>>> 20262b9d5249a48065db154567731e2788ddcbf5
 							<h2>loadInBackground()Landroid/database/Cursor;</h2>
               <h3>Comments:</h3>
               <h4>loadInBackground()Landroid/database/Cursor;</h4><pre>invoke-virtual['v7', 'Landroid/support/v4/content/CursorLoader;', 'getContext()Landroid/content/Context;']

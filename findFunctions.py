@@ -2,6 +2,7 @@
 
 import re
 import sys
+import os.path
 
 sys.path.append('androguard')
 
@@ -10,6 +11,7 @@ from structure import *
 from tools import *
 from tree import *
 from jinja2 import Template
+from optparse import OptionParser
  
 class TrackType:
     SINK = 0
@@ -400,6 +402,21 @@ def trackSink(className, methodName, isSink, direct):
                 
 
 def main():
+    optParser = OptionParser(usage='Usage: %prog [options] -f FILENAME')
+    optParser.add_option("-f", "--file", action="store", type="string",
+            dest="filename", help="the filename of the APK to analyze", default=None)
+    (options, args) = optParser.parse_args()
+
+    if options.filename is None:
+        optParser.print_usage()
+        print "A filename is required."
+        return
+
+    if not os.path.isfile(options.filename):
+        print 'File "' + options.filename + '" doesn\'t exist.'
+        return
+
+
     point = time.time()
 
     classAndFunctions, fields, listeners = sources('api_sources.txt')
@@ -410,9 +427,7 @@ def main():
     trackedTrees = []
     history = {}
     
-    structure = APKstructure('apks/nl.ns.android.activity-1.apk')
-
-    #trackSockets.structure = structure
+    structure = APKstructure(options.filename)
     
     # search for and mark sinks
     print '*****************'
