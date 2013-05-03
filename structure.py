@@ -146,6 +146,10 @@ class Instruction:
     def opcode(self):
         return self.d_instruction.get_name()
     
+    # the possible next instructions after this one
+    def nextInstructions(self):
+        return self.d_block._nextInstructions(self.d_index)
+    
     # type of instruction as int
     def type(self):
         return self.d_type
@@ -153,6 +157,10 @@ class Instruction:
     # mark this instruction as being a sink    
     def markAsSink(self):
         self.d_isSink = True
+        
+    # method this instruction belongs to
+    def method(self):
+        return self.d_block.method()
         
     # is this instruction a sink
     def isSink(self):
@@ -187,6 +195,7 @@ class Instruction:
         if classObject is None or classObject.dvmClass() is None:
             return []
         
+        #TODO: if virtual we only look at the subclasses not at the superclass self
         # is it a static call that's executed virtually
         virtualStatic = 'invoke-static' in self.opcode() and classObject.methodByName(self.d_parameters[-1]) is None
         
@@ -234,6 +243,18 @@ class Block:
     def addNextBlock(self, logicalNextBlock):
         self.d_logicalNextBlocks.append(logicalNextBlock)
 
+    # the possible next instructions after this one
+    def _nextInstructions(self, index):
+        instructions = []
+        
+        # is it the last instruction?
+        if len(self.d_instructions) == index + 1:
+            for block in self.d_logicalNextBlocks:
+                instructions.append(block.instructions()[0])
+        else:
+            instructions.append(self.d_instructions[index + 1])
+            
+        return instructions
         
     # logical next block
     def nextBlocks(self):
@@ -242,6 +263,10 @@ class Block:
     # androguard block
     def block(self):
         return self.d_block
+    
+    # method this block belongs to
+    def method(self):
+        return self.d_method
     
     # index inside the Method object
     def index(self):
@@ -311,25 +336,32 @@ class Method:
     def memberOf(self):
         return self.d_class
     
+    # first instruction of this method
+    def firstInstruction(self):
+        if self.hasCode():
+            return self.d_blocks[0].instructions()[0]
+        
+        return None
+
     # indices in the list of Block object and the list of Instruction objects within that, where the given method is called
     def calledInstructionsByMethodName(self, className, methodName):
-        list = []
-        for blockIdx, block in enumerate(self.d_blocks):
-            for instructionIdx, instruction in enumerate(block.instructions()):
+        instructions = []
+        for block in self.d_blocks:
+            for instruction in block.instructions():
                 if instruction.type() in [InstructionType.INVOKE, InstructionType.STATICINVOKE] and className in instruction.parameters()[-2] and methodName in instruction.parameters()[-1]:
-                    list.append([blockIdx, instructionIdx])
+                    instructions.append(instruction)
         
-        return list
+        return instructions
     
     # indices in the list of Block object and the list of Instruction objects within that, where the given field is accessed
     def calledInstructionsByFieldName(self, className, fieldName):
-        list = []
-        for blockIdx, block in enumerate(self.d_blocks):
-            for instructionIdx, instruction in enumerate(block.instructions()):
+        instructions = []
+        for block in self.d_blocks:
+            for instruction in block.instructions():
                 if instruction.type() in [InstructionType.FIELDGET, InstructionType.STATICGET] and className in instruction.parameters()[-3] and fieldName in instruction.parameters()[-2]:                
-                    list.append([blockIdx, instructionIdx])
+                    instructions.append(instruction)
         
-        return list
+        return instructions
                 
     # number of registers e.g. v1, v2, v3 etc (this includes the parameters)
     def numberOfRegisters(self):
