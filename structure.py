@@ -23,7 +23,11 @@ class InstructionType :
     NEWINSTANCE = 13
     NEWARRAY = 14
     CONVERSION = 15
-
+    INSTANCEOF = 16
+    ARRAYLENGTH = 17
+    OPERATION = 18
+    
+    
 def parseOpcode(opcode):
     if 'nop' in opcode:
         return InstructionType.NOP
@@ -57,6 +61,13 @@ def parseOpcode(opcode):
         return InstructionType.NEWARRAY
     elif '-to-' in opcode:
         return InstructionType.CONVERSION
+    elif 'instance-of' in opcode:
+        return InstructionType.INSTANCEOF
+    elif 'array-length' in opcode:
+        return InstructionType.ARRAYLENGTH
+    elif any(instruction in opcode for instruction in ['add-', 'sub-', 'mul-', 'div-', 'rem-', 'and-', 'or-', 'xor-',
+                                                       'shl-', 'shr-', 'ushr-']):
+        return InstructionType.OPERATION
     else:
         return InstructionType.NONE
 

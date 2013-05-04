@@ -1,4 +1,13 @@
 import jinja2
+import string
+
+def reindent(s, indent):
+    s = string.split(s, '\n')
+    s = [indent + string.lstrip(line) for line in s]
+    s = string.join(s, '\n')
+    return s
+
+
 
 class Tree:
     
@@ -72,27 +81,48 @@ class Tree:
             
         return output
 
-    def listComments(self):
+    def printRecursive(self, block, prevList, indent):
         output = ''
+        for instruction in block.instructions():
+            output += indent + instruction.smali()
+            comment = self.d_comments.get(instruction, None)
+            if comment is not None:
+                output += reindent('  |\n' + comment, indent + '  ')
+                output += '\n'
+        
+        if block.nextBlocks() != []:
+            output += indent + '->\n'
+        
+        for nextBlock in block.nextBlocks():
+            if nextBlock in prevList:
+                output += nextBlock.smali(indent + '  ')
+                output += indent + '  ' + 'found recursion, abort!\n'
+                if not (nextBlock is block.nextBlocks()[-1]):
+                    output += indent + '+\n'
+                continue
 
+            output += self.printRecursive(nextBlock, prevList + [nextBlock], indent + '  ')
+            
+            if not (nextBlock is block.nextBlocks()[-1]):
+                output += indent + '+\n'
+
+        return output
+
+
+    def listComments(self):
+
+        output = ''
         output += '<h4>' + str(self.d_content[0].method()) + '</h4>'
-
         output += '<pre>'
         
         if self.d_node_comments:
             output += 'Node information:\n\n'
-
             for comment in self.d_node_comments:
                 output += comment
-
             output += '\n------------------------------\n\n'
         
         for block in self.d_content[0].method().blocks():
-            for instruction in block.instructions():
-                output += instruction.smali()
-                comment = self.d_comments.get(instruction, None)
-                if comment is not None:
-                    output += '  |\n' + comment + '\n'
+            output += self.printRecursive(block, [], '') + '\n'
 
         output += '</pre>'
 
@@ -100,11 +130,4 @@ class Tree:
             output += child.listComments()
 
         return output
-
-
-   # structure.classByNAme
-   # methodByName
-
-   # for block in method
-   #     for instruction in block
-   #         enumerate
+    

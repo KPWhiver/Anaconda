@@ -3,13 +3,8 @@
 ----> iput-object ['v2', 'v0', '', '', '']
 Possible result of nearby error
 
-- Register containing tainted data can be used more than once in the same instruction. For example 
-float-to-int ['v0', 'v0']
-
-
 - Unsupported instructions that are used:
-sub-float/2addr ['v0', 'v1']
-float-to-int ['v0', 'v0']
+check-cast ['v0', 'Ljava/lang/String;'] -- Does not change tracked register, throws exception
 
 ---------------Later:
 - Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
