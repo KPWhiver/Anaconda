@@ -121,8 +121,8 @@ class Tree:
                 output += comment
             output += '\n------------------------------\n\n'
         
-        for block in self.d_content[0].method().blocks():
-            output += self.printRecursive(block, [], '') + '\n'
+        firstBlock = self.d_content[0].method().blocks()[0]
+        output += self.printRecursive(firstBlock, [], '') + '\n'
 
         output += '</pre>'
 
