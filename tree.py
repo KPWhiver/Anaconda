@@ -84,26 +84,27 @@ class Tree:
     def printRecursive(self, block, prevList, indent):
         output = ''
         for instruction in block.instructions():
-            output += indent + '        ' + instruction.smali()
+            output += indent + instruction.smali()
             comment = self.d_comments.get(instruction, None)
             if comment is not None:
-                output += reindent('  |\n' + comment + '\n', indent)
+                output += reindent('  |\n' + comment, indent + '  ')
+                output += '\n'
         
         if block.nextBlocks() != []:
-            output += indent + '->'
+            output += indent + '->\n'
         
         for nextBlock in block.nextBlocks():
             if nextBlock in prevList:
-                output += nextBlock.smali(indent + '        ')
-                output += indent + '      ' + 'found recursion, abort!'
+                output += nextBlock.smali(indent + '  ')
+                output += indent + '  ' + 'found recursion, abort!\n'
                 if not (nextBlock is block.nextBlocks()[-1]):
-                    output += indent + '+'
+                    output += indent + '+\n'
                 continue
 
-            self.printRecursive(nextBlock, prevList + [nextBlock], indent + '    ')
+            output += self.printRecursive(nextBlock, prevList + [nextBlock], indent + '  ')
             
             if not (nextBlock is block.nextBlocks()[-1]):
-                output += indent + '+'
+                output += indent + '+\n'
 
         return output
 
@@ -121,7 +122,7 @@ class Tree:
             output += '\n------------------------------\n\n'
         
         for block in self.d_content[0].method().blocks():
-            output += self.printRecursive(block, [], '')
+            output += self.printRecursive(block, [], '') + '\n'
 
         output += '</pre>'
 
