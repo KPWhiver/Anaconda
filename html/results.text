@@ -49,8 +49,8 @@
       $('.sidebar-nav a[href*=#]').click(function(){$('body').animate({ scrollTop: 0}, 200); });
       $('.tree a[href*=#c]').click(function(e) {
         e.preventDefault();
-        $('.comment').slideUp();
-        $($(this).attr('href')).slideDown();
+        $('.comment').hide();
+        $($(this).attr('href')).show();
       });
     })
 	</script>
