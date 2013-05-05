@@ -1,20 +1,22 @@
 ---------------Prio:
-- Instruction found in ns apk:
-----> iput-object ['v2', 'v0', '', '', '']
-Possible result of nearby error
-
 - Unsupported instructions that are used:
 check-cast ['v0', 'Ljava/lang/String;'] -- Does not change tracked register, throws exception
 
 - Correct following of blocks in case of try/catch block (see sendImei)
+
+- Tracking results of methods and instances where methods are called on even when defined within apk
+
+- Return by reference
 
 ---------------Later:
 - Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
 
 - Track whether or not a listener is actually added. Now we only track if a listener is inherited.
 
-- Analyze conditional statements 
+- Analyze conditional statements to decide whether or not something is leaking
 
 - Track fields by object instance instead of assuming that field is tainted for all instances of that class.
 
 - Parallelize the lookup of tainted methods
+
+- Find a way to track data put in intents

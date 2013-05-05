@@ -155,14 +155,6 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
 
                     startTracking(trackInfo, [instruction], trackTree, instruction.parameters()[0])
                     trackTree.addComment(instruction, 'Tracking the instance the method is called on')
-                else: 
-                    # It was a static call, track the object that was returned, if any
-                    if instruction.parameters()[-1].endswith(')V'): # it does not return a void
-                        print 'Tracking the object returned'
-
-                        trackTree.addComment(instruction, 'Tracking the object returned')
-                        instruction.markAsSink()
-                        startTracking(trackInfo, instruction.nextInstructions(), trackTree)
                 
             # Defined within the apk, continue tracking the data in the method definition
             for _, instructionMethod in definitions:
@@ -178,7 +170,11 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
                 startTracking(trackInfo, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
             
             # Check if something was returned, track the register it was put in
-            if instruction.parameters()[-1][-1] != 'V': # It returns something
+            if not instruction.parameters()[-1].endswith(')V'): # It returns something
+                print 'Tracking the object returned'
+
+                trackTree.addComment(instruction, 'Tracking the object returned')
+                instruction.markAsSink()
                 startTracking(trackInfo, instruction.nextInstructions(), trackTree)
                 
                 
