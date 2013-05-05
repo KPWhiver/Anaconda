@@ -126,7 +126,9 @@ class Tree:
 
         output = ''
         output += '<h5>' + str(self.d_content[0].method()) + '</h5>'
-        output += '<pre class="comment" id="c'+ str(self.uniqueId()) +'">'
+        output += '<div class="comment" id="c'+ str(self.uniqueId()) +'">'
+        
+        output += '<pre>'
         
         output += self.d_content[0].method().sourceCode()
         
@@ -144,6 +146,7 @@ class Tree:
         output += self.printRecursive(firstBlock, visited, '    ') + '\n'
 
         output += '</pre>'
+        output += '</div>'
 
         for child in self.d_children:
             output += child.listComments()
