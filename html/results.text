@@ -6,13 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="css/tree.css">
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet">
 	<style type="text/css">
-	body {
-		padding-top: 60px;
-		padding-bottom: 40px;
-	}
-	.sidebar-nav {
-		padding: 9px 0;
-	}
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    .sidebar-nav {
+      padding: 9px 0;
+    }
+    .hero-unit {
+      padding: 20px;
+    }
+    .tree {
+      overflow: auto;
+    }
 	</style>
 	<link href="css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	<link rel="shortcut icon" href="ico/favicon.ico">
@@ -36,10 +42,17 @@
 	<script src="js/bootstrap-typeahead.js"></script>
 
 	<script>
-		$(function () {
-			$('#myTab a:last').tab('show');
-			$('.sidebar-nav a[href*=#]').click(function(){$('body').animate({ scrollTop: 0}, 200); });
-		})
+	  $(document).ready(function() {
+      $('.comment').hide();
+
+      $('#myTab a:last').tab('show');
+      $('.sidebar-nav a[href*=#]').click(function(){$('body').animate({ scrollTop: 0}, 200); });
+      $('.tree a[href*=#c]').click(function(e) {
+        e.preventDefault();
+        $('.comment').hide();
+        $($(this).attr('href')).show();
+      });
+    })
 	</script>
 </head>
 <body>
@@ -110,10 +123,11 @@
 
 		        <div class="tab-pane" id="{{ tree[0].uniqueId() }}">
 							<h2>{{ tree[0].content()[0].method() }}</h2>
-              <h3>Comments:</h3>
-              {{ tree[0].listComments() }}
 							<h3>Tree:</h3>
 							{{ tree[0].toHTML() }}
+							<br>
+              <h3>Comments:</h3>
+              {{ tree[0].listComments() }}
 						</div>
 		        
 		      {% endfor %}
