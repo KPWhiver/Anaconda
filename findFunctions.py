@@ -335,12 +335,12 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
         trackTree.addChild(node)
 
         # Check if the identifier is common in this branch    
-        if trackTree.inBranch(identifier):
-            node.addComment(instruction, 'Recursion: Already tracked this method.')
-            print 'RECURSION: Already tracked this method from this starting point, aborting, (this should never print)'
-            print 'method', instruction.method()
-            print '    instruction:', instruction, ', with register:', register
-            return
+        #if trackTree.inBranch(identifier):
+        #    node.addComment(instruction, 'Recursion: Already tracked this method.')
+        #    print 'RECURSION: Already tracked this method from this starting point, aborting, (this should never print)'
+        #    print 'method', instruction.method()
+        #    print '    instruction:', instruction, ', with register:', register
+        #    break
     
     print '>', instruction.method().memberOf().name(), instruction.method().name()
     print 'Tracking the result in register', register
@@ -361,12 +361,12 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
         
             # TODO: maybe add stuff like new-instance
             if instruction.type() == InstructionType.MOVERESULT:
-                return # register is overwritten
+                break # register is overwritten
             
             overwritten = analyzeInstruction(trackInfo, instruction, node, register)
     
             if overwritten:
-                return # register is overwritten
+                break # register is overwritten
         
         instructions = instruction.nextInstructions()
         instruction = distribute(trackInfo, instructions, visitedInstructions, node, register)
@@ -374,6 +374,7 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     print
     if trackTree is None:
         trackedTrees.append((node, trackInfo)) #node.toHTML()#toString()
+        print '<------>', trackInfo.reason()
     
 def trackMethodUsages(trackInfo, className, methodName, trackTree):
     methods = structure.calledMethodsByMethodName(className, methodName)
@@ -444,7 +445,6 @@ def trackSinkUsages(className, methodName, isSink, direct):
             if 'is-sink' in isSink:
                 startTracking(TrackInfo(TrackInfo.SINK, className + ' created'), [instruction], None, instruction.parameters()[0])
             else:
-                # We add None to the list because we don't want to get an instruction from this function
                 startTracking(TrackInfo(TrackInfo.SINK, className + ' created'), instruction.nextInstructions(), None)
                 
 
