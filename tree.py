@@ -81,27 +81,40 @@ class Tree:
             
         return output
 
-    def printRecursive(self, block, prevList, indent):
+    def printRecursive(self, block, visited, indent):
         output = ''
-        for instruction in block.instructions():
-            output += indent + instruction.smali()
+        number = block.number()
+        
+        # print all instructions in this block
+        for index, instruction in enumerate(block.instructions()):
+            # if index is 0 we want to print the unique number of the block
+            if index == 0:
+                output += number + indent[len(number):]
+            else:
+                output += indent
+                
+            output += instruction.smali()
             comment = self.d_comments.get(instruction, None)
             if comment is not None:
-                output += reindent('  |\n' + comment, indent + '  ')
+                output += reindent('  |\n' + comment, indent + '    ')
                 output += '\n'
         
+        # if next blocks we need to draw the arrow
         if block.nextBlocks() != []:
             output += indent + '->\n'
         
-        for nextBlock in block.nextBlocks():
-            if nextBlock in prevList:
-                output += nextBlock.smali(indent + '  ')
-                output += indent + '  ' + 'found recursion, abort!\n'
+        # go to all next blocks
+        for index, nextBlock in enumerate(block.nextBlocks()):
+            if not (visited.get(nextBlock, None) is None):
+                #output += nextBlock.smali(indent + '    ')
+                output += indent + '    ' + 'Go to: ' + nextBlock.number() + '\n'#'found recursion, abort!\n'
                 if not (nextBlock is block.nextBlocks()[-1]):
                     output += indent + '+\n'
                 continue
+            
+            visited[nextBlock] = True
 
-            output += self.printRecursive(nextBlock, prevList + [nextBlock], indent + '  ')
+            output += self.printRecursive(nextBlock, visited, indent + '    ')
             
             if not (nextBlock is block.nextBlocks()[-1]):
                 output += indent + '+\n'
@@ -115,6 +128,11 @@ class Tree:
         output += '<h4>' + str(self.d_content[0].method()) + '</h4>'
         output += '<pre>'
         
+        output += self.d_content[0].method().sourceCode()
+        
+        output += '</pre>'
+        output += '<pre>'
+        
         if self.d_node_comments:
             output += 'Node information:\n\n'
             for comment in self.d_node_comments:
@@ -122,7 +140,8 @@ class Tree:
             output += '\n------------------------------\n\n'
         
         firstBlock = self.d_content[0].method().blocks()[0]
-        output += self.printRecursive(firstBlock, [], '') + '\n'
+        visited = {}
+        output += self.printRecursive(firstBlock, visited, '    ') + '\n'
 
         output += '</pre>'
 

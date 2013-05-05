@@ -243,16 +243,24 @@ class Block:
         self.d_instructions = []
         self.d_logicalNextBlocks = []
         
-        
+        self.d_number = ''
         #for dvmBlock in self.d_block.get_next():
         #   self.d_logicalNextBlocks.append(Block(dvmBlock[2], method, 0))
         
         for instructionIdx, instruction in enumerate(block.get_instructions()):
             self.d_instructions.append(Instruction(instruction, self, instructionIdx))
     
+    # number is a string which uniquely identifies a block in a logical manner
+    def number(self):
+        return self.d_number
+    
     # only used by Method
     def addNextBlock(self, logicalNextBlock):
+        #numberOfBlock = len(self.d_logicalNextBlocks)
+        
         self.d_logicalNextBlocks.append(logicalNextBlock)
+        #if logicalNextBlock.d_number == '':
+        #  logicalNextBlock.d_number = self.d_number + '.' + str(numberOfBlock)
 
     # the possible next instructions after this one
     def _nextInstructions(self, index):
@@ -306,9 +314,21 @@ class Method:
         self.d_blocks = []
         self.d_name = methodInfo.get_method().get_name() + methodInfo.get_method().get_descriptor()
         
-        for blockIdx, block in enumerate(methodInfo.get_basic_blocks().get()):
-            self.d_blocks.append(Block(block, self, blockIdx))
-         
+        for blockIdx, dvmBlock in enumerate(methodInfo.get_basic_blocks().get()):
+            block = Block(dvmBlock, self, blockIdx)
+            block.d_number = str(blockIdx)
+            self.d_blocks.append(block)
+           
+        # make sure all blocks know what their next block is
+        for block in self.d_blocks:
+            nextDvmBlockList = block.block().get_next()
+            if nextDvmBlockList == []:
+                continue
+            for nextBlock in self.d_blocks:
+                for nextDvmBlock in nextDvmBlockList:
+                    if nextBlock.block() is nextDvmBlock[2]:
+                        block.addNextBlock(nextBlock)        
+                   
         # find catch blocks and make sure they are next to a try block
         previousBlock = None
         for block in self.d_blocks:
@@ -321,16 +341,6 @@ class Method:
                     break
             
             previousBlock = block
-            
-        # make sure all blocks know what their next block is
-        for block in self.d_blocks:
-            nextDvmBlockList = block.block().get_next()
-            if nextDvmBlockList == []:
-                continue
-            for nextBlock in self.d_blocks:
-                for nextDvmBlock in nextDvmBlockList:
-                    if nextBlock.block() is nextDvmBlock[2]:
-                        block.addNextBlock(nextBlock)
         
             
         
@@ -405,7 +415,7 @@ class Method:
     
     # java source code
     def sourceCode(self):
-        return self.d_method.get_method().source()
+        return self.d_method.get_method().get_source()
       
     # androguard's smali  
     def smali(self, prepend = ''):
@@ -467,7 +477,7 @@ class Class:
     
     # source code in java of this class
     def sourceCode(self):
-        return self.dvmClass().source()
+        return self.dvmClass().get_source()
       
     # androguard's smali  
     def smali(self):

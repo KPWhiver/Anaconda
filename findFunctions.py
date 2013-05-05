@@ -33,6 +33,16 @@ class TrackInfo:
         
     def leaks(self):
         return self.d_leaks
+        
+class PathInfo:
+    def __init__(self):
+        self.d_leaks = False
+        
+    def markAsLeaking(self):
+        self.d_leaks = True
+        
+    def leaks(self):
+        return self.d_leaks
  
 # Read the list of api sources       
 def sources(filename) :
@@ -99,18 +109,25 @@ def sinks(filename) :
 # Analyze the provided instruction, perform aditional tracking if needed. If register is overwritten in the 
 # instruction, return true
 
+class Result:
+    OVERWRITTEN = 0
+    LEAKED = 1
+    NOTHING = 2
+
 def analyzeInstruction(trackInfo, instruction, trackTree, register):
     print '---->', instruction.opcode(), instruction.parameters()
+    
+    result = Result.NOTHING
     
     if instruction.isSink() and trackInfo.trackType() == TrackInfo.SOURCE:
         trackInfo.markAsLeaking()
         print 'Data is put in sink!'
         trackTree.addComment(instruction, 'Data is put in sink!')
-        return
+        return Result.LEAKED
     
     parameterIndices = [idx for idx, param in enumerate(instruction.parameters()) if param == register]
     
-    isOverwritten = None
+    
     for parameterIndex in parameterIndices:
         if parameterIndex == 0 and instruction.type() == InstructionType.INVOKE:
         
@@ -118,7 +135,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
                 instruction.markAsSink()
                 print 'Marking as sink: ', instruction
                 trackTree.addComment(instruction, 'Marked instruction as sink.')
-                return
+                return result
             else:                           # if tracking a source continue tracking
                 # Function is called on a source object. Track the result.
                 if instruction.parameters()[-1][-1] == 'V': # it returns a void
@@ -210,7 +227,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             # register is overwritten. Case is determined by the parameter index.
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                isOverwritten = True
+                result = Result.OVERWRITTEN
                 continue
             else:
                 print 'Data was read from source object'
@@ -218,14 +235,14 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
         elif instruction.type() == InstructionType.STATICGET:
             # Register is used in a static get, the register is overwritten.
             print 'Register was overwritten'
-            isOverwritten = True
+            result = Result.OVERWRITTEN
             continue
             
         elif instruction.type() == InstructionType.ARRAYGET:
             if parameterIndex == 0:
                 # Data is put into the tracked register, the register is overwritten
                 print 'Register was overwritten'
-                isOverwritten = True
+                result = Result.OVERWRITTEN
                 continue
             elif parameterIndex == 1:
                 # Data is taken out of tainted Array, assume this data is tainted as well
@@ -249,7 +266,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                isOverwritten = True
+                result = Result.OVERWRITTEN
                 continue
             else:
                 newRegister = instruction.parameters()[0]
@@ -263,7 +280,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             # register, parameter 0.
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                isOverwritten = True
+                result = Result.OVERWRITTEN
                 continue
             else: # Tracked data is converted
                 print 'Data converted into different type or used in operation'
@@ -272,21 +289,21 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
         elif instruction.type() == InstructionType.INSTANCEOF or instruction.type() == InstructionType.ARRAYLENGTH:
             if parameterIndex == 0:
                 print 'Register was overwritten'
-                isOverwritten = True
+                result = Result.OVERWRITTEN
                 continue
         elif instruction.type() == InstructionType.CONST or instruction.type() == InstructionType.NEWINSTANCE or \
              (instruction.type() == InstructionType.NEWARRAY and parameterIndex == 0):
             # Value is put in tracked register, register overwritten
 
             print 'Register was overwritten'
-            isOverwritten = True
+            result = Result.OVERWRITTEN
             continue  
         else:
             # Uncaught instruction used
             # TODO: new-instance
             print 'Unknown operation performed'
     
-    return isOverwritten
+    return result
 
 # Call this when you want to track some new register
 def startTracking(trackInfo, instructions, trackTree, register = None):
@@ -306,13 +323,20 @@ def distribute(trackInfo, instructions, visitedInstructions, trackTree, register
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, register):   
-    if history.get((instruction, register), False) == True:
+    pathHistory = history.get((instruction, register), None)
+    
+    if not (pathHistory is None):
+        if pathHistory.leaks():
+            print 'LEAK LEAK LEAK'
+            trackInfo.markAsLeaking()
+        
         print 'ALREADY TRACKED: Already tracked this method from this starting point, aborting'
         print 'method: ', instruction.method()
         print '    instruction:', instruction, ', with register:', register
         return
     
-    history[(instruction, register)] = True
+    pathHistory = PathInfo()
+    history[(instruction, register)] = pathHistory
          
     # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
     if register is None:
@@ -368,10 +392,12 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
             if instruction.type() == InstructionType.MOVERESULT:
                 break # register is overwritten
             
-            overwritten = analyzeInstruction(trackInfo, instruction, node, register)
+            result = analyzeInstruction(trackInfo, instruction, node, register)
     
-            if overwritten:
+            if result == Result.OVERWRITTEN:
                 break # register is overwritten
+            elif result == Result.LEAKED:
+                pathHistory.markAsLeaking()
         
         instructions = instruction.nextInstructions()
         instruction = distribute(trackInfo, instructions, visitedInstructions, node, register)
