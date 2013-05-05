@@ -6,6 +6,8 @@ Possible result of nearby error
 - Unsupported instructions that are used:
 check-cast ['v0', 'Ljava/lang/String;'] -- Does not change tracked register, throws exception
 
+- Correct following of blocks in case of try/catch block (see sendImei)
+
 ---------------Later:
 - Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
 

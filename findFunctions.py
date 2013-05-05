@@ -329,19 +329,24 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     # Have we tracked this register before?
     identifier = [instruction, register]
     
+    """
     # Tree creation
     node = Tree(trackTree, identifier) # If trackTree = None it means this will be the root node
     if not (trackTree is None):
         trackTree.addChild(node)
-
-        # Check if the identifier is common in this branch    
-        #if trackTree.inBranch(identifier):
-        #    node.addComment(instruction, 'Recursion: Already tracked this method.')
-        #    print 'RECURSION: Already tracked this method from this starting point, aborting, (this should never print)'
-        #    print 'method', instruction.method()
-        #    print '    instruction:', instruction, ', with register:', register
-        #    break
+    """
     
+    # Tree creation
+    if trackTree is None or trackTree.content()[0].method() != instruction.method():
+        node = Tree(trackTree, identifier) # If trackTree = None it means this will be the root node
+        
+        if not (trackTree is None):
+            trackTree.addChild(node)
+    else: # trackTree is not None and the previous method is the same
+        node = trackTree
+    
+        
+    # Print class and method and register we're at    
     print '>', instruction.method().memberOf().name(), instruction.method().name()
     print 'Tracking the result in register', register
     
