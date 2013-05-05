@@ -62,7 +62,7 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ul><li>\n'
             
-        output += prepend + '<a href="#">' + self.d_content[0].method().name() + '<br>register: ' + self.d_content[1] + '</a>\n'
+        output += prepend + '<a href="#c' + str(self.uniqueId()) + '">' + self.d_content[0].method().name() + '<br>register: ' + self.d_content[1] + '</a>\n'
         
         if len(self.d_children) > 0:
             output += prepend + '<ul>\n'
@@ -112,8 +112,8 @@ class Tree:
     def listComments(self):
 
         output = ''
-        output += '<h4>' + str(self.d_content[0].method()) + '</h4>'
-        output += '<pre>'
+        output += '<h5>' + str(self.d_content[0].method()) + '</h5>'
+        output += '<pre class="comment" id="c'+ str(self.uniqueId()) +'">'
         
         if self.d_node_comments:
             output += 'Node information:\n\n'
