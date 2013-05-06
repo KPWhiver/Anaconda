@@ -450,7 +450,7 @@ def trackListenerUsages(superClassName, methods):
     superClass = structure.classByName(superClassName)
     if superClass is None:
         return
-        
+    
     # Find the subclasses of the found classes and find their overriden methods
     subClasses = superClass.subClasses()
     for subClass in subClasses:
@@ -516,6 +516,10 @@ def main():
         trackSinkUsages(className, methodName, isSink, direct)
 
     print
+    
+    print '****************************'
+    print '* Looking for listeners *'
+    print '****************************'
     
     # search for all data receiving listeners
     for _, _, superClassName, methods in listeners:
