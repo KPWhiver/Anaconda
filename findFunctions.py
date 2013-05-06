@@ -338,8 +338,7 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     if register is None:
         if instruction.type() == InstructionType.MOVERESULT:
             register = instruction.parameters()[0]
-            instructions = instruction.nextInstructions()
-            instruction = distribute(trackInfo, instructions, visitedInstructions, trackTree, register)
+            instruction = distribute(trackInfo, instruction.nextInstructions(), visitedInstructions, trackTree, register)
             if instruction is None:
                 return # end of the method
         else:
@@ -441,7 +440,7 @@ def trackFieldUsages(trackInfo, className, fieldName, type, trackTree):
             register = instruction.parameters()[0]
 
             
-            startTracking(trackInfo, [instruction], trackTree, register)
+            startTracking(trackInfo, instruction.nextInstructions(), trackTree, register)
 
 def trackListenerUsages(superClassName, methods):
     # Find the listeners that have been overriden
@@ -462,6 +461,9 @@ def trackListenerUsages(superClassName, methods):
                     startTracking(TrackInfo(TrackInfo.SOURCE, superClassName + '->' + listener[0] + ' overriden'), [method.firstInstruction()], None, 'v' + str(parameterNumber))
 
 def trackSinkUsages(className, methodName, isSink, direct):
+    if direct == 'indirect':
+        return
+
     methods = structure.calledMethodsByMethodName(className, methodName)
     
     for method in methods:
