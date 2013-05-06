@@ -21,9 +21,11 @@ class Tree:
     def addChild(self, child):
         self.d_children.append(child)
 
-    def addComment(self, instruction, comment):
+    def addComment(self, instruction, register, comment):
         dictValue = self.d_comments.get(instruction, None)
-        commentWithSyntax = '  |------> ' + comment + '\n'
+        # Make sure multiline comments are nicely outlined
+        comment = comment.replace('\n', '\n  |          ' + len(register) * ' ')
+        commentWithSyntax = '  |------> ' + register + ': ' + comment + '\n'
 
         if dictValue is None:
             self.d_comments[instruction] = commentWithSyntax
@@ -81,6 +83,16 @@ class Tree:
             
         return output
 
+    def comments(self, instruction, indent):
+        comment = self.d_comments.get(instruction, None)
+        if comment is not None:
+            comment = reindent('  |\n' + comment, indent + '    ')
+            comment += '\n'
+        else:
+            comment = ''
+            
+        return comment
+
     def printRecursive(self, block, visited, indent):
         output = ''
         number = block.number()
@@ -94,10 +106,7 @@ class Tree:
                 output += indent
                 
             output += instruction.smali()
-            comment = self.d_comments.get(instruction, None)
-            if comment is not None:
-                output += reindent('  |\n' + comment, indent + '    ')
-                output += '\n'
+            output += self.comments(instruction, indent)
         
         # if next blocks we need to draw the arrow
         if block.nextBlocks() != []:
@@ -143,6 +152,7 @@ class Tree:
         
         firstBlock = self.d_content[0].method().blocks()[0]
         visited = {}
+        output += self.comments(None, '')
         output += self.printRecursive(firstBlock, visited, '    ') + '\n'
 
         output += '</pre>'
