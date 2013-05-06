@@ -105,7 +105,12 @@ class Tree:
             else:
                 output += indent
                 
-            output += instruction.smali()
+            output += instruction.__str__() + ' '#instruction.smali()
+            if instruction.isSink():
+                output += '(marked as sink)'
+               
+            output += '\n'
+            
             output += self.comments(instruction, indent)
         
         # if next blocks we need to draw the arrow
