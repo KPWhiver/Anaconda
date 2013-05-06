@@ -10,7 +10,7 @@ check-cast ['v0', 'Ljava/lang/String;'] -- Does not change tracked register, thr
 
 - Turn on indirect functions again
 
-- Correctly track multiple virtual functions
+- Correctly track multiple virtual functions (see also line 192 of findFunctions.py)
 
 ---------------Later:
 - Track data that is returned by reference. For example a method could take tainted data and some additional object, and put the data in that object without returning it. 
