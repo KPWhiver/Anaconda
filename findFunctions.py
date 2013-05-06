@@ -3,6 +3,7 @@
 import re
 import sys
 import os.path
+import webbrowser
 
 sys.path.append('androguard')
 
@@ -227,6 +228,8 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
                 continue
             else:
                 print 'Data was read from source object'
+                newRegister = instruction.parameters()[0] # target register
+                startTracking(trackInfo, instruction.nextInstructions(), trackTree, newRegister)
                 
         elif instruction.type() == InstructionType.STATICGET:
             # Register is used in a static get, the register is overwritten.
@@ -479,13 +482,13 @@ def trackSinkUsages(className, methodName, isSink, direct):
 
 def main():
     optParser = OptionParser(usage='Usage: %prog [options] -f FILENAME')
-    optParser.add_option("-f", "--file", action="store", type="string",
-            dest="filename", help="the filename of the APK to analyze", default=None)
+    optParser.add_option('-f', '--file', action='store', type='string',
+            dest='filename', help='the filename of the APK to analyze', default=None)
     (options, args) = optParser.parse_args()
 
     if options.filename is None:
         optParser.print_usage()
-        print "A filename is required."
+        print 'A filename is required.'
         return
 
     if not os.path.isfile(options.filename):
@@ -541,8 +544,10 @@ def main():
     template = Template(text)
     html = template.render(treeStructure = trackedTrees)
     
-    with open("html/results.html", "w") as htmlFile:
+    with open('html/results.html', 'w') as htmlFile:
         htmlFile.write(html)
+        
+    webbrowser.open('html/results.html')
 
 if __name__ == "__main__":
     main()
