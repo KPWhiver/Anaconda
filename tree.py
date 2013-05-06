@@ -24,7 +24,7 @@ class Tree:
     def addComment(self, instruction, register, comment):
         dictValue = self.d_comments.get(instruction, None)
         # Make sure multiline comments are nicely outlined
-        comment = comment.replace('\n', '\n  |        ')
+        comment = comment.replace('\n', '\n  |          ' + len(register) * ' ')
         commentWithSyntax = '  |------> ' + register + ': ' + comment + '\n'
 
         if dictValue is None:
