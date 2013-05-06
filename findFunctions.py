@@ -342,8 +342,15 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     # Have we tracked this register before?
     identifier = [instruction, register]
         
+    # Is the method we are currently in the same as the one we were in before?
+    inNewMethod = False
+    if trackTree is None:
+        inNewMethod = True
+    else:
+        inNewMethod = trackTree.content()[0].method() == instruction.method()
+        
     # Tree creation
-    if trackTree is None or trackTree.content()[0].method() != instruction.method():
+    if trackTree is None or not inNewMethod:
         node = Tree(trackTree, identifier) # If trackTree = None it means this will be the root node
         
         if not (trackTree is None):
@@ -355,10 +362,14 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     # Print class and method and register we're at    
     #print '>', instruction.method().memberOf().name(), instruction.method().name()
     #print 'Tracking the result in register', register
+    message = 'Tracking register'
+    if inNewMethod:
+        message += ' (first register tracked in this method)'
+    
     if instruction == instruction.method().firstInstruction():
-        node.addComment(None, '++' + register, 'Tracking register')
+        node.addComment(None, '++' + register, message)
     else:
-        node.addComment(previousHandledInstruction, '++' + register, 'Tracking register')
+        node.addComment(previousHandledInstruction, '++' + register, message)
     
     # Iterate over the instructions of this method
     while not (instruction is None):
