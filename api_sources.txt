@@ -139,6 +139,9 @@ android.net.wifi.WifiConfiguration                    wepKeys [Ljava.lang.String
 android.net.wifi.ScanResult                           BSSID Ljava.lang.String;
 android.net.wifi.ScanResult                           SSID Ljava.lang.String;
 
+android.os.Build                                      FINGERPRINT Ljava.lang.String;
+android.os.Build                                      SERIAL Ljava.lang.String;
+
 #listeners
 android.accounts.AccountManager                       addOnAccountsUpdatedListener(Landroid.accounts.OnAccountsUpdateListener; Landroid.os.Handler; Z)                    android.accounts.OnAccountsUpdateListener     onAccountsUpdated 0           
 android.telephony.TelephonyManager                    listen(Landroid.telephony.PhoneStateListener; I)                                                                    android.telephony.PhoneStateListener           onCallStateChanged 1    onCellInfoChanged 0      onCellLocationChanged 0        android.permission.READ_PHONE_STATE/.ACCESS_COARSE_LOCATION/.NONE

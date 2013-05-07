@@ -465,8 +465,8 @@ def trackListenerUsages(superClassName, methods):
                     startTracking(TrackInfo(TrackInfo.SOURCE, superClassName + '->' + listener[0] + ' overriden'), [method.firstInstruction()], None, 'v' + str(parameterNumber))
 
 def trackSinkUsages(className, methodName, isSink, direct):
-    if direct == 'indirect':
-        return
+    #if direct == 'indirect':
+    #    return
 
     methods = structure.calledMethodsByMethodName(className, methodName)
     
