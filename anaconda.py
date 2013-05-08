@@ -405,6 +405,51 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
     
     if trackTree is None:
         trackedTrees.append((node, trackInfo))
+
+def startBackTracking(instructions, register):
+    checckInstruction(trackBack(instructions, register), register)
+
+def trackBack(instructions, register):
+    if instructions > 1:
+        for instruction in instructions[1:]:
+            checkInstruction(instruction, register)
+    
+    return instruction[0]
+        
+def checkInstruction(instruction, register):
+    while not(instruction is None):
+        if register in instruction.parameters();
+            if instruction.type() == InstructionType.MOVERESULT:
+                # the object tainted data was put into was returned by a method. Any of the paramters to this method call can be the object containing the result, all need to be tracked
+                
+            elif instruction.type() == InstructionType.MOVE:  # TODO: multiple local references to same object
+                # the object tainted data was put into was moved into this register, backtrack the original register. If this is the original register, do nothing
+                
+            elif instruction.type() == InstructionType.ARRAYGET:
+                # the object tainted data was put into comes out of an array, track the array. If object is the array, do nothing
+                
+            elif instruction.type() == InstructionType.FIELDGET:
+                # The object tainted data was put into comes out of another object. Track that object, find usages of the field, continue backtracking 
+                
+                
+            
+    #MOVE = 2
+    #RETURN = 3
+    #IF = 4
+    #ARRAYGET = 5
+    #FIELDGET = 6
+    #STATICGET = 7
+    #ARRAYPUT = 8
+    #FIELDPUT = 9
+    #STATICINVOKE = 10
+    #INVOKE = 11
+    #CONST = 12
+    #NEWINSTANCE = 13
+    #NEWARRAY = 14
+    #CONVERSION = 15
+    #INSTANCEOF = 16
+    #ARRAYLENGTH = 17
+    #OPERATION = 18
     
 def trackMethodUsages(trackInfo, className, methodName, trackTree):
     methods = structure.calledMethodsByMethodName(className, methodName)

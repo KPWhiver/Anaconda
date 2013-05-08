@@ -161,6 +161,10 @@ class Instruction:
     def nextInstructions(self):
         return self.d_block._nextInstructions(self.d_index)
     
+    # the possible previous instructions before this one
+    def prevInstructions(self):
+        return self.d_block._prevInstructions(self.d_index)
+    
     # type of instruction as int
     def type(self):
         return self.d_type
@@ -242,6 +246,7 @@ class Block:
         
         self.d_instructions = []
         self.d_logicalNextBlocks = []
+        self.d_logicalPrevBlocks = []
         
         self.d_number = ''
         #for dvmBlock in self.d_block.get_next():
@@ -261,6 +266,14 @@ class Block:
         self.d_logicalNextBlocks.append(logicalNextBlock)
         #if logicalNextBlock.d_number == '':
         #  logicalNextBlock.d_number = self.d_number + '.' + str(numberOfBlock)
+        
+    # only used by Method
+    def addPrevBlock(self, logicalPrevBlock):
+        #numberOfBlock = len(self.d_logicalNextBlocks)
+        
+        self.d_logicalPrevBlocks.append(logicalPrevBlock)
+        #if logicalNextBlock.d_number == '':
+        #  logicalNextBlock.d_number = self.d_number + '.' + str(numberOfBlock)
 
     # the possible next instructions after this one
     def _nextInstructions(self, index):
@@ -274,6 +287,20 @@ class Block:
             instructions.append(self.d_instructions[index + 1])
             
         return instructions
+    
+    # the possible previous instructions before this one
+    def _previousInstructions(self, index):
+        instructions = []
+        
+        # is it the first instruction?
+        if index - 1 < 0:
+            for block in self.d_logicalPrevBlocks:
+                instructions.append(block.instructions()[-1])
+        else:
+            instructions.append(self.d_instructions[index - 1])
+            
+        return instructions
+    end
         
     # logical next block
     def nextBlocks(self):
@@ -319,6 +346,16 @@ class Method:
             block.d_number = str(blockIdx)
             self.d_blocks.append(block)
            
+        # make sure all blocks know what their previous block is
+        for block in self.d_blocks:
+            prevDvmBlockList = block.block().get_prev()
+            if prevDvmBlockList == []:
+                continue
+            for prevBlock in self.d_blocks:
+                for prevDvmBlock in prevDvmBlockList:
+                    if prevBlock.block() is prevDvmBlock[2]:
+                        block.addPrevBlock(prevBlock)   
+
         # make sure all blocks know what their next block is
         for block in self.d_blocks:
             nextDvmBlockList = block.block().get_next()
@@ -327,7 +364,7 @@ class Method:
             for nextBlock in self.d_blocks:
                 for nextDvmBlock in nextDvmBlockList:
                     if nextBlock.block() is nextDvmBlock[2]:
-                        block.addNextBlock(nextBlock)        
+                        block.addNextBlock(nextBlock)  
                    
         # find catch blocks and make sure they are next to a try block
         previousBlock = None
