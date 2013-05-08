@@ -563,7 +563,8 @@ def main():
     with open('html/results.html', 'w') as htmlFile:
         htmlFile.write(html)
         
-    webbrowser.open('html/results.html')
+    # Crashes under OS X; requires additional resting.
+    # webbrowser.open('html/results.html')
 
 if __name__ == "__main__":
     main()
