@@ -497,6 +497,8 @@ def main():
     optParser = OptionParser(usage='Usage: %prog [options] -f FILENAME')
     optParser.add_option('-f', '--file', action='store', type='string',
             dest='filename', help='the filename of the APK to analyze', default=None)
+    optParser.add_option('-b', '--browser', action='store_true', dest='showBrowser',
+                         help='open the resulting HTML in your default browser')
     (options, args) = optParser.parse_args()
 
     if options.filename is None:
@@ -550,7 +552,7 @@ def main():
         
     for className, fieldName, type in fields:
         trackFieldUsages(None, className, fieldName, type, None)
-    
+        
 
     print 'total time: ', time.time() - point 
     
@@ -565,7 +567,8 @@ def main():
         htmlFile.write(html)
         
     # Crashes under OS X; requires additional resting.
-    # webbrowser.open('html/results.html')
+    if options.showBrowser:
+        webbrowser.open('html/results.html')
 
 if __name__ == "__main__":
     main()
