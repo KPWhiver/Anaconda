@@ -61,6 +61,7 @@ class Tree:
             
         return output
     
+    """
     def toHTML(self, prepend = ''):
         output = ''
         
@@ -83,6 +84,36 @@ class Tree:
             
         if self.d_parent is None:
             output += '</li></ul>\n'
+            output += '</div>\n'
+            
+        return output
+    """
+        
+    def toHTML(self, prepend = ''):
+        output = ''
+        
+        if self.d_parent is None:
+            output += '<div class="tree">\n'
+            output += '<ol>\n'
+            
+        name = self.d_leaks * "Leaks: " + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
+            
+        if len(self.d_children) == 0:
+            output += prepend + '<li class="file"><a href="#c' + str(self.uniqueId()) + '">' + name + '</a></li>\n'
+        else:
+            output += prepend + '<li>\n'
+            output += prepend + '<label class="folder" for="' + str(self.uniqueId()) + '"><a href="#c' + str(self.uniqueId()) + '">' + name + '</a></label>\n'
+            output += prepend + '<input type="checkbox" id="' + str(self.uniqueId()) + '" />\n'
+            output += prepend + '<ol>\n'
+            
+            for child in self.d_children:
+                output += child.toHTML(prepend + '  ')
+            
+            output += prepend + '</ol>\n'
+            output += prepend + '</li>\n'
+            
+        if self.d_parent is None:
+            output += '</ol>\n'
             output += '</div>\n'
             
         return output

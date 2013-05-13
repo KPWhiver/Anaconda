@@ -4,6 +4,7 @@
   <title>Results</title>
 
 	<!--<link rel="stylesheet" type="text/css" href="css/tree.css">-->
+	<link rel="stylesheet" type="text/css" href="css/_styles.css" media="screen">
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet">
 	<style type="text/css">
     body {
