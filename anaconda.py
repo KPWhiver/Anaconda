@@ -122,6 +122,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
     if instruction.isSink() and trackInfo.trackType() == TrackInfo.SOURCE:
         trackInfo.markAsLeaking()
         trackTree.addComment(instruction, register, 'Data is put in sink!')
+        trackTree.markAsLeaking()
         return Result.LEAKED
     
     parameterIndices = [idx for idx, param in enumerate(instruction.parameters()) if param == register]

@@ -17,6 +17,7 @@ class Tree:
         self.d_node_comments = []
         self.d_parent = parent
         self.d_content = content
+        self.d_leaks = False
         
     def addChild(self, child):
         self.d_children.append(child)
@@ -49,6 +50,9 @@ class Tree:
     def uniqueId(self):
         return id(self)
     
+    def markAsLeaking(self):
+        self.d_leaks = True
+    
     def toString(self, prepend = ''):
         output = '<>' + prepend + self.d_content[0].method().name() + ' ' + self.d_content[1] + '\n'
         
@@ -64,7 +68,7 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ul><li>\n'
             
-        output += prepend + '<a href="#c' + str(self.uniqueId()) + '">' + self.d_content[0].method().name() + '<br>start-register: ' + self.d_content[1] + '</a>\n'
+        output += prepend + '<a href="#c' + str(self.uniqueId()) + '">' + self.d_leaks * "Leaks: " + self.d_content[0].method().name() + '<br>start-register: ' + self.d_content[1] + '</a>\n'
         
         if len(self.d_children) > 0:
             output += prepend + '<ul>\n'
