@@ -17,9 +17,9 @@
 	}
 		.tree li.file a
 		{
-			background: url(../img/document.png) 0 0 no-repeat;
+			background: url(../img/document.png) 2px 2px no-repeat;
 			color: #000;
-			padding-left: 21px;
+			padding-left: 24px;
 			text-decoration: none;
 			display: block;
 		}
@@ -37,19 +37,20 @@
 		top: 0;
 	}
 
-		.tree li input + ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
+	.tree li input + ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
 	.tree li label
 	{
 		background: url(../img/document.png) 15px 1px no-repeat;
 		cursor: pointer;
 		display: block;
 		padding-left: 37px;
+		margin-bottom: 7px;
 	}		
 	.tree li label a
 	{
 		color: #000;
 		text-decoration: none;
-		display: block;
+		
 	}
 	
 	.tree li input + ol
