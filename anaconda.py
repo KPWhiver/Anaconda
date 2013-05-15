@@ -136,14 +136,15 @@ def analyzeInstruction(treeInfo, instruction, trackTree, register):
             if treeInfo.trackType() == TreeInfo.SINK: # if tracking a sink mark instruction as sink
                 instruction.markAsSink()
                 trackTree.addComment(instruction, register, 'Marked instruction as sink.')
-            else:                           # if tracking a source continue tracking
-                # Function is called on a source object. Track the result.
-                if instruction.parameters()[-1][-1] == 'V': # it returns a void
-                    trackTree.addComment(instruction, register, 'Function ' + str(instruction.parameters()[-1]) + ' called on source object, but returns void')
-                else:
-                    trackTree.addComment(instruction, register, 'Function ' + str(instruction.parameters()[-1]) + ' called on source object, tracking result')
 
-                    startTracking(treeInfo, instruction.nextInstructions(), trackTree)
+            # TODO: I removed an else here opinions?
+            # Function is called on a source object. Track the result.
+            if instruction.parameters()[-1][-1] == 'V': # it returns a void
+                trackTree.addComment(instruction, register, 'Function ' + str(instruction.parameters()[-1]) + ' called on source object, but returns void')
+            else:
+                trackTree.addComment(instruction, register, 'Function ' + str(instruction.parameters()[-1]) + ' called on source object, tracking result')
+
+                startTracking(treeInfo, instruction.nextInstructions(), trackTree)
 
         elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
             # The register is passed as a parameter to a function. Attempt to continue tracking in the function
@@ -298,7 +299,7 @@ def analyzeInstruction(treeInfo, instruction, trackTree, register):
     return result
 
 # Call this when you want to track some new register, returns whether any of the instructions causes leakage
-def startTracking(treeInfo, instructions, trackTree, register = None):
+def startTracking(treeInfo, instructions, trackTree, register = 'v?'):
     distribute(treeInfo, [None] + instructions, {}, trackTree, register)
 
 # Distribute the given list of instructions over several tracks
@@ -314,36 +315,43 @@ def distribute(treeInfo, instructions, visitedInstructions, trackTree, register)
 
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
-def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, register):   
-    startPoint = history.get((instruction, register), None)
+def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, register):  
+    startPoint = None
+    
+    if treeInfo.trackType() == TreeInfo.SINK:
+        startPoint = sinkHistory.get((instruction, register), None)
+    else:
+        startPoint = sourceHistory.get((instruction, register), None)
     
     # We've been here before
     if not (startPoint is None):
-        trackMessage = 'Stopping: Tracked this before'
+        trackMessage = ''
+        #if not (register is None):
+        trackMessage += register
         
-        if startPoint.leaks():
-            trackMessage += ', known to leak'       
-            treeInfo.markAsLeaking()
-            
-            #if not (trackTree is None):
-                #trackTree.setLeakText('Branch leaks: ')
+        trackMessage += ' Stopping: Tracked this before'
         node = Tree(trackTree, [instruction, trackMessage])
         if startPoint.leaks():
-            node.setLeakText('Branch leaks: ')
-        
+            #trackMessage += ', known to leak'       
+            treeInfo.markAsLeaking()
+            node.setLeakText('Branch leaks: ')      
         
         if not (trackTree is None):
             trackTree.addChild(node)
         return
     
+    # We haven't been here before
     startPoint = StartInfo()
-    history[(instruction, register)] = startPoint
+    if treeInfo.trackType() == TreeInfo.SINK:
+        sinkHistory[(instruction, register)] = startPoint
+    else:
+        sourceHistory[(instruction, register)] = startPoint
          
     # This is needed for comments
     previousHandledInstruction = instruction 
        
     # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
-    if register is None:
+    if register == 'v?':
         if instruction.type() == InstructionType.MOVERESULT:
             register = instruction.parameters()[0]
             
@@ -351,7 +359,7 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
             if instruction is None:
                 return # end of the method
         else:
-            return
+            return # result of method was not stored
 
     # Have we tracked this register before?
     identifier = [instruction, register]
@@ -373,9 +381,6 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
         node = trackTree
     
         
-    # Print class and method and register we're at    
-    #print '>', instruction.method().memberOf().name(), instruction.method().name()
-    #print 'Tracking the result in register', register
     
     if visitedInstructions == {}:
         message = 'Tracking register'
@@ -413,7 +418,7 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
         instructions = instruction.nextInstructions()
         instruction = distribute(treeInfo, instructions, visitedInstructions, node, register)
         
-    if node.leakInBranch():
+    if node.leakInBranch() and treeInfo.trackType() == TreeInfo.SOURCE:
         startPoint.markAsLeaking()
         if not (trackTree is None):
             trackTree.setLeakText('Branch leaks: ')
@@ -522,9 +527,11 @@ def main():
     sinkClasses = sinks('api_sinks.txt')
     global structure
     global trackedTrees
-    global history
+    global sinkHistory
+    global sourceHistory
     trackedTrees = []
-    history = {}
+    sinkHistory = {}
+    sourceHistory = {}
     
     structure = APKstructure(options.filename)
     
