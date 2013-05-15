@@ -325,8 +325,8 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
             if not (trackTree is None):
                 trackTree.setLeakText('Branch leaks: ')
         
-        #if not (trackTree is None):
-        #    trackTree.addChild(Tree(trackTree, [instruction, trackMessage]))
+        if not (trackTree is None):
+            trackTree.addChild(Tree(trackTree, [instruction, trackMessage]))
         return Result.LEAKED
     
     pathHistory = PathInfo()
