@@ -9,6 +9,7 @@ To run Anaconda just execute anaconda.py somewhere in a terminal, running it wit
 After running Anaconda results will be stored in html/results.html, which can be opened in a browser (we suggest a not to old version of Chrome/Chromium or Firefox)
 
 File content:
+
 -anaconda.py
  contains the code which initializes the tracking of tainted data through the code
  
