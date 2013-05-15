@@ -36,3 +36,11 @@ Branch leaks: generateFakeMacAddr()V start-register: v1
             Branch leaks: urlencode([Ljava/lang/String;)Ljava/lang/String; start-register: v6
 
             Leaks: reportHostInfo(Landroid/content/Context; Ljava/lang/String;)V start-register: v9
+            
+----------------------------------------------------------------------------------------------------------
+
+Sinks should have their own history
+
+---------------------------
+
+Tracked before shouldn't be done if there's no difference between this method and the next

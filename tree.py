@@ -53,6 +53,17 @@ class Tree:
     def setLeakText(self, text):
         if self.d_leakText == '':
             self.d_leakText = text
+            
+    def leakInBranch(self):
+        if self.d_leakText != '':
+            return True
+            
+        for child in self.d_children:
+            if child.leakInBranch():
+                self.setLeakText('Branch leaks: ')
+                return True
+                
+        return False
     
     def toString(self, prepend = ''):
         output = '<>' + prepend + self.d_content[0].method().name() + ' ' + self.d_content[1] + '\n'
@@ -62,6 +73,7 @@ class Tree:
             
         return output
     
+    # Old tree
     """
     def toHTML(self, prepend = ''):
         output = ''
@@ -89,7 +101,8 @@ class Tree:
             
         return output
     """
-        
+       
+    # New tree
     def toHTML(self, prepend = ''):
         output = ''
         
