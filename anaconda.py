@@ -151,8 +151,11 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             definitions = instruction.classesAndMethodsByStructure(structure)
             note = ''
             
+            numberOfDefinitions = 0
             for _, instructionMethod in definitions:
-                if instructionMethod is None:
+                if not (instructionMethod is None):
+                    numberOfDefinitions += 1
+                else:
                     # Class is not defined within APK
                     className, methodName = instruction.classAndMethod()
                     note += 'Information is used in method call not defined in apk'
@@ -166,21 +169,24 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
                     if not instruction.parameters()[-1].endswith(')V'): # It returns something
                         note += '\nTracking the data this call returns'
                         result = startTracking(trackInfo, instruction.nextInstructions(), trackTree)
-                else:
+                    
+                    
+                    
+            if numberOfDefinitions > 0:  
+                note += 'Information is used in method call defined in apk,\n' + str(numberOfDefinitions) + ' definitions of the called method have been found:'
+            
+            for _, instructionMethod in definitions:
+                if not (instructionMethod is None):
                     # Class defined in the APK, continue tracking
                     if not instructionMethod.hasCode():
-                        note += 'No code was found for method ' + instruction.method().memberOf().name() + ' ' + instruction.method().name() + '\n'
+                        note += '\nNo code was found for method ' + instruction.method().memberOf().name() + ' ' + instruction.method().name()
                         continue
                 
-                    note += '<span style="color:#f00">Tracking method ' + instructionMethod.memberOf().name() + ' ' + instructionMethod.name() + '\n</span>'
+                    note += '<span style="color:#f00">\nTracking method ' + instructionMethod.memberOf().name() + ' ' + instructionMethod.name() + '</span>'
 
                     parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
 
                     result = startTracking(trackInfo, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
-          
-            #if len(definitions) > 0:  
-            #    note += 'Information is used in method call defined in apk,\n' + str(len(definitions)) + ' definitions of the called method have been found:'
-            #else:
     
             # Finally add note as comment
             trackTree.addComment(instruction, register, note)
