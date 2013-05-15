@@ -325,11 +325,7 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
     
     # We've been here before
     if not (startPoint is None):
-        trackMessage = ''
-        #if not (register is None):
-        trackMessage += register
-        
-        trackMessage += ' Stopping: Tracked this before'
+        trackMessage = register + ' Stopping: Tracked this before'
         node = Tree(trackTree, [instruction, trackMessage])
         if startPoint.leaks():
             #trackMessage += ', known to leak'       
@@ -346,21 +342,9 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
         sinkHistory[(instruction, register)] = startPoint
     else:
         sourceHistory[(instruction, register)] = startPoint
-         
-    # This is needed for comments
-    previousHandledInstruction = instruction 
-       
-    # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
-    if register == 'v?':
-        if instruction.type() == InstructionType.MOVERESULT:
-            register = instruction.parameters()[0]
-            
-            instruction = distribute(treeInfo, instruction.nextInstructions(), visitedInstructions, trackTree, register)
-            if instruction is None:
-                return # end of the method
-        else:
-            return # result of method was not stored
-
+             
+    #######################################################
+             
     # Have we tracked this register before?
     identifier = [instruction, register]
         
@@ -380,18 +364,32 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
     else: # trackTree is not None and the previous method is the same
         node = trackTree
     
-        
+    #######################################################
     
+    message = ''
     if visitedInstructions == {}:
         message = 'Tracking register'
         if inNewMethod:
             message += ' (first register tracked in this method)'
         
+    # Check if a register was provided. If not, retrieve the register to track from move-result in startInstruction 
+    if register == 'v?':
+        if instruction.type() == InstructionType.MOVERESULT:
+            register = instruction.parameters()[0]
+            node.addComment(instruction, '++' + register, message)
+            visitedInstructions[(instruction, register)] = True
+            
+            distribute(treeInfo, [None] + instruction.nextInstructions(), visitedInstructions, node, register)
+
+        instruction = None # end of the method
+    elif visitedInstructions == {}:
         if instruction == instruction.method().firstInstruction():
             node.addComment(None, '++' + register, message)
         else:
-            node.addComment(previousHandledInstruction, '++' + register, message)
-    
+            node.addComment(instruction, '++' + register, message)
+            
+    #######################################################
+            
     # Iterate over the instructions of this method
     while not (instruction is None):
 
@@ -418,6 +416,8 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
         instructions = instruction.nextInstructions()
         instruction = distribute(treeInfo, instructions, visitedInstructions, node, register)
         
+    #######################################################
+        
     if node.leakInBranch() and treeInfo.trackType() == TreeInfo.SOURCE:
         startPoint.markAsLeaking()
         if not (trackTree is None):
@@ -425,6 +425,7 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
     
     if trackTree is None:
         trackedTrees.append((node, treeInfo))
+
     
 def trackMethodUsages(treeInfo, className, methodName, trackTree):
     methods = structure.calledMethodsByMethodName(className, methodName)

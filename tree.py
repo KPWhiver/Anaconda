@@ -21,6 +21,9 @@ class Tree:
         
     def addChild(self, child):
         self.d_children.append(child)
+        
+    def parent(self):
+        return self.d_parent
 
     def addComment(self, instruction, register, comment):
         dictValue = self.d_comments.get(instruction, None)
