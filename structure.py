@@ -202,33 +202,60 @@ class Instruction:
     
     # the Class objects and Method objects this instruction is possibly calling (possibly due to inheritance)
     def classesAndMethodsByStructure(self, structure):       
-        classObject = structure.classByName(self.d_parameters[-2])        
-        if classObject is None or classObject.dvmClass() is None:
-            return []
+        classObject = structure.classByName(self.d_parameters[-2])  
+        # If the classObject is None the class is not defined in the APK or inherited from     
+        if classObject is None:
+            return [[None, None]]
         
-        #TODO: if virtual we only look at the subclasses not at the superclass self
         # is it a static call that's executed virtually
-        virtualStatic = 'invoke-static' in self.opcode() and classObject.methodByName(self.d_parameters[-1]) is None
+        methodObject = classObject.methodByName(self.d_parameters[-1])
         
-        if 'invoke-virtual' not in self.opcode() and 'invoke-interface' not in self.opcode() and not virtualStatic:
-            superClass = classObject.superClass()
-            if 'invoke-super' in self.opcode() and superClass.dvmClass() is None:
-                return []
-            elif 'invoke-super' in self.opcode():
-                return [[superClass, superClass.methodByName(self.d_parameters[-1])]]
-            else:
-                return [[classObject, classObject.methodByName(self.d_parameters[-1])]]
+        # A static method is virtual if a class does not define it itself
+        virtualStatic = 'invoke-static' in self.opcode() and methodObject is None
         
-        classes = [classObject] + classObject.subClasses() # TODO make unique + recursive
+        # Virtual invoke:
+        if 'invoke-virtual' in self.opcode() or 'invoke-interface' in self.opcode() or virtualStatic:
+            classes = [classObject] + classObject.subClasses()
         
-        classesAndMethods = []
+            classesAndMethods = []
         
-        for classObject in classes:
-            method = classObject.methodByName(self.d_parameters[-1])
-            if not (method is None):
-                classesAndMethods.append([classObject, method])
+            # If this class is not defined in the APK we still need to track the method
+            if classObject.dvmClass() is None:
+                classesAndMethods.append([None, None])
+        
+            for classObject in classes:
+                method = classObject.methodByName(self.d_parameters[-1])
+                if not (method is None):
+                    classesAndMethods.append([classObject, method])
                 
-        return classesAndMethods
+            return classesAndMethods
+        # Non virtual invoke:
+        else:
+            # If the class is not defined the APK return
+            if classObject.dvmClass() is None:
+                return [[None, None]]
+        
+            superClass = classObject.superClass()
+            
+            # A call to the superClass which is not defined in the APK
+            if 'invoke-super' in self.opcode() and superClass.dvmClass() is None:
+                return [[None, None]]
+            # A call to the superClass which is defined in the APK
+            elif 'invoke-super' in self.opcode():
+                superMethodObject = superClass.methodByName(self.d_parameters[-1])
+                # TODO: this should really return look deeper at other superClasses when the method can't be found
+                if superMethodObject is None:
+                    return [[None, None]]
+                
+                return [[superClass, superMethodObject]]
+            # A call to a direct function
+            else:
+                if methodObject is None:
+                    print 'error: couldn\'t find', self.d_parameters[-1], 'in', self.d_parameters[-2]
+                    return [[None, None]]
+                return [[classObject, methodObject]]
+        
+
     
     def __str__(self):
         return self.opcode() + str(self.d_parameters)

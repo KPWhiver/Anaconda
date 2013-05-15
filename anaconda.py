@@ -121,8 +121,8 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
     
     if instruction.isSink() and trackInfo.trackType() == TrackInfo.SOURCE:
         trackInfo.markAsLeaking()
-        trackTree.addComment(instruction, register, 'Data is put in sink!')
-        trackTree.markAsLeaking()
+        trackTree.addComment(instruction, register, '<span style="color:#f00">Data is put in sink!</span>')
+        trackTree.setLeakText('Leaks: ')
         return Result.LEAKED
     
     parameterIndices = [idx for idx, param in enumerate(instruction.parameters()) if param == register]
@@ -146,48 +146,44 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
         elif instruction.type() == InstructionType.INVOKE or instruction.type() == InstructionType.STATICINVOKE:
             # The register is passed as a parameter to a function. Attempt to continue tracking in the function
             # TODO: Return by reference
-            # TODO: doing instructionIdx + 1 while the function we just met might be a sink
-            # TODO: in case of unfindable method: what about what it returns? Might be fixed by fixing above TODO and changing to instructionIdx
                     
             # Attempt to find the method used within the apk
             definitions = instruction.classesAndMethodsByStructure(structure)
             note = ''
-            if len(definitions) > 0:  
-                note += 'Information is used in method call defined in apk,\n' + str(len(definitions)) + ' definitions of the called method have been found:'
-            else:
-                # Class is not defined within APK
-                className, methodName = instruction.classAndMethod()
-                note += 'Information is used in method call not defined in apk'
-
-                if instruction.type() == InstructionType.INVOKE:
-                    # It was an instance call, track the object the function was called on
-
-                    result = startTracking(trackInfo, [instruction], trackTree, instruction.parameters()[0])
-                    note += ',\ntracking the instance the method is called on'
-                
-            # Defined within the apk, continue tracking the data in the method definition
-            for _, instructionMethod in definitions:
-                if not instructionMethod.hasCode():
-                    note += '\nNo code was found for method ' + instruction.method().memberOf().name() + ' ' + instruction.method().name()
-                    continue
-                
-                note += '\nTracking method ' + instructionMethod.memberOf().name() + ' ' + instructionMethod.name()
-
-                parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
-
-                result = startTracking(trackInfo, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
             
-            # Check if something was returned, track the register it was put in
-            # TODO: this should not always be calledS
-            if not instruction.parameters()[-1].endswith(')V'): # It returns something
+            for _, instructionMethod in definitions:
+                if instructionMethod is None:
+                    # Class is not defined within APK
+                    className, methodName = instruction.classAndMethod()
+                    note += 'Information is used in method call not defined in apk'
 
-                note += '\nTracking the data this call returns'
-                instruction.markAsSink()
-                result = startTracking(trackInfo, instruction.nextInstructions(), trackTree)
+                    if instruction.type() == InstructionType.INVOKE:
+                        # It was an instance call, track the object the function was called on
+
+                        result = startTracking(trackInfo, [instruction], trackTree, instruction.parameters()[0])
+                        note += ',\ntracking the instance the method is called on'
+                        
+                    if not instruction.parameters()[-1].endswith(')V'): # It returns something
+                        note += '\nTracking the data this call returns'
+                        result = startTracking(trackInfo, instruction.nextInstructions(), trackTree)
+                else:
+                    # Class defined in the APK, continue tracking
+                    if not instructionMethod.hasCode():
+                        note += 'No code was found for method ' + instruction.method().memberOf().name() + ' ' + instruction.method().name() + '\n'
+                        continue
                 
+                    note += '<span style="color:#f00">Tracking method ' + instructionMethod.memberOf().name() + ' ' + instructionMethod.name() + '\n</span>'
+
+                    parameterRegister = 'v%d' % (instructionMethod.numberOfLocalRegisters() + parameterIndex)
+
+                    result = startTracking(trackInfo, [instructionMethod.firstInstruction()], trackTree, parameterRegister)
+          
+            #if len(definitions) > 0:  
+            #    note += 'Information is used in method call defined in apk,\n' + str(len(definitions)) + ' definitions of the called method have been found:'
+            #else:
+    
             # Finally add note as comment
             trackTree.addComment(instruction, register, note)
-                
                 
         elif instruction.type() == InstructionType.IF:
             # The register is used in a if statement
@@ -197,7 +193,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             # The content of the register is put inside a field, either of an instance or a class. Use trackFieldUsages to
             # lookup where this field is read and continue tracking there
             parameters = instruction.parameters()
-            trackTree.addComment(instruction, register, 'Data is put in field ' + str(parameters[-2]) + ' of class ' + str(parameters[-3]) + '\nSearching for usages')
+            trackTree.addComment(instruction, register, '<span style="color:#f00">Data is put in field ' + str(parameters[-2]) + ' of class ' + str(parameters[-3]) + '\nSearching for usages</span>')
 
             result = trackFieldUsages(trackInfo, parameters[-3], parameters[-2], parameters[-1], trackTree)
             
@@ -247,7 +243,7 @@ def analyzeInstruction(trackInfo, instruction, trackTree, register):
             # Register is used in return instruction. Use trackMethodUsages to look for usages of this function and track
             # the register containing the result.
             
-            trackTree.addComment(instruction, register, 'Data was returned. Looking for usages of this function')
+            trackTree.addComment(instruction, register, '<span style="color:#f00">Data was returned. Looking for usages of this function</span>')
             result = trackMethodUsages(trackInfo, instruction.method().memberOf().name(), instruction.method().name(), trackTree)
             
         elif instruction.type() == InstructionType.MOVE:
@@ -320,6 +316,8 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
         if pathHistory.leaks():
             trackMessage += ', known to leak'       
             trackInfo.markAsLeaking()
+            if not (trackTree is None):
+                trackTree.setLeakText('Branch leaks: ')
         
         #if not (trackTree is None):
         #    trackTree.addChild(Tree(trackTree, [instruction, trackMessage]))
@@ -406,10 +404,12 @@ def trackFromCall(trackInfo, instruction, visitedInstructions, trackTree, regist
         instructions = instruction.nextInstructions()
         instruction, result = distribute(trackInfo, instructions, visitedInstructions, node, register)
         if result == Result.LEAKED:
-            endResult = result
+            endResult = Result.LEAKED
     
     if endResult == Result.LEAKED:
         pathHistory.markAsLeaking()
+        if not (trackTree is None):
+            node.setLeakText('Branch leaks: ')
     
     if trackTree is None:
         trackedTrees.append((node, trackInfo))

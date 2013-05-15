@@ -17,7 +17,7 @@ class Tree:
         self.d_node_comments = []
         self.d_parent = parent
         self.d_content = content
-        self.d_leaks = False
+        self.d_leakText = ''
         
     def addChild(self, child):
         self.d_children.append(child)
@@ -50,8 +50,9 @@ class Tree:
     def uniqueId(self):
         return id(self)
     
-    def markAsLeaking(self):
-        self.d_leaks = True
+    def setLeakText(self, text):
+        if self.d_leakText == '':
+            self.d_leakText = text
     
     def toString(self, prepend = ''):
         output = '<>' + prepend + self.d_content[0].method().name() + ' ' + self.d_content[1] + '\n'
@@ -96,7 +97,7 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ol>\n'
             
-        name = self.d_leaks * "Leaks: " + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
+        name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
             
         if len(self.d_children) == 0:
             output += prepend + '<li class="file"><a href="#c' + str(self.uniqueId()) + '">' + name + '</a></li>\n'
@@ -120,13 +121,13 @@ class Tree:
 
     def comments(self, instruction, indent):
         comment = self.d_comments.get(instruction, None)
+        newcomment = ''
         if comment is not None:
-            comment = reindent('  |\n' + comment, indent + '    ')
-            comment += '\n'
-        else:
-            comment = ''
+            newcomment = '<span style="color:#3f3">'
+            newcomment += reindent('  |\n' + comment, indent + '    ')
+            newcomment += '</span>\n'
             
-        return comment
+        return newcomment
 
     def printRecursive(self, block, visited, indent):
         output = ''
