@@ -1,0 +1,38 @@
+W       hen tracking the value retrieved from a field (iget/sget), the comment stating which register is tracked is printed after the following instruction. Example:
+
+iget-object['v15', 'v15', 'Lcom/dropbox/android/exception/UserInfo;', 'DEVICE_ID', 'Ljava/lang/String;'] 
+invoke-virtual['v14', 'v15', 'Ljava/lang/StringBuilder;', 'append(Ljava/lang/String;)Ljava/lang/StringBuilder;'] 
+    |
+    |------> ++v15: Tracking register (first register tracked in this method)
+    |------> ++v14: Tracking register
+    |------> v14: Function append(Ljava/lang/String;)Ljava/lang/StringBuilder; called on source object, tracking result
+    |------> v15: Information is used in method call not defined in apk,
+    |             tracking the instance the method is called on
+    |             Tracking the data this call returns
+    
+v15 is tracked here because of the iget, but the ++v15 comment is printed after the invok-virtual instruction following the get.
+
+----------------------------------------------------------------------------------------------------------
+
+When a function leaks because information retrieved from a field is leaked, only that function is marked as leaking in the resulting html. The 'parents' of the leaking function node are not marked as leaking, making it hard to find a leakage like this when it happens far down a branch.
+
+
+Tree:
+Branch leaks: generateFakeMacAddr()V start-register: v1
+    Branch leaks: getFakeMacAddr()Ljava/lang/String; start-register: v0
+
+        onPreferenceClick(Landroid/preference/Preference;)Z start-register: v0
+        setupUserInfo(Landroid/content/Context;)V start-register: v11
+## Not marked as leaking branch ^
+
+            doCheckedInBackground(Landroid/content/Context; [Ljava/lang/Void;)Ljava/lang/String; start-register: v2
+            Leaks: outputException(Ljava/lang/Throwable; Lcom/dropbox/android/exception/ExceptionHandler$LogLevel;)V start-register: v15
+            
+        Branch leaks: setupUserInfo(Landroid/content/Context;)V start-register: v11
+        reportHostInfo(Landroid/content/Context; Ljava/lang/String;)V start-register: v3
+## Not marked as leaking branch ^
+
+            strslog([Ljava/lang/String;)V start-register: v3
+            Branch leaks: urlencode([Ljava/lang/String;)Ljava/lang/String; start-register: v6
+
+            Leaks: reportHostInfo(Landroid/content/Context; Ljava/lang/String;)V start-register: v9
