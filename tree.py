@@ -97,7 +97,11 @@ class Tree:
             output += '<div class="tree">\n'
             output += '<ol>\n'
             
-        name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
+        # This branch has been tracked already somewhere else
+        if 'Stopping' in self.d_content[1]:
+            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' ' + self.d_content[1]
+        else:
+            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
             
         if len(self.d_children) == 0:
             output += prepend + '<li class="file"><a href="#c' + str(self.uniqueId()) + '">' + name + '</a></li>\n'
@@ -173,8 +177,13 @@ class Tree:
 
 
     def listComments(self):
-
         output = ''
+        
+        # This branch has been tracked already somewhere else
+        if 'Stopping' in self.d_content[1]:
+            output += '<h5>' + self.d_content[0].method().memberOf().name() + '->' + self.d_content[0].method().name() + ' ' + self.d_content[1] + '</h5>'
+            return output
+       
         output += '<h5>' + self.d_content[0].method().memberOf().name() + '->' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1] + '</h5>'
         output += '<div class="comment" id="c'+ str(self.uniqueId()) +'">'
         
