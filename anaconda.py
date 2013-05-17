@@ -587,7 +587,6 @@ def main():
         
     startHTML = time.time()
     print timeStamp(), ' analyze time: ', startHTML - startAnalyse 
-    print 'Number of trees: ', len(trackedTrees)
     # make html page
     with open('html/results.text', 'r') as textFile:
         text = textFile.read()
