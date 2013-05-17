@@ -321,6 +321,20 @@ def distribute(treeInfo, instructions, visitedInstructions, trackTree, register)
 # Track a register from the specified block and instrucion index in the provided method. If no register is provided,
 # attempt to read the register to track from the move-result instruction on the instruction specified.
 def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, register):  
+                 
+    # Have we tracked this register before?
+    identifier = [instruction, register]
+        
+    # Is the method we are currently in the same as the one we were in before?
+    inNewMethod = False
+    if trackTree is None:
+        inNewMethod = True
+    else:
+        inNewMethod = trackTree.content()[0].method() != instruction.method()
+
+    
+    #######################################################
+    
     startPoint = None
     
     if treeInfo.trackType() == TreeInfo.SINK:
@@ -330,15 +344,22 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
     
     # We've been here before
     if not (startPoint is None):
-        trackMessage = register + ' Stopping: Tracked this before'
-        node = Tree(trackTree, [instruction, trackMessage])
+        trackMessage = 'Stopping: Tracked this before'
+        node = Tree(trackTree, [instruction, register + ' ' + trackMessage])
         if startPoint.leaks():
             #trackMessage += ', known to leak'       
             treeInfo.markAsLeaking()
             node.setLeakText('Branch leaks: ')      
+            trackMessage += ', it leaked before'
+            
+            if not inNewMethod and not (trackTree is None):
+                trackTree.setLeakText('Branch leaks: ')
         
         if not (trackTree is None):
-            trackTree.addChild(node)
+            if not inNewMethod:
+                trackTree.addComment(instruction, register, trackMessage)
+            else:
+                trackTree.addChild(node)
         return
     
     # We haven't been here before
@@ -349,16 +370,6 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
         sourceHistory[(instruction, register)] = startPoint
              
     #######################################################
-             
-    # Have we tracked this register before?
-    identifier = [instruction, register]
-        
-    # Is the method we are currently in the same as the one we were in before?
-    inNewMethod = False
-    if trackTree is None:
-        inNewMethod = True
-    else:
-        inNewMethod = trackTree.content()[0].method() != instruction.method()
         
     # Tree creation
     if trackTree is None or inNewMethod:
@@ -368,7 +379,7 @@ def trackFromCall(treeInfo, instruction, visitedInstructions, trackTree, registe
             trackTree.addChild(node)
     else: # trackTree is not None and the previous method is the same
         node = trackTree
-    
+        
     #######################################################
     
     message = ''
