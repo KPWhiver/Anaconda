@@ -72,13 +72,14 @@ def parseOpcode(opcode):
         return InstructionType.NONE
 
 # variables for parsing
-classParse = '(\[*L[\w/\$_]*;)'
+classParse = '(\[?L[\w/\$_]*;)'
+typeParse = '(\[?L[\w/\$_]*;|\[?[VZBSCIJFD])'
 whitespaceParse = '[\s]*'
 
 
 # parse the last argument of a function call
 def parseInvoke(call) :    
-    match = re.match(classParse + '->(.*)', call)
+    match = re.match(typeParse + '->(.*)', call)
     if match == None:
         print 'error (parseInvoke): ', call
         return '', ''
@@ -90,7 +91,7 @@ def parseFieldGet(call) :
     #    return '', ''
     # ^ ???
     
-    match = re.match(classParse + '->([\w\$_]*)' + whitespaceParse + '(\[*L[\w/\$_]*;|\[*[VZBSCIJFD])', call)
+    match = re.match(typeParse + '->([\w\$_]*)' + whitespaceParse + typeParse, call)
     if match == None:
         print 'error (parseFieldGet): ', call
         return '', '', ''
@@ -442,7 +443,10 @@ class Method:
     
     # java source code
     def sourceCode(self):
-        return self.d_method.get_method().get_source()
+        try:
+            return self.d_method.get_method().get_source()
+        except AttributeError:
+            return 'Error while retrieving java source code'
       
     # androguard's smali  
     def smali(self, prepend = ''):
@@ -504,7 +508,10 @@ class Class:
     
     # source code in java of this class
     def sourceCode(self):
-        return self.dvmClass().get_source()
+        try:
+            return self.dvmClass().get_source()
+        except AttributeError:
+            return 'Error while retrieving java source code'
       
     # androguard's smali  
     def smali(self):
