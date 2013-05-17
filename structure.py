@@ -578,8 +578,6 @@ class Class:
 # class containing information about an entire APK file
 class APKstructure:
     def __init__(self, file):
-        point = time.time()
-        
         _, self.d_dvm, self.d_analysis = AnalyzeAPK(file, False, 'dad')
         
         self.d_classes = {}
@@ -599,8 +597,6 @@ class APKstructure:
                     
                 classObject.setSuperClass(superClassObject)
                 superClassObject.addSubclass(classObject)
-                        
-        print 'parse time: ', time.time() - point
 
     # dictionary of Class objects by name
     def classes(self):
