@@ -72,8 +72,8 @@ def parseOpcode(opcode):
         return InstructionType.NONE
 
 # variables for parsing
-classParse = '(\[?L[\w/\$_]*;)'
-typeParse = '(\[?L[\w/\$_]*;|\[?[VZBSCIJFD])'
+classParse = '(\[*L[\w/\$_]*;)'
+typeParse = '(\[*L[\w/\$_]*;|\[*[VZBSCIJFD])'
 whitespaceParse = '[\s]*'
 
 
