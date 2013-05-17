@@ -5,6 +5,7 @@ import sys
 import os.path
 import webbrowser
 
+
 sys.path.append('androguard')
 
 from androlyze import *
@@ -13,6 +14,10 @@ from tools import *
 from tree import *
 from jinja2 import Template
 from optparse import OptionParser
+from time import gmtime, strftime
+
+def timeStamp():
+  return strftime('[%H:%M:%S]', gmtime())
  
 # Class containing information about a tree
 class TreeInfo:
@@ -522,7 +527,7 @@ def main():
         return
 
 
-    point = time.time()
+    start = time.time()
 
     classAndFunctions, fields, listeners = sources('api_sources.txt')
     sinkClasses = sinks('api_sinks.txt')
@@ -535,6 +540,9 @@ def main():
     sourceHistory = {}
     
     structure = APKstructure(options.filename)
+    
+    startAnalyse = time.time()
+    print timeStamp(), ' parse time: ', startAnalyse - start
     
     # search for and mark sinks
     print '*****************'
@@ -566,9 +574,9 @@ def main():
     for className, fieldName, type in fields:
         trackFieldUsages(None, className, fieldName, type, None)
         
-
-    print 'total time: ', time.time() - point 
-    
+    startHTML = time.time()
+    print timeStamp(), ' analyze time: ', startHTML - startAnalyse 
+    print 'Number of trees: ', len(trackedTrees)
     # make html page
     with open('html/results.text', 'r') as textFile:
         text = textFile.read()
@@ -576,8 +584,13 @@ def main():
     template = Template(text)
     html = template.render(treeStructure = trackedTrees)
     
+    print timeStamp(), ' finished generating, writing to file'
     with open('html/results.html', 'w') as htmlFile:
         htmlFile.write(html)
+        
+    endHTML = time.time()
+    print timeStamp(), ' generate html time: ', endHTML - startHTML
+    print timeStamp(), ' total time: ', endHTML - start
         
     # Crashes under OS X; requires additional resting.
     if options.showBrowser:
