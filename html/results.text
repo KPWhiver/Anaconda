@@ -100,7 +100,7 @@
                          
               {% if tree[1].leaks() %}
               
-              <font color="ff0000">Leaks: </font>
+              <span style="color:red">Leaks: </span>
             
               {% endif %}
               
