@@ -91,7 +91,7 @@
             {% if tree[1].trackType() == 1 %}
             <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab"> 
               {% if tree[1].leaks() %}
-              <span color="ff0000">Leaks: </span>
+              <span style="color:red">Leaks: </span>
               {% endif %}
               {{ tree[1].reason() }}
               </a></li>
