@@ -78,39 +78,25 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">	      
 					<li class="nav-header">Sinks</li>
-		      
 		      {% for tree in treeStructure %}
 		        {% if tree[1].trackType() == 0 %}
-
             <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab">
-
-              
               {{ tree[1].reason() }}
             </a></li>
-            
             {% endif %}
           {% endfor %}
-          
+
 					<li class="nav-header">Sources</li>
-					
           {% for tree in treeStructure %}
             {% if tree[1].trackType() == 1 %}
-          
             <li><a href="#{{ tree[0].uniqueId() }}" data-toggle="tab"> 
-                         
               {% if tree[1].leaks() %}
-              
-              <font color="ff0000">Leaks: </font>
-            
+              <span color="ff0000">Leaks: </span>
               {% endif %}
-              
               {{ tree[1].reason() }}
-              
               </a></li>
-            
             {% endif %}
           {% endfor %}
-		        
 					</ul>
 				</div><!--/.well -->
 			</div><!--/span-->
@@ -118,10 +104,7 @@
 			<div class="span9">
 				<div class="hero-unit" id="Package_name">
 					<div class="tab-content">
-					
 					{% for tree in treeStructure %}
-					  
-
 		        <div class="tab-pane" id="{{ tree[0].uniqueId() }}">
 							<h2>{{ tree[0].content()[0].method() }}</h2>
 							<h3>Tree:</h3>
@@ -130,13 +113,10 @@
               <h3>Comments:</h3>
               {{ tree[0].listComments() }}
 						</div>
-		        
 		      {% endfor %}
-						
 					</div>
 				</div>
 			</div><!--/span-->
-
 		</div><!--/row-->
 	<hr>
 
@@ -144,10 +124,6 @@
 		<p>&copy; Anaconda</p>
 		<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/fr/80x15.png" /></a></p>
 	</footer>
-
 	</div><!--/.fluid-container-->
-
-
-
 </body>
 </html>
