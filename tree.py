@@ -69,7 +69,7 @@ class Tree:
         return False
     
     def toString(self, prepend = ''):
-        output = '<>' + prepend + self.d_content[0].method().name() + ' ' + self.d_content[1] + '\n'
+        output = '<>' + prepend + self.d_content[0].method().name().replace('<', '&lt;') + ' ' + self.d_content[1] + '\n'
         
         for child in self.d_children:
             output += child.toString(prepend + '    ')
@@ -115,9 +115,9 @@ class Tree:
             
         # This branch has been tracked already somewhere else
         if 'Stopping' in self.d_content[1]:
-            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' ' + self.d_content[1]
+            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name().replace('<', '&lt;') + ' ' + self.d_content[1]
         else:
-            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1]
+            name = '<span style="color:#f00">' + self.d_leakText + '</span>' + self.d_content[0].method().name().replace('<', '&lt;') + ' start-register: ' + self.d_content[1]
             
         if len(self.d_children) == 0:
             output += prepend + '<li class="file"><a href="#c' + str(self.uniqueId()) + '">' + name + '</a></li>\n'
@@ -161,7 +161,7 @@ class Tree:
             else:
                 output += indent
                 
-            output += instruction.__str__() + ' '#instruction.smali()
+            output += instruction.__str__().replace('<', '&lt;') + ' '#instruction.smali()
             if instruction.isSink():
                 output += '(marked as sink)'
                
@@ -197,15 +197,15 @@ class Tree:
         
         # This branch has been tracked already somewhere else
         if 'Stopping' in self.d_content[1]:
-            output += '<h5>' + self.d_content[0].method().memberOf().name() + '->' + self.d_content[0].method().name() + ' ' + self.d_content[1] + '</h5>'
+            output += '<h5>' + self.d_content[0].method().memberOf().name().replace('<', '&lt;') + '->' + self.d_content[0].method().name().replace('<', '&lt;') + ' ' + self.d_content[1].replace('<', '&lt;') + '</h5>'
             return output
        
-        output += '<h5>' + self.d_content[0].method().memberOf().name() + '->' + self.d_content[0].method().name() + ' start-register: ' + self.d_content[1] + '</h5>'
+        output += '<h5>' + self.d_content[0].method().memberOf().name().replace('<', '&lt;') + '->' + self.d_content[0].method().name().replace('<', '&lt;') + ' start-register: ' + self.d_content[1].replace('<', '&lt;') + '</h5>'
         output += '<div class="comment" id="c'+ str(self.uniqueId()) +'">'
         
         output += '<pre>'
         
-        output += self.d_content[0].method().sourceCode()
+        output += self.d_content[0].method().sourceCode().replace('<', '&lt;')
         
         output += '</pre>'
         output += '<pre>'
@@ -213,7 +213,7 @@ class Tree:
         if self.d_node_comments:
             output += 'Node information:\n\n'
             for comment in self.d_node_comments:
-                output += comment
+                output += comment.replace('<', '&lt;')
             output += '\n------------------------------\n\n'
         
         firstBlock = self.d_content[0].method().blocks()[0]
