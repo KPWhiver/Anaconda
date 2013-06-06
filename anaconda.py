@@ -206,10 +206,12 @@ def analyzeInstruction(treeInfo, instruction, trackTree, register):
         elif instruction.type() == InstructionType.FIELDPUT:
             # The content of the register is put inside a field, either of an instance or a class. Use trackFieldUsages to
             # lookup where this field is read and continue tracking there
-            parameters = instruction.parameters()
-            trackTree.addComment(instruction, register, '<span style="color:#f00">Data is put in field ' + str(parameters[-2]) + ' of class ' + str(parameters[-3]) + '\nSearching for usages</span>')
+            if parameterIndex == 0:  # If it is not the first parameter, a field of the tracked object is accessed. In that case, just do nothing
+              parameters = instruction.parameters()
+              trackTree.addComment(instruction, register, '<span style="color:#f00">Data is put in field ' + str(parameters[-2]) + ' of class ' + str(parameters[-3]) + '\nSearching for usages</span>')
 
-            trackFieldUsages(treeInfo, parameters[-3], parameters[-2], parameters[-1], trackTree)
+              trackFieldUsages(treeInfo, parameters[-3], parameters[-2], parameters[-1], trackTree)
+            
             
         elif instruction.type() == InstructionType.ARRAYPUT:
             if parameterIndex == 0: # Data is put in an array. Track the array
